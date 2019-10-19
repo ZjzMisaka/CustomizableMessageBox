@@ -1,6 +1,6 @@
 # MessageBoxTouch
  ![WTFPL](http://www.wtfpl.net/wp-content/uploads/2012/12/wtfpl-badge-1.png)<br />
- 触控友好, 兼容System.Windows.MessageBox调用参数的消息类)<br />
+ 触控友好, 兼容System.Windows.MessageBox调用参数的消息类<br />
 ### 特性
 - 因为可以改变字体且支持触摸操作, 所以适合在平板上使用. 
 - 消息框最初有一定高度, 但如果Message文本内容过多, 超出了高度限制, MessageBox显示不下时, 窗口高度会对应增加, 使消息能被完整显示出来. 
