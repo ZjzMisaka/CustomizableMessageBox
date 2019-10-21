@@ -64,14 +64,6 @@
                     <ColumnDefinition />
                     <ColumnDefinition />
                 </Grid.ColumnDefinitions>
-
-                <Button Content="OK" Style="{StaticResource MessageBoxButtonStyle}" x:Name="btn_single_ok" Grid.Row="0" Grid.Column="1" />
-
-                <Button Content="YES" Style="{StaticResource MessageBoxButtonStyle}" x:Name="btn_yes" Grid.Row="0" Grid.Column="0" />
-                <Button Content="NO" Style="{StaticResource MessageBoxButtonStyle}" x:Name="btn_no" Grid.Row="0" Grid.Column="1" />
-
-                <Button Content="OK" Style="{StaticResource MessageBoxButtonStyle}" x:Name="btn_ok" Grid.Row="0" Grid.Column="0" />
-                <Button Content="CANCEL" Style="{StaticResource MessageBoxButtonStyle}" x:Name="btn_cancel" Grid.Row="0" Grid.Column="1" />
             </Grid>
         </Grid>
     </Border>

@@ -34,22 +34,12 @@ namespace MessageBoxTouch
         private static MessageBox mb;
 
         // 用户选择的结果
-        private static Object currentClick = null;
+        private static int currentClickIndex = -1;
 
         private static readonly TaskScheduler _syncContextTaskScheduler = TaskScheduler.FromCurrentSynchronizationContext();
 
-        private enum MessageBoxMode {
-            // 兼容系统MessageBox参数模式
-            COMPATIBLE,
-            // 自定义MessageBox模式
-            CUSTOMIZED
-        }
-
         // 自定按钮列表
         private static List<string> btnList = null;
-
-        // 模式选择
-        private static MessageBoxMode messageBoxMode;
 
         // 窗口宽度
         private static int windowWidth = -1;
@@ -105,191 +95,38 @@ namespace MessageBoxTouch
         /// <returns></returns>
         public static MessageBoxResult Show(string msg, string title = "", MessageBoxButton selectStyle = MessageBoxButton.OK, MessageBoxImage img = MessageBoxImage.None)
         {
-            // 兼容模式
-            messageBoxMode = MessageBoxMode.COMPATIBLE;
+            // 按钮列表
+            List<string> btnList;
 
-            try
+            // 判断按钮类型并显示相应的按钮
+            switch (selectStyle)
             {
-                if (mb != null)
-                    return MessageBoxResult.Cancel;
+                case MessageBoxButton.OK:
+                    btnList = new List<string> { "OK" };
+                    break;
 
-                // 初始化窗口
-                mb = new MessageBox();
+                case MessageBoxButton.OKCancel:
+                    btnList = new List<string> { "OK", "Cancel" };
+                    break;
 
-                // 计算像素密度
-                pixelsPerDip = VisualTreeHelper.GetDpi(mb).PixelsPerDip;
+                case MessageBoxButton.YesNo:
+                    btnList = new List<string> { "Yes", "No" };
+                    break;
 
-                //设定窗口最大高度为窗口工作区高度
-                mb.MaxHeight = SystemInformation.WorkingArea.Height;
+                case MessageBoxButton.YesNoCancel:
+                    btnList = new List<string> { "Yes", "No", "Cancel" };
+                    break;
 
-                //绑定按钮点击事件
-                mb.btn_cancel.Click += BtnClicked;
-                mb.btn_no.Click += BtnClicked;
-                mb.btn_ok.Click += BtnClicked;
-                mb.btn_single_ok.Click += BtnClicked;
-                mb.btn_yes.Click += BtnClicked;
-
-                //绑定关闭按钮点击事件
-                mb.i_close.MouseLeftButtonUp += I_close_TouchDown;
-
-                // 绑定标题栏鼠标事件, 拖动窗口
-                mb.l_title.MouseLeftButtonDown += L_title_MouseLeftButtonDown;
-
-                // 设置各种属性
-                if (WindowWidth != -1)
-                {
-                    mb.Width = WindowWidth;
-                }
-                if(WindowMinHeight != -1)
-                {
-                    mb.MinHeight = WindowMinHeight;
-                }
-                if (TitleFontSize != -1)
-                {
-                    mb.l_title.FontSize = TitleFontSize;
-                    // 根据字体计算标题字符串高度
-                    double height = new FormattedText(" ", CultureInfo.CurrentCulture, System.Windows.FlowDirection.LeftToRight, new Typeface(mb.l_title.FontFamily.ToString()), mb.l_title.FontSize, System.Windows.Media.Brushes.Black, pixelsPerDip).Height;
-                    // 设置标题栏高度
-                    mb.g_title.Height = height + 7;
-                    mb.rd_title.Height = new GridLength(height + 14);
-                }
-                if (MessageFontSize != -1)
-                {
-                    mb.tb_msg.FontSize = MessageFontSize;
-                }
-                if (ButtonFontSize != -1)
-                {
-                    mb.btn_cancel.FontSize = MessageFontSize;
-                    mb.btn_no.FontSize = MessageFontSize;
-                    mb.btn_ok.FontSize = MessageFontSize;
-                    mb.btn_single_ok.FontSize = MessageFontSize;
-                    mb.btn_yes.FontSize = MessageFontSize;
-                    // 根据字体计算按钮字符串高度
-                    double height = new FormattedText(" ", CultureInfo.CurrentCulture, System.Windows.FlowDirection.LeftToRight, new Typeface(mb.tb_msg.FontFamily.ToString()), mb.tb_msg.FontSize, System.Windows.Media.Brushes.Black, pixelsPerDip).Height;
-                    // 设置按钮高度
-                    mb.btn_cancel.Height = height + 7;
-                    mb.btn_no.Height = height + 7;
-                    mb.btn_ok.Height = height + 7;
-                    mb.btn_single_ok.Height = height + 7;
-                    mb.btn_yes.Height = height + 7;
-                    // 设置按钮外边距
-                    mb.btn_cancel.Margin = new Thickness(10, 0, 10, 0);
-                    mb.btn_no.Margin = new Thickness(10, 0, 10, 0);
-                    mb.btn_ok.Margin = new Thickness(10, 0, 10, 0);
-                    mb.btn_single_ok.Margin = new Thickness(10, 0, 10, 0);
-                    mb.btn_yes.Margin = new Thickness(10, 0, 10, 0);
-                    // 设置按钮栏高度
-                    mb.g_buttongrid.Height = height + 20;
-                    mb.rd_button.Height = new GridLength(height + 20, GridUnitType.Pixel);
-                }
-                if (WindowOpacity != -1)
-                {
-                    mb.Opacity = WindowOpacity;
-                }
-                if (TitleBarOpacity != -1)
-                {
-                    mb.g_title.Opacity = TitleBarOpacity;
-                }
-                if (MessageBarOpacity != -1)
-                {
-                    mb.g_message.Opacity = MessageBarOpacity;
-                }
-                if (ButtonBarOpacity != -1)
-                {
-                    mb.g_buttongrid.Opacity = ButtonBarOpacity;
-                }
-
-                // 重置选择结果
-                currentClick = MessageBoxResult.Cancel;
-
-                // 关闭按钮
-                mb.i_close.Source = new BitmapImage(new Uri(".\\Image\\close.png", UriKind.RelativeOrAbsolute));
-
-                // 显示标题
-                mb.l_title.Content = title;
-                mb.Title = title;
-
-                // 判断消息类型并显示相应的图像
-                switch (img)
-                {
-                    case MessageBoxImage.Warning:
-                        mb.i_img.Source = new BitmapImage(new Uri(".\\Image\\warn.png", UriKind.RelativeOrAbsolute));
-                        mb.i_img.Visibility = Visibility.Visible;
-                        mb.tb_msg.Width = mb.Width - mb.i_img.Width - mb.i_img.Margin.Left - mb.i_img.Margin.Right - mb.tb_msg.Margin.Left - mb.tb_msg.Margin.Right;
-                        break;
-
-                    case MessageBoxImage.Error:
-                        mb.i_img.Source = new BitmapImage(new Uri(".\\Image\\error.png", UriKind.RelativeOrAbsolute));
-                        mb.i_img.Visibility = Visibility.Visible;
-                        mb.tb_msg.Width = mb.Width - mb.i_img.Width - mb.i_img.Margin.Left - mb.i_img.Margin.Right - mb.tb_msg.Margin.Left - mb.tb_msg.Margin.Right;
-                        break;
-
-                    case MessageBoxImage.Information:
-                        mb.i_img.Source = new BitmapImage(new Uri(".\\Image\\info.png", UriKind.RelativeOrAbsolute));
-                        mb.i_img.Visibility = Visibility.Visible;
-                        mb.tb_msg.Width = mb.Width - mb.i_img.Width - mb.i_img.Margin.Left - mb.i_img.Margin.Right - mb.tb_msg.Margin.Left - mb.tb_msg.Margin.Right;
-                        break;
-
-                    case MessageBoxImage.Question:
-                        mb.i_img.Source = new BitmapImage(new Uri(".\\Image\\question.png", UriKind.RelativeOrAbsolute));
-                        mb.i_img.Visibility = Visibility.Visible;
-                        mb.tb_msg.Width = mb.Width - mb.i_img.Width - mb.i_img.Margin.Left - mb.i_img.Margin.Right - mb.tb_msg.Margin.Left - mb.tb_msg.Margin.Right;
-                        break;
-
-                    case MessageBoxImage.None:
-                        mb.tb_msg.Width = mb.Width - mb.tb_msg.Margin.Left - mb.tb_msg.Margin.Right;
-                        break;
-
-                    default:
-                        mb.tb_msg.Width = mb.Width - mb.tb_msg.Margin.Left - mb.tb_msg.Margin.Right;
-                        break;
-                }
-
-                // 显示消息内容
-                mb.tb_msg.Text = mb.tb_msg.Text + msg;
-
-                // 判断按钮类型并显示相应的按钮
-                switch (selectStyle)
-                {
-                    case MessageBoxButton.OK:
-                        mb.btn_single_ok.Visibility = Visibility.Visible;
-                        break;
-
-                    case MessageBoxButton.OKCancel:
-                        mb.btn_ok.Visibility = Visibility.Visible;
-                        mb.btn_cancel.Visibility = Visibility.Visible;
-                        break;
-
-                    case MessageBoxButton.YesNo:
-                        mb.btn_yes.Visibility = Visibility.Visible;
-                        mb.btn_no.Visibility = Visibility.Visible;
-                        break;
-
-                    case MessageBoxButton.YesNoCancel:
-                        mb.btn_yes.Visibility = Visibility.Visible;
-                        mb.btn_no.Visibility = Visibility.Visible;
-                        mb.i_close.Visibility = Visibility.Visible;
-                        break;
-
-                    default:
-                        mb.btn_single_ok.Visibility = Visibility.Visible;
-                        break;
-                }
-
-                // 设置所属的窗口
-                mb.Owner = Application.Current.MainWindow;
-
-                // 显示窗口
-                mb.ShowDialog();
-            }
-            catch
-            {
-                // 调用系统MessageBox
-                currentClick = System.Windows.MessageBox.Show(msg, title, selectStyle, img);
+                default:
+                    btnList = new List<string> { "OK" };
+                    break;
             }
 
-            // 返回用户选择的结果
-            return (MessageBoxResult)currentClick;
+            // 获取返回值字符串
+            string resultStr = btnList[Show(btnList, msg, title, img)];
+
+            // 找到对应的MessageBoxResult元素并返回
+            return (MessageBoxResult)System.Enum.Parse(typeof(MessageBoxResult), resultStr);
         }
 
         /// <summary>
@@ -302,9 +139,6 @@ namespace MessageBoxTouch
         /// <returns></returns>
         public static int Show(List<string> btnList, string msg, string title = "", MessageBoxImage img = MessageBoxImage.None)
         {
-            // 自定模式
-            messageBoxMode = MessageBoxMode.CUSTOMIZED;
-
             MessageBox.btnList = btnList;
 
             try
@@ -328,7 +162,7 @@ namespace MessageBoxTouch
                 mb.l_title.MouseLeftButtonDown += L_title_MouseLeftButtonDown;
 
                 // 重置选择结果
-                currentClick = -1;
+                currentClickIndex = -1;
 
                 // 关闭按钮
                 mb.i_close.Source = new BitmapImage(new Uri(".\\Image\\close.png", UriKind.RelativeOrAbsolute));
@@ -492,12 +326,12 @@ namespace MessageBoxTouch
             catch
             {
                 // 调用系统MessageBox
-                currentClick = System.Windows.MessageBox.Show(msg, title, MessageBoxButton.OK, img);
+                System.Windows.MessageBox.Show(msg, title, MessageBoxButton.OK, img);
                 return -1;
             }
 
             // 返回用户选择的结果
-            return (int)currentClick;
+            return (int)currentClickIndex;
         }
 
 
@@ -510,32 +344,8 @@ namespace MessageBoxTouch
         {
             Button btn = (Button)sender;
 
-            // 与系统MessageBox兼容的情况
-            if (messageBoxMode == MessageBoxMode.COMPATIBLE)
-            {
-                if (btn == mb.btn_cancel)
-                {
-                    currentClick = MessageBoxResult.Cancel;
-                }
-                else if (btn == mb.btn_no)
-                {
-                    currentClick = MessageBoxResult.No;
-                }
-                else if (btn == mb.btn_ok || btn == mb.btn_single_ok)
-                {
-                    currentClick = MessageBoxResult.OK;
-                }
-                else if (btn == mb.btn_yes)
-                {
-                    currentClick = MessageBoxResult.Yes;
-                }
-            }
-            // 自定MessageBox的情况
-            else
-            {
-                // 遍历按钮列表寻找和按钮文本相符的元素的索引
-                currentClick = btnList.IndexOf(btn.Content.ToString());
-            }
+            // 遍历按钮列表寻找和按钮文本相符的元素的索引
+            currentClickIndex = btnList.IndexOf(btn.Content.ToString());
 
             // 关闭窗口
             mb.Hide();
