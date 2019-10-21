@@ -42,39 +42,39 @@ namespace MessageBoxTouch
         private static List<string> btnList = null;
 
         // 窗口宽度
-        private static int windowWidth = -1;
+        private static int windowWidth = 800;
         public static int WindowWidth { get => windowWidth; set => windowWidth = value; }
 
         // 窗口最小高度
-        private static int windowMinHeight = -1;
+        private static int windowMinHeight = 450;
         public static int WindowMinHeight { get => windowMinHeight; set => windowMinHeight = value; }
 
         // 标题字体大小
-        private static int titleFontSize = -1;
+        private static int titleFontSize = 30;
         public static int TitleFontSize { get => titleFontSize; set => titleFontSize = value; }
 
         // 消息文本字体大小
-        private static int messageFontSize = -1;
+        private static int messageFontSize = 25;
         public static int MessageFontSize { get => messageFontSize; set => messageFontSize = value; }
 
         // 按钮字体大小
-        private static int buttonFontSize = -1;
+        private static int buttonFontSize = 30;
         public static int ButtonFontSize { get => buttonFontSize; set => buttonFontSize = value; }
         
         // 窗口透明度
-        private static double windowOpacity = -1;
+        private static double windowOpacity = 0.95;
         public static double WindowOpacity { get => windowOpacity; set => windowOpacity = value; }
 
         // 标题栏透明度
-        private static double titleBarOpacity = -1;
+        private static double titleBarOpacity = 1;
         public static double TitleBarOpacity { get => titleBarOpacity; set => titleBarOpacity = value; }
 
         // 消息栏透明度
-        private static double messageBarOpacity = -1;
+        private static double messageBarOpacity = 1;
         public static double MessageBarOpacity { get => messageBarOpacity; set => messageBarOpacity = value; }
 
         // 按钮栏透明度
-        private static double buttonBarOpacity = -1;
+        private static double buttonBarOpacity = 1;
         public static double ButtonBarOpacity { get => buttonBarOpacity; set => buttonBarOpacity = value; }
         // 像素密度
         private static double pixelsPerDip;
@@ -102,23 +102,23 @@ namespace MessageBoxTouch
             switch (selectStyle)
             {
                 case MessageBoxButton.OK:
-                    btnList = new List<string> { "OK" };
+                    btnList = new List<string> { MessageBoxResult.OK.ToString() };
                     break;
 
                 case MessageBoxButton.OKCancel:
-                    btnList = new List<string> { "OK", "Cancel" };
+                    btnList = new List<string> { MessageBoxResult.OK.ToString(), MessageBoxResult.Cancel.ToString() };
                     break;
 
                 case MessageBoxButton.YesNo:
-                    btnList = new List<string> { "Yes", "No" };
+                    btnList = new List<string> { MessageBoxResult.Yes.ToString(), MessageBoxResult.No.ToString() };
                     break;
 
                 case MessageBoxButton.YesNoCancel:
-                    btnList = new List<string> { "Yes", "No", "Cancel" };
+                    btnList = new List<string> { MessageBoxResult.Yes.ToString(), MessageBoxResult.No.ToString(), MessageBoxResult.Cancel.ToString() };
                     break;
 
                 default:
-                    btnList = new List<string> { "OK" };
+                    btnList = new List<string> { MessageBoxResult.OK.ToString() };
                     break;
             }
 
@@ -248,47 +248,48 @@ namespace MessageBoxTouch
                     newBtn.Click += BtnClicked;
 
                     // 设置各种属性
-                    if (WindowWidth != -1)
+                    if (WindowWidth > 0)
                     {
                         mb.Width = WindowWidth;
                     }
-                    if (WindowMinHeight != -1)
+                    if (WindowMinHeight > 0)
                     {
                         mb.MinHeight = WindowMinHeight;
                     }
-                    if (TitleFontSize != -1)
+                    if (TitleFontSize > 0)
                     {
                         mb.l_title.FontSize = TitleFontSize;
-                        // 根据字体计算标题字符串高度
-                        double height = new FormattedText(" ", CultureInfo.CurrentCulture, System.Windows.FlowDirection.LeftToRight, new Typeface(mb.l_title.FontFamily.ToString()), mb.l_title.FontSize, System.Windows.Media.Brushes.Black, pixelsPerDip).Height;
-                        // 设置标题栏高度
-                        mb.g_title.Height = height + 7;
-                        mb.rd_title.Height = new GridLength(height + 14);
                     }
-                    if (MessageFontSize != -1)
+                    if (MessageFontSize > 0)
                     {
                         mb.tb_msg.FontSize = MessageFontSize;
                     }
-                    if (ButtonFontSize != -1)
+                    if (ButtonFontSize > 0)
                     {
                         newBtn.FontSize = ButtonFontSize;
                     }
-                    if (WindowOpacity != -1)
+                    if (WindowOpacity > 0)
                     {
                         mb.Opacity = WindowOpacity;
                     }
-                    if (TitleBarOpacity != -1)
+                    if (TitleBarOpacity > 0)
                     {
                         mb.g_title.Opacity = TitleBarOpacity;
                     }
-                    if (MessageBarOpacity != -1)
+                    if (MessageBarOpacity > 0)
                     {
                         mb.g_message.Opacity = MessageBarOpacity;
                     }
-                    if (ButtonBarOpacity != -1)
+                    if (ButtonBarOpacity > 0)
                     {
                         mb.g_buttongrid.Opacity = ButtonBarOpacity;
                     }
+
+                    // 根据字体计算标题字符串高度
+                    double height = new FormattedText(" ", CultureInfo.CurrentCulture, System.Windows.FlowDirection.LeftToRight, new Typeface(mb.l_title.FontFamily.ToString()), mb.l_title.FontSize, System.Windows.Media.Brushes.Black, pixelsPerDip).Height;
+                    // 设置标题栏高度
+                    mb.g_title.Height = height + 7;
+                    mb.rd_title.Height = new GridLength(height + 14);
 
                     // 当该变量还没计算时
                     if (maxContentWidth == 0)
@@ -331,7 +332,7 @@ namespace MessageBoxTouch
             }
 
             // 返回用户选择的结果
-            return (int)currentClickIndex;
+            return currentClickIndex;
         }
 
 
@@ -381,59 +382,39 @@ namespace MessageBoxTouch
             // 窗口显示的情况
             if ((Boolean)e.NewValue == true)
             {
-                // 消息字符串的总长度
-                double totalWidth = 0;
                 // 单字符高度
-                double height = 0;
-                // 自从换行后字符串的累积宽度
-                double widthSinceCr = 0;
-                // 自从自动换行后字符串的累积宽度
-                double widthSinceAutoCr = 0;
-                // 手动换行后的前一行的剩余空白宽度
-                double redundantWidth = 0;
+                double height = new FormattedText(" ", CultureInfo.CurrentCulture, System.Windows.FlowDirection.LeftToRight, new Typeface(mb.tb_msg.FontFamily.ToString()), mb.tb_msg.FontSize, System.Windows.Media.Brushes.Black, pixelsPerDip).Height;
+                // 行数
+                double lineCount = 1;
+                // 当行字符串累积宽度
+                double lineWidth = 0;
                 // 格式化的字符串
                 FormattedText ft;
                 // 遍历消息字符串中的每个字符
-                foreach (char c in mb.tb_msg.Text)
+                for (int i = 0;  i < mb.tb_msg.Text.Count(); ++i)
                 {
-                    if (c == '\n')
+                    if (mb.tb_msg.Text[i] == '\n')
                     {
-                        // 计算手动换行后上一行的多余空白的宽度
-                        double TextblockWidth = mb.tb_msg.Width;
-                        double TextblockWidthTemp = TextblockWidth;
-                        while (TextblockWidth < widthSinceCr)
-                        {
-                            TextblockWidth += TextblockWidthTemp;
-                        }
-                        redundantWidth += TextblockWidth % widthSinceCr;
-
-                        // 换行后的字符串宽度被重置为零
-                        widthSinceCr = 0;
+                        lineWidth = 0;
+                        ++lineCount;
                     }
                     else
                     {
                         // 使用字符串和字体设置作为参数实例化FormattedText
-                        ft = new FormattedText(c.ToString(), CultureInfo.CurrentCulture, System.Windows.FlowDirection.LeftToRight, new Typeface(mb.tb_msg.FontFamily.ToString()), mb.tb_msg.FontSize, System.Windows.Media.Brushes.Black, pixelsPerDip);
-
-                        // 计算自动换行后上一行的剩余空白的宽度
-                        if (widthSinceAutoCr + ft.Width > mb.tb_msg.Width)
+                        ft = new FormattedText(mb.tb_msg.Text[i].ToString(), CultureInfo.CurrentCulture, System.Windows.FlowDirection.LeftToRight, new Typeface(mb.tb_msg.FontFamily.ToString()), mb.tb_msg.FontSize, System.Windows.Media.Brushes.Black, pixelsPerDip);
+                        // 累加这个字符的宽度
+                        lineWidth += ft.Width;
+                        if(lineWidth > mb.tb_msg.Width)
                         {
-                            // 将行内空白宽度附加到字符串宽度
-                            widthSinceCr += mb.tb_msg.Width % widthSinceAutoCr;
-                            widthSinceAutoCr = 0;
+                            lineWidth = 0;
+                            ++lineCount;
+                            --i;
                         }
-
-                        // 累加手动换行后的字符串的宽度
-                        widthSinceCr += ft.Width;
-                        widthSinceAutoCr += ft.Width;
-                        // 累加字符的总宽度和高度
-                        totalWidth += ft.Width;
-                        height = ft.Height;
                     }
                 }
 
                 // 计算窗口高度
-                mb.Height = height * ((totalWidth + redundantWidth) / (mb.tb_msg.Width - (mb.tb_msg.Margin.Left + mb.tb_msg.Margin.Right))) + rd_title.Height.Value + rd_button.Height.Value + mb.tb_msg.Margin.Top + mb.tb_msg.Margin.Bottom + 100;
+                mb.Height = height * lineCount + rd_title.Height.Value + rd_button.Height.Value + mb.tb_msg.Margin.Top + mb.tb_msg.Margin.Bottom + 5;
 
                 // 将窗口初始位置设置在屏幕中心
                 SetWindowPos(new WindowInteropHelper(mb).Handle, new IntPtr(0), (int)(SystemInformation.WorkingArea.Width / 2 - mb.Width / 2), (int)(SystemInformation.WorkingArea.Height / 2 - mb.Height / 2), (int)(mb.Width), (int)(mb.Height), 0x1);
