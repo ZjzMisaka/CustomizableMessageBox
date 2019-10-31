@@ -1,4 +1,4 @@
-﻿<Window x:Class="MessageBoxTouch.MessageBox" Opacity="0.8" MinHeight="450"
+﻿<Window x:Class="MessageBoxTouch.MessageBox" Opacity="0.9" MinHeight="450"
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
@@ -13,7 +13,7 @@
                     <DoubleAnimation
                     Storyboard.TargetName="main" 
                     Storyboard.TargetProperty="Opacity" 
-                    From="0" To="0.8" Duration="0:0:0.15"/>
+                    From="0" To="0.9" Duration="0:0:0.15"/>
                 </Storyboard>
             </BeginStoryboard>
         </EventTrigger>
@@ -22,7 +22,7 @@
         <ResourceDictionary Source="WndStyles.xaml"/>
     </Window.Resources>
 
-    <Border Background="#FFFFFF" BorderBrush="#F09A9A9A" BorderThickness="2,2,2,2">
+    <Border x:Name="b_wndborder" Background="#FFFFFF" BorderBrush="#DDDDDD" BorderThickness="2">
         <Grid x:Name="g_main">
             <Grid.RowDefinitions>
                 <RowDefinition x:Name="rd_title" Height="60pt"/>
@@ -32,7 +32,7 @@
             <Grid.ColumnDefinitions>
                 <ColumnDefinition />
             </Grid.ColumnDefinitions>
-            <Border Grid.Row="0" Grid.Column="0" VerticalAlignment="Top" BorderBrush="#F09A9A9A" BorderThickness="0,0,0,2">
+            <Border Grid.Row="0" Grid.Column="0" VerticalAlignment="Top" BorderBrush="#F09A9A9A" BorderThickness="0,0,0,1">
                 <Grid x:Name="g_title" Height="50pt" VerticalAlignment="Top" >
                     <Grid.RowDefinitions>
                         <RowDefinition />

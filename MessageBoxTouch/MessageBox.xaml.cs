@@ -60,7 +60,7 @@ namespace MessageBoxTouch
         // 按钮字体大小
         private static int buttonFontSize = 30;
         public static int ButtonFontSize { get => buttonFontSize; set => buttonFontSize = value; }
-        
+
         // 窗口透明度
         private static double windowOpacity = 0.95;
         public static double WindowOpacity { get => windowOpacity; set => windowOpacity = value; }
@@ -76,6 +76,7 @@ namespace MessageBoxTouch
         // 按钮栏透明度
         private static double buttonBarOpacity = 1;
         public static double ButtonBarOpacity { get => buttonBarOpacity; set => buttonBarOpacity = value; }
+
         // 像素密度
         private static double pixelsPerDip;
 
@@ -215,10 +216,10 @@ namespace MessageBoxTouch
                 double contentHeight = 0;
 
                 // 判断按钮类型并显示相应的按钮
-                for (int i = 0;  i < btnList.Count; ++i)
+                for (int i = 0; i < btnList.Count; ++i)
                 {
                     // 当有多于两个选项时, 增加Grid的列数
-                    if(i >= 2)
+                    if (i >= 2)
                     {
                         mb.g_buttongrid.ColumnDefinitions.Add(new ColumnDefinition());
                     }
@@ -233,10 +234,10 @@ namespace MessageBoxTouch
                     var myResourceDictionary = new ResourceDictionary
                     {
                         // 指定样式文件的路径
-                        Source = new Uri("pack://application:,,,/MessageBoxTouch;component/WndStyles.xaml") 
+                        Source = new Uri("pack://application:,,,/MessageBoxTouch;component/WndStyles.xaml")
                     };
                     // 通过key找到指定的样式并赋值给按钮
-                    var myButtonStyle = myResourceDictionary["MessageBoxButtonStyle"] as Style; 
+                    var myButtonStyle = myResourceDictionary["MessageBoxButtonStyle"] as Style;
                     newBtn.Style = myButtonStyle;
                     //设置按钮文本
                     newBtn.Content = btnList[i];
@@ -327,8 +328,11 @@ namespace MessageBoxTouch
             catch
             {
                 // 调用系统MessageBox
-                System.Windows.MessageBox.Show(msg, title, MessageBoxButton.OK, img);
-                return -1;
+                currentClickIndex = (int)System.Windows.MessageBox.Show(msg, title, MessageBoxButton.OK, img);
+
+                // 关闭窗口
+                mb.Hide();
+                mb.Close();
             }
 
             // 返回用户选择的结果
@@ -369,6 +373,7 @@ namespace MessageBoxTouch
             TitleBarOpacity = -1;
             MessageBarOpacity = -1;
             ButtonBarOpacity = -1;
+
             mb = null;
         }
 
@@ -391,7 +396,7 @@ namespace MessageBoxTouch
                 // 格式化的字符串
                 FormattedText ft;
                 // 遍历消息字符串中的每个字符
-                for (int i = 0;  i < mb.tb_msg.Text.Count(); ++i)
+                for (int i = 0; i < mb.tb_msg.Text.Count(); ++i)
                 {
                     if (mb.tb_msg.Text[i] == '\n')
                     {
@@ -404,7 +409,7 @@ namespace MessageBoxTouch
                         ft = new FormattedText(mb.tb_msg.Text[i].ToString(), CultureInfo.CurrentCulture, System.Windows.FlowDirection.LeftToRight, new Typeface(mb.tb_msg.FontFamily.ToString()), mb.tb_msg.FontSize, System.Windows.Media.Brushes.Black, pixelsPerDip);
                         // 累加这个字符的宽度
                         lineWidth += ft.Width;
-                        if(lineWidth > mb.tb_msg.Width)
+                        if (lineWidth > mb.tb_msg.Width)
                         {
                             lineWidth = 0;
                             ++lineCount;
