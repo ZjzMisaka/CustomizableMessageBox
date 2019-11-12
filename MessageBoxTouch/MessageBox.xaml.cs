@@ -4,6 +4,7 @@ using System.Globalization;
 using System.Linq;
 using System.Runtime.InteropServices;
 using System.Text;
+using System.Text.RegularExpressions;
 using System.Threading;
 using System.Threading.Tasks;
 using System.Windows;
@@ -29,6 +30,19 @@ namespace MessageBoxTouch
     {
         [DllImport("User32.dll", SetLastError = true, CharSet = CharSet.Auto)]
         private static extern Boolean SetWindowPos(IntPtr hWnd, IntPtr hWndInsertAfter, int X, int Y, int cx, int cy, uint uFlags);
+
+        // 换行计算模式
+        enum WarpMode
+        {
+            // 以字符为换行单位
+            TEXT,
+            // 以单词为换行单位
+            WORD,
+            // 以单词为换行单位, 但是因为单词长度超过TextBlock宽度, 该单词以字符为换行单位
+            TEXTINWORD
+        }
+
+        WarpMode warpMode = WarpMode.WORD;
 
         // Messagebox实例
         private static MessageBox mb;
@@ -405,25 +419,116 @@ namespace MessageBoxTouch
                     }
                     else
                     {
-                        // 使用字符串和字体设置作为参数实例化FormattedText
-                        ft = new FormattedText(mb.tb_msg.Text[i].ToString(), CultureInfo.CurrentCulture, System.Windows.FlowDirection.LeftToRight, new Typeface(mb.tb_msg.FontFamily.ToString()), mb.tb_msg.FontSize, System.Windows.Media.Brushes.Black, pixelsPerDip);
-                        // 累加这个字符的宽度
-                        lineWidth += ft.Width;
-                        if (lineWidth > mb.tb_msg.Width)
+                        if (warpMode == WarpMode.TEXT)
                         {
-                            lineWidth = 0;
-                            ++lineCount;
-                            --i;
+                            // 使用字符串和字体设置作为参数实例化FormattedText
+                            ft = new FormattedText(mb.tb_msg.Text[i].ToString(), CultureInfo.CurrentCulture, System.Windows.FlowDirection.LeftToRight, new Typeface(mb.tb_msg.FontFamily.ToString()), mb.tb_msg.FontSize, System.Windows.Media.Brushes.Black, pixelsPerDip);
+                            // 累加这个字符的宽度
+                            lineWidth += ft.Width;
+                            if (lineWidth > mb.tb_msg.Width)
+                            {
+                                lineWidth = 0;
+                                ++lineCount;
+                                --i;
+                            }
+                        }
+                        else if (warpMode == WarpMode.WORD)
+                        {
+                            if (mb.tb_msg.Text[i] == '\n')
+                            {
+                                lineWidth = 0;
+                                ++lineCount;
+                                continue;
+                            }
+                            // 当这个字符为英文或数字, 即为一个单词的开头
+                            if (Regex.IsMatch(mb.tb_msg.Text[i].ToString(), "[a-zA-Z0-9]"))
+                            {
+                                //获取这个单词
+                                string nextWord = GetNextWord(mb.tb_msg.Text, i);
+                                // 使用单词字符串和字体设置作为参数实例化FormattedText
+                                ft = new FormattedText(nextWord, CultureInfo.CurrentCulture, System.Windows.FlowDirection.LeftToRight, new Typeface(mb.tb_msg.FontFamily.ToString()), mb.tb_msg.FontSize, System.Windows.Media.Brushes.Black, pixelsPerDip);
+                                //如果单词长度超过TextBlock宽度, 则直接换一行, 并以C模式开始计算
+                                if (ft.Width > mb.tb_msg.Width)
+                                {
+                                    lineWidth = 0;
+                                    ++lineCount;
+                                    --i;
+                                    warpMode = WarpMode.TEXTINWORD;
+                                    continue;
+                                }
+                                // 累加这个单词的宽度
+                                lineWidth += ft.Width;
+                                // 如果累加后的宽度超过TextBlock宽度, 则直接换一行, 并重新计算
+                                if (lineWidth > mb.tb_msg.Width)
+                                {
+                                    lineWidth = 0;
+                                    ++lineCount;
+                                    --i;
+                                    continue;
+                                }
+                                else
+                                {
+                                    i += nextWord.Length - 1;
+                                }
+                            }
+                            else if (warpMode == WarpMode.TEXTINWORD)
+                            {
+                                // 使用字符和字体设置作为参数实例化FormattedText
+                                ft = new FormattedText(mb.tb_msg.Text[i].ToString(), CultureInfo.CurrentCulture, System.Windows.FlowDirection.LeftToRight, new Typeface(mb.tb_msg.FontFamily.ToString()), mb.tb_msg.FontSize, System.Windows.Media.Brushes.Black, pixelsPerDip);
+                                // 累加这个字符的宽度
+                                lineWidth += ft.Width;
+                                if (lineWidth > mb.tb_msg.Width)
+                                {
+                                    lineWidth = 0;
+                                    ++lineCount;
+                                    --i;
+                                }
+                            }
+                        }
+                        else
+                        {
+                            if (!Regex.IsMatch(mb.tb_msg.Text[i].ToString(), "[a-zA-Z0-9]"))
+                            {
+                                warpMode = WarpMode.WORD;
+                                continue;
+                            }
+                            // 使用字符串和字体设置作为参数实例化FormattedText
+                            ft = new FormattedText(mb.tb_msg.Text[i].ToString(), CultureInfo.CurrentCulture, System.Windows.FlowDirection.LeftToRight, new Typeface(mb.tb_msg.FontFamily.ToString()), mb.tb_msg.FontSize, System.Windows.Media.Brushes.Black, pixelsPerDip);
+                            // 累加这个字符的宽度
+                            lineWidth += ft.Width;
+                            if (lineWidth > mb.tb_msg.Width)
+                            {
+                                lineWidth = 0;
+                                ++lineCount;
+                                --i;
+                                continue;
+                            }
                         }
                     }
                 }
 
                 // 计算窗口高度
-                mb.Height = height * lineCount + rd_title.Height.Value + rd_button.Height.Value + mb.tb_msg.Margin.Top + mb.tb_msg.Margin.Bottom + 5;
+                mb.Height = height * lineCount + rd_title.Height.Value + rd_button.Height.Value + mb.tb_msg.Margin.Top + mb.tb_msg.Margin.Bottom;
 
                 // 将窗口初始位置设置在屏幕中心
                 SetWindowPos(new WindowInteropHelper(mb).Handle, new IntPtr(0), (int)(SystemInformation.WorkingArea.Width / 2 - mb.Width / 2), (int)(SystemInformation.WorkingArea.Height / 2 - mb.Height / 2), (int)(mb.Width), (int)(mb.Height), 0x1);
             }
+        }
+
+        /// <summary>
+        /// 获取下一个只包含英文数字的单词, 单词不必须以空格分隔
+        /// </summary>
+        /// <param name="str"></param>
+        /// <param name="startIndex"></param>
+        /// <returns></returns>
+        private static string GetNextWord(string str, int startIndex)
+        {
+            string nextWord = "";
+            for (int i = startIndex; i <= (str.Length - 1) && Regex.IsMatch(str[i].ToString(), "[a-zA-Z0-9]") == true; ++i)
+            {
+                nextWord += str[i];
+            }
+            return nextWord;
         }
 
         /// <summary>
