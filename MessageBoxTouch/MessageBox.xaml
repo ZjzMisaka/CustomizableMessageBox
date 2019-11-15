@@ -32,7 +32,7 @@
             <Grid.ColumnDefinitions>
                 <ColumnDefinition />
             </Grid.ColumnDefinitions>
-            <Border Grid.Row="0" Grid.Column="0" VerticalAlignment="Top" BorderBrush="#F09A9A9A" BorderThickness="0,0,0,1">
+            <Border x:Name="b_titleborder" Grid.Row="0" Grid.Column="0" VerticalAlignment="Top" BorderBrush="#F09A9A9A" BorderThickness="0,0,0,1">
                 <Grid x:Name="g_title" Height="50pt" VerticalAlignment="Top" >
                     <Grid.RowDefinitions>
                         <RowDefinition />
@@ -47,24 +47,28 @@
                 </Grid>
             </Border>
 
-            <Grid x:Name="g_message" Grid.Row="1" Grid.Column="0">
-                <StackPanel Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="2" Orientation="Horizontal">
-                    <Image x:Name="i_img" Width="64" Height="64" HorizontalAlignment="Left" Margin="15, 15, 15, 0"  VerticalAlignment="Center" Visibility="Collapsed"/>
-                    <ScrollViewer x:Name="sv_tb" PanningMode="Both" Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="2" HorizontalAlignment="Stretch" VerticalScrollBarVisibility="Hidden" Margin="0, 0, 0, 0" >
-                        <TextBlock x:Name="tb_msg" Margin="15,5,15,15" FontSize="25pt" Text="" HorizontalAlignment="Stretch" VerticalAlignment="Center" TextWrapping="Wrap"/>
-                    </ScrollViewer>
-                </StackPanel>
-            </Grid>
+            <Border x:Name="b_messageborder" Grid.Row="1" Grid.Column="0" BorderBrush="#F09A9A9A" BorderThickness="0,0,0,0">
+                <Grid x:Name="g_message">
+                    <StackPanel Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="2" Orientation="Horizontal">
+                        <Image x:Name="i_img" Width="64" Height="64" HorizontalAlignment="Left" Margin="15, 15, 15, 0"  VerticalAlignment="Center" Visibility="Collapsed"/>
+                        <ScrollViewer x:Name="sv_tb" PanningMode="Both" Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="2" HorizontalAlignment="Stretch" VerticalScrollBarVisibility="Hidden" HorizontalScrollBarVisibility="Hidden" Margin="0, 0, 0, 0" >
+                            <TextBlock x:Name="tb_msg" Margin="15,5,15,15" FontSize="25pt" Text="" HorizontalAlignment="Stretch" VerticalAlignment="Center" TextWrapping="Wrap"/>
+                        </ScrollViewer>
+                    </StackPanel>
+                </Grid>
+            </Border>
 
-            <Grid x:Name="g_buttongrid" Grid.Row="2" Grid.Column="0" VerticalAlignment="Bottom" Background="#DDDDDD" >
-                <Grid.RowDefinitions>
-                    <RowDefinition />
-                </Grid.RowDefinitions>
-                <Grid.ColumnDefinitions>
-                    <ColumnDefinition />
-                    <ColumnDefinition />
-                </Grid.ColumnDefinitions>
-            </Grid>
+            <Border x:Name="b_buttonborder" Grid.Row="2" Grid.Column="0" VerticalAlignment="Bottom" BorderBrush="#F09A9A9A" BorderThickness="0,0,0,0">
+                <Grid x:Name="g_buttongrid" VerticalAlignment="Bottom" Background="#DDDDDD" >
+                    <Grid.RowDefinitions>
+                        <RowDefinition />
+                    </Grid.RowDefinitions>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition />
+                        <ColumnDefinition />
+                    </Grid.ColumnDefinitions>
+                </Grid>
+            </Border>
         </Grid>
     </Border>
 </Window>
