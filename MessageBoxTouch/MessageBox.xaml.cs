@@ -89,12 +89,12 @@ namespace MessageBoxTouch
         }
 
         // 窗口宽度
-        private static int windowWidth = 800;
-        public static int WindowWidth { get => windowWidth; set => windowWidth = value; }
+        private static double windowWidth = 800;
+        public static double WindowWidth { get => windowWidth; set => windowWidth = value; }
 
         // 窗口最小高度
-        private static int windowMinHeight = 450;
-        public static int WindowMinHeight { get => windowMinHeight; set => windowMinHeight = value; }
+        private static double windowMinHeight = 450;
+        public static double WindowMinHeight { get => windowMinHeight; set => windowMinHeight = value; }
 
         // 标题字体大小
         private static int titleFontSize = 30;
@@ -626,7 +626,7 @@ namespace MessageBoxTouch
                                     // 累加这个单词的宽度
                                     lineWidth += ft.Width;
                                     // 如果累加后的宽度超过TextBlock宽度, 则直接换一行, 并重新计算
-                                    if (lineWidth > mb.tb_msg.Width)
+                                    if (Math.Ceiling(lineWidth) >= mb.tb_msg.Width)
                                     {
                                         lineWidth = 0;
                                         ++lineCount;
@@ -645,7 +645,7 @@ namespace MessageBoxTouch
                                     // 累加这个字符的宽度
                                     lineWidth += ft.Width;
                                     // 如果累加后的宽度超过TextBlock宽度, 则直接换一行, 并重新计算
-                                    if (lineWidth > mb.tb_msg.Width)
+                                    if (Math.Ceiling(lineWidth) >= mb.tb_msg.Width)
                                     {
                                         lineWidth = 0;
                                         ++lineCount;
@@ -675,7 +675,7 @@ namespace MessageBoxTouch
                                     // 累加这个单词的宽度
                                     lineWidth += ft.Width;
                                     // 如果累加后的宽度超过TextBlock宽度, 则直接换一行, 并重新计算
-                                    if (lineWidth > mb.tb_msg.Width)
+                                    if (Math.Ceiling(lineWidth) >= mb.tb_msg.Width)
                                     {
                                         lineWidth = 0;
                                         ++lineCount;
@@ -694,7 +694,7 @@ namespace MessageBoxTouch
                                     // 累加这个字符的宽度
                                     lineWidth += ft.Width;
                                     // 如果累加后的宽度超过TextBlock宽度, 则直接换一行, 并重新计算
-                                    if (lineWidth > mb.tb_msg.Width)
+                                    if (Math.Ceiling(lineWidth) >= mb.tb_msg.Width)
                                     {
                                         lineWidth = 0;
                                         ++lineCount;
