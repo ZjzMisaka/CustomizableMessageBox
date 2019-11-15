@@ -23,3 +23,29 @@ MessageBox.Show("message", "title", MessageBoxButton.OKCancel, MessageBoxImage.Q
 MessageBox.Show(new List<string> { "btn1" }, "msg");
 MessageBox.Show(new List<string> { "btn1", "btn2", "btn3", "btn4", "btn5" }, "msg", "title", MessageBoxImage.Asterisk);
 ```
+#### 修改式样
+##### 单独修改
+添加在Show函数之前
+```csharp
+MessageBox.ButtonPanelColor = new MessageBoxColor("red");
+MessageBox.WindowMinHeight = 300;
+MessageBox.MessageFontSize = 22;
+MessageBox.Show(new List<string> { "btn1" }, "msg");
+```
+##### 批量修改
+- **推荐** 在Show函数参数中设置
+```csharp
+PropertiesSetter propertiesSetter = new PropertiesSetter();
+propertiesSetter.ButtonBorderThickness = new Thickness(10);
+propertiesSetter.MessagePanelColor = new MessageBoxColor("black");
+MessageBox.Show(propertiesSetter, "message", "title", MessageBoxButton.OKCancel, MessageBoxImage.Question);
+MessageBox.Show(propertiesSetter, new List<string> { "btn1" }, "msg");
+```
+- 在Show函数之前设置
+```csharp
+PropertiesSetter propertiesSetter = new PropertiesSetter();
+propertiesSetter.ButtonBorderThickness = new Thickness(10);
+propertiesSetter.MessagePanelColor = new MessageBoxColor("black");
+MessageBox.PropertiesSetter = propertiesSetter;
+MessageBox.Show(new List<string> { "btn1" }, "msg");
+```
