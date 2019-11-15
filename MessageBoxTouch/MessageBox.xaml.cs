@@ -23,66 +23,6 @@ using Button = System.Windows.Controls.Button;
 
 namespace MessageBoxTouch
 {
-    // 颜色类
-    public class MessageBoxColor
-    {
-        // 颜色种类
-        public enum ColorType
-        {
-            // 十六进制颜色码字符串
-            HEX,
-            // COLOR类的实例
-            COLORNAME
-        }
-        public object color;
-        public ColorType colorType;
-
-        /// <summary>
-        /// 构造函数, 自动判断颜色分类
-        /// </summary>
-        /// <param name="color">十六进制颜色码字符串或者COLOR类的实例</param>
-        public MessageBoxColor(object color)
-        {
-            this.color = color;
-            if (color is Color)
-            {
-                colorType = ColorType.COLORNAME;
-            }
-            else if (color is string)
-            {
-                colorType = ColorType.HEX;
-            }
-            else
-            {
-                throw new Exception();
-            }
-        }
-
-        /// <summary>
-        /// 构造函数, 手动输入颜色分类
-        /// </summary>
-        /// <param name="color">十六进制颜色码字符串或者COLOR类的实例</param>
-        public MessageBoxColor(object color, ColorType colorType)
-        {
-            this.color = color;
-            this.colorType = colorType;
-        }
-
-        /// <summary>
-        /// 输出这个颜色实例对应的SolidColorBrush
-        /// </summary>
-        /// <returns>这个颜色实例对应的SolidColorBrush</returns>
-        public SolidColorBrush GetSolidColorBrush()
-        {
-            switch (colorType)
-            {
-                case ColorType.COLORNAME: return new SolidColorBrush((Color)color);
-                case ColorType.HEX: return (SolidColorBrush)(new BrushConverter().ConvertFrom(color));
-                default: return null;
-            }
-        }
-    }
-
     /// <summary>
     /// MessageBox.xaml 的交互逻辑
     /// </summary>
@@ -115,8 +55,6 @@ namespace MessageBoxTouch
         // 用户选择的结果
         private static int currentClickIndex = -1;
 
-        private static readonly TaskScheduler _syncContextTaskScheduler = TaskScheduler.FromCurrentSynchronizationContext();
-
         // 自定按钮列表
         private static List<string> btnList = null;
 
@@ -138,7 +76,7 @@ namespace MessageBoxTouch
                 switch (value)
                 {
                     case TextWrapping.Wrap:
-                        warpMode = WarpMode.WORD; 
+                        warpMode = WarpMode.WORD;
                         break;
                     case TextWrapping.NoWrap:
                         warpMode = WarpMode.NOWARP;
@@ -213,7 +151,7 @@ namespace MessageBoxTouch
         // 按钮区域边框颜色
         private static MessageBoxColor buttonBorderColor = new MessageBoxColor(Colors.White, ColorType.COLORNAME);
         public static MessageBoxColor ButtonBorderColor { get => buttonBorderColor; set => buttonBorderColor = value; }
-        
+
         // 窗口边框宽度
         private static Thickness wndBorderThickness = new Thickness(2);
         public static Thickness WndBorderThickness { get => wndBorderThickness; set => wndBorderThickness = value; }
@@ -229,6 +167,38 @@ namespace MessageBoxTouch
         // 按钮区域边框宽度
         private static Thickness buttonBorderThickness = new Thickness(0);
         public static Thickness ButtonBorderThickness { get => buttonBorderThickness; set => buttonBorderThickness = value; }
+
+        // 属性集合
+        private static PropertiesSetter propertiesSetter = new PropertiesSetter();
+        public static PropertiesSetter PropertiesSetter
+        {
+            get => propertiesSetter;
+            set
+            {
+                LockHeight = value.LockHeight;
+                TextWrappingMode = value.TextWrappingMode;
+                WindowWidth = value.WindowWidth;
+                WindowMinHeight = value.WindowMinHeight;
+                TitleFontSize = value.TitleFontSize;
+                MessageFontSize = value.MessageFontSize;
+                ButtonFontSize = value.ButtonFontSize;
+                WindowOpacity = value.WindowOpacity;
+                TitleBarOpacity = value.TitleBarOpacity;
+                MessageBarOpacity = value.MessageBarOpacity;
+                ButtonBarOpacity = value.ButtonBarOpacity;
+                TitlePanelColor = value.TitlePanelColor;
+                MessagePanelColor = value.MessagePanelColor;
+                ButtonPanelColor = value.ButtonPanelColor;
+                WndBorderColor = value.WndBorderColor;
+                TitleBorderColor = value.TitleBorderColor;
+                MessageBorderColor = value.MessageBorderColor;
+                ButtonBorderColor = value.ButtonBorderColor;
+                WndBorderThickness = value.WndBorderThickness;
+                TitleBorderThickness = value.TitleBorderThickness;
+                MessageBorderThickness = value.MessageBorderThickness;
+                ButtonBorderThickness = value.ButtonBorderThickness;
+            }
+        }
 
         // 像素密度
         private static double pixelsPerDip;
@@ -537,6 +507,17 @@ namespace MessageBoxTouch
             return currentClickIndex;
         }
 
+        public static int Show(PropertiesSetter propertiesSetter, List<string> btnList, string msg, string title = "", MessageBoxImage img = MessageBoxImage.None)
+        {
+            PropertiesSetter = propertiesSetter;
+            return Show(btnList, msg, title, img);
+        }
+
+        public static MessageBoxResult Show(PropertiesSetter propertiesSetter, string msg, string title = "", MessageBoxButton selectStyle = MessageBoxButton.OK, MessageBoxImage img = MessageBoxImage.None)
+        {
+            PropertiesSetter = propertiesSetter;
+            return Show(msg, title, selectStyle, img);
+        }
 
         /// <summary>
         /// 选择后保存选择结果并关闭窗口
@@ -563,7 +544,7 @@ namespace MessageBoxTouch
         private void Window_Closed(Object sender, EventArgs e)
         {
             // 防止上次调用影响
-            lockHeight = false;
+            LockHeight = false;
             TextWrappingMode = TextWrapping.Wrap;
             WindowWidth = -1;
             WindowMinHeight = -1;
@@ -574,17 +555,18 @@ namespace MessageBoxTouch
             TitleBarOpacity = -1;
             MessageBarOpacity = -1;
             ButtonBarOpacity = -1;
-            titlePanelColor = new MessageBoxColor(Colors.White, ColorType.COLORNAME);
-            messagePanelColor = new MessageBoxColor(Colors.White, ColorType.COLORNAME);
-            buttonPanelColor = new MessageBoxColor("#DDDDDD", ColorType.HEX);
-            wndBorderColor = new MessageBoxColor(Colors.White, ColorType.COLORNAME);
-            titleBorderColor = new MessageBoxColor(Colors.White, ColorType.COLORNAME);
-            messageBorderColor = new MessageBoxColor(Colors.White, ColorType.COLORNAME);
-            buttonBorderColor = new MessageBoxColor(Colors.White, ColorType.COLORNAME);
-            wndBorderThickness = new Thickness(2);
-            titleBorderThickness = new Thickness(0, 0, 0, 1);
-            messageBorderThickness = new Thickness(0);
-            buttonBorderThickness = new Thickness(0);
+            TitlePanelColor = new MessageBoxColor(Colors.White, ColorType.COLORNAME);
+            MessagePanelColor = new MessageBoxColor(Colors.White, ColorType.COLORNAME);
+            ButtonPanelColor = new MessageBoxColor("#DDDDDD", ColorType.HEX);
+            WndBorderColor = new MessageBoxColor(Colors.White, ColorType.COLORNAME);
+            TitleBorderColor = new MessageBoxColor(Colors.White, ColorType.COLORNAME);
+            MessageBorderColor = new MessageBoxColor(Colors.White, ColorType.COLORNAME);
+            ButtonBorderColor = new MessageBoxColor(Colors.White, ColorType.COLORNAME);
+            WndBorderThickness = new Thickness(2);
+            TitleBorderThickness = new Thickness(0, 0, 0, 1);
+            MessageBorderThickness = new Thickness(0);
+            ButtonBorderThickness = new Thickness(0);
+            propertiesSetter = new PropertiesSetter();
 
             mb = null;
         }
