@@ -37,15 +37,15 @@ MessageBox.Show(new List<string> { "btn1" }, "msg");
 ```csharp
 PropertiesSetter propertiesSetter = new PropertiesSetter();
 propertiesSetter.ButtonBorderThickness = new Thickness(10);
-propertiesSetter.MessagePanelColor = new MessageBoxColor("black");
+propertiesSetter.MessagePanelColor = new MessageBoxColor(Colors.black);
 MessageBox.Show(propertiesSetter, "message", "title", MessageBoxButton.OKCancel, MessageBoxImage.Question);
 MessageBox.Show(propertiesSetter, new List<string> { "btn1" }, "msg");
 ```
 - 在Show函数之前设置
 ```csharp
 PropertiesSetter propertiesSetter = new PropertiesSetter();
-propertiesSetter.ButtonBorderThickness = new Thickness(10);
-propertiesSetter.MessagePanelColor = new MessageBoxColor("black");
+propertiesSetter.ButtonBorderThickness = new Thickness(10, 0, 0, 0);
+propertiesSetter.MessagePanelColor = new MessageBoxColor("#222DDD");
 MessageBox.PropertiesSetter = propertiesSetter;
 MessageBox.Show(new List<string> { "btn1" }, "msg");
 ```
