@@ -231,7 +231,7 @@ namespace MessageBoxTouch
         private static double pixelsPerDip;
 
         // 构造函数
-        public MessageBox()
+        private MessageBox()
         {
             InitializeComponent();
         }
