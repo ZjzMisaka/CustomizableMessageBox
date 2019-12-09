@@ -1,6 +1,6 @@
 # MessageBoxTouch
  ![WTFPL](http://www.wtfpl.net/wp-content/uploads/2012/12/wtfpl-badge-1.png)<br />
- 因为系统MessageBox按钮和字体太小, 所以自己写了个方便更改外观的MessageBox. 有什么好玩的功能也可以扩展上去. <br />
+ 因为系统MessageBox按钮和字体太小, 所以自己写了个方便更改外观的MessageBox. 有什么好玩的功能也可以扩展上去. 下有截图. <br />
 ### 特性
 - 因为可以改变字体且支持触摸操作, 所以适合在平板上使用. 
 - 消息框最初有一定高度, 但如果Message文本内容过多, 超出了高度限制, MessageBox显示不下时, 窗口高度会对应增加, 使消息能被完整显示出来. 
@@ -49,3 +49,8 @@ propertiesSetter.MessagePanelColor = new MessageBoxColor("#222DDD");
 MessageBox.PropertiesSetter = propertiesSetter;
 MessageBox.Show(new List<string> { "btn1" }, "msg");
 ```
+![alt 样式1](https://www.iaders.com/wp-content/uploads/2019/12/mb1.png "样式1")
+![alt 样式1](https://www.iaders.com/wp-content/uploads/2019/12/mb5.png "样式1")
+![alt 样式2](https://www.iaders.com/wp-content/uploads/2019/12/mb4.png "样式2")
+![alt 样式2](https://www.iaders.com/wp-content/uploads/2019/12/mb2.png "样式2")
+![alt 样式2](https://www.iaders.com/wp-content/uploads/2019/12/mb3.png "样式2")
