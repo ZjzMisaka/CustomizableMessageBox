@@ -5,6 +5,7 @@
 - 因为可以改变字体且支持触摸操作, 所以适合在平板上使用. 
 - 消息框最初有一定高度, 但如果Message文本内容过多, 超出了高度限制, MessageBox显示不下时, 窗口高度会对应增加, 使消息能被完整显示出来. 
 - 如果消息框窗口高度达到窗口工作区高度, 但还是容不下消息字符串显示时, 消息框高度不再增长, 但是可以通过滚动消息区域查看剩余消息. 
+- 可以自由改变外观. 
 ### 用法
 - 生成项目MessageBoxTouch, 得到对应动态链接库, 引用到自己的项目中, 并调用. 本工程自带有示例. 
 - 工具的MessageBox的Show函数参数与System.Windows.MessageBox的参数兼容, 简单而言只要引入一下dll, 不用做过多改动即可使用工具提供的MessageBox. 
@@ -20,8 +21,8 @@ MessageBox.Show("message", "title", MessageBoxButton.OKCancel, MessageBoxImage.Q
 #### 自定义写法
 返回值为int型, 值为参数按钮列表中的索引. 
 ```csharp
-MessageBox.Show(new List<string> { "btn1" }, "msg");
-MessageBox.Show(new List<string> { "btn1", "btn2", "btn3", "btn4", "btn5" }, "msg", "title", MessageBoxImage.Asterisk);
+MessageBox.Show(new List<object> { "btn1" }, "msg");
+MessageBox.Show(new List<object> { new ButtonSpacer(250), "btn1", "btn2", "btn3", "btn4", "btn5", new ButtonSpacer(30) }, "msg", "title", MessageBoxImage.Asterisk);
 ```
 #### 修改式样
 ##### 单独修改
@@ -30,7 +31,7 @@ MessageBox.Show(new List<string> { "btn1", "btn2", "btn3", "btn4", "btn5" }, "ms
 MessageBox.ButtonPanelColor = new MessageBoxColor("red");
 MessageBox.WindowMinHeight = 300;
 MessageBox.MessageFontSize = 22;
-MessageBox.Show(new List<string> { "btn1" }, "msg");
+MessageBox.Show(new List<object> { "btn1" }, "msg");
 ```
 ##### 批量修改
 - **推荐** 在Show函数参数中设置
@@ -39,7 +40,7 @@ PropertiesSetter propertiesSetter = new PropertiesSetter();
 propertiesSetter.ButtonBorderThickness = new Thickness(10);
 propertiesSetter.MessagePanelColor = new MessageBoxColor(Colors.black);
 MessageBox.Show(propertiesSetter, "message", "title", MessageBoxButton.OKCancel, MessageBoxImage.Question);
-MessageBox.Show(propertiesSetter, new List<string> { "btn1" }, "msg");
+MessageBox.Show(propertiesSetter, new List<object> { "btn1" }, "msg");
 ```
 - 在Show函数之前设置
 ```csharp
@@ -47,8 +48,9 @@ PropertiesSetter propertiesSetter = new PropertiesSetter();
 propertiesSetter.ButtonBorderThickness = new Thickness(10, 0, 0, 0);
 propertiesSetter.MessagePanelColor = new MessageBoxColor("#222DDD");
 MessageBox.PropertiesSetter = propertiesSetter;
-MessageBox.Show(new List<string> { "btn1" }, "msg");
+MessageBox.Show(new List<object> { "btn1" }, "msg");
 ```
+### 示例图片
 ![alt 样式1](https://www.iaders.com/wp-content/uploads/2019/12/mb1.png "样式1")
 ![alt 样式1](https://www.iaders.com/wp-content/uploads/2019/12/mb5.png "样式1")
 ![alt 样式2](https://www.iaders.com/wp-content/uploads/2019/12/mb4.png "样式2")
