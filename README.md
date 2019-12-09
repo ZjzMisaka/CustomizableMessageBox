@@ -50,6 +50,63 @@ propertiesSetter.MessagePanelColor = new MessageBoxColor("#222DDD");
 MessageBox.PropertiesSetter = propertiesSetter;
 MessageBox.Show(new List<object> { "btn1" }, "msg");
 ```
+### 成员函数与属性
+|MessageBox属性|含义|状态|
+|----|----|----|
+|LockHeight|是否锁住窗口高度不允许自动增长||
+|TextWrappingMode|消息段落换行风格|未实现自定义切换|
+|WindowWidth|窗口宽度||
+|WindowMinHeight|窗口最小 (初始) 高度||
+|TitleFontSize|标题字体大小||
+|MessageFontSize|消息字体大小||
+|ButtonFontSize|按钮字体大小||
+|TitleFontColor|标题字体颜色||
+|MessageFontColor|消息字体颜色||
+|ButtonFontColor|按钮字体颜色||
+|WindowOpacity|窗口整体透明度|未实现自定义切换|
+|TitleBarOpacity|标题区域透明度|未实现自定义切换|
+|MessageBarOpacity|消息区域透明度|未实现自定义切换|
+|ButtonBarOpacity|按钮区域透明度|未实现自定义切换|
+|TitlePanelColor|标题区域背景色||
+|MessagePanelColor|消息区域背景色||
+|ButtonPanelColor|按钮区域背景色||
+|WndBorderColor|窗口边框颜色||
+|TitlePanelBorderColor|标题区域边框颜色||
+|MessagePanelBorderColor|消息区域边框颜色||
+|ButtonPanelBorderColor|按钮区域边框颜色||
+|ButtonBorderColor|按钮边框颜色||
+|WndBorderThickness|窗口边框宽度||
+|TitlePanelBorderThickness|标题区域边框宽度||
+|MessagePanelBorderThickness|消息区域边框宽度||
+|ButtonPanelBorderThickness|按钮区域边框宽度||
+|ButtonBorderThickness|按钮边框宽度||
+
+|MessageBox函数|含义|
+|----|----|
+|public static MessageBoxResult Show(string msg, string title = "", MessageBoxButton selectStyle = MessageBoxButton.OK, MessageBoxImage img = MessageBoxImage.None)|兼容形式调出消息窗口|
+|public static int Show(List<object> btnList, string msg, string title = "", MessageBoxImage img = MessageBoxImage.None)|自定义形式调出消息窗口|
+|public static MessageBoxResult Show(PropertiesSetter propertiesSetter, string msg, string title = "", MessageBoxButton selectStyle = MessageBoxButton.OK, MessageBoxImage img = MessageBoxImage.None)|兼容形式调出消息窗口, 并使用既有样式|
+|public static int Show(PropertiesSetter propertiesSetter, List<object> btnList, string msg, string title = "", MessageBoxImage img = MessageBoxImage.None)|自定义形式调出消息窗口, 并使用既有样式|
+ 
+|MessageBoxColor属性|含义|
+|----|----|
+|color|颜色值|
+|colorType|颜色类型|
+ 
+|MessageBoxColor函数|含义|参数|
+|----|----|----|
+|public MessageBoxColor(object color)|构造函数|ColorType类实例, 或十六进制颜色码, 或颜色名字|
+|public SolidColorBrush GetSolidColorBrush()|输出这个实例颜色实例对应的SolidColorBrush||
+
+|PropertiesSetter属性|含义|
+|----|----|
+|略 (参考MessageBox属性)||
+
+|PropertiesSetter函数|含义|参数|
+|----|----|----|
+|public PropertiesSetter()|构造函数||
+|public PropertiesSetter(PropertiesSetter propertiesSetter)|构造函数|一个既有的PropertiesSetter实例|
+
 ### 示例图片
 ![alt 样式1](https://www.iaders.com/wp-content/uploads/2019/12/mb1.png "样式1")
 ![alt 样式1](https://www.iaders.com/wp-content/uploads/2019/12/mb5.png "样式1")
