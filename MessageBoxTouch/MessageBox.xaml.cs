@@ -56,7 +56,7 @@ namespace MessageBoxTouch
         private static int currentClickIndex = -1;
 
         // 自定按钮列表
-        private static List<string> btnList = null;
+        private static List<object> btnList = null;
 
         // 锁定高度
         private static bool lockHeight = false;
@@ -84,6 +84,8 @@ namespace MessageBoxTouch
                     case TextWrapping.WrapWithOverflow:
                         warpMode = WarpMode.WORDWITHOVERFLOW;
                         break;
+
+                        //TODO: 和xaml元素属性绑定
                 }
             }
         }
@@ -107,6 +109,18 @@ namespace MessageBoxTouch
         // 按钮字体大小
         private static int buttonFontSize = 30;
         public static int ButtonFontSize { get => buttonFontSize; set => buttonFontSize = value; }
+
+        // 标题字体颜色
+        private static MessageBoxColor titleFontColor = new MessageBoxColor(Colors.Black);
+        public static MessageBoxColor TitleFontColor { get => titleFontColor; set => titleFontColor = value; }
+
+        // 消息文本字体颜色
+        private static MessageBoxColor messageFontColor = new MessageBoxColor(Colors.Black);
+        public static MessageBoxColor MessageFontColor { get => messageFontColor; set => messageFontColor = value; }
+
+        // 按钮字体颜色
+        private static MessageBoxColor buttonFontColor = new MessageBoxColor(Colors.Black);
+        public static MessageBoxColor ButtonFontColor { get => buttonFontColor; set => buttonFontColor = value; }
 
         // 窗口透明度
         private static double windowOpacity = 0.95;
@@ -141,15 +155,19 @@ namespace MessageBoxTouch
         public static MessageBoxColor WndBorderColor { get => wndBorderColor; set => wndBorderColor = value; }
 
         // 标题区域边框颜色
-        private static MessageBoxColor titleBorderColor = new MessageBoxColor(Colors.White, ColorType.COLORNAME);
-        public static MessageBoxColor TitleBorderColor { get => titleBorderColor; set => titleBorderColor = value; }
+        private static MessageBoxColor titlePanelBorderColor = new MessageBoxColor(Colors.White, ColorType.COLORNAME);
+        public static MessageBoxColor TitlePanelBorderColor { get => titlePanelBorderColor; set => titlePanelBorderColor = value; }
 
         // 消息区域边框颜色
-        private static MessageBoxColor messageBorderColor = new MessageBoxColor(Colors.White, ColorType.COLORNAME);
-        public static MessageBoxColor MessageBorderColor { get => messageBorderColor; set => messageBorderColor = value; }
+        private static MessageBoxColor messagePanelBorderColor = new MessageBoxColor(Colors.White, ColorType.COLORNAME);
+        public static MessageBoxColor MessagePanelBorderColor { get => messagePanelBorderColor; set => messagePanelBorderColor = value; }
 
         // 按钮区域边框颜色
-        private static MessageBoxColor buttonBorderColor = new MessageBoxColor(Colors.White, ColorType.COLORNAME);
+        private static MessageBoxColor buttonPanelBorderColor = new MessageBoxColor(Colors.White, ColorType.COLORNAME);
+        public static MessageBoxColor ButtonPanelBorderColor { get => buttonPanelBorderColor; set => buttonPanelBorderColor = value; }
+
+        // 按钮边框颜色
+        private static MessageBoxColor buttonBorderColor = new MessageBoxColor(Colors.Black, ColorType.COLORNAME);
         public static MessageBoxColor ButtonBorderColor { get => buttonBorderColor; set => buttonBorderColor = value; }
 
         // 窗口边框宽度
@@ -157,14 +175,18 @@ namespace MessageBoxTouch
         public static Thickness WndBorderThickness { get => wndBorderThickness; set => wndBorderThickness = value; }
 
         // 标题区域边框宽度
-        private static Thickness titleBorderThickness = new Thickness(0, 0, 0, 1);
-        public static Thickness TitleBorderThickness { get => titleBorderThickness; set => titleBorderThickness = value; }
+        private static Thickness titlePanelBorderThickness = new Thickness(0, 0, 0, 1);
+        public static Thickness TitlePanelBorderThickness { get => titlePanelBorderThickness; set => titlePanelBorderThickness = value; }
 
         // 消息区域边框宽度
-        private static Thickness messageBorderThickness = new Thickness(0);
-        public static Thickness MessageBorderThickness { get => messageBorderThickness; set => messageBorderThickness = value; }
+        private static Thickness messagePanelBorderThickness = new Thickness(0);
+        public static Thickness MessagePanelBorderThickness { get => messagePanelBorderThickness; set => messagePanelBorderThickness = value; }
 
         // 按钮区域边框宽度
+        private static Thickness buttonPanelBorderThickness = new Thickness(0);
+        public static Thickness ButtonPanelBorderThickness { get => buttonPanelBorderThickness; set => buttonPanelBorderThickness = value; }
+
+        // 按钮边框宽度
         private static Thickness buttonBorderThickness = new Thickness(0);
         public static Thickness ButtonBorderThickness { get => buttonBorderThickness; set => buttonBorderThickness = value; }
 
@@ -182,6 +204,9 @@ namespace MessageBoxTouch
                 TitleFontSize = value.TitleFontSize;
                 MessageFontSize = value.MessageFontSize;
                 ButtonFontSize = value.ButtonFontSize;
+                TitleFontColor = value.TitleFontColor;
+                MessageFontColor = value.MessageFontColor;
+                ButtonFontColor = value.ButtonFontColor;
                 WindowOpacity = value.WindowOpacity;
                 TitleBarOpacity = value.TitleBarOpacity;
                 MessageBarOpacity = value.MessageBarOpacity;
@@ -190,12 +215,14 @@ namespace MessageBoxTouch
                 MessagePanelColor = value.MessagePanelColor;
                 ButtonPanelColor = value.ButtonPanelColor;
                 WndBorderColor = value.WndBorderColor;
-                TitleBorderColor = value.TitleBorderColor;
-                MessageBorderColor = value.MessageBorderColor;
+                TitlePanelBorderColor = value.TitlePanelBorderColor;
+                MessagePanelBorderColor = value.MessagePanelBorderColor;
+                ButtonPanelBorderColor = value.ButtonPanelBorderColor;
                 ButtonBorderColor = value.ButtonBorderColor;
                 WndBorderThickness = value.WndBorderThickness;
-                TitleBorderThickness = value.TitleBorderThickness;
-                MessageBorderThickness = value.MessageBorderThickness;
+                TitlePanelBorderThickness = value.TitlePanelBorderThickness;
+                MessagePanelBorderThickness = value.MessagePanelBorderThickness;
+                ButtonPanelBorderThickness = value.ButtonPanelBorderThickness;
                 ButtonBorderThickness = value.ButtonBorderThickness;
             }
         }
@@ -220,34 +247,34 @@ namespace MessageBoxTouch
         public static MessageBoxResult Show(string msg, string title = "", MessageBoxButton selectStyle = MessageBoxButton.OK, MessageBoxImage img = MessageBoxImage.None)
         {
             // 按钮列表
-            List<string> btnList;
+            List<object> btnList;
 
             // 判断按钮类型并显示相应的按钮
             switch (selectStyle)
             {
                 case MessageBoxButton.OK:
-                    btnList = new List<string> { MessageBoxResult.OK.ToString() };
+                    btnList = new List<object> { MessageBoxResult.OK.ToString() };
                     break;
 
                 case MessageBoxButton.OKCancel:
-                    btnList = new List<string> { MessageBoxResult.OK.ToString(), MessageBoxResult.Cancel.ToString() };
+                    btnList = new List<object> { MessageBoxResult.OK.ToString(), MessageBoxResult.Cancel.ToString() };
                     break;
 
                 case MessageBoxButton.YesNo:
-                    btnList = new List<string> { MessageBoxResult.Yes.ToString(), MessageBoxResult.No.ToString() };
+                    btnList = new List<object> { MessageBoxResult.Yes.ToString(), MessageBoxResult.No.ToString() };
                     break;
 
                 case MessageBoxButton.YesNoCancel:
-                    btnList = new List<string> { MessageBoxResult.Yes.ToString(), MessageBoxResult.No.ToString(), MessageBoxResult.Cancel.ToString() };
+                    btnList = new List<object> { MessageBoxResult.Yes.ToString(), MessageBoxResult.No.ToString(), MessageBoxResult.Cancel.ToString() };
                     break;
 
                 default:
-                    btnList = new List<string> { MessageBoxResult.OK.ToString() };
+                    btnList = new List<object> { MessageBoxResult.OK.ToString() };
                     break;
             }
 
             // 获取返回值字符串
-            string resultStr = btnList[Show(btnList, msg, title, img)];
+            string resultStr = btnList[Show(btnList, msg, title, img)].ToString();
 
             // 找到对应的MessageBoxResult元素并返回
             return (MessageBoxResult)System.Enum.Parse(typeof(MessageBoxResult), resultStr);
@@ -261,7 +288,7 @@ namespace MessageBoxTouch
         /// <param name="title">MessageBox窗口标题</param>
         /// <param name="img">消息类型</param>
         /// <returns></returns>
-        public static int Show(List<string> btnList, string msg, string title = "", MessageBoxImage img = MessageBoxImage.None)
+        public static int Show(List<object> btnList, string msg, string title = "", MessageBoxImage img = MessageBoxImage.None)
         {
             MessageBox.btnList = btnList;
 
@@ -339,6 +366,7 @@ namespace MessageBoxTouch
                 double contentHeight = 0;
 
                 // 判断按钮类型并显示相应的按钮
+                // TODO: 把循环里不需要循环的东西提出来
                 for (int i = 0; i < btnList.Count; ++i)
                 {
                     // 当有多于两个选项时, 增加Grid的列数
@@ -346,30 +374,42 @@ namespace MessageBoxTouch
                     {
                         mb.g_buttongrid.ColumnDefinitions.Add(new ColumnDefinition());
                     }
-                    // 实例化一个新的按钮
-                    Button newBtn = new Button();
-                    // 将按钮加入Grid中
-                    mb.g_buttongrid.Children.Add(newBtn);
-                    // 设置按钮在Grid中的行列
-                    newBtn.SetValue(Grid.RowProperty, 0);
-                    newBtn.SetValue(Grid.ColumnProperty, i);
-                    // 引入按钮的样式
-                    var myResourceDictionary = new ResourceDictionary
+                    Button newBtn = null;
+                    if (btnList[i] is string)
                     {
-                        // 指定样式文件的路径
-                        Source = new Uri("pack://application:,,,/MessageBoxTouch;component/WndStyles.xaml")
-                    };
-                    // 通过key找到指定的样式并赋值给按钮
-                    var myButtonStyle = myResourceDictionary["MessageBoxButtonStyle"] as Style;
-                    newBtn.Style = myButtonStyle;
-                    //设置按钮文本
-                    newBtn.Content = btnList[i];
-                    // 设置按钮外边距
-                    newBtn.Margin = new Thickness(10, 0, 10, 0);
-                    // 设置按钮可见
-                    newBtn.Visibility = Visibility.Visible;
-                    // 绑定按钮点击事件
-                    newBtn.Click += BtnClicked;
+                        // 实例化一个新的按钮
+                        newBtn = new Button();
+                        // 将按钮加入Grid中
+                        mb.g_buttongrid.Children.Add(newBtn);
+                        // 设置按钮在Grid中的行列
+                        newBtn.SetValue(Grid.RowProperty, 0);
+                        newBtn.SetValue(Grid.ColumnProperty, i);
+                        // 引入按钮的样式
+                        var myResourceDictionary = new ResourceDictionary
+                        {
+                            // 指定样式文件的路径
+                            Source = new Uri("pack://application:,,,/MessageBoxTouch;component/WndStyles.xaml")
+                        };
+                        // 通过key找到指定的样式并赋值给按钮
+                        var myButtonStyle = myResourceDictionary["MessageBoxButtonStyle"] as Style;
+                        newBtn.Style = myButtonStyle;
+                        //设置按钮文本
+                        newBtn.Content = btnList[i];
+                        // 设置按钮外边距
+                        newBtn.Margin = new Thickness(10, 0, 10, 0);
+                        // 设置按钮可见
+                        newBtn.Visibility = Visibility.Visible;
+                        // 绑定按钮点击事件
+                        newBtn.Click += BtnClicked;
+                    }
+                    else if(btnList[i] is ButtonSpacer)
+                    {
+                        double length = ((ButtonSpacer)btnList[i]).GetLength();
+                        if (length != -1)
+                        {
+                            mb.g_buttongrid.ColumnDefinitions[i].Width = new GridLength(length);
+                        }
+                    }
 
                     // 设置各种属性
                     if (WindowWidth > 0)
@@ -379,6 +419,7 @@ namespace MessageBoxTouch
                     if (WindowMinHeight > 0)
                     {
                         mb.MinHeight = WindowMinHeight;
+                        mb.Height = WindowMinHeight;
                     }
                     if (TitleFontSize > 0)
                     {
@@ -388,7 +429,7 @@ namespace MessageBoxTouch
                     {
                         mb.tb_msg.FontSize = MessageFontSize;
                     }
-                    if (ButtonFontSize > 0)
+                    if (newBtn != null && ButtonFontSize > 0)
                     {
                         newBtn.FontSize = ButtonFontSize;
                     }
@@ -408,6 +449,18 @@ namespace MessageBoxTouch
                     {
                         mb.g_buttongrid.Opacity = ButtonBarOpacity;
                     }
+                    if (TitleFontColor != null)
+                    {
+                        mb.l_title.Foreground = TitleFontColor.GetSolidColorBrush();
+                    }
+                    if (MessageFontColor != null)
+                    {
+                        mb.tb_msg.Foreground = MessageFontColor.GetSolidColorBrush();
+                    }
+                    if (newBtn != null && ButtonFontColor != null)
+                    {
+                        newBtn.Foreground = ButtonFontColor.GetSolidColorBrush();
+                    }
                     if (TitlePanelColor != null)
                     {
                         mb.g_title.Background = TitlePanelColor.GetSolidColorBrush();
@@ -422,70 +475,86 @@ namespace MessageBoxTouch
                     }
                     if (WndBorderColor != null)
                     {
-                        mb.b_wndborder.Background = WndBorderColor.GetSolidColorBrush();
+                        mb.b_wndborder.BorderBrush = WndBorderColor.GetSolidColorBrush();
                     }
-                    if (TitleBorderColor != null)
+                    if (TitlePanelBorderColor != null)
                     {
-                        mb.b_titleborder.Background = TitleBorderColor.GetSolidColorBrush();
+                        mb.b_titleborder.BorderBrush = TitlePanelBorderColor.GetSolidColorBrush();
                     }
-                    if (MessageBorderColor != null)
+                    if (MessagePanelBorderColor != null)
                     {
-                        mb.b_messageborder.Background = MessageBorderColor.GetSolidColorBrush();
+                        mb.b_messageborder.BorderBrush = MessagePanelBorderColor.GetSolidColorBrush();
                     }
-                    if (ButtonBorderColor != null)
+                    if (ButtonPanelBorderColor != null)
                     {
-                        mb.b_buttonborder.Background = ButtonBorderColor.GetSolidColorBrush();
+                        mb.b_buttonborder.BorderBrush = ButtonPanelBorderColor.GetSolidColorBrush();
+                    }
+                    if (newBtn != null && ButtonBorderColor != null)
+                    {
+                        newBtn.BorderBrush = ButtonBorderColor.GetSolidColorBrush();
                     }
                     if (WndBorderThickness != null)
                     {
                         mb.b_wndborder.BorderThickness = WndBorderThickness;
                     }
-                    if (TitleBorderThickness != null)
+                    if (TitlePanelBorderThickness != null)
                     {
-                        mb.b_titleborder.BorderThickness = TitleBorderThickness;
+                        mb.b_titleborder.BorderThickness = TitlePanelBorderThickness;
                     }
-                    if (MessageBorderThickness != null)
+                    if (MessagePanelBorderThickness != null)
                     {
-                        mb.b_messageborder.BorderThickness = MessageBorderThickness;
+                        mb.b_messageborder.BorderThickness = MessagePanelBorderThickness;
                     }
-                    if (ButtonBorderThickness != null)
+                    if (ButtonPanelBorderThickness != null)
                     {
-                        mb.b_buttonborder.BorderThickness = ButtonBorderThickness;
+                        mb.b_buttonborder.BorderThickness = ButtonPanelBorderThickness;
+                    }
+                    if (newBtn != null && ButtonBorderThickness != null)
+                    {
+                        newBtn.BorderThickness = ButtonBorderThickness;
                     }
                     mb.tb_msg.TextWrapping = TextWrappingMode;
 
                     // 根据字体计算标题字符串高度
                     double height = new FormattedText(" ", CultureInfo.CurrentCulture, System.Windows.FlowDirection.LeftToRight, new Typeface(mb.l_title.FontFamily.ToString()), mb.l_title.FontSize, System.Windows.Media.Brushes.Black, pixelsPerDip).Height;
                     // 设置标题栏高度
-                    mb.g_title.Height = height + 7;
+                    mb.g_title.Height = height + 14;
                     mb.rd_title.Height = new GridLength(height + 14);
+                    mb.b_titleborder.Height = height + 14;
 
                     // 当该变量还没计算时
-                    if (maxContentWidth == 0)
+                    if (newBtn != null && maxContentWidth == 0)
                     {
-                        foreach (string s in btnList)
+                        foreach (object s in btnList)
                         {
-                            // 使用字符串和字体设置作为参数实例化FormattedText
-                            FormattedText ft = new FormattedText(s, CultureInfo.CurrentCulture, System.Windows.FlowDirection.LeftToRight, new Typeface(newBtn.FontFamily.ToString()), newBtn.FontSize, System.Windows.Media.Brushes.Black, pixelsPerDip);
-                            // 计算字符串在按钮中的宽度
-                            double contentWidth = ft.Width;
-                            // 如果值比maxContentWidth值更大则赋值给maxContentWidth
-                            maxContentWidth = contentWidth > maxContentWidth ? contentWidth : maxContentWidth;
-                            if (contentHeight == 0)
+                            if (s is string)
                             {
-                                contentHeight = ft.Height;
+                                // 使用字符串和字体设置作为参数实例化FormattedText
+                                FormattedText ft = new FormattedText(s.ToString(), CultureInfo.CurrentCulture, System.Windows.FlowDirection.LeftToRight, new Typeface(newBtn.FontFamily.ToString()), newBtn.FontSize, System.Windows.Media.Brushes.Black, pixelsPerDip);
+                                // 计算字符串在按钮中的宽度
+                                double contentWidth = ft.Width;
+                                // 如果值比maxContentWidth值更大则赋值给maxContentWidth
+                                maxContentWidth = contentWidth > maxContentWidth ? contentWidth : maxContentWidth;
+                                if (contentHeight == 0)
+                                {
+                                    contentHeight = ft.Height;
+                                }
                             }
                         }
                     }
 
                     // 设置按钮的宽高
                     // newBtn.Width = maxContentWidth + 7;
-                    newBtn.Height = contentHeight + 7;
+                    if (newBtn != null)
+                    {
+                        newBtn.Height = contentHeight + 7;
+                    }
                 }
 
                 // 设置按钮栏高度
                 mb.g_buttongrid.Height = contentHeight + 20;
                 mb.rd_button.Height = new GridLength(contentHeight + 20, GridUnitType.Pixel);
+                mb.b_buttonborder.Height = contentHeight + 20;
 
                 // 设置所属的窗口
                 mb.Owner = Application.Current.MainWindow;
@@ -507,7 +576,7 @@ namespace MessageBoxTouch
             return currentClickIndex;
         }
 
-        public static int Show(PropertiesSetter propertiesSetter, List<string> btnList, string msg, string title = "", MessageBoxImage img = MessageBoxImage.None)
+        public static int Show(PropertiesSetter propertiesSetter, List<object> btnList, string msg, string title = "", MessageBoxImage img = MessageBoxImage.None)
         {
             PropertiesSetter = propertiesSetter;
             return Show(btnList, msg, title, img);
@@ -551,6 +620,9 @@ namespace MessageBoxTouch
             TitleFontSize = -1;
             MessageFontSize = -1;
             ButtonFontSize = -1;
+            TitleFontColor = new MessageBoxColor(Colors.Black);
+            MessageFontColor = new MessageBoxColor(Colors.Black);
+            ButtonFontColor = new MessageBoxColor(Colors.Black);
             WindowOpacity = -1;
             TitleBarOpacity = -1;
             MessageBarOpacity = -1;
@@ -559,14 +631,16 @@ namespace MessageBoxTouch
             MessagePanelColor = new MessageBoxColor(Colors.White, ColorType.COLORNAME);
             ButtonPanelColor = new MessageBoxColor("#DDDDDD", ColorType.HEX);
             WndBorderColor = new MessageBoxColor(Colors.White, ColorType.COLORNAME);
-            TitleBorderColor = new MessageBoxColor(Colors.White, ColorType.COLORNAME);
-            MessageBorderColor = new MessageBoxColor(Colors.White, ColorType.COLORNAME);
-            ButtonBorderColor = new MessageBoxColor(Colors.White, ColorType.COLORNAME);
+            TitlePanelBorderColor = new MessageBoxColor(Colors.White, ColorType.COLORNAME);
+            MessagePanelBorderColor = new MessageBoxColor(Colors.White, ColorType.COLORNAME);
+            ButtonPanelBorderColor = new MessageBoxColor(Colors.White, ColorType.COLORNAME);
+            ButtonBorderColor = new MessageBoxColor(Colors.Black, ColorType.COLORNAME);
             WndBorderThickness = new Thickness(2);
-            TitleBorderThickness = new Thickness(0, 0, 0, 1);
-            MessageBorderThickness = new Thickness(0);
+            TitlePanelBorderThickness = new Thickness(0, 0, 0, 1);
+            MessagePanelBorderThickness = new Thickness(0);
+            ButtonPanelBorderThickness = new Thickness(0);
             ButtonBorderThickness = new Thickness(0);
-            propertiesSetter = new PropertiesSetter();
+            PropertiesSetter = new PropertiesSetter();
 
             mb = null;
         }

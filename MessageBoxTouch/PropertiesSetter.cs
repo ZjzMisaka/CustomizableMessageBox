@@ -11,6 +11,43 @@ namespace MessageBoxTouch
 {
     public class PropertiesSetter
     {
+        public PropertiesSetter()
+        {
+
+        }
+
+        public PropertiesSetter(PropertiesSetter propertiesSetter)
+        {
+            LockHeight = propertiesSetter.LockHeight;
+            TextWrappingMode = propertiesSetter.TextWrappingMode;
+            WindowWidth = propertiesSetter.WindowWidth;
+            WindowMinHeight = propertiesSetter.WindowMinHeight;
+            TitleFontSize = propertiesSetter.TitleFontSize;
+            MessageFontSize = propertiesSetter.MessageFontSize;
+            ButtonFontSize = propertiesSetter.ButtonFontSize;
+            TitleFontColor = propertiesSetter.TitleFontColor;
+            MessageFontColor = propertiesSetter.MessageFontColor;
+            ButtonFontColor = propertiesSetter.ButtonFontColor;
+            WindowOpacity = propertiesSetter.WindowOpacity;
+            TitleBarOpacity = propertiesSetter.TitleBarOpacity;
+            MessageBarOpacity = propertiesSetter.MessageBarOpacity;
+            ButtonBarOpacity = propertiesSetter.ButtonBarOpacity;
+            TitlePanelColor = propertiesSetter.TitlePanelColor;
+            MessagePanelColor = propertiesSetter.MessagePanelColor;
+            ButtonPanelColor = propertiesSetter.ButtonPanelColor;
+            WndBorderColor = propertiesSetter.WndBorderColor;
+            TitlePanelBorderColor = propertiesSetter.TitlePanelBorderColor;
+            MessagePanelBorderColor = propertiesSetter.MessagePanelBorderColor;
+            ButtonPanelBorderColor = propertiesSetter.ButtonPanelBorderColor;
+            ButtonBorderColor = propertiesSetter.ButtonBorderColor;
+            WndBorderThickness = propertiesSetter.WndBorderThickness;
+            TitlePanelBorderThickness = propertiesSetter.TitlePanelBorderThickness;
+            MessagePanelBorderThickness = propertiesSetter.MessagePanelBorderThickness;
+            ButtonPanelBorderThickness = propertiesSetter.ButtonPanelBorderThickness;
+            ButtonBorderThickness = propertiesSetter.ButtonBorderThickness;
+        }
+
+
         // 锁定高度
         private bool lockHeight = false;
         public bool LockHeight { get => lockHeight; set => lockHeight = value; }
@@ -38,6 +75,18 @@ namespace MessageBoxTouch
         // 按钮字体大小
         private int buttonFontSize = 30;
         public int ButtonFontSize { get => buttonFontSize; set => buttonFontSize = value; }
+
+        // 标题字体颜色
+        private MessageBoxColor titleFontColor = new MessageBoxColor(Colors.Black);
+        public MessageBoxColor TitleFontColor { get => titleFontColor; set => titleFontColor = value; }
+
+        // 消息文本字体颜色
+        private MessageBoxColor messageFontColor = new MessageBoxColor(Colors.Black);
+        public MessageBoxColor MessageFontColor { get => messageFontColor; set => messageFontColor = value; }
+
+        // 按钮字体颜色
+        private MessageBoxColor buttonFontColor = new MessageBoxColor(Colors.Black);
+        public MessageBoxColor ButtonFontColor { get => buttonFontColor; set => buttonFontColor = value; }
 
         // 窗口透明度
         private double windowOpacity = 0.95;
@@ -72,14 +121,18 @@ namespace MessageBoxTouch
         public MessageBoxColor WndBorderColor { get => wndBorderColor; set => wndBorderColor = value; }
 
         // 标题区域边框颜色
-        private MessageBoxColor titleBorderColor = new MessageBoxColor(Colors.White, ColorType.COLORNAME);
-        public MessageBoxColor TitleBorderColor { get => titleBorderColor; set => titleBorderColor = value; }
+        private MessageBoxColor titlePanelBorderColor = new MessageBoxColor(Colors.White, ColorType.COLORNAME);
+        public MessageBoxColor TitlePanelBorderColor { get => titlePanelBorderColor; set => titlePanelBorderColor = value; }
 
         // 消息区域边框颜色
-        private MessageBoxColor messageBorderColor = new MessageBoxColor(Colors.White, ColorType.COLORNAME);
-        public MessageBoxColor MessageBorderColor { get => messageBorderColor; set => messageBorderColor = value; }
+        private MessageBoxColor messagePanelBorderColor = new MessageBoxColor(Colors.White, ColorType.COLORNAME);
+        public MessageBoxColor MessagePanelBorderColor { get => messagePanelBorderColor; set => messagePanelBorderColor = value; }
 
         // 按钮区域边框颜色
+        private MessageBoxColor buttonPanelBorderColor = new MessageBoxColor(Colors.LightGray, ColorType.COLORNAME);
+        public MessageBoxColor ButtonPanelBorderColor { get => buttonPanelBorderColor; set => buttonPanelBorderColor = value; }
+
+        // 按钮边框颜色
         private MessageBoxColor buttonBorderColor = new MessageBoxColor(Colors.White, ColorType.COLORNAME);
         public MessageBoxColor ButtonBorderColor { get => buttonBorderColor; set => buttonBorderColor = value; }
 
@@ -88,14 +141,18 @@ namespace MessageBoxTouch
         public Thickness WndBorderThickness { get => wndBorderThickness; set => wndBorderThickness = value; }
 
         // 标题区域边框宽度
-        private Thickness titleBorderThickness = new Thickness(0, 0, 0, 1);
-        public Thickness TitleBorderThickness { get => titleBorderThickness; set => titleBorderThickness = value; }
+        private Thickness titlePanelBorderThickness = new Thickness(0, 0, 0, 1);
+        public Thickness TitlePanelBorderThickness { get => titlePanelBorderThickness; set => titlePanelBorderThickness = value; }
 
         // 消息区域边框宽度
-        private Thickness messageBorderThickness = new Thickness(0);
-        public Thickness MessageBorderThickness { get => messageBorderThickness; set => messageBorderThickness = value; }
+        private Thickness messagePanelBorderThickness = new Thickness(0);
+        public Thickness MessagePanelBorderThickness { get => messagePanelBorderThickness; set => messagePanelBorderThickness = value; }
 
         // 按钮区域边框宽度
+        private Thickness buttonPanelBorderThickness = new Thickness(2);
+        public Thickness ButtonPanelBorderThickness { get => buttonPanelBorderThickness; set => buttonPanelBorderThickness = value; }
+
+        // 按钮边框宽度
         private Thickness buttonBorderThickness = new Thickness(0);
         public Thickness ButtonBorderThickness { get => buttonBorderThickness; set => buttonBorderThickness = value; }
     }
