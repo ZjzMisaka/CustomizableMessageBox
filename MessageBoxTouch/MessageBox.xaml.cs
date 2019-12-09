@@ -33,7 +33,7 @@ namespace MessageBoxTouch
         private static extern Boolean SetWindowPos(IntPtr hWnd, IntPtr hWndInsertAfter, int X, int Y, int cx, int cy, uint uFlags);
 
         // 换行计算模式
-        enum WarpMode
+        private enum WarpMode
         {
             // 以字符为换行单位
             TEXT,
@@ -593,7 +593,7 @@ namespace MessageBoxTouch
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
-        public static void BtnClicked(Object sender, RoutedEventArgs e)
+        private static void BtnClicked(Object sender, RoutedEventArgs e)
         {
             Button btn = (Button)sender;
 
