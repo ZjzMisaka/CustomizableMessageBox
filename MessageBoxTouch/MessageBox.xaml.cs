@@ -328,33 +328,27 @@ namespace MessageBoxTouch
                     case MessageBoxImage.Warning:
                         mb.i_img.Source = new BitmapImage(new Uri(".\\Image\\warn.png", UriKind.RelativeOrAbsolute));
                         mb.i_img.Visibility = Visibility.Visible;
-                        mb.tb_msg.Width = mb.Width - mb.i_img.Width - mb.i_img.Margin.Left - mb.i_img.Margin.Right - mb.tb_msg.Margin.Left - mb.tb_msg.Margin.Right;
                         break;
 
                     case MessageBoxImage.Error:
                         mb.i_img.Source = new BitmapImage(new Uri(".\\Image\\error.png", UriKind.RelativeOrAbsolute));
                         mb.i_img.Visibility = Visibility.Visible;
-                        mb.tb_msg.Width = mb.Width - mb.i_img.Width - mb.i_img.Margin.Left - mb.i_img.Margin.Right - mb.tb_msg.Margin.Left - mb.tb_msg.Margin.Right;
                         break;
 
                     case MessageBoxImage.Information:
                         mb.i_img.Source = new BitmapImage(new Uri(".\\Image\\info.png", UriKind.RelativeOrAbsolute));
                         mb.i_img.Visibility = Visibility.Visible;
-                        mb.tb_msg.Width = mb.Width - mb.i_img.Width - mb.i_img.Margin.Left - mb.i_img.Margin.Right - mb.tb_msg.Margin.Left - mb.tb_msg.Margin.Right;
                         break;
 
                     case MessageBoxImage.Question:
                         mb.i_img.Source = new BitmapImage(new Uri(".\\Image\\question.png", UriKind.RelativeOrAbsolute));
                         mb.i_img.Visibility = Visibility.Visible;
-                        mb.tb_msg.Width = mb.Width - mb.i_img.Width - mb.i_img.Margin.Left - mb.i_img.Margin.Right - mb.tb_msg.Margin.Left - mb.tb_msg.Margin.Right;
                         break;
 
                     case MessageBoxImage.None:
-                        mb.tb_msg.Width = mb.Width - mb.tb_msg.Margin.Left - mb.tb_msg.Margin.Right;
                         break;
 
                     default:
-                        mb.tb_msg.Width = mb.Width - mb.tb_msg.Margin.Left - mb.tb_msg.Margin.Right;
                         break;
                 }
 
@@ -526,6 +520,16 @@ namespace MessageBoxTouch
                         newBtn.BorderThickness = ButtonBorderThickness;
                     }
                     mb.tb_msg.TextWrapping = TextWrappingMode;
+
+                    // 设置消息区域宽度
+                    if (mb.i_img.Visibility == Visibility.Visible)
+                    {
+                        mb.tb_msg.Width = mb.Width - mb.i_img.Width - mb.i_img.Margin.Left - mb.i_img.Margin.Right - mb.tb_msg.Margin.Left - mb.tb_msg.Margin.Right;
+                    }
+                    else 
+                    {
+                        mb.tb_msg.Width = mb.Width - mb.tb_msg.Margin.Left - mb.tb_msg.Margin.Right;
+                    }
 
                     // 根据字体计算标题字符串高度
                     double height = new FormattedText(" ", CultureInfo.CurrentCulture, System.Windows.FlowDirection.LeftToRight, new Typeface(mb.l_title.FontFamily.ToString()), mb.l_title.FontSize, System.Windows.Media.Brushes.Black, pixelsPerDip).Height;

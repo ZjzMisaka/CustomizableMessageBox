@@ -50,7 +50,7 @@
             <Border x:Name="b_messageborder" Grid.Row="1" Grid.Column="0" VerticalAlignment="Stretch" HorizontalAlignment="Stretch" BorderBrush="#F09A9A9A" BorderThickness="0,0,0,0">
                 <Grid x:Name="g_message">
                     <StackPanel Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="2" Orientation="Horizontal">
-                        <Image x:Name="i_img" Width="32" Height="32" HorizontalAlignment="Left" Margin="15, 15, 15, 0"  VerticalAlignment="Center" Visibility="Collapsed"/>
+                        <Image x:Name="i_img" Width="32" Height="32" HorizontalAlignment="Left" Margin="15, 0, 15, 0"  VerticalAlignment="Center" Visibility="Collapsed"/>
                         <ScrollViewer x:Name="sv_tb" PanningMode="Both" HorizontalAlignment="Stretch" VerticalScrollBarVisibility="Hidden" HorizontalScrollBarVisibility="Hidden" Margin="0" >
                             <TextBlock x:Name="tb_msg" Margin="15,5,15,15" FontSize="25pt" Text="" HorizontalAlignment="Stretch" VerticalAlignment="Center" TextWrapping="Wrap"/>
                         </ScrollViewer>
