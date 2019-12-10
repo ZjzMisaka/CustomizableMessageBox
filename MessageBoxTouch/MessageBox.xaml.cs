@@ -407,14 +407,17 @@ namespace MessageBoxTouch
                         double length = ((ButtonSpacer)btnList[i]).GetLength();
                         if (length != -1)
                         {
+                            // 修改列宽度
                             mb.g_buttongrid.ColumnDefinitions[i].Width = new GridLength(length);
                         }
                     }
-                    else if(btnList[i] is UIElement)
+                    else if(btnList[i] is FrameworkElement)
                     {
-                        UIElement fe = (UIElement)btnList[i];
+                        FrameworkElement fe = (FrameworkElement)btnList[i];
                         // 将按钮加入Grid中
                         mb.g_buttongrid.Children.Add(fe);
+                        // 修改列宽度
+                        mb.g_buttongrid.ColumnDefinitions[i].Width = new GridLength(fe.Width);
                         // 设置按钮在Grid中的行列
                         fe.SetValue(Grid.RowProperty, 0);
                         fe.SetValue(Grid.ColumnProperty, i);
