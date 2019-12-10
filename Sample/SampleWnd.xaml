@@ -9,21 +9,21 @@
     <Grid>
         <Label Content="选择结果: " HorizontalAlignment="Left" Margin="10,10,0,0" VerticalAlignment="Top"/>
         <Label x:Name="lbl" Content="/" HorizontalAlignment="Left" Margin="70,10,0,0" VerticalAlignment="Top"/>
-        <Label Content="兼容-短-改变最小高度" HorizontalAlignment="Left" Margin="10,40,0,0" FontSize="10" VerticalAlignment="Top" Width="150" />
+        <Label Content="兼容" HorizontalAlignment="Left" Margin="10,40,0,0" FontSize="10" VerticalAlignment="Top" Width="150" />
         <Button Content="Button" HorizontalAlignment="Left" Margin="10,60,0,0" VerticalAlignment="Top" Width="150" Click="Button_Click"/>
-        <Label Content="兼容-三行-改变整体透明度" HorizontalAlignment="Left" Margin="160,40,0,0" FontSize="10" VerticalAlignment="Top" Width="150" />
+        <Label Content="兼容" HorizontalAlignment="Left" Margin="160,40,0,0" FontSize="10" VerticalAlignment="Top" Width="150" />
         <Button Content="Button" HorizontalAlignment="Left" Margin="160,60,0,0" VerticalAlignment="Top" Width="150" Click="Button_Click_1"/>
-        <Label Content="兼容-多行-改变字体大小" HorizontalAlignment="Left" Margin="310,40,0,0" FontSize="10" VerticalAlignment="Top" Width="150" />
+        <Label Content="兼容" HorizontalAlignment="Left" Margin="310,40,0,0" FontSize="10" VerticalAlignment="Top" Width="150" />
         <Button Content="Button" HorizontalAlignment="Left" Margin="310,60,0,0" VerticalAlignment="Top" Width="150" Click="Button_Click_2"/>
-        <Label Content="兼容-满行" HorizontalAlignment="Left" Margin="460,40,0,0" FontSize="10" VerticalAlignment="Top" Width="150" />
+        <Label Content="兼容" HorizontalAlignment="Left" Margin="460,40,0,0" FontSize="10" VerticalAlignment="Top" Width="150" />
         <Button Content="Button" HorizontalAlignment="Left" Margin="460,60,0,0" VerticalAlignment="Top" Width="150" Click="Button_Click_3"/>
-        <Label Content="自定-短-改变最小高度" HorizontalAlignment="Left" Margin="10,90,0,0" FontSize="10" VerticalAlignment="Top" Width="150" />
+        <Label Content="自定" HorizontalAlignment="Left" Margin="10,90,0,0" FontSize="10" VerticalAlignment="Top" Width="150" />
         <Button Content="Button" HorizontalAlignment="Left" Margin="10,110,0,0" VerticalAlignment="Top" Width="150" Click="Button_Click_4"/>
-        <Label Content="自定-三行-改变整体透明度" HorizontalAlignment="Left" Margin="160,90,0,0" FontSize="10" VerticalAlignment="Top" Width="150" />
+        <Label Content="自定" HorizontalAlignment="Left" Margin="160,90,0,0" FontSize="10" VerticalAlignment="Top" Width="150" />
         <Button Content="Button" HorizontalAlignment="Left" Margin="160,110,0,0" VerticalAlignment="Top" Width="150" Click="Button_Click_5"/>
-        <Label Content="自定-多行-改变字体大小" HorizontalAlignment="Left" Margin="310,90,0,0" FontSize="10" VerticalAlignment="Top" Width="150" />
+        <Label Content="自定" HorizontalAlignment="Left" Margin="310,90,0,0" FontSize="10" VerticalAlignment="Top" Width="150" />
         <Button Content="Button" HorizontalAlignment="Left" Margin="310,110,0,0" VerticalAlignment="Top" Width="150" Click="Button_Click_6"/>
-        <Label Content="自定-满行-改变按钮字体大小" HorizontalAlignment="Left" Margin="460,90,0,0" FontSize="10" VerticalAlignment="Top" Width="150" />
+        <Label Content="自定" HorizontalAlignment="Left" Margin="460,90,0,0" FontSize="10" VerticalAlignment="Top" Width="150" />
         <Button Content="Button" HorizontalAlignment="Left" Margin="460,110,0,0" VerticalAlignment="Top" Width="150" Click="Button_Click_7"/>
 
 
