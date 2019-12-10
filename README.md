@@ -24,7 +24,7 @@ MessageBox.Show("message", "title", MessageBoxButton.OKCancel, MessageBoxImage.Q
 MessageBox.Show(new List<object> { "btn1" }, "msg");
 MessageBox.Show(new List<object> { new ButtonSpacer(250), "btn1", "btn2", "btn3", "btn4", "btn5", new ButtonSpacer(30) }, "msg", "title", MessageBoxImage.Asterisk);
 ```
-#### 修改式样
+#### 修改式样属性
 ##### 单独修改
 添加在Show函数之前
 ```csharp
@@ -48,8 +48,21 @@ PropertiesSetter propertiesSetter = new PropertiesSetter();
 propertiesSetter.ButtonBorderThickness = new Thickness(10, 0, 0, 0);
 propertiesSetter.MessagePanelColor = new MessageBoxColor("#222DDD");
 MessageBox.PropertiesSetter = propertiesSetter;
-MessageBox.Show(new List<object> { "btn1" }, "msg");
+MessageBox.Show(new List<object> { new TextBox(), "btn1" }, "msg");
 ```
+#### 修改按钮区域
+##### 插入空白
+在传入的List<object>中对应位置插入一个ButtonSpacer实例. 构造函数参数可为空或指定宽度值. </br>
+##### 插入自定义控件
+在传入的List<object>中对应位置插入插入一个FrameworkElement派生类的实例, 即可在对应位置显示相应控件. </br>
+列宽由插入的控件的宽度决定. </br>
+Show函数调用结束返回后可调用MessageBox.GetBtnList()获取该控件, 得到用户输入 / 操作结果. 
+```csharp
+int result = MessageBox.Show(new List<object> { new TextBox(), "btn1", "btn2" }, "msg");
+TextBox tb = (TextBox)MessageBox.GetBtnList()[0];
+MessageBox.Show(tb.Text == string.Empty ? "用户未输入" : tb.Text, (string)MessageBox.GetBtnList()[result]);
+```
+ 
 ### 成员函数与属性
 |MessageBox属性|含义|状态|
 |----|----|----|
@@ -87,6 +100,7 @@ MessageBox.Show(new List<object> { "btn1" }, "msg");
 |public static int Show(List<object> btnList, string msg, string title = "", MessageBoxImage img = MessageBoxImage.None)|自定义形式调出消息窗口|
 |public static MessageBoxResult Show(PropertiesSetter propertiesSetter, string msg, string title = "", MessageBoxButton selectStyle = MessageBoxButton.OK, MessageBoxImage img = MessageBoxImage.None)|兼容形式调出消息窗口, 并使用既有样式|
 |public static int Show(PropertiesSetter propertiesSetter, List<object> btnList, string msg, string title = "", MessageBoxImage img = MessageBoxImage.None)|自定义形式调出消息窗口, 并使用既有样式|
+|public static List<object> GetBtnList()|获取按钮列表|
  
 |MessageBoxColor属性|含义|
 |----|----|
@@ -107,9 +121,20 @@ MessageBox.Show(new List<object> { "btn1" }, "msg");
 |public PropertiesSetter()|构造函数||
 |public PropertiesSetter(PropertiesSetter propertiesSetter)|构造函数|一个既有的PropertiesSetter实例|
 
+|ButtonSpacer属性|含义|
+|----|----|
+|length|留白长度|
+
+|ButtonSpacer函数|含义|
+|----|----|
+|public ButtonSpacer()|构造函数|
+|public ButtonSpacer(double length)|构造函数|
+|public double GetLength()|获取留白长度|
+
 ### 示例图片
-![alt 样式1](https://www.iaders.com/wp-content/uploads/2019/12/mb1.png "样式1")
-![alt 样式1](https://www.iaders.com/wp-content/uploads/2019/12/mb5.png "样式1")
-![alt 样式2](https://www.iaders.com/wp-content/uploads/2019/12/mb4.png "样式2")
-![alt 样式2](https://www.iaders.com/wp-content/uploads/2019/12/mb2.png "样式2")
-![alt 样式2](https://www.iaders.com/wp-content/uploads/2019/12/mb3.png "样式2")
+![样式1](https://www.iaders.com/wp-content/uploads/2019/12/mb1.png "样式1")
+![样式1](https://www.iaders.com/wp-content/uploads/2019/12/mb5.png "样式1")
+![样式1](https://www.iaders.com/wp-content/uploads/2019/12/mb6.png "样式1")
+![样式2](https://www.iaders.com/wp-content/uploads/2019/12/mb4.png "样式2")
+![样式2](https://www.iaders.com/wp-content/uploads/2019/12/mb2.png "样式2")
+![样式2](https://www.iaders.com/wp-content/uploads/2019/12/mb3.png "样式2")
