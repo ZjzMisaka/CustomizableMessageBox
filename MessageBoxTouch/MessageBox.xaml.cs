@@ -243,7 +243,7 @@ namespace MessageBoxTouch
         /// <param name="title">MessageBox窗口标题</param>
         /// <param name="selectStyle">按钮种类</param>
         /// <param name="img">消息类型</param>
-        /// <returns></returns>
+        /// <returns>MessageBoxResult</returns>
         public static MessageBoxResult Show(string msg, string title = "", MessageBoxButton selectStyle = MessageBoxButton.OK, MessageBoxImage img = MessageBoxImage.None)
         {
             // 按钮列表
@@ -287,7 +287,7 @@ namespace MessageBoxTouch
         /// <param name="msg">MessageBox消息内容</param>
         /// <param name="title">MessageBox窗口标题</param>
         /// <param name="img">消息类型</param>
-        /// <returns></returns>
+        /// <returns>选中的按钮索引</returns>
         public static int Show(List<object> btnList, string msg, string title = "", MessageBoxImage img = MessageBoxImage.None)
         {
             MessageBox.btnList = btnList;
@@ -409,6 +409,15 @@ namespace MessageBoxTouch
                         {
                             mb.g_buttongrid.ColumnDefinitions[i].Width = new GridLength(length);
                         }
+                    }
+                    else if(btnList[i] is UIElement)
+                    {
+                        UIElement fe = (UIElement)btnList[i];
+                        // 将按钮加入Grid中
+                        mb.g_buttongrid.Children.Add(fe);
+                        // 设置按钮在Grid中的行列
+                        fe.SetValue(Grid.RowProperty, 0);
+                        fe.SetValue(Grid.ColumnProperty, i);
                     }
 
                     // 设置各种属性
@@ -576,16 +585,43 @@ namespace MessageBoxTouch
             return currentClickIndex;
         }
 
+        /// <summary>
+        /// 调出消息窗口
+        /// </summary>
+        /// <param name="propertiesSetter">样式</param>
+        /// <param name="msg">MessageBox消息内容</param>
+        /// <param name="title">MessageBox窗口标题</param>
+        /// <param name="selectStyle">按钮种类</param>
+        /// <param name="img">消息类型</param>
+        /// <returns>MessageBoxResult</returns>
+        public static MessageBoxResult Show(PropertiesSetter propertiesSetter, string msg, string title = "", MessageBoxButton selectStyle = MessageBoxButton.OK, MessageBoxImage img = MessageBoxImage.None)
+        {
+            PropertiesSetter = propertiesSetter;
+            return Show(msg, title, selectStyle, img);
+        }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="propertiesSetter">样式</param>
+        /// <param name="btnList">自定按钮列表</param>
+        /// <param name="msg">MessageBox消息内容</param>
+        /// <param name="title">MessageBox窗口标题</param>
+        /// <param name="img">消息类型</param>
+        /// <returns>选中的按钮索引</returns>
         public static int Show(PropertiesSetter propertiesSetter, List<object> btnList, string msg, string title = "", MessageBoxImage img = MessageBoxImage.None)
         {
             PropertiesSetter = propertiesSetter;
             return Show(btnList, msg, title, img);
         }
 
-        public static MessageBoxResult Show(PropertiesSetter propertiesSetter, string msg, string title = "", MessageBoxButton selectStyle = MessageBoxButton.OK, MessageBoxImage img = MessageBoxImage.None)
+        /// <summary>
+        /// 获取按钮列表
+        /// </summary>
+        /// <returns>按钮列表</returns>
+        public static List<object> GetBtnList()
         {
-            PropertiesSetter = propertiesSetter;
-            return Show(msg, title, selectStyle, img);
+            return btnList;
         }
 
         /// <summary>
