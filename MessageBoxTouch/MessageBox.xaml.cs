@@ -417,7 +417,7 @@ namespace MessageBoxTouch
                         // 将按钮加入Grid中
                         mb.g_buttongrid.Children.Add(fe);
                         // 修改列宽度
-                        mb.g_buttongrid.ColumnDefinitions[i].Width = new GridLength(fe.Width);
+                        mb.g_buttongrid.ColumnDefinitions[i].Width = new GridLength(!fe.Width.Equals(Double.NaN) ? fe.Width : 1, !fe.Width.Equals(Double.NaN) ? GridUnitType.Pixel : GridUnitType.Star);
                         // 设置按钮在Grid中的行列
                         fe.SetValue(Grid.RowProperty, 0);
                         fe.SetValue(Grid.ColumnProperty, i);
