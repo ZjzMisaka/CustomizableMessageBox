@@ -71,13 +71,13 @@ MessageBox.Show(tb.Text == string.Empty ? "用户未输入" : tb.Text, (string)M
 |TextWrappingMode|消息段落换行风格|实装|
 |WindowWidth|窗口宽度|实装|
 |WindowMinHeight|窗口最小 (初始) 高度|实装|
-|TitleFontSize|标题字体大小|实装|
-|MessageFontSize|消息字体大小|实装|
-|ButtonFontSize|按钮字体大小|实装|
-|TitleFontColor|标题字体颜色|实装|
-|MessageFontColor|消息字体颜色|实装|
-|ButtonFontColor|按钮字体颜色|实装|
-|WindowOpacity|窗口整体透明度|无效|
+|TitleFontSize|标题文本大小|实装|
+|MessageFontSize|消息文本大小|实装|
+|ButtonFontSize|按钮文本大小|实装|
+|TitleFontColor|标题文本颜色|实装|
+|MessageFontColor|消息文本颜色|实装|
+|ButtonFontColor|按钮文本颜色|实装|
+|WindowOpacity|窗口整体透明度|实装|
 |TitleBarOpacity|标题区域透明度|实装|
 |MessageBarOpacity|消息区域透明度|实装|
 |ButtonBarOpacity|按钮区域透明度|实装|
@@ -94,6 +94,10 @@ MessageBox.Show(tb.Text == string.Empty ? "用户未输入" : tb.Text, (string)M
 |MessagePanelBorderThickness|消息区域边框宽度|实装|
 |ButtonPanelBorderThickness|按钮区域边框宽度|实装|
 |ButtonBorderThickness|按钮边框宽度|实装|
+|TitleFontFamily|标题文本字体|实装|
+|MessageFontFamily|消息文本字体|实装|
+|ButtonFontFamily|按钮文本字体|实装|
+|WindowsShowDuration|窗口渐显时间|实装|
 
 |MessageBox函数|含义|
 |----|----|
@@ -134,8 +138,8 @@ MessageBox.Show(tb.Text == string.Empty ? "用户未输入" : tb.Text, (string)M
 
 ### 示例图片
 ![样式1](https://www.iaders.com/wp-content/uploads/2019/12/mb1.png "样式1")
-![样式1](https://www.iaders.com/wp-content/uploads/2019/12/mb5.png "样式1")
 ![样式1](https://www.iaders.com/wp-content/uploads/2019/12/mb6.png "样式1")
+![样式1](https://www.iaders.com/wp-content/uploads/2019/12/mb5.png "样式1")
 ![样式2](https://www.iaders.com/wp-content/uploads/2019/12/mb4.png "样式2")
 ![样式2](https://www.iaders.com/wp-content/uploads/2019/12/mb2.png "样式2")
 ![样式2](https://www.iaders.com/wp-content/uploads/2019/12/mb3.png "样式2")
