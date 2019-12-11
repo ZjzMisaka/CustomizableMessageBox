@@ -81,11 +81,6 @@
     </Resource>
   </ItemGroup>
   <ItemGroup>
-    <Resource Include="Image\Menu.png">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Resource>
-  </ItemGroup>
-  <ItemGroup>
     <Resource Include="Image\question.png">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Resource>
