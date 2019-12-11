@@ -445,6 +445,8 @@ namespace MessageBoxTouch
                 double maxContentWidth = 0;
                 double contentHeight = 0;
 
+                double highestItemHeight = -1;
+
                 // 判断按钮类型并显示相应的按钮
                 for (int i = 0; i < btnList.Count; ++i)
                 {
@@ -475,7 +477,7 @@ namespace MessageBoxTouch
                         //设置按钮文本
                         newBtn.Content = btnList[i];
                         // 设置按钮外边距
-                        newBtn.Margin = new Thickness(10, 0, 10, 0);
+                        newBtn.Margin = new Thickness(10, 6, 10, 6);
                         // 设置按钮可见
                         newBtn.Visibility = Visibility.Visible;
                         // 绑定按钮点击事件
@@ -505,6 +507,10 @@ namespace MessageBoxTouch
                         // 设置按钮在Grid中的行列
                         fe.SetValue(Grid.RowProperty, 0);
                         fe.SetValue(Grid.ColumnProperty, i);
+                        if(fe.Height > highestItemHeight)
+                        {
+                            highestItemHeight = fe.Height;
+                        }
                     }
 
                     // 当该变量还没计算时
@@ -530,10 +536,10 @@ namespace MessageBoxTouch
 
                     // 设置按钮的宽高
                     // newBtn.Width = maxContentWidth + 7;
-                    if (newBtn != null)
-                    {
-                        newBtn.Height = contentHeight + 7;
-                    }
+                    //if (newBtn != null)
+                    //{
+                    //    newBtn.Height = contentHeight + 7;
+                    //}
                 }
 
                 // 设置消息区域宽度
@@ -554,9 +560,18 @@ namespace MessageBoxTouch
                 mb.b_titleborder.Height = height + 14;
 
                 // 设置按钮栏高度
-                mb.g_buttongrid.Height = contentHeight + 20;
-                mb.rd_button.Height = new GridLength(contentHeight + 20, GridUnitType.Pixel);
-                mb.b_buttonborder.Height = contentHeight + 20;
+                if(highestItemHeight > contentHeight + 7)
+                {
+                    mb.g_buttongrid.Height = highestItemHeight + 13;
+                    mb.rd_button.Height = new GridLength(highestItemHeight + 13, GridUnitType.Pixel);
+                    mb.b_buttonborder.Height = highestItemHeight + 13;
+                }
+                else
+                {
+                    mb.g_buttongrid.Height = contentHeight + 20;
+                    mb.rd_button.Height = new GridLength(contentHeight + 20, GridUnitType.Pixel);
+                    mb.b_buttonborder.Height = contentHeight + 20;
+                }
 
                 // 设置所属的窗口
                 mb.Owner = Application.Current.MainWindow;
