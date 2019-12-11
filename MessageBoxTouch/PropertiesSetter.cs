@@ -45,8 +45,11 @@ namespace MessageBoxTouch
             MessagePanelBorderThickness = propertiesSetter.MessagePanelBorderThickness;
             ButtonPanelBorderThickness = propertiesSetter.ButtonPanelBorderThickness;
             ButtonBorderThickness = propertiesSetter.ButtonBorderThickness;
+            TitleFontFamily = propertiesSetter.TitleFontFamily;
+            MessageFontFamily = propertiesSetter.MessageFontFamily;
+            ButtonFontFamily = propertiesSetter.ButtonFontFamily;
+            WindowsShowDuration = propertiesSetter.WindowsShowDuration;
         }
-
 
         // 锁定高度
         private bool lockHeight = false;
@@ -155,5 +158,21 @@ namespace MessageBoxTouch
         // 按钮边框宽度
         private Thickness buttonBorderThickness = new Thickness(0);
         public Thickness ButtonBorderThickness { get => buttonBorderThickness; set => buttonBorderThickness = value; }
+
+        // 标题文本字体
+        private FontFamily titleFontFamily = new FontFamily("Times New Roman");
+        public FontFamily TitleFontFamily { get => titleFontFamily; set => titleFontFamily = value; }
+
+        // 消息文本字体
+        private FontFamily messageFontFamily = new FontFamily("Times New Roman");
+        public FontFamily MessageFontFamily { get => messageFontFamily; set => messageFontFamily = value; }
+
+        // 按钮文本字体
+        private FontFamily buttonFontFamily = new FontFamily("Times New Roman");
+        public FontFamily ButtonFontFamily { get => buttonFontFamily; set => buttonFontFamily = value; }
+
+        // 窗口渐显时间
+        private Duration windowsShowDuration = new Duration(new TimeSpan(0, 0, 0, 0, 200));
+        public Duration WindowsShowDuration { get => windowsShowDuration; set => windowsShowDuration = value; }
     }
 }

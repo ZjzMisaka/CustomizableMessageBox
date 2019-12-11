@@ -15,6 +15,7 @@ using System.Windows.Forms;
 using System.Windows.Input;
 using System.Windows.Interop;
 using System.Windows.Media;
+using System.Windows.Media.Animation;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
 using static MessageBoxTouch.MessageBoxColor;
@@ -96,27 +97,27 @@ namespace MessageBoxTouch
         private static double windowMinHeight = 450;
         public static double WindowMinHeight { get => windowMinHeight; set => windowMinHeight = value; }
 
-        // 标题字体大小
+        // 标题文本大小
         private static int titleFontSize = 30;
         public static int TitleFontSize { get => titleFontSize; set => titleFontSize = value; }
 
-        // 消息文本字体大小
+        // 消息文本大小
         private static int messageFontSize = 25;
         public static int MessageFontSize { get => messageFontSize; set => messageFontSize = value; }
 
-        // 按钮字体大小
+        // 按钮文本大小
         private static int buttonFontSize = 30;
         public static int ButtonFontSize { get => buttonFontSize; set => buttonFontSize = value; }
 
-        // 标题字体颜色
+        // 标题文本颜色
         private static MessageBoxColor titleFontColor = new MessageBoxColor(Colors.Black);
         public static MessageBoxColor TitleFontColor { get => titleFontColor; set => titleFontColor = value; }
 
-        // 消息文本字体颜色
+        // 消息文本颜色
         private static MessageBoxColor messageFontColor = new MessageBoxColor(Colors.Black);
         public static MessageBoxColor MessageFontColor { get => messageFontColor; set => messageFontColor = value; }
 
-        // 按钮字体颜色
+        // 按钮文本颜色
         private static MessageBoxColor buttonFontColor = new MessageBoxColor(Colors.Black);
         public static MessageBoxColor ButtonFontColor { get => buttonFontColor; set => buttonFontColor = value; }
 
@@ -188,6 +189,22 @@ namespace MessageBoxTouch
         private static Thickness buttonBorderThickness = new Thickness(0);
         public static Thickness ButtonBorderThickness { get => buttonBorderThickness; set => buttonBorderThickness = value; }
 
+        // 标题文本字体
+        private static FontFamily titleFontFamily = new FontFamily("Times New Roman");
+        public static FontFamily TitleFontFamily { get => titleFontFamily; set => titleFontFamily = value; }
+
+        // 消息文本字体
+        private static FontFamily messageFontFamily = new FontFamily("Times New Roman");
+        public static FontFamily MessageFontFamily { get => messageFontFamily; set => messageFontFamily = value; }
+
+        // 按钮文本字体
+        private static FontFamily buttonFontFamily = new FontFamily("Times New Roman");
+        public static FontFamily ButtonFontFamily { get => buttonFontFamily; set => buttonFontFamily = value; }
+
+        // 窗口渐显时间
+        private static Duration windowsShowDuration = new Duration(new TimeSpan(0, 0, 0, 0, 200));
+        public static Duration WindowsShowDuration { get => windowsShowDuration; set => windowsShowDuration = value; }
+
         // 属性集合
         private static PropertiesSetter propertiesSetter = new PropertiesSetter();
         public static PropertiesSetter PropertiesSetter
@@ -222,6 +239,10 @@ namespace MessageBoxTouch
                 MessagePanelBorderThickness = value.MessagePanelBorderThickness;
                 ButtonPanelBorderThickness = value.ButtonPanelBorderThickness;
                 ButtonBorderThickness = value.ButtonBorderThickness;
+                TitleFontFamily = value.TitleFontFamily;
+                MessageFontFamily = value.MessageFontFamily;
+                ButtonFontFamily = value.ButtonFontFamily;
+                WindowsShowDuration = value.WindowsShowDuration;
             }
         }
 
@@ -253,7 +274,8 @@ namespace MessageBoxTouch
             }
             if (WindowOpacity > 0)
             {
-                Opacity = WindowOpacity;
+                //Opacity = WindowOpacity;
+                da_win.To = WindowOpacity;
             }
             if (TitleBarOpacity > 0)
             {
@@ -319,7 +341,10 @@ namespace MessageBoxTouch
             {
                 b_buttonborder.BorderThickness = ButtonPanelBorderThickness;
             }
+            l_title.FontFamily = TitleFontFamily;
+            tb_msg.FontFamily = MessageFontFamily;
             tb_msg.TextWrapping = TextWrappingMode;
+            da_win.Duration = WindowsShowDuration;
         }
 
         /// <summary>
@@ -484,6 +509,7 @@ namespace MessageBoxTouch
                         newBtn.Click += BtnClicked;
 
                         newBtn.FontSize = ButtonFontSize;
+                        newBtn.FontFamily = ButtonFontFamily;
                         newBtn.Foreground = ButtonFontColor.GetSolidColorBrush();
                         newBtn.BorderBrush = ButtonBorderColor.GetSolidColorBrush();
                         newBtn.BorderThickness = ButtonBorderThickness;
@@ -684,6 +710,11 @@ namespace MessageBoxTouch
             MessagePanelBorderThickness = new Thickness(0);
             ButtonPanelBorderThickness = new Thickness(0);
             ButtonBorderThickness = new Thickness(0);
+            TitleFontFamily = new FontFamily("Times New Roman");
+            MessageFontFamily = new FontFamily("Times New Roman");
+            ButtonFontFamily = new FontFamily("Times New Roman");
+            WindowsShowDuration = new Duration(new TimeSpan(0, 0, 0, 0, 200));
+
             PropertiesSetter = new PropertiesSetter();
 
             mb = null;

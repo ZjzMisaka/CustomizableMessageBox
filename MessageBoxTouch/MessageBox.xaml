@@ -11,9 +11,10 @@
             <BeginStoryboard>
                 <Storyboard Name="sbOpShow">
                     <DoubleAnimation
+                        x:Name="da_win"
                     Storyboard.TargetName="main" 
                     Storyboard.TargetProperty="Opacity" 
-                    From="0" To="0.9" Duration="0:0:0.15"/>
+                    From="0" />
                 </Storyboard>
             </BeginStoryboard>
         </EventTrigger>
