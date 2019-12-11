@@ -46,6 +46,7 @@ namespace Sample
             ps1.WindowMinHeight = 200;
             ps1.LockHeight = true;
             ps1.WindowWidth = 450;
+            ps1.WindowShowDuration = new Duration(new TimeSpan(0, 0, 0, 0, 300));
 
             ps2 = new PropertiesSetter(ps1);
             ps2.MessageFontSize = 18;
@@ -56,6 +57,9 @@ namespace Sample
         private void Button_Click(object sender, RoutedEventArgs e)
         {
             MessageBox.ButtonPanelColor = new MessageBoxColor("red");
+            MessageBox.ButtonFontColor = new MessageBoxColor("#114514");
+            MessageBox.ButtonPanelBorderColor = new MessageBoxColor(Colors.Blue);
+            MessageBox.ButtonBorderColor = new MessageBoxColor("#19198100");
             MessageBox.WindowMinHeight = 150;
             lbl.Content = MessageBox.Show("123123", "123123", MessageBoxButton.OKCancel, MessageBoxImage.Question);
         }
@@ -94,7 +98,12 @@ namespace Sample
 
         private void Button_Click_5(object sender, RoutedEventArgs e)
         {
-            MessageBox.WindowOpacity = 0.1;
+            MessageBox.WindowOpacity = 1;
+            MessageBox.TitleBarOpacity = 1;
+            MessageBox.MessageBarOpacity = 0.1;
+            MessageBox.ButtonBarOpacity = 1;
+            MessageBox.WindowShowDuration = new Duration(new TimeSpan(0, 0, 0, 0, 1500));
+            MessageBox.ButtonFontFamily = new FontFamily("黑体");
             lbl.Content = MessageBox.Show(new List<object> {new ButtonSpacer(500), "hello" }, "56145456454564544514\n51515615", "title", MessageBoxImage.Asterisk);
         }
 
@@ -105,8 +114,9 @@ namespace Sample
             MessageBox.MessageFontSize = 22;
             MessageBox.TextWrappingMode = TextWrapping.WrapWithOverflow;
             TextBox newTb = new TextBox();
-            newTb.Margin = new Thickness(10, 7, 10, 7);
+            //newTb.Margin = new Thickness(10, 7, 10, 7);
             newTb.FontSize = 25;
+            newTb.Height = 100;
             int result;
             lbl.Content = result = MessageBox.Show(new List<object> { newTb, "awsl", "banana", "艾维斯了" }, "啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊qqqqqqqq\nefwfewfefqfqfaaaaaaaaaaaq\nefwfewfefqfqfaaaaaaaaaaaq\nefwfewfefqfqfaaaaaaaaaaaq\nefwfewfefqfqfaaaaaaaaa aaaaaiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiaaaaaaa aaaaaaaaaaaaaaaaaaaaaaaa aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa aaaaaaaaaaaaaaaaa aaaaaaaaaaa aaaaawqwqedwqewfewsddddddd dddddddddddd ddddddddddddd dddddd\ndwddddddddddddddddddddddddddddddddfddd\ndwdddddddddddddddddddd\ndwdddddddddddddddddddd\ndwdddddddddddddddddefeeeeeeeeeeeeeeeeeeeeeeeeeeeeeef\nhnujyyyyyyyyyyyyy\nutjjjjjjjjjeeeeeeeeeeeeeeeef\nhnujyyyyyyyyyyyyy\nutjjjjjjjjjeeeeeeeeeeeeeeeeeeeeeeeeef\nhnujyyyyyyyyyyyyy\nutjjjjjjjjjjjjjjjjjjjjjjjjjjjj\nyrhhhhtr\nyhhhhhhhhhhh\nrythr\nrthyrhr\nryhrhr", "123123", MessageBoxImage.Error);
             TextBox tb = (TextBox)MessageBox.GetBtnList()[0];

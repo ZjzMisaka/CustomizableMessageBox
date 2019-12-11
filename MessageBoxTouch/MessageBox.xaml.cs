@@ -202,8 +202,8 @@ namespace MessageBoxTouch
         public static FontFamily ButtonFontFamily { get => buttonFontFamily; set => buttonFontFamily = value; }
 
         // 窗口渐显时间
-        private static Duration windowsShowDuration = new Duration(new TimeSpan(0, 0, 0, 0, 200));
-        public static Duration WindowsShowDuration { get => windowsShowDuration; set => windowsShowDuration = value; }
+        private static Duration windowShowDuration = new Duration(new TimeSpan(0, 0, 0, 0, 200));
+        public static Duration WindowShowDuration { get => windowShowDuration; set => windowShowDuration = value; }
 
         // 属性集合
         private static PropertiesSetter propertiesSetter = new PropertiesSetter();
@@ -242,7 +242,7 @@ namespace MessageBoxTouch
                 TitleFontFamily = value.TitleFontFamily;
                 MessageFontFamily = value.MessageFontFamily;
                 ButtonFontFamily = value.ButtonFontFamily;
-                WindowsShowDuration = value.WindowsShowDuration;
+                WindowShowDuration = value.WindowShowDuration;
             }
         }
 
@@ -279,11 +279,11 @@ namespace MessageBoxTouch
             }
             if (TitleBarOpacity > 0)
             {
-                g_title.Opacity = TitleBarOpacity;
+                g_titlegrid.Opacity = TitleBarOpacity;
             }
             if (MessageBarOpacity > 0)
             {
-                g_message.Opacity = MessageBarOpacity;
+                g_messagegrid.Opacity = MessageBarOpacity;
             }
             if (ButtonBarOpacity > 0)
             {
@@ -299,11 +299,11 @@ namespace MessageBoxTouch
             }
             if (TitlePanelColor != null)
             {
-                g_title.Background = TitlePanelColor.GetSolidColorBrush();
+                g_titlegrid.Background = TitlePanelColor.GetSolidColorBrush();
             }
             if (MessagePanelColor != null)
             {
-                g_message.Background = MessagePanelColor.GetSolidColorBrush();
+                g_messagegrid.Background = MessagePanelColor.GetSolidColorBrush();
             }
             if (ButtonPanelColor != null)
             {
@@ -344,7 +344,7 @@ namespace MessageBoxTouch
             l_title.FontFamily = TitleFontFamily;
             tb_msg.FontFamily = MessageFontFamily;
             tb_msg.TextWrapping = TextWrappingMode;
-            da_win.Duration = WindowsShowDuration;
+            da_win.Duration = WindowShowDuration;
         }
 
         /// <summary>
@@ -581,7 +581,7 @@ namespace MessageBoxTouch
                 // 根据字体计算标题字符串高度
                 double height = new FormattedText(" ", CultureInfo.CurrentCulture, System.Windows.FlowDirection.LeftToRight, new Typeface(mb.l_title.FontFamily.ToString()), mb.l_title.FontSize, System.Windows.Media.Brushes.Black, pixelsPerDip).Height;
                 // 设置标题栏高度
-                mb.g_title.Height = height + 14;
+                mb.g_titlegrid.Height = height + 14;
                 mb.rd_title.Height = new GridLength(height + 14);
                 mb.b_titleborder.Height = height + 14;
 
@@ -713,7 +713,7 @@ namespace MessageBoxTouch
             TitleFontFamily = new FontFamily("Times New Roman");
             MessageFontFamily = new FontFamily("Times New Roman");
             ButtonFontFamily = new FontFamily("Times New Roman");
-            WindowsShowDuration = new Duration(new TimeSpan(0, 0, 0, 0, 200));
+            WindowShowDuration = new Duration(new TimeSpan(0, 0, 0, 0, 200));
 
             PropertiesSetter = new PropertiesSetter();
 

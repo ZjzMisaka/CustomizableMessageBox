@@ -34,7 +34,7 @@
                 <ColumnDefinition />
             </Grid.ColumnDefinitions>
             <Border x:Name="b_titleborder" Grid.Row="0" Grid.Column="0" VerticalAlignment="Stretch" HorizontalAlignment="Stretch" BorderBrush="#F09A9A9A" BorderThickness="0,0,0,1">
-                <Grid x:Name="g_title" Height="50pt" VerticalAlignment="Top" >
+                <Grid x:Name="g_titlegrid" Height="50pt" VerticalAlignment="Top" >
                     <Grid.RowDefinitions>
                         <RowDefinition />
                     </Grid.RowDefinitions>
@@ -49,7 +49,7 @@
             </Border>
 
             <Border x:Name="b_messageborder" Grid.Row="1" Grid.Column="0" VerticalAlignment="Stretch" HorizontalAlignment="Stretch" BorderBrush="#F09A9A9A" BorderThickness="0,0,0,0">
-                <Grid x:Name="g_message">
+                <Grid x:Name="g_messagegrid">
                     <StackPanel Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="2" Orientation="Horizontal">
                         <Image x:Name="i_img" Width="32" Height="32" HorizontalAlignment="Left" Margin="15, 0, 15, 0"  VerticalAlignment="Center" Visibility="Collapsed"/>
                         <ScrollViewer x:Name="sv_tb" PanningMode="Both" HorizontalAlignment="Stretch" VerticalScrollBarVisibility="Hidden" HorizontalScrollBarVisibility="Hidden" Margin="0" >

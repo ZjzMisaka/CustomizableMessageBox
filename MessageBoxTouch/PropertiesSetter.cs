@@ -48,7 +48,7 @@ namespace MessageBoxTouch
             TitleFontFamily = propertiesSetter.TitleFontFamily;
             MessageFontFamily = propertiesSetter.MessageFontFamily;
             ButtonFontFamily = propertiesSetter.ButtonFontFamily;
-            WindowsShowDuration = propertiesSetter.WindowsShowDuration;
+            WindowShowDuration = propertiesSetter.WindowShowDuration;
         }
 
         // 锁定高度
@@ -172,7 +172,7 @@ namespace MessageBoxTouch
         public FontFamily ButtonFontFamily { get => buttonFontFamily; set => buttonFontFamily = value; }
 
         // 窗口渐显时间
-        private Duration windowsShowDuration = new Duration(new TimeSpan(0, 0, 0, 0, 200));
-        public Duration WindowsShowDuration { get => windowsShowDuration; set => windowsShowDuration = value; }
+        private Duration windowShowDuration = new Duration(new TimeSpan(0, 0, 0, 0, 200));
+        public Duration WindowShowDuration { get => windowShowDuration; set => windowShowDuration = value; }
     }
 }
