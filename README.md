@@ -63,7 +63,20 @@ int result = MessageBox.Show(new List<object> { new TextBox(), "btn1", "btn2" },
 TextBox tb = (TextBox)MessageBox.GetBtnList()[0];
 MessageBox.Show(tb.Text == string.Empty ? "用户未输入" : tb.Text, (string)MessageBox.GetBtnList()[result]);
 ```
- 
+### 可操作的属性
+|属性|状态|
+|----|----|
+|窗口锁高|实装|
+|窗口初始高度与宽度|实装|
+|消息区域换行风格|实装|
+|各区域文本字体|实装|
+|各区域文本大小|实装|
+|各区域文本颜色|实装|
+|各区域透明度|实装|
+|各区域背景色|实装|
+|各区域边框颜色|实装|
+|各区域边框宽度|实装|
+|窗口渐显时间|实装|
 ### 成员函数与属性
 |MessageBox属性|含义|状态|
 |----|----|----|
@@ -97,7 +110,7 @@ MessageBox.Show(tb.Text == string.Empty ? "用户未输入" : tb.Text, (string)M
 |MessagePanelBorderThickness|消息区域边框宽度|实装|
 |ButtonPanelBorderThickness|按钮区域边框宽度|实装|
 |ButtonBorderThickness|按钮边框宽度|实装|
-|WindowsShowDuration|窗口渐显时间|实装|
+|WindowShowDuration|窗口渐显时间|实装|
 
 |MessageBox函数|含义|
 |----|----|
