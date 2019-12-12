@@ -53,9 +53,9 @@ MessageBox.Show(new List<object> { new TextBox(), "btn1" }, "msg");
 ```
 #### 修改按钮区域
 ##### 插入空白
-在传入的List<object>中对应位置插入一个ButtonSpacer实例. 构造函数参数可为空或指定宽度值. </br>
+在传入的List&lt;object&gt;中对应位置插入一个ButtonSpacer实例. 构造函数参数可为空或指定宽度值. </br>
 ##### 插入自定义控件
-在传入的List<object>中对应位置插入插入一个FrameworkElement派生类的实例, 即可在对应位置显示相应控件. </br>
+在传入的List&lt;object&gt;中对应位置插入插入一个FrameworkElement派生类的实例, 即可在对应位置显示相应控件. </br>
 列宽由插入的控件的宽度决定. </br>
 - Show函数调用结束返回后可调用MessageBox.GetBtnList()获取该控件, 得到用户输入 / 操作结果.
 ```csharp
@@ -115,10 +115,10 @@ MessageBox.Show(tb.Text == string.Empty ? "用户未输入" : tb.Text, (string)M
 |MessageBox函数|含义|参数|返回值|静态|
 |----|----|----|----|----|
 |Show(string, string, MessageBoxButton, MessageBoxImage)|兼容形式调出消息窗口|消息, 标题 (选), 按钮类型 (选), 图标类型 (选)|MessageBoxResult|是|
-|Show(List<object>, string, string, MessageBoxImage)|自定义形式调出消息窗口|按钮列表, 消息, 标题 (选), 图标类型 (选)|int|是|
+|Show(List&lt;object&gt;, string, string, MessageBoxImage)|自定义形式调出消息窗口|按钮列表, 消息, 标题 (选), 图标类型 (选)|int|是|
 |Show(PropertiesSetter, string, string, MessageBoxButton, MessageBoxImage)|兼容形式调出消息窗口, 并使用既有样式|样式, 消息, 标题 (选), 按钮类型 (选), 图标类型 (选)|MessageBoxResult|是|
-|Show(PropertiesSetter, List<object>, string, string, MessageBoxImage)|自定义形式调出消息窗口, 并使用既有样式|样式, 按钮列表, 消息, 标题 (选), 图标类型 (选)|int|是|
-|GetBtnList()|获取按钮列表||List<object>|是|
+|Show(PropertiesSetter, List&lt;object&gt;, string, string, MessageBoxImage)|自定义形式调出消息窗口, 并使用既有样式|样式, 按钮列表, 消息, 标题 (选), 图标类型 (选)|int|是|
+|GetBtnList()|获取按钮列表||List&lt;object&gt;|是|
  
 |MessageBoxColor属性|含义|类型|
 |----|----|----|
