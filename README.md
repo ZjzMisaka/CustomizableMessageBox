@@ -78,76 +78,77 @@ MessageBox.Show(tb.Text == string.Empty ? "用户未输入" : tb.Text, (string)M
 |各区域边框宽度|实装|
 |窗口渐显时间|实装|
 ### 成员函数与属性
-|MessageBox属性|含义|状态|
-|----|----|----|
-|LockHeight|是否锁住窗口高度不允许自动增长|实装|
-|TextWrappingMode|消息段落换行风格|实装|
-|WindowWidth|窗口宽度|实装|
-|WindowMinHeight|窗口最小 (初始) 高度|实装|
-|TitleFontFamily|标题文本字体|实装|
-|MessageFontFamily|消息文本字体|实装|
-|ButtonFontFamily|按钮文本字体|实装|
-|TitleFontSize|标题文本大小|实装|
-|MessageFontSize|消息文本大小|实装|
-|ButtonFontSize|按钮文本大小|实装|
-|TitleFontColor|标题文本颜色|实装|
-|MessageFontColor|消息文本颜色|实装|
-|ButtonFontColor|按钮文本颜色|实装|
-|WindowOpacity|窗口整体透明度|实装|
-|TitleBarOpacity|标题区域透明度|实装|
-|MessageBarOpacity|消息区域透明度|实装|
-|ButtonBarOpacity|按钮区域透明度|实装|
-|TitlePanelColor|标题区域背景色|实装|
-|MessagePanelColor|消息区域背景色|实装|
-|ButtonPanelColor|按钮区域背景色|实装|
-|WndBorderColor|窗口边框颜色|实装|
-|TitlePanelBorderColor|标题区域边框颜色|实装|
-|MessagePanelBorderColor|消息区域边框颜色|实装|
-|ButtonPanelBorderColor|按钮区域边框颜色|实装|
-|ButtonBorderColor|按钮边框颜色|实装|
-|WndBorderThickness|窗口边框宽度|实装|
-|TitlePanelBorderThickness|标题区域边框宽度|实装|
-|MessagePanelBorderThickness|消息区域边框宽度|实装|
-|ButtonPanelBorderThickness|按钮区域边框宽度|实装|
-|ButtonBorderThickness|按钮边框宽度|实装|
-|WindowShowDuration|窗口渐显时间|实装|
+|MessageBox属性|类型|含义|状态|
+|----|----|----|----|
+|LockHeight|bool|是否锁住窗口高度不允许自动增长|实装|
+|TextWrappingMode|TextWrapping|消息段落换行风格|实装|
+|WindowWidth|double|窗口宽度|实装|
+|WindowMinHeight|double|窗口最小 (初始) 高度|实装|
+|TitleFontFamily|FontFamily|标题文本字体|实装|
+|MessageFontFamily|FontFamily|消息文本字体|实装|
+|ButtonFontFamily|FontFamily|按钮文本字体|实装|
+|TitleFontSize|int|标题文本大小|实装|
+|MessageFontSize|int|消息文本大小|实装|
+|ButtonFontSize|int|按钮文本大小|实装|
+|TitleFontColor|MessageBoxColor|标题文本颜色|实装|
+|MessageFontColor|MessageBoxColor|消息文本颜色|实装|
+|ButtonFontColor|MessageBoxColor|按钮文本颜色|实装|
+|WindowOpacity|double|窗口整体透明度|实装|
+|TitleBarOpacity|double|标题区域透明度|实装|
+|MessageBarOpacity|double|消息区域透明度|实装|
+|ButtonBarOpacity|double|按钮区域透明度|实装|
+|TitlePanelColor|MessageBoxColor|标题区域背景色|实装|
+|MessagePanelColor|MessageBoxColor|消息区域背景色|实装|
+|ButtonPanelColor|MessageBoxColor|按钮区域背景色|实装|
+|WndBorderColor|MessageBoxColor|窗口边框颜色|实装|
+|TitlePanelBorderColor|MessageBoxColor|标题区域边框颜色|实装|
+|MessagePanelBorderColor|MessageBoxColor|消息区域边框颜色|实装|
+|ButtonPanelBorderColor|MessageBoxColor|按钮区域边框颜色|实装|
+|ButtonBorderColor|MessageBoxColor|按钮边框颜色|实装|
+|WndBorderThickness|MessageBoxColor|窗口边框宽度|实装|
+|TitlePanelBorderThickness|Thickness|标题区域边框宽度|实装|
+|MessagePanelBorderThickness|Thickness|消息区域边框宽度|实装|
+|ButtonPanelBorderThickness|Thickness|按钮区域边框宽度|实装|
+|ButtonBorderThickness|Thickness|按钮边框宽度|实装|
+|WindowShowDuration|Duration|窗口渐显时间|实装|
 
-|MessageBox函数|含义|
-|----|----|
-|public static MessageBoxResult Show(string msg, string title = "", MessageBoxButton selectStyle = MessageBoxButton.OK, MessageBoxImage img = MessageBoxImage.None)|兼容形式调出消息窗口|
-|public static int Show(List<object> btnList, string msg, string title = "", MessageBoxImage img = MessageBoxImage.None)|自定义形式调出消息窗口|
-|public static MessageBoxResult Show(PropertiesSetter propertiesSetter, string msg, string title = "", MessageBoxButton selectStyle = MessageBoxButton.OK, MessageBoxImage img = MessageBoxImage.None)|兼容形式调出消息窗口, 并使用既有样式|
-|public static int Show(PropertiesSetter propertiesSetter, List<object> btnList, string msg, string title = "", MessageBoxImage img = MessageBoxImage.None)|自定义形式调出消息窗口, 并使用既有样式|
-|public static List<object> GetBtnList()|获取按钮列表|
+|MessageBox函数|含义|参数|返回值|静态|
+|----|----|----|----|----|
+|Show(string, string, MessageBoxButton, MessageBoxImage)|兼容形式调出消息窗口|消息, 标题 (选), 按钮类型 (选), 图标类型 (选)|MessageBoxResult|是|
+|Show(List<object>, string, string, MessageBoxImage)|自定义形式调出消息窗口|按钮列表, 消息, 标题 (选), 图标类型 (选)|int|是|
+|Show(PropertiesSetter, string, string, MessageBoxButton, MessageBoxImage)|兼容形式调出消息窗口, 并使用既有样式|样式, 消息, 标题 (选), 按钮类型 (选), 图标类型 (选)|MessageBoxResult|是|
+|Show(PropertiesSetter, List<object>, string, string, MessageBoxImage)|自定义形式调出消息窗口, 并使用既有样式|样式, 按钮列表, 消息, 标题 (选), 图标类型 (选)|int|是|
+|GetBtnList()|获取按钮列表||List<object>|是|
  
-|MessageBoxColor属性|含义|
-|----|----|
-|color|颜色值|
-|colorType|颜色类型|
- 
-|MessageBoxColor函数|含义|参数|
+|MessageBoxColor属性|含义|类型|
 |----|----|----|
-|public MessageBoxColor(object color)|构造函数|ColorType类实例, 或十六进制颜色码, 或颜色名字|
-|public SolidColorBrush GetSolidColorBrush()|输出这个实例颜色实例对应的SolidColorBrush||
+|color|颜色值|object|
+|colorType|颜色类型|ColorType|
+ 
+|MessageBoxColor函数|含义|参数|返回值|静态|
+|----|----|----|----|----|
+|MessageBoxColor(object)|构造函数|十六进制颜色码字符串或者Color类的实例或颜色名字符串||否|
+|MessageBoxColor(object, ColorType)|构造函数|十六进制颜色码字符串或者Color类的实例或颜色名字符串, ColorType枚举值||否|
+|GetSolidColorBrush()|输出这个实例颜色实例对应的SolidColorBrush||SolidColorBrush|否|
 
 |PropertiesSetter属性|含义|
 |----|----|
 |略 (参考MessageBox属性)||
 
-|PropertiesSetter函数|含义|参数|
+|PropertiesSetter函数|含义|参数|返回值|静态|
+|----|----|----|----|----|
+|PropertiesSetter()|构造函数||||否|
+|PropertiesSetter(PropertiesSetter propertiesSetter)|构造函数|一个既有的PropertiesSetter实例|||否|
+
+|ButtonSpacer属性|含义|类型|
 |----|----|----|
-|public PropertiesSetter()|构造函数||
-|public PropertiesSetter(PropertiesSetter propertiesSetter)|构造函数|一个既有的PropertiesSetter实例|
+|length|留白长度|double|
 
-|ButtonSpacer属性|含义|
-|----|----|
-|length|留白长度|
-
-|ButtonSpacer函数|含义|
-|----|----|
-|public ButtonSpacer()|构造函数|
-|public ButtonSpacer(double length)|构造函数|
-|public double GetLength()|获取留白长度|
+|ButtonSpacer函数|含义|返回值|静态|
+|----|----|----|----|
+|ButtonSpacer()|构造函数||否|
+|ButtonSpacer(double length)|构造函数||否|
+|GetLength()|获取留白长度|double|否|
 
 ### 示例图片
 ![样式1](https://www.iaders.com/wp-content/uploads/2019/12/mb1.png "样式1")
