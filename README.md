@@ -78,39 +78,39 @@ MessageBox.Show(tb.Text == string.Empty ? "用户未输入" : tb.Text, (string)M
 |各区域边框宽度|实装|
 |窗口渐显时间|实装|
 ### 成员函数与属性
-|MessageBox属性|类型|含义|状态|
-|----|----|----|----|
-|LockHeight|bool|是否锁住窗口高度不允许自动增长|实装|
-|TextWrappingMode|TextWrapping|消息段落换行风格|实装|
-|WindowWidth|double|窗口宽度|实装|
-|WindowMinHeight|double|窗口最小 (初始) 高度|实装|
-|TitleFontFamily|FontFamily|标题文本字体|实装|
-|MessageFontFamily|FontFamily|消息文本字体|实装|
-|ButtonFontFamily|FontFamily|按钮文本字体|实装|
-|TitleFontSize|int|标题文本大小|实装|
-|MessageFontSize|int|消息文本大小|实装|
-|ButtonFontSize|int|按钮文本大小|实装|
-|TitleFontColor|MessageBoxColor|标题文本颜色|实装|
-|MessageFontColor|MessageBoxColor|消息文本颜色|实装|
-|ButtonFontColor|MessageBoxColor|按钮文本颜色|实装|
-|WindowOpacity|double|窗口整体透明度|实装|
-|TitleBarOpacity|double|标题区域透明度|实装|
-|MessageBarOpacity|double|消息区域透明度|实装|
-|ButtonBarOpacity|double|按钮区域透明度|实装|
-|TitlePanelColor|MessageBoxColor|标题区域背景色|实装|
-|MessagePanelColor|MessageBoxColor|消息区域背景色|实装|
-|ButtonPanelColor|MessageBoxColor|按钮区域背景色|实装|
-|WndBorderColor|MessageBoxColor|窗口边框颜色|实装|
-|TitlePanelBorderColor|MessageBoxColor|标题区域边框颜色|实装|
-|MessagePanelBorderColor|MessageBoxColor|消息区域边框颜色|实装|
-|ButtonPanelBorderColor|MessageBoxColor|按钮区域边框颜色|实装|
-|ButtonBorderColor|MessageBoxColor|按钮边框颜色|实装|
-|WndBorderThickness|MessageBoxColor|窗口边框宽度|实装|
-|TitlePanelBorderThickness|Thickness|标题区域边框宽度|实装|
-|MessagePanelBorderThickness|Thickness|消息区域边框宽度|实装|
-|ButtonPanelBorderThickness|Thickness|按钮区域边框宽度|实装|
-|ButtonBorderThickness|Thickness|按钮边框宽度|实装|
-|WindowShowDuration|Duration|窗口渐显时间|实装|
+|MessageBox属性|类型|含义|静态|状态|
+|----|----|----|----|----|
+|LockHeight|bool|是否锁住窗口高度不允许自动增长|是|实装|
+|TextWrappingMode|TextWrapping|消息段落换行风格|是|实装|
+|WindowWidth|double|窗口宽度|是|实装|
+|WindowMinHeight|double|窗口最小 (初始) 高度|是|实装|
+|TitleFontFamily|FontFamily|标题文本字体|是|实装|
+|MessageFontFamily|FontFamily|消息文本字体|是|实装|
+|ButtonFontFamily|FontFamily|按钮文本字体|是|实装|
+|TitleFontSize|int|标题文本大小|是|实装|
+|MessageFontSize|int|消息文本大小|是|实装|
+|ButtonFontSize|int|按钮文本大小|是|实装|
+|TitleFontColor|MessageBoxColor|标题文本颜色|是|实装|
+|MessageFontColor|MessageBoxColor|消息文本颜色|是|实装|
+|ButtonFontColor|MessageBoxColor|按钮文本颜色|是|实装|
+|WindowOpacity|double|窗口整体透明度|是|实装|
+|TitleBarOpacity|double|标题区域透明度|是|实装|
+|MessageBarOpacity|double|消息区域透明度|是|实装|
+|ButtonBarOpacity|double|按钮区域透明度|是|实装|
+|TitlePanelColor|MessageBoxColor|标题区域背景色|是|实装|
+|MessagePanelColor|MessageBoxColor|消息区域背景色|是|实装|
+|ButtonPanelColor|MessageBoxColor|按钮区域背景色|是|实装|
+|WndBorderColor|MessageBoxColor|窗口边框颜色|是|实装|
+|TitlePanelBorderColor|MessageBoxColor|标题区域边框颜色|是|实装|
+|MessagePanelBorderColor|MessageBoxColor|消息区域边框颜色|是|实装|
+|ButtonPanelBorderColor|MessageBoxColor|按钮区域边框颜色|是|实装|
+|ButtonBorderColor|MessageBoxColor|按钮边框颜色|是|实装|
+|WndBorderThickness|MessageBoxColor|窗口边框宽度|是|实装|
+|TitlePanelBorderThickness|Thickness|标题区域边框宽度|是|实装|
+|MessagePanelBorderThickness|Thickness|消息区域边框宽度|是|实装|
+|ButtonPanelBorderThickness|Thickness|按钮区域边框宽度|是|实装|
+|ButtonBorderThickness|Thickness|按钮边框宽度|是|实装|
+|WindowShowDuration|Duration|窗口渐显时间|是|实装|
 
 |MessageBox函数|含义|参数|返回值|静态|
 |----|----|----|----|----|
@@ -137,8 +137,8 @@ MessageBox.Show(tb.Text == string.Empty ? "用户未输入" : tb.Text, (string)M
 
 |PropertiesSetter函数|含义|参数|返回值|静态|
 |----|----|----|----|----|
-|PropertiesSetter()|构造函数||||否|
-|PropertiesSetter(PropertiesSetter propertiesSetter)|构造函数|一个既有的PropertiesSetter实例|||否|
+|PropertiesSetter()|构造函数|||否|
+|PropertiesSetter(PropertiesSetter propertiesSetter)|构造函数|一个既有的PropertiesSetter实例||否|
 
 |ButtonSpacer属性|含义|类型|
 |----|----|----|
