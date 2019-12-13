@@ -138,7 +138,7 @@ MessageBox.Show(tb.Text == string.Empty ? "用户未输入" : tb.Text, (string)M
 |PropertiesSetter函数|含义|参数|返回值|静态|
 |----|----|----|----|----|
 |PropertiesSetter()|构造函数|||否|
-|PropertiesSetter(PropertiesSetter propertiesSetter)|构造函数|一个既有的PropertiesSetter实例||否|
+|PropertiesSetter(PropertiesSetter)|构造函数|一个既有的PropertiesSetter实例||否|
 
 |ButtonSpacer属性|含义|类型|
 |----|----|----|
@@ -147,7 +147,7 @@ MessageBox.Show(tb.Text == string.Empty ? "用户未输入" : tb.Text, (string)M
 |ButtonSpacer函数|含义|参数|返回值|静态|
 |----|----|----|----|----|
 |ButtonSpacer()|构造函数|||否|
-|ButtonSpacer(double length)|构造函数|留白长度||否|
+|ButtonSpacer(double)|构造函数|留白长度||否|
 |GetLength()|获取留白长度||double|否|
 
 ### 示例图片
