@@ -144,11 +144,11 @@ MessageBox.Show(tb.Text == string.Empty ? "用户未输入" : tb.Text, (string)M
 |----|----|----|
 |length|留白长度|double|
 
-|ButtonSpacer函数|含义|返回值|静态|
-|----|----|----|----|
-|ButtonSpacer()|构造函数||否|
-|ButtonSpacer(double length)|构造函数||否|
-|GetLength()|获取留白长度|double|否|
+|ButtonSpacer函数|含义|参数|返回值|静态|
+|----|----|----|----|----|
+|ButtonSpacer()|构造函数|||否|
+|ButtonSpacer(double length)|构造函数|留白长度||否|
+|GetLength()|获取留白长度||double|否|
 
 ### 示例图片
 ![样式1](https://www.iaders.com/wp-content/uploads/2019/12/mb1.png "样式1")
