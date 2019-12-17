@@ -33,6 +33,12 @@ namespace MessageBoxTouch
         [DllImport("User32.dll", SetLastError = true, CharSet = CharSet.Auto)]
         private static extern Boolean SetWindowPos(IntPtr hWnd, IntPtr hWndInsertAfter, int X, int Y, int cx, int cy, uint uFlags);
 
+        // 根据用户设定属性计算得到的按钮标准高度
+        private double buttonHeight = 0;
+
+        // 是否是在调用ShowDialog后触发的SizeChanged事件
+        private bool isSizeChangedByShowDialog = true;
+
         // 换行计算模式
         private enum WrapMode
         {
@@ -204,6 +210,54 @@ namespace MessageBoxTouch
         // 窗口渐显时间
         private static Duration windowShowDuration = new Duration(new TimeSpan(0, 0, 0, 0, 200));
         public static Duration WindowShowDuration { get => windowShowDuration; set => windowShowDuration = value; }
+
+        // 窗口显示动画
+        // TODO
+        private static List<KeyValuePair<DependencyProperty, AnimationTimeline>> windowShowAnimations;
+        public static List<KeyValuePair<DependencyProperty, AnimationTimeline>> WindowShowAnimations { get => windowShowAnimations; set => windowShowAnimations = value; }
+
+        // 窗口关闭动画
+        // TODO
+        private static List<KeyValuePair<DependencyProperty, AnimationTimeline>> windowCloseAnimations;
+        public static List<KeyValuePair<DependencyProperty, AnimationTimeline>> WindowCloseAnimations { get => windowCloseAnimations; set => windowCloseAnimations = value; }
+
+        // 自定义关闭图标
+        // TODO
+        private static Path closeIconPath;
+        public static Path CloseIconPath { get => closeIconPath; set => closeIconPath = value; }
+
+        // 自定义警告图标
+        // TODO
+        private static Path warningIconPath;
+        public static Path WarningIconPath { get => warningIconPath; set => warningIconPath = value; }
+
+        // 自定义错误图标
+        // TODO
+        private static Path errorIconPath;
+        public static Path ErrorIconPath { get => errorIconPath; set => errorIconPath = value; }
+
+        // 自定义信息图标
+        // TODO
+        private static Path infoIconPath;
+        public static Path InfoIconPath { get => infoIconPath; set => infoIconPath = value; }
+
+        // 自定义问题图标
+        // TODO
+        private static Path questionIconPath;
+        public static Path QuestionIconPath { get => questionIconPath; set => questionIconPath = value; }
+
+        // 应用窗口关闭按钮
+        // TODO
+        private static bool enableCloseButton;
+        public static bool EnableCloseButton { get => enableCloseButton; set => enableCloseButton = value; }
+
+        // 按钮动作样式
+        // TODO
+
+        // 窗口计时关闭
+        // TODO
+        // private static MessageBoxCloseTimer closeTimer;
+        // public static MessageBoxCloseTimer CloseTimer { get => closeTimer; set => closeTimer = value; }
 
         // 属性集合
         private static PropertiesSetter propertiesSetter = new PropertiesSetter();
@@ -514,7 +568,7 @@ namespace MessageBoxTouch
                         newBtn.BorderBrush = ButtonBorderColor.GetSolidColorBrush();
                         newBtn.BorderThickness = ButtonBorderThickness;
                     }
-                    else if(btnList[i] is ButtonSpacer)
+                    else if (btnList[i] is ButtonSpacer)
                     {
                         double length = ((ButtonSpacer)btnList[i]).GetLength();
                         if (length != -1)
@@ -523,7 +577,7 @@ namespace MessageBoxTouch
                             mb.g_buttongrid.ColumnDefinitions[i].Width = new GridLength(length);
                         }
                     }
-                    else if(btnList[i] is FrameworkElement)
+                    else if (btnList[i] is FrameworkElement)
                     {
                         FrameworkElement fe = (FrameworkElement)btnList[i];
                         // 将按钮加入Grid中
@@ -533,10 +587,11 @@ namespace MessageBoxTouch
                         // 设置按钮在Grid中的行列
                         fe.SetValue(Grid.RowProperty, 0);
                         fe.SetValue(Grid.ColumnProperty, i);
-                        if(fe.Height > highestItemHeight)
+                        if (fe.Height > highestItemHeight)
                         {
                             highestItemHeight = fe.Height;
                         }
+                        fe.SizeChanged += ButtonObjectSizeChanged;
                     }
 
                     // 当该变量还没计算时
@@ -586,7 +641,8 @@ namespace MessageBoxTouch
                 mb.b_titleborder.Height = height + 14;
 
                 // 设置按钮栏高度
-                if(highestItemHeight > contentHeight + 7)
+                mb.buttonHeight = contentHeight + 7;
+                if (highestItemHeight > mb.buttonHeight)
                 {
                     mb.g_buttongrid.Height = highestItemHeight + 13;
                     mb.rd_button.Height = new GridLength(highestItemHeight + 13, GridUnitType.Pixel);
@@ -594,9 +650,9 @@ namespace MessageBoxTouch
                 }
                 else
                 {
-                    mb.g_buttongrid.Height = contentHeight + 20;
-                    mb.rd_button.Height = new GridLength(contentHeight + 20, GridUnitType.Pixel);
-                    mb.b_buttonborder.Height = contentHeight + 20;
+                    mb.g_buttongrid.Height = mb.buttonHeight + 13;
+                    mb.rd_button.Height = new GridLength(mb.buttonHeight + 13, GridUnitType.Pixel);
+                    mb.b_buttonborder.Height = mb.buttonHeight + 13;
                 }
 
                 // 设置所属的窗口
@@ -916,6 +972,43 @@ namespace MessageBoxTouch
         private static void L_title_MouseLeftButtonDown(Object sender, MouseButtonEventArgs e)
         {
             mb.DragMove();
+        }
+
+        /// <summary>
+        /// 当用户改变自定控件的大小时触发
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private static void ButtonObjectSizeChanged(object sender, SizeChangedEventArgs e)
+        {
+            if(mb.isSizeChangedByShowDialog)
+            {
+                mb.isSizeChangedByShowDialog = false;
+                return;
+            }
+            FrameworkElement fee = (FrameworkElement)sender;
+
+            if (e.NewSize.Height > mb.buttonHeight)
+            {
+                mb.g_buttongrid.Height = e.NewSize.Height + 13;
+                mb.rd_button.Height = new GridLength(e.NewSize.Height + 13, GridUnitType.Pixel);
+                mb.b_buttonborder.Height = e.NewSize.Height + 13;
+            }
+            else
+            {
+                mb.g_buttongrid.Height = mb.buttonHeight + 13;
+                mb.rd_button.Height = new GridLength(mb.buttonHeight + 13, GridUnitType.Pixel);
+                mb.b_buttonborder.Height = mb.buttonHeight + 13;
+            }
+
+            for (int i = 0; i < btnList.Count; i++)
+            {
+                if(btnList[i].Equals(sender))
+                {
+                    FrameworkElement fe = (FrameworkElement)sender;
+                    mb.g_buttongrid.ColumnDefinitions[i].Width = new GridLength(!fe.Width.Equals(Double.NaN) ? fe.Width : 1, !fe.Width.Equals(Double.NaN) ? GridUnitType.Pixel : GridUnitType.Star);
+                }
+            }
         }
     }
 }
