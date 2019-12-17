@@ -77,6 +77,10 @@ MessageBox.Show(tb.Text == string.Empty ? "用户未输入" : tb.Text, (string)M
 |各区域边框颜色|实装|
 |各区域边框宽度|实装|
 |窗口渐显时间|实装|
+|动画|未实装|
+|自定义图标|未实装|
+|按钮动作样式|未实装|
+|窗口关闭按钮|未实装|
 ### 成员函数与属性
 |MessageBox属性|类型|含义|静态|状态|
 |----|----|----|----|----|
@@ -111,6 +115,15 @@ MessageBox.Show(tb.Text == string.Empty ? "用户未输入" : tb.Text, (string)M
 |ButtonPanelBorderThickness|Thickness|按钮区域边框宽度|是|实装|
 |ButtonBorderThickness|Thickness|按钮边框宽度|是|实装|
 |WindowShowDuration|Duration|窗口渐显时间|是|实装|
+|WindowShowAnimations|List&lt;Animatable&gt;|动画|是|未实装|
+|WindowCloseAnimations|List&lt;Animatable&gt;|动画|是|未实装|
+|CloseIconPath|string|自定义关闭图标|是|未实装|
+|WarningIconPath|string|自定义警告图标|是|未实装|
+|ErrorIconPath|string|自定义错误图标|是|未实装|
+|InfoIconPath|string|自定义信息图标|是|未实装|
+|QuestionIconPath|string|自定义问题图标|是|未实装|
+|EnableCloseButton|bool|应用窗口关闭按钮|是|未实装|
+|?|?|按钮动作样式|是|未实装|
 
 |MessageBox函数|含义|参数|返回值|静态|
 |----|----|----|----|----|
