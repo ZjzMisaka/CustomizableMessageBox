@@ -213,42 +213,36 @@ namespace MessageBoxTouch
 
         // 窗口显示动画
         // TODO
-        private static List<KeyValuePair<DependencyProperty, AnimationTimeline>> windowShowAnimations;
+        private static List<KeyValuePair<DependencyProperty, AnimationTimeline>> windowShowAnimations = null;
         public static List<KeyValuePair<DependencyProperty, AnimationTimeline>> WindowShowAnimations { get => windowShowAnimations; set => windowShowAnimations = value; }
 
         // 窗口关闭动画
         // TODO
-        private static List<KeyValuePair<DependencyProperty, AnimationTimeline>> windowCloseAnimations;
+        private static List<KeyValuePair<DependencyProperty, AnimationTimeline>> windowCloseAnimations = null;
         public static List<KeyValuePair<DependencyProperty, AnimationTimeline>> WindowCloseAnimations { get => windowCloseAnimations; set => windowCloseAnimations = value; }
 
         // 自定义关闭图标
-        // TODO
-        private static Path closeIconPath;
-        public static Path CloseIconPath { get => closeIconPath; set => closeIconPath = value; }
+        private static BitmapImage closeIcon = new BitmapImage(new Uri(".\\Image\\close.png", UriKind.RelativeOrAbsolute));
+        public static BitmapImage CloseIcon { get => closeIcon; set => closeIcon = value; }
 
         // 自定义警告图标
-        // TODO
-        private static Path warningIconPath;
-        public static Path WarningIconPath { get => warningIconPath; set => warningIconPath = value; }
+        private static BitmapImage warningIcon = new BitmapImage(new Uri(".\\Image\\warn.png", UriKind.RelativeOrAbsolute));
+        public static BitmapImage WarningIcon { get => warningIcon; set => warningIcon = value; }
 
         // 自定义错误图标
-        // TODO
-        private static Path errorIconPath;
-        public static Path ErrorIconPath { get => errorIconPath; set => errorIconPath = value; }
+        private static BitmapImage errorIcon = new BitmapImage(new Uri(".\\Image\\error.png", UriKind.RelativeOrAbsolute));
+        public static BitmapImage ErrorIcon { get => errorIcon; set => errorIcon = value; }
 
         // 自定义信息图标
-        // TODO
-        private static Path infoIconPath;
-        public static Path InfoIconPath { get => infoIconPath; set => infoIconPath = value; }
+        private static BitmapImage infoIcon = new BitmapImage(new Uri(".\\Image\\info.png", UriKind.RelativeOrAbsolute));
+        public static BitmapImage InfoIcon { get => infoIcon; set => infoIcon = value; }
 
         // 自定义问题图标
-        // TODO
-        private static Path questionIconPath;
-        public static Path QuestionIconPath { get => questionIconPath; set => questionIconPath = value; }
+        private static BitmapImage questionIcon = new BitmapImage(new Uri(".\\Image\\question.png", UriKind.RelativeOrAbsolute));
+        public static BitmapImage QuestionIcon { get => questionIcon; set => questionIcon = value; }
 
         // 应用窗口关闭按钮
-        // TODO
-        private static bool enableCloseButton;
+        private static bool enableCloseButton = false;
         public static bool EnableCloseButton { get => enableCloseButton; set => enableCloseButton = value; }
 
         // 按钮动作样式
@@ -297,6 +291,14 @@ namespace MessageBoxTouch
                 MessageFontFamily = value.MessageFontFamily;
                 ButtonFontFamily = value.ButtonFontFamily;
                 WindowShowDuration = value.WindowShowDuration;
+                WindowShowAnimations = value.WindowShowAnimations;
+                WindowCloseAnimations = value.WindowCloseAnimations;
+                CloseIcon = value.CloseIcon;
+                WarningIcon = value.WarningIcon;
+                ErrorIcon = value.ErrorIcon;
+                InfoIcon = value.InfoIcon;
+                QuestionIcon = value.QuestionIcon;
+                EnableCloseButton = value.EnableCloseButton;
             }
         }
 
@@ -399,6 +401,7 @@ namespace MessageBoxTouch
             tb_msg.FontFamily = MessageFontFamily;
             tb_msg.TextWrapping = TextWrappingMode;
             da_win.Duration = WindowShowDuration;
+            i_close.Source = CloseIcon;
         }
 
         /// <summary>
@@ -491,22 +494,22 @@ namespace MessageBoxTouch
                 switch (img)
                 {
                     case MessageBoxImage.Warning:
-                        mb.i_img.Source = new BitmapImage(new Uri(".\\Image\\warn.png", UriKind.RelativeOrAbsolute));
+                        mb.i_img.Source = WarningIcon;
                         mb.i_img.Visibility = Visibility.Visible;
                         break;
 
                     case MessageBoxImage.Error:
-                        mb.i_img.Source = new BitmapImage(new Uri(".\\Image\\error.png", UriKind.RelativeOrAbsolute));
+                        mb.i_img.Source = ErrorIcon;
                         mb.i_img.Visibility = Visibility.Visible;
                         break;
 
                     case MessageBoxImage.Information:
-                        mb.i_img.Source = new BitmapImage(new Uri(".\\Image\\info.png", UriKind.RelativeOrAbsolute));
+                        mb.i_img.Source = InfoIcon;
                         mb.i_img.Visibility = Visibility.Visible;
                         break;
 
                     case MessageBoxImage.Question:
-                        mb.i_img.Source = new BitmapImage(new Uri(".\\Image\\question.png", UriKind.RelativeOrAbsolute));
+                        mb.i_img.Source = QuestionIcon;
                         mb.i_img.Visibility = Visibility.Visible;
                         break;
 
@@ -515,6 +518,12 @@ namespace MessageBoxTouch
 
                     default:
                         break;
+                }
+
+                // 显示关闭图标
+                if (enableCloseButton)
+                {
+                    mb.i_close.Visibility = Visibility.Visible;
                 }
 
                 // 显示消息内容
@@ -770,6 +779,14 @@ namespace MessageBoxTouch
             MessageFontFamily = new FontFamily("Times New Roman");
             ButtonFontFamily = new FontFamily("Times New Roman");
             WindowShowDuration = new Duration(new TimeSpan(0, 0, 0, 0, 200));
+            WindowShowAnimations = null;
+            WindowCloseAnimations = null;
+            CloseIcon = new BitmapImage(new Uri(".\\Image\\close.png", UriKind.RelativeOrAbsolute));
+            WarningIcon = new BitmapImage(new Uri(".\\Image\\warn.png", UriKind.RelativeOrAbsolute));
+            ErrorIcon = new BitmapImage(new Uri(".\\Image\\error.png", UriKind.RelativeOrAbsolute));
+            InfoIcon = new BitmapImage(new Uri(".\\Image\\info.png", UriKind.RelativeOrAbsolute));
+            QuestionIcon = new BitmapImage(new Uri(".\\Image\\question.png", UriKind.RelativeOrAbsolute));
+            EnableCloseButton = false;
 
             PropertiesSetter = new PropertiesSetter();
 
@@ -936,6 +953,24 @@ namespace MessageBoxTouch
 
                 // 将窗口初始位置设置在屏幕中心
                 SetWindowPos(new WindowInteropHelper(mb).Handle, new IntPtr(0), (int)(SystemInformation.WorkingArea.Width / 2 - mb.Width / 2), (int)(SystemInformation.WorkingArea.Height / 2 - mb.Height / 2), (int)(mb.Width), (int)(mb.Height), 0x1);
+           
+                if(WindowShowAnimations != null)
+                {
+                    foreach(KeyValuePair<DependencyProperty, AnimationTimeline> kv in WindowShowAnimations)
+                    {
+                        mb.BeginAnimation(kv.Key, kv.Value);
+                    }
+                }
+            }
+            else
+            {
+                if (WindowCloseAnimations != null)
+                {
+                    foreach (KeyValuePair<DependencyProperty, AnimationTimeline> kv in WindowCloseAnimations)
+                    {
+                        mb.BeginAnimation(kv.Key, kv.Value);
+                    }
+                }
             }
         }
 

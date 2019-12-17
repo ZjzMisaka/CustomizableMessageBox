@@ -5,6 +5,8 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Media;
+using System.Windows.Media.Animation;
+using System.Windows.Media.Imaging;
 using static MessageBoxTouch.MessageBoxColor;
 
 namespace MessageBoxTouch
@@ -49,6 +51,14 @@ namespace MessageBoxTouch
             MessageFontFamily = propertiesSetter.MessageFontFamily;
             ButtonFontFamily = propertiesSetter.ButtonFontFamily;
             WindowShowDuration = propertiesSetter.WindowShowDuration;
+            WindowShowAnimations = propertiesSetter.WindowShowAnimations;
+            WindowCloseAnimations = propertiesSetter.WindowCloseAnimations;
+            CloseIcon = propertiesSetter.CloseIcon;
+            WarningIcon = propertiesSetter.WarningIcon;
+            ErrorIcon = propertiesSetter.ErrorIcon;
+            InfoIcon = propertiesSetter.InfoIcon;
+            QuestionIcon = propertiesSetter.QuestionIcon;
+            EnableCloseButton = propertiesSetter.EnableCloseButton;
         }
 
         // 锁定高度
@@ -174,5 +184,39 @@ namespace MessageBoxTouch
         // 窗口渐显时间
         private Duration windowShowDuration = new Duration(new TimeSpan(0, 0, 0, 0, 200));
         public Duration WindowShowDuration { get => windowShowDuration; set => windowShowDuration = value; }
+
+        // 窗口显示动画
+        // TODO
+        private List<KeyValuePair<DependencyProperty, AnimationTimeline>> windowShowAnimations = null;
+        public List<KeyValuePair<DependencyProperty, AnimationTimeline>> WindowShowAnimations { get => windowShowAnimations; set => windowShowAnimations = value; }
+
+        // 窗口关闭动画
+        // TODO
+        private List<KeyValuePair<DependencyProperty, AnimationTimeline>> windowCloseAnimations = null;
+        public List<KeyValuePair<DependencyProperty, AnimationTimeline>> WindowCloseAnimations { get => windowCloseAnimations; set => windowCloseAnimations = value; }
+
+        // 自定义关闭图标
+        private BitmapImage closeIcon = new BitmapImage(new Uri(".\\Image\\close.png", UriKind.RelativeOrAbsolute));
+        public BitmapImage CloseIcon { get => closeIcon; set => closeIcon = value; }
+
+        // 自定义警告图标
+        private BitmapImage warningIcon = new BitmapImage(new Uri(".\\Image\\warn.png", UriKind.RelativeOrAbsolute));
+        public BitmapImage WarningIcon { get => warningIcon; set => warningIcon = value; }
+
+        // 自定义错误图标
+        private BitmapImage errorIcon = new BitmapImage(new Uri(".\\Image\\error.png", UriKind.RelativeOrAbsolute));
+        public BitmapImage ErrorIcon { get => errorIcon; set => errorIcon = value; }
+
+        // 自定义信息图标
+        private BitmapImage infoIcon = new BitmapImage(new Uri(".\\Image\\info.png", UriKind.RelativeOrAbsolute));
+        public BitmapImage InfoIcon { get => infoIcon; set => infoIcon = value; }
+
+        // 自定义问题图标
+        private BitmapImage questionIcon = new BitmapImage(new Uri(".\\Image\\question.png", UriKind.RelativeOrAbsolute));
+        public BitmapImage QuestionIcon { get => questionIcon; set => questionIcon = value; }
+
+        // 应用窗口关闭按钮
+        private bool enableCloseButton = false;
+        public bool EnableCloseButton { get => enableCloseButton; set => enableCloseButton = value; }
     }
 }
