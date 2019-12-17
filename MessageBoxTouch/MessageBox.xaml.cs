@@ -981,13 +981,14 @@ namespace MessageBoxTouch
         /// <param name="e"></param>
         private static void ButtonObjectSizeChanged(object sender, SizeChangedEventArgs e)
         {
-            if(mb.isSizeChangedByShowDialog)
+            // 如果是在调用ShowDialog后触发的SizeChanged事件则无视
+            if (mb.isSizeChangedByShowDialog)
             {
                 mb.isSizeChangedByShowDialog = false;
                 return;
             }
-            FrameworkElement fee = (FrameworkElement)sender;
 
+            // 如果新高度大于按钮标准高度
             if (e.NewSize.Height > mb.buttonHeight)
             {
                 mb.g_buttongrid.Height = e.NewSize.Height + 13;
@@ -1001,12 +1002,16 @@ namespace MessageBoxTouch
                 mb.b_buttonborder.Height = mb.buttonHeight + 13;
             }
 
-            for (int i = 0; i < btnList.Count; i++)
+            // 如果宽度有变化, 重新设置列宽
+            if (e.WidthChanged)
             {
-                if(btnList[i].Equals(sender))
+                for (int i = 0; i < btnList.Count; i++)
                 {
-                    FrameworkElement fe = (FrameworkElement)sender;
-                    mb.g_buttongrid.ColumnDefinitions[i].Width = new GridLength(!fe.Width.Equals(Double.NaN) ? fe.Width : 1, !fe.Width.Equals(Double.NaN) ? GridUnitType.Pixel : GridUnitType.Star);
+                    if (btnList[i].Equals(sender))
+                    {
+                        FrameworkElement fe = (FrameworkElement)sender;
+                        mb.g_buttongrid.ColumnDefinitions[i].Width = new GridLength(!fe.Width.Equals(Double.NaN) ? fe.Width : 1, !fe.Width.Equals(Double.NaN) ? GridUnitType.Pixel : GridUnitType.Star);
+                    }
                 }
             }
         }
