@@ -115,8 +115,8 @@ MessageBox.Show(tb.Text == string.Empty ? "用户未输入" : tb.Text, (string)M
 |ButtonPanelBorderThickness|Thickness|按钮区域边框宽度|是|实装|
 |ButtonBorderThickness|Thickness|按钮边框宽度|是|实装|
 |WindowShowDuration|Duration|窗口渐显时间|是|实装|
-|WindowShowAnimations|List&lt;Animatable&gt;|动画|是|未实装|
-|WindowCloseAnimations|List&lt;Animatable&gt;|动画|是|未实装|
+|WindowShowAnimations|List&lt;Animatable&gt;|窗口显示动画|是|未实装|
+|WindowCloseAnimations|List&lt;Animatable&gt;|窗口关闭动画|是|未实装|
 |CloseIconPath|string|自定义关闭图标|是|未实装|
 |WarningIconPath|string|自定义警告图标|是|未实装|
 |ErrorIconPath|string|自定义错误图标|是|未实装|
