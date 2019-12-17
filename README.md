@@ -77,10 +77,10 @@ MessageBox.Show(tb.Text == string.Empty ? "用户未输入" : tb.Text, (string)M
 |各区域边框颜色|实装|
 |各区域边框宽度|实装|
 |窗口渐显时间|实装|
-|窗口动画|未实装|
-|自定义图标|未实装|
+|窗口动画|实装|
+|自定义图标|实装|
+|应用窗口关闭按钮|实装|
 |按钮动作样式|未实装|
-|应用窗口关闭按钮|未实装|
 |窗口计时关闭|未实装|
 ### 成员函数与属性
 |MessageBox属性|类型|含义|静态|状态|
@@ -116,14 +116,14 @@ MessageBox.Show(tb.Text == string.Empty ? "用户未输入" : tb.Text, (string)M
 |ButtonPanelBorderThickness|Thickness|按钮区域边框宽度|是|实装|
 |ButtonBorderThickness|Thickness|按钮边框宽度|是|实装|
 |WindowShowDuration|Duration|窗口渐显时间|是|实装|
-|WindowShowAnimations|List&lt;KeyValuePair&lt;DependencyProperty, AnimationTimeline&gt;&gt;|窗口显示动画|是|未实装|
-|WindowCloseAnimations|List&lt;KeyValuePair&lt;DependencyProperty, AnimationTimeline&gt;&gt;|窗口关闭动画|是|未实装|
-|CloseIconPath|Path|自定义关闭图标|是|未实装|
-|WarningIconPath|Path|自定义警告图标|是|未实装|
-|ErrorIconPath|Path|自定义错误图标|是|未实装|
-|InfoIconPath|Path|自定义信息图标|是|未实装|
-|QuestionIconPath|Path|自定义问题图标|是|未实装|
-|EnableCloseButton|bool|应用窗口关闭按钮|是|未实装|
+|WindowShowAnimations|List&lt;KeyValuePair&lt;DependencyProperty, AnimationTimeline&gt;&gt;|窗口显示动画|是|实装|
+|WindowCloseAnimations|List&lt;KeyValuePair&lt;DependencyProperty, AnimationTimeline&gt;&gt;|窗口关闭动画|是|实装|
+|CloseIcon|BitmapImage|自定义关闭图标|是|实装|
+|WarningIcon|BitmapImage|自定义警告图标|是|实装|
+|ErrorIcon|BitmapImage|自定义错误图标|是|实装|
+|InfoIcon|BitmapImage|自定义信息图标|是|实装|
+|QuestionIcon|BitmapImage|自定义问题图标|是|实装|
+|EnableCloseButton|bool|应用窗口关闭按钮|是|实装|
 |?|?|按钮动作样式|是|未实装|
 |CloseTimer|MessageBoxCloseTimer|窗口计时关闭|是|未实装|
 
