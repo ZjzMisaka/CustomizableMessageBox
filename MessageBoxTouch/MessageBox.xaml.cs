@@ -680,6 +680,8 @@ namespace MessageBoxTouch
 
                 if(CloseTimer != null)
                 {
+                    CloseTimer.CloseNow = new MessageBoxCloseTimer.CloseWindowByTimer(CloseWindowByTimer);
+
                     mb.timer = new DispatcherTimer();
                     mb.timer.Interval = CloseTimer.timeSpan;
                     mb.timer.Tick += CloseWindowByTimer;  //你的事件
