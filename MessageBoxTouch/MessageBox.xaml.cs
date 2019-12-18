@@ -18,6 +18,7 @@ using System.Windows.Media;
 using System.Windows.Media.Animation;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
+using System.Windows.Threading;
 using static MessageBoxTouch.MessageBoxColor;
 using Application = System.Windows.Application;
 using Button = System.Windows.Controls.Button;
@@ -38,6 +39,9 @@ namespace MessageBoxTouch
 
         // 是否是在调用ShowDialog后触发的SizeChanged事件
         private bool isSizeChangedByShowDialog = true;
+
+        // 关闭窗口计时器
+        private DispatcherTimer timer;
 
         // 换行计算模式
         private enum WrapMode
@@ -212,12 +216,10 @@ namespace MessageBoxTouch
         public static Duration WindowShowDuration { get => windowShowDuration; set => windowShowDuration = value; }
 
         // 窗口显示动画
-        // TODO
         private static List<KeyValuePair<DependencyProperty, AnimationTimeline>> windowShowAnimations = null;
         public static List<KeyValuePair<DependencyProperty, AnimationTimeline>> WindowShowAnimations { get => windowShowAnimations; set => windowShowAnimations = value; }
 
         // 窗口关闭动画
-        // TODO
         private static List<KeyValuePair<DependencyProperty, AnimationTimeline>> windowCloseAnimations = null;
         public static List<KeyValuePair<DependencyProperty, AnimationTimeline>> WindowCloseAnimations { get => windowCloseAnimations; set => windowCloseAnimations = value; }
 
@@ -249,9 +251,8 @@ namespace MessageBoxTouch
         // TODO
 
         // 窗口计时关闭
-        // TODO
-        // private static MessageBoxCloseTimer closeTimer;
-        // public static MessageBoxCloseTimer CloseTimer { get => closeTimer; set => closeTimer = value; }
+        private static MessageBoxCloseTimer closeTimer = null;
+        public static MessageBoxCloseTimer CloseTimer { get => closeTimer; set => closeTimer = value; }
 
         // 属性集合
         private static PropertiesSetter propertiesSetter = new PropertiesSetter();
@@ -299,6 +300,7 @@ namespace MessageBoxTouch
                 InfoIcon = value.InfoIcon;
                 QuestionIcon = value.QuestionIcon;
                 EnableCloseButton = value.EnableCloseButton;
+                CloseTimer = value.CloseTimer;
             }
         }
 
@@ -441,11 +443,23 @@ namespace MessageBoxTouch
                     break;
             }
 
-            // 获取返回值字符串
-            string resultStr = btnList[Show(btnList, msg, title, img)].ToString();
+            // 返回值
+            MessageBoxResult result;
 
-            // 找到对应的MessageBoxResult元素并返回
-            return (MessageBoxResult)System.Enum.Parse(typeof(MessageBoxResult), resultStr);
+            try
+            {
+                // 获取返回值字符串
+                string resultStr = btnList[Show(btnList, msg, title, img)].ToString();
+
+                // 找到对应的MessageBoxResult元素并返回
+                result = (MessageBoxResult)System.Enum.Parse(typeof(MessageBoxResult), resultStr);
+            }
+            catch
+            {
+                result = MessageBoxResult.Cancel;
+            }
+            
+            return result;
         }
 
         /// <summary>
@@ -664,6 +678,14 @@ namespace MessageBoxTouch
                     mb.b_buttonborder.Height = mb.buttonHeight + 13;
                 }
 
+                if(CloseTimer != null)
+                {
+                    mb.timer = new DispatcherTimer();
+                    mb.timer.Interval = CloseTimer.timeSpan;
+                    mb.timer.Tick += CloseWindowByTimer;  //你的事件
+                    mb.timer.Start();
+                }
+
                 // 设置所属的窗口
                 mb.Owner = Application.Current.MainWindow;
 
@@ -793,8 +815,14 @@ namespace MessageBoxTouch
             InfoIcon = new BitmapImage(new Uri(".\\Image\\info.png", UriKind.RelativeOrAbsolute));
             QuestionIcon = new BitmapImage(new Uri(".\\Image\\question.png", UriKind.RelativeOrAbsolute));
             EnableCloseButton = false;
+            CloseTimer = null;
 
             PropertiesSetter = new PropertiesSetter();
+
+            if (mb.timer != null)
+            {
+                mb.timer.Stop();
+            }
 
             mb = null;
         }
@@ -1084,6 +1112,18 @@ namespace MessageBoxTouch
                 sb.Children.Add(kv.Value);
             }
             sb.Begin(mb);
+        }
+
+        /// <summary>
+        /// 计数器到达设定时间间隔后关闭窗口, 并返回设定的返回值
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private static void CloseWindowByTimer(object sender, EventArgs e)
+        {
+            currentClickIndex = CloseTimer.result;
+            mb.Hide();
+            mb.Close();
         }
     }
 }

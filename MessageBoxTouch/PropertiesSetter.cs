@@ -59,6 +59,7 @@ namespace MessageBoxTouch
             InfoIcon = propertiesSetter.InfoIcon;
             QuestionIcon = propertiesSetter.QuestionIcon;
             EnableCloseButton = propertiesSetter.EnableCloseButton;
+            CloseTimer = propertiesSetter.CloseTimer;
         }
 
         // 锁定高度
@@ -218,5 +219,9 @@ namespace MessageBoxTouch
         // 应用窗口关闭按钮
         private bool enableCloseButton = false;
         public bool EnableCloseButton { get => enableCloseButton; set => enableCloseButton = value; }
+
+        // 窗口计时关闭
+        private MessageBoxCloseTimer closeTimer = null;
+        public MessageBoxCloseTimer CloseTimer { get => closeTimer; set => closeTimer = value; }
     }
 }
