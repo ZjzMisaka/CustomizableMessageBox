@@ -9,7 +9,7 @@ namespace MessageBoxTouch
 {
     public class MessageBoxCloseTimer
     {
-        // 距关闭的时间
+        // 距窗口关闭的时间
         public TimeSpan timeSpan;
         // 窗口关闭后返回的返回值
         public int result;
@@ -17,7 +17,7 @@ namespace MessageBoxTouch
         /// <summary>
         /// 构造函数
         /// </summary>
-        /// <param name="timeSpan">TimeSpan实例, 距关闭的时间</param>
+        /// <param name="timeSpan">TimeSpan实例, 距窗口关闭的时间</param>
         /// <param name="result">窗口关闭后返回的返回值</param>
         public MessageBoxCloseTimer(TimeSpan timeSpan, int result)
         {
