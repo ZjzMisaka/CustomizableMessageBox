@@ -81,7 +81,7 @@ MessageBox.Show(tb.Text == string.Empty ? "用户未输入" : tb.Text, (string)M
 |自定义图标|已实装|
 |是否应用窗口关闭按钮|已实装|
 |按钮动作样式|未实装|
-|窗口计时关闭|未实装|
+|窗口计时关闭|已实装|
 ### 成员函数与属性
 |MessageBox属性|类型|含义|静态|状态|
 |----|----|----|----|----|
@@ -125,7 +125,7 @@ MessageBox.Show(tb.Text == string.Empty ? "用户未输入" : tb.Text, (string)M
 |QuestionIcon|BitmapImage|自定义问题图标|是|已实装|
 |EnableCloseButton|bool|应用窗口关闭按钮|是|已实装|
 |?|?|按钮动作样式|是|未实装|
-|CloseTimer|MessageBoxCloseTimer|窗口计时关闭|是|未实装|
+|CloseTimer|MessageBoxCloseTimer|窗口计时关闭|是|已实装|
 
 |MessageBox函数|含义|参数|返回值|静态|
 |----|----|----|----|----|
@@ -145,6 +145,16 @@ MessageBox.Show(tb.Text == string.Empty ? "用户未输入" : tb.Text, (string)M
 |MessageBoxColor(object)|构造函数|十六进制颜色码字符串或者Color类的实例或颜色名字符串||否|
 |MessageBoxColor(object, ColorType)|构造函数|十六进制颜色码字符串或者Color类的实例或颜色名字符串, ColorType枚举值||否|
 |GetSolidColorBrush()|输出这个实例颜色实例对应的SolidColorBrush||SolidColorBrush|否|
+
+|MessageBoxCloseTimer属性|含义|类型|
+|----|----|----|
+|timeSpan|距窗口关闭的时间|TimeSpan|
+|result|int|窗口关闭后返回的返回值|
+
+|MessageBoxCloseTimer函数|含义|参数|返回值|静态|
+|----|----|----|----|----|
+|MessageBoxCloseTimer(TimeSpan, int)|构造函数|TimeSpan实例 (距关闭的时间), 窗口关闭后返回的返回值||否|
+|MessageBoxCloseTimer(int, int)|构造函数|距关闭的秒数, 窗口关闭后返回的返回值||否|
 
 |PropertiesSetter属性|含义|
 |----|----|
