@@ -735,9 +735,15 @@ namespace MessageBoxTouch
             // 遍历按钮列表寻找和按钮文本相符的元素的索引
             currentClickIndex = btnList.IndexOf(btn.Content.ToString());
 
-            // 关闭窗口
-            mb.Hide();
-            mb.Close();
+            if (WindowCloseAnimations != null)
+            {
+                mb.StartCloseAnimationAndClose();
+            }
+            else
+            {
+                mb.Hide();
+                mb.Close();
+            }
         }
 
         /// <summary>
@@ -953,23 +959,10 @@ namespace MessageBoxTouch
 
                 // 将窗口初始位置设置在屏幕中心
                 SetWindowPos(new WindowInteropHelper(mb).Handle, new IntPtr(0), (int)(SystemInformation.WorkingArea.Width / 2 - mb.Width / 2), (int)(SystemInformation.WorkingArea.Height / 2 - mb.Height / 2), (int)(mb.Width), (int)(mb.Height), 0x1);
-           
-                if(WindowShowAnimations != null)
+
+                if (WindowShowAnimations != null)
                 {
-                    foreach(KeyValuePair<DependencyProperty, AnimationTimeline> kv in WindowShowAnimations)
-                    {
-                        mb.BeginAnimation(kv.Key, kv.Value);
-                    }
-                }
-            }
-            else
-            {
-                if (WindowCloseAnimations != null)
-                {
-                    foreach (KeyValuePair<DependencyProperty, AnimationTimeline> kv in WindowCloseAnimations)
-                    {
-                        mb.BeginAnimation(kv.Key, kv.Value);
-                    }
+                    StartOpenAnimation();
                 }
             }
         }
@@ -995,8 +988,15 @@ namespace MessageBoxTouch
         /// </summary>
         private static void I_close_TouchDown(Object sender, Object e)
         {
-            mb.Hide();
-            mb.Close();
+            if (WindowCloseAnimations != null)
+            {
+                mb.StartCloseAnimationAndClose();
+            }
+            else
+            {
+                mb.Hide();
+                mb.Close();
+            }
         }
 
         /// <summary>
@@ -1049,6 +1049,41 @@ namespace MessageBoxTouch
                     }
                 }
             }
+        }
+
+        /// <summary>
+        /// 播放窗口打开动画
+        /// </summary>
+        private void StartOpenAnimation()
+        {
+            Storyboard sb = new Storyboard();
+            foreach (KeyValuePair<DependencyProperty, AnimationTimeline> kv in WindowShowAnimations)
+            {
+                Storyboard.SetTargetName(kv.Value, "main");
+                Storyboard.SetTargetProperty(kv.Value, new PropertyPath(kv.Key));
+                sb.Children.Add(kv.Value);
+            }
+            sb.Begin(mb);
+        }
+
+        /// <summary>
+        /// 播放窗口关闭动画, 并在播放完成后关闭窗口
+        /// </summary>
+        private void StartCloseAnimationAndClose()
+        {
+            Storyboard sb = new Storyboard();
+            sb.Completed += (a, b) =>
+            {
+                mb.Hide();
+                mb.Close();
+            };
+            foreach (KeyValuePair<DependencyProperty, AnimationTimeline> kv in WindowCloseAnimations)
+            {
+                Storyboard.SetTargetName(kv.Value, "main");
+                Storyboard.SetTargetProperty(kv.Value, new PropertyPath(kv.Key));
+                sb.Children.Add(kv.Value);
+            }
+            sb.Begin(mb);
         }
     }
 }
