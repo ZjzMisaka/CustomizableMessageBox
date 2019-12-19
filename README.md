@@ -81,7 +81,7 @@ MessageBox.Show(tb.Text == string.Empty ? "用户未输入" : tb.Text, (string)M
 |自定义图标|已实装|
 |是否应用窗口关闭按钮|已实装|
 |按钮动作样式|未实装|
-|窗口计时关闭|已实装|
+|窗口计时 / 立即关闭|已实装|
 ### 成员函数与属性
 |MessageBox属性|类型|含义|静态|状态|
 |----|----|----|----|----|
@@ -125,7 +125,7 @@ MessageBox.Show(tb.Text == string.Empty ? "用户未输入" : tb.Text, (string)M
 |QuestionIcon|BitmapImage|自定义问题图标|是|已实装|
 |EnableCloseButton|bool|应用窗口关闭按钮|是|已实装|
 |?|?|按钮动作样式|是|未实装|
-|CloseTimer|MessageBoxCloseTimer|窗口计时关闭|是|已实装|
+|CloseTimer|MessageBoxCloseTimer|窗口计时 / 立即关闭|是|已实装|
 
 |MessageBox函数|含义|参数|返回值|静态|
 |----|----|----|----|----|
@@ -155,6 +155,7 @@ MessageBox.Show(tb.Text == string.Empty ? "用户未输入" : tb.Text, (string)M
 |----|----|----|----|----|
 |MessageBoxCloseTimer(TimeSpan, int)|构造函数|TimeSpan实例 (距关闭的时间), 窗口关闭后返回的返回值||否|
 |MessageBoxCloseTimer(int, int)|构造函数|距关闭的秒数, 窗口关闭后返回的返回值||否|
+|CloseNow(Object, EventArgs)|委托, 立即关闭窗口|无用, 无用||否|
 
 |PropertiesSetter属性|含义|
 |----|----|
