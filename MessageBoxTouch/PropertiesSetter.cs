@@ -59,7 +59,7 @@ namespace MessageBoxTouch
             InfoIcon = propertiesSetter.InfoIcon;
             QuestionIcon = propertiesSetter.QuestionIcon;
             EnableCloseButton = propertiesSetter.EnableCloseButton;
-            StyleList = propertiesSetter.StyleList;
+            ButtonStyleList = propertiesSetter.ButtonStyleList;
             CloseTimer = propertiesSetter.CloseTimer;
         }
 
@@ -220,8 +220,8 @@ namespace MessageBoxTouch
         public bool EnableCloseButton { get => enableCloseButton; set => enableCloseButton = value; }
 
         // 按钮动作样式
-        private List<Style> styleList = new List<Style> { new ResourceDictionary { Source = new Uri("pack://application:,,,/MessageBoxTouch;component/WndStyles.xaml") }["MessageBoxButtonStyle"] as Style };
-        public List<Style> StyleList { get => styleList; set => styleList = value; }
+        private List<Style> buttonStyleList = new List<Style> { new ResourceDictionary { Source = new Uri("pack://application:,,,/MessageBoxTouch;component/WndStyles.xaml") }["MessageBoxButtonStyle"] as Style };
+        public List<Style> ButtonStyleList { get => buttonStyleList; set => buttonStyleList = value; }
 
         // 窗口计时关闭
         private MessageBoxCloseTimer closeTimer = null;

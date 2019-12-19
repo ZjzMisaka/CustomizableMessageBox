@@ -248,8 +248,8 @@ namespace MessageBoxTouch
         public static bool EnableCloseButton { get => enableCloseButton; set => enableCloseButton = value; }
 
         // 按钮动作样式
-        private static List<Style> styleList = new List<Style> { new ResourceDictionary { Source = new Uri("pack://application:,,,/MessageBoxTouch;component/WndStyles.xaml") }["MessageBoxButtonStyle"] as Style };
-        public static List<Style> StyleList { get => styleList; set => styleList = value; }
+        private static List<Style> buttonStyleList = new List<Style> { new ResourceDictionary { Source = new Uri("pack://application:,,,/MessageBoxTouch;component/WndStyles.xaml") }["MessageBoxButtonStyle"] as Style };
+        public static List<Style> ButtonStyleList { get => buttonStyleList; set => buttonStyleList = value; }
 
         // 窗口计时关闭
         private static MessageBoxCloseTimer closeTimer = null;
@@ -301,7 +301,7 @@ namespace MessageBoxTouch
                 InfoIcon = value.InfoIcon;
                 QuestionIcon = value.QuestionIcon;
                 EnableCloseButton = value.EnableCloseButton;
-                StyleList = value.StyleList;
+                ButtonStyleList = value.ButtonStyleList;
                 CloseTimer = value.CloseTimer;
             }
         }
@@ -572,7 +572,7 @@ namespace MessageBoxTouch
                         newBtn.SetValue(Grid.RowProperty, 0);
                         newBtn.SetValue(Grid.ColumnProperty, i);
                         // 设置按钮样式
-                        newBtn.Style = styleList.Count > styleIndex + 1 ? styleList[styleIndex++] : styleList[styleIndex];
+                        newBtn.Style = buttonStyleList.Count > styleIndex + 1 ? buttonStyleList[styleIndex++] : buttonStyleList[styleIndex];
 
                         //设置按钮文本
                         newBtn.Content = btnList[i];
@@ -817,7 +817,7 @@ namespace MessageBoxTouch
             InfoIcon = new BitmapImage(new Uri(".\\Image\\info.png", UriKind.RelativeOrAbsolute));
             QuestionIcon = new BitmapImage(new Uri(".\\Image\\question.png", UriKind.RelativeOrAbsolute));
             EnableCloseButton = false;
-            StyleList = new List<Style> { new ResourceDictionary { Source = new Uri("pack://application:,,,/MessageBoxTouch;component/WndStyles.xaml") }["MessageBoxButtonStyle"] as Style };
+            ButtonStyleList = new List<Style> { new ResourceDictionary { Source = new Uri("pack://application:,,,/MessageBoxTouch;component/WndStyles.xaml") }["MessageBoxButtonStyle"] as Style };
             CloseTimer = null;
 
             PropertiesSetter = new PropertiesSetter();
