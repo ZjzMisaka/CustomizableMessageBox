@@ -61,6 +61,10 @@ namespace MessageBoxTouch
         // 设置 / 取得标题文字
         public static string TitleText
         {
+            get
+            {
+                return mb.l_title.Content == null ? "" : mb.l_title.Content.ToString();
+            }
             set
             {
                 if (mb != null)
@@ -73,11 +77,23 @@ namespace MessageBoxTouch
         // 设置 / 取得消息文字
         public static string MessageText
         {
+            get
+            {
+                return mb.tb_msg.Text == null ? "" : mb.tb_msg.Text;
+            }
             set
             {
                 if (mb != null)
                 {
                     mb.tb_msg.Text = value;
+                    if (mb == null)
+                    {
+                        return;
+                    }
+                    if (!LockHeight)
+                    {
+                        SetWindowSize();
+                    }
                 }
             }
         }
@@ -95,7 +111,20 @@ namespace MessageBoxTouch
 
         // 锁定高度
         private static bool lockHeight = false;
-        public static bool LockHeight { get => lockHeight; set => lockHeight = value; }
+        public static bool LockHeight
+        {
+            get => lockHeight;
+            set
+            {
+                lockHeight = value;
+                if (mb == null)
+                {
+                    return;
+                }
+                InitProperties();
+                SetWindowSize();
+            }
+        }
 
         // 消息区域换行模式
         private static TextWrapping textWrappingMode = TextWrapping.Wrap;
@@ -120,120 +149,478 @@ namespace MessageBoxTouch
                         wrapMode = WrapMode.WORDWITHOVERFLOW;
                         break;
                 }
+                if (mb == null)
+                {
+                    return;
+                }
+                InitProperties();
+                SetWindowSize();
             }
         }
 
         // 窗口宽度
         private static double windowWidth = 800;
-        public static double WindowWidth { get => windowWidth; set => windowWidth = value; }
+        public static double WindowWidth
+        {
+            get => windowWidth;
+            set
+            {
+                windowWidth = value;
+                if (mb == null)
+                {
+                    return;
+                }
+                InitProperties();
+                SetWindowSize();
+            }
+        }
 
         // 窗口最小高度
         private static double windowMinHeight = 450;
-        public static double WindowMinHeight { get => windowMinHeight; set => windowMinHeight = value; }
+        public static double WindowMinHeight
+        {
+            get => windowMinHeight;
+            set
+            {
+                windowMinHeight = value;
+                if (mb == null)
+                {
+                    return;
+                }
+                InitProperties();
+                SetWindowSize();
+            }
+        }
 
         // 标题文本大小
         private static int titleFontSize = 30;
-        public static int TitleFontSize { get => titleFontSize; set => titleFontSize = value; }
+        public static int TitleFontSize
+        {
+            get => titleFontSize;
+            set
+            {
+                titleFontSize = value;
+                if (mb == null)
+                {
+                    return;
+                }
+                InitProperties();
+                LoadTitlePanel();
+            }
+        }
 
         // 消息文本大小
         private static int messageFontSize = 25;
-        public static int MessageFontSize { get => messageFontSize; set => messageFontSize = value; }
+        public static int MessageFontSize
+        {
+            get => messageFontSize;
+            set
+            {
+                messageFontSize = value;
+                if (mb == null)
+                {
+                    return;
+                }
+                InitProperties();
+                SetWindowSize();
+            }
+        }
 
         // 按钮文本大小
         private static int buttonFontSize = 30;
-        public static int ButtonFontSize { get => buttonFontSize; set => buttonFontSize = value; }
+        public static int ButtonFontSize
+        {
+            get => buttonFontSize;
+            set
+            {
+                buttonFontSize = value;
+                if (mb == null)
+                {
+                    return;
+                }
+                InitProperties();
+                LoadButtonPanel();
+                SetButtonStyle();
+            }
+        }
 
         // 标题文本颜色
         private static MessageBoxColor titleFontColor = new MessageBoxColor(Colors.Black);
-        public static MessageBoxColor TitleFontColor { get => titleFontColor; set => titleFontColor = value; }
+        public static MessageBoxColor TitleFontColor
+        {
+            get => titleFontColor;
+            set
+            {
+                titleFontColor = value;
+                if (mb == null)
+                {
+                    return;
+                }
+                InitProperties();
+            }
+        }
 
         // 消息文本颜色
         private static MessageBoxColor messageFontColor = new MessageBoxColor(Colors.Black);
-        public static MessageBoxColor MessageFontColor { get => messageFontColor; set => messageFontColor = value; }
+        public static MessageBoxColor MessageFontColor
+        {
+            get => messageFontColor;
+            set
+            {
+                messageFontColor = value;
+                if (mb == null)
+                {
+                    return;
+                }
+                InitProperties();
+            }
+        }
 
         // 按钮文本颜色
         private static MessageBoxColor buttonFontColor = new MessageBoxColor(Colors.Black);
-        public static MessageBoxColor ButtonFontColor { get => buttonFontColor; set => buttonFontColor = value; }
+        public static MessageBoxColor ButtonFontColor
+        {
+            get => buttonFontColor;
+            set
+            {
+                buttonFontColor = value;
+                if (mb == null)
+                {
+                    return;
+                }
+                InitProperties();
+                LoadButtonPanel();
+                SetButtonStyle();
+            }
+        }
 
         // 窗口透明度
         private static double windowOpacity = 0.95;
-        public static double WindowOpacity { get => windowOpacity; set => windowOpacity = value; }
+        public static double WindowOpacity
+        {
+            get => windowOpacity;
+            set
+            {
+                windowOpacity = value;
+                if (mb == null)
+                {
+                    return;
+                }
+                InitProperties();
+            }
+        }
 
         // 标题栏透明度
         private static double titleBarOpacity = 1;
-        public static double TitleBarOpacity { get => titleBarOpacity; set => titleBarOpacity = value; }
+        public static double TitleBarOpacity
+        {
+            get => titleBarOpacity;
+            set
+            {
+                titleBarOpacity = value;
+                if (mb == null)
+                {
+                    return;
+                }
+                InitProperties();
+            }
+        }
 
         // 消息栏透明度
         private static double messageBarOpacity = 1;
-        public static double MessageBarOpacity { get => messageBarOpacity; set => messageBarOpacity = value; }
+        public static double MessageBarOpacity
+        {
+            get => messageBarOpacity;
+            set
+            {
+                messageBarOpacity = value;
+                if (mb == null)
+                {
+                    return;
+                }
+                InitProperties();
+            }
+        }
 
         // 按钮栏透明度
         private static double buttonBarOpacity = 1;
-        public static double ButtonBarOpacity { get => buttonBarOpacity; set => buttonBarOpacity = value; }
+        public static double ButtonBarOpacity
+        {
+            get => buttonBarOpacity;
+            set
+            {
+                buttonBarOpacity = value;
+                if (mb == null)
+                {
+                    return;
+                }
+                InitProperties();
+            }
+        }
 
         // 标题区域背景颜色
         private static MessageBoxColor titlePanelColor = new MessageBoxColor(Colors.White, ColorType.COLORNAME);
-        public static MessageBoxColor TitlePanelColor { get => titlePanelColor; set => titlePanelColor = value; }
+        public static MessageBoxColor TitlePanelColor
+        {
+            get => titlePanelColor;
+            set
+            {
+                titlePanelColor = value;
+                if (mb == null)
+                {
+                    return;
+                }
+                InitProperties();
+            }
+        }
 
         // 消息区域背景颜色
         private static MessageBoxColor messagePanelColor = new MessageBoxColor(Colors.White, ColorType.COLORNAME);
-        public static MessageBoxColor MessagePanelColor { get => messagePanelColor; set => messagePanelColor = value; }
+        public static MessageBoxColor MessagePanelColor
+        {
+            get => messagePanelColor;
+            set
+            {
+                messagePanelColor = value;
+                if (mb == null)
+                {
+                    return;
+                }
+                InitProperties();
+            }
+        }
 
         // 按钮区域背景颜色
         private static MessageBoxColor buttonPanelColor = new MessageBoxColor("#DDDDDD", ColorType.HEX);
-        public static MessageBoxColor ButtonPanelColor { get => buttonPanelColor; set => buttonPanelColor = value; }
+        public static MessageBoxColor ButtonPanelColor
+        {
+            get => buttonPanelColor;
+            set
+            {
+                buttonPanelColor = value;
+                if (mb == null)
+                {
+                    return;
+                }
+                InitProperties();
+            }
+        }
 
         // 窗口边框颜色
         private static MessageBoxColor wndBorderColor = new MessageBoxColor(Colors.White, ColorType.COLORNAME);
-        public static MessageBoxColor WndBorderColor { get => wndBorderColor; set => wndBorderColor = value; }
+        public static MessageBoxColor WndBorderColor
+        {
+            get => wndBorderColor;
+            set
+            {
+                wndBorderColor = value;
+                if (mb == null)
+                {
+                    return;
+                }
+                InitProperties();
+            }
+        }
 
         // 标题区域边框颜色
         private static MessageBoxColor titlePanelBorderColor = new MessageBoxColor(Colors.White, ColorType.COLORNAME);
-        public static MessageBoxColor TitlePanelBorderColor { get => titlePanelBorderColor; set => titlePanelBorderColor = value; }
+        public static MessageBoxColor TitlePanelBorderColor
+        {
+            get => titlePanelBorderColor;
+            set
+            {
+                titlePanelBorderColor = value;
+                if (mb == null)
+                {
+                    return;
+                }
+                InitProperties();
+            }
+        }
 
         // 消息区域边框颜色
         private static MessageBoxColor messagePanelBorderColor = new MessageBoxColor(Colors.White, ColorType.COLORNAME);
-        public static MessageBoxColor MessagePanelBorderColor { get => messagePanelBorderColor; set => messagePanelBorderColor = value; }
+        public static MessageBoxColor MessagePanelBorderColor
+        {
+            get => messagePanelBorderColor;
+            set
+            {
+                messagePanelBorderColor = value;
+                if (mb == null)
+                {
+                    return;
+                }
+                InitProperties();
+            }
+        }
 
         // 按钮区域边框颜色
         private static MessageBoxColor buttonPanelBorderColor = new MessageBoxColor(Colors.White, ColorType.COLORNAME);
-        public static MessageBoxColor ButtonPanelBorderColor { get => buttonPanelBorderColor; set => buttonPanelBorderColor = value; }
+        public static MessageBoxColor ButtonPanelBorderColor
+        {
+            get => buttonPanelBorderColor;
+            set
+            {
+                buttonPanelBorderColor = value;
+                if (mb == null)
+                {
+                    return;
+                }
+                InitProperties();
+            }
+        }
 
         // 按钮边框颜色
         private static MessageBoxColor buttonBorderColor = new MessageBoxColor(Colors.Black, ColorType.COLORNAME);
-        public static MessageBoxColor ButtonBorderColor { get => buttonBorderColor; set => buttonBorderColor = value; }
+        public static MessageBoxColor ButtonBorderColor
+        {
+            get => buttonBorderColor;
+            set
+            {
+                buttonBorderColor = value;
+                if (mb == null)
+                {
+                    return;
+                }
+                InitProperties();
+                LoadButtonPanel();
+                SetButtonStyle();
+            }
+        }
 
         // 窗口边框宽度
         private static Thickness wndBorderThickness = new Thickness(2);
-        public static Thickness WndBorderThickness { get => wndBorderThickness; set => wndBorderThickness = value; }
+        public static Thickness WndBorderThickness
+        {
+            get => wndBorderThickness;
+            set
+            {
+                wndBorderThickness = value;
+                if (mb == null)
+                {
+                    return;
+                }
+                InitProperties();
+            }
+        }
 
         // 标题区域边框宽度
         private static Thickness titlePanelBorderThickness = new Thickness(0, 0, 0, 1);
-        public static Thickness TitlePanelBorderThickness { get => titlePanelBorderThickness; set => titlePanelBorderThickness = value; }
+        public static Thickness TitlePanelBorderThickness
+        {
+            get => titlePanelBorderThickness;
+            set
+            {
+                titlePanelBorderThickness = value;
+                if (mb == null)
+                {
+                    return;
+                }
+                InitProperties();
+            }
+        }
 
         // 消息区域边框宽度
         private static Thickness messagePanelBorderThickness = new Thickness(0);
-        public static Thickness MessagePanelBorderThickness { get => messagePanelBorderThickness; set => messagePanelBorderThickness = value; }
+        public static Thickness MessagePanelBorderThickness
+        {
+            get => messagePanelBorderThickness;
+            set
+            {
+                messagePanelBorderThickness = value;
+                if (mb == null)
+                {
+                    return;
+                }
+                InitProperties();
+            }
+        }
 
         // 按钮区域边框宽度
         private static Thickness buttonPanelBorderThickness = new Thickness(0);
-        public static Thickness ButtonPanelBorderThickness { get => buttonPanelBorderThickness; set => buttonPanelBorderThickness = value; }
+        public static Thickness ButtonPanelBorderThickness
+        {
+            get => buttonPanelBorderThickness;
+            set
+            {
+                buttonPanelBorderThickness = value;
+                if (mb == null)
+                {
+                    return;
+                }
+                InitProperties();
+            }
+        }
 
         // 按钮边框宽度
         private static Thickness buttonBorderThickness = new Thickness(0);
-        public static Thickness ButtonBorderThickness { get => buttonBorderThickness; set => buttonBorderThickness = value; }
+        public static Thickness ButtonBorderThickness
+        {
+            get => buttonBorderThickness;
+            set
+            {
+                buttonBorderThickness = value;
+                if (mb == null)
+                {
+                    return;
+                }
+                InitProperties();
+                LoadButtonPanel();
+                SetButtonStyle();
+            }
+        }
 
         // 标题文本字体
         private static FontFamily titleFontFamily = new FontFamily("Times New Roman");
-        public static FontFamily TitleFontFamily { get => titleFontFamily; set => titleFontFamily = value; }
+        public static FontFamily TitleFontFamily
+        {
+            get => titleFontFamily;
+            set
+            {
+                titleFontFamily = value;
+                if (mb == null)
+                {
+                    return;
+                }
+                InitProperties();
+                LoadTitlePanel();
+            }
+        }
 
         // 消息文本字体
         private static FontFamily messageFontFamily = new FontFamily("Times New Roman");
-        public static FontFamily MessageFontFamily { get => messageFontFamily; set => messageFontFamily = value; }
+        public static FontFamily MessageFontFamily
+        {
+            get => messageFontFamily;
+            set
+            {
+                messageFontFamily = value;
+                if (mb == null)
+                {
+                    return;
+                }
+                InitProperties();
+                SetWindowSize();
+            }
+        }
 
         // 按钮文本字体
         private static FontFamily buttonFontFamily = new FontFamily("Times New Roman");
-        public static FontFamily ButtonFontFamily { get => buttonFontFamily; set => buttonFontFamily = value; }
+        public static FontFamily ButtonFontFamily
+        {
+            get => buttonFontFamily;
+            set
+            {
+                buttonFontFamily = value;
+                if (mb == null)
+                {
+                    return;
+                }
+                InitProperties();
+                LoadButtonPanel();
+                SetButtonStyle();
+            }
+        }
 
         // 窗口渐显时间
         private static Duration windowShowDuration = new Duration(new TimeSpan(0, 0, 0, 0, 200));
@@ -249,31 +636,84 @@ namespace MessageBoxTouch
 
         // 自定义关闭图标
         private static BitmapImage closeIcon = new BitmapImage(new Uri(".\\Image\\close.png", UriKind.RelativeOrAbsolute));
-        public static BitmapImage CloseIcon { get => closeIcon; set => closeIcon = value; }
+        public static BitmapImage CloseIcon
+        {
+            get => closeIcon;
+            set
+            {
+                closeIcon = value;
+                if (mb == null)
+                {
+                    return;
+                }
+                InitProperties();
+            }
+        }
 
         // 自定义警告图标
         private static BitmapImage warningIcon = new BitmapImage(new Uri(".\\Image\\warn.png", UriKind.RelativeOrAbsolute));
-        public static BitmapImage WarningIcon { get => warningIcon; set => warningIcon = value; }
+        public static BitmapImage WarningIcon
+        {
+            get => warningIcon;
+            set => warningIcon = value;
+        }
 
         // 自定义错误图标
         private static BitmapImage errorIcon = new BitmapImage(new Uri(".\\Image\\error.png", UriKind.RelativeOrAbsolute));
-        public static BitmapImage ErrorIcon { get => errorIcon; set => errorIcon = value; }
+        public static BitmapImage ErrorIcon
+        {
+            get => errorIcon;
+            set => errorIcon = value;
+        }
 
         // 自定义信息图标
         private static BitmapImage infoIcon = new BitmapImage(new Uri(".\\Image\\info.png", UriKind.RelativeOrAbsolute));
-        public static BitmapImage InfoIcon { get => infoIcon; set => infoIcon = value; }
+        public static BitmapImage InfoIcon
+        {
+            get => infoIcon;
+            set => infoIcon = value;
+        }
 
         // 自定义问题图标
         private static BitmapImage questionIcon = new BitmapImage(new Uri(".\\Image\\question.png", UriKind.RelativeOrAbsolute));
-        public static BitmapImage QuestionIcon { get => questionIcon; set => questionIcon = value; }
+        public static BitmapImage QuestionIcon
+        {
+            get => questionIcon;
+            set => questionIcon = value;
+        }
 
         // 应用窗口关闭按钮
         private static bool enableCloseButton = false;
-        public static bool EnableCloseButton { get => enableCloseButton; set => enableCloseButton = value; }
+        public static bool EnableCloseButton
+        {
+            get => enableCloseButton;
+            set
+            {
+                enableCloseButton = value;
+                if (mb == null)
+                {
+                    return;
+                }
+                InitProperties();
+            }
+        }
 
         // 按钮动作样式
         private static List<Style> buttonStyleList = new List<Style> { new ResourceDictionary { Source = new Uri("pack://application:,,,/MessageBoxTouch;component/WndStyles.xaml") }["MessageBoxButtonStyle"] as Style };
-        public static List<Style> ButtonStyleList { get => buttonStyleList; set => buttonStyleList = value; }
+        public static List<Style> ButtonStyleList
+        {
+            get => buttonStyleList;
+            set
+            {
+                buttonStyleList = value;
+                if (mb == null)
+                {
+                    return;
+                }
+                SetButtonStyle();
+                LoadButtonPanel();
+            }
+        }
 
         // 窗口计时关闭
         private static MessageBoxCloseTimer closeTimer = null;
@@ -337,99 +777,108 @@ namespace MessageBoxTouch
         private MessageBox()
         {
             InitializeComponent();
+        }
 
-            // 设置各种属性
+        /// <summary>
+        /// 设置各种属性
+        /// </summary>
+        private static void InitProperties()
+        {
             if (WindowWidth > 0)
             {
-                Width = WindowWidth;
+                mb.Width = WindowWidth;
             }
             if (WindowMinHeight > 0)
             {
-                MinHeight = WindowMinHeight;
-                Height = WindowMinHeight;
+                mb.MinHeight = WindowMinHeight;
+                mb.Height = WindowMinHeight;
             }
             if (TitleFontSize > 0)
             {
-                l_title.FontSize = TitleFontSize;
+                mb.l_title.FontSize = TitleFontSize;
             }
             if (MessageFontSize > 0)
             {
-                tb_msg.FontSize = MessageFontSize;
+                mb.tb_msg.FontSize = MessageFontSize;
             }
             if (WindowOpacity > 0)
             {
                 //Opacity = WindowOpacity;
-                da_win.To = WindowOpacity;
+                mb.da_win.To = WindowOpacity;
             }
             if (TitleBarOpacity > 0)
             {
-                g_titlegrid.Opacity = TitleBarOpacity;
+                mb.g_titlegrid.Opacity = TitleBarOpacity;
             }
             if (MessageBarOpacity > 0)
             {
-                g_messagegrid.Opacity = MessageBarOpacity;
+                mb.g_messagegrid.Opacity = MessageBarOpacity;
             }
             if (ButtonBarOpacity > 0)
             {
-                g_buttongrid.Opacity = ButtonBarOpacity;
+                mb.g_buttongrid.Opacity = ButtonBarOpacity;
             }
             if (TitleFontColor != null)
             {
-                l_title.Foreground = TitleFontColor.GetSolidColorBrush();
+                mb.l_title.Foreground = TitleFontColor.GetSolidColorBrush();
             }
             if (MessageFontColor != null)
             {
-                tb_msg.Foreground = MessageFontColor.GetSolidColorBrush();
+                mb.tb_msg.Foreground = MessageFontColor.GetSolidColorBrush();
             }
             if (TitlePanelColor != null)
             {
-                g_titlegrid.Background = TitlePanelColor.GetSolidColorBrush();
+                mb.g_titlegrid.Background = TitlePanelColor.GetSolidColorBrush();
             }
             if (MessagePanelColor != null)
             {
-                g_messagegrid.Background = MessagePanelColor.GetSolidColorBrush();
+                mb.g_messagegrid.Background = MessagePanelColor.GetSolidColorBrush();
             }
             if (ButtonPanelColor != null)
             {
-                g_buttongrid.Background = ButtonPanelColor.GetSolidColorBrush();
+                mb.g_buttongrid.Background = ButtonPanelColor.GetSolidColorBrush();
             }
             if (WndBorderColor != null)
             {
-                b_wndborder.BorderBrush = WndBorderColor.GetSolidColorBrush();
+                mb.b_wndborder.BorderBrush = WndBorderColor.GetSolidColorBrush();
             }
             if (TitlePanelBorderColor != null)
             {
-                b_titleborder.BorderBrush = TitlePanelBorderColor.GetSolidColorBrush();
+                mb.b_titleborder.BorderBrush = TitlePanelBorderColor.GetSolidColorBrush();
             }
             if (MessagePanelBorderColor != null)
             {
-                b_messageborder.BorderBrush = MessagePanelBorderColor.GetSolidColorBrush();
+                mb.b_messageborder.BorderBrush = MessagePanelBorderColor.GetSolidColorBrush();
             }
             if (ButtonPanelBorderColor != null)
             {
-                b_buttonborder.BorderBrush = ButtonPanelBorderColor.GetSolidColorBrush();
+                mb.b_buttonborder.BorderBrush = ButtonPanelBorderColor.GetSolidColorBrush();
             }
             if (WndBorderThickness != null)
             {
-                b_wndborder.BorderThickness = WndBorderThickness;
+                mb.b_wndborder.BorderThickness = WndBorderThickness;
             }
             if (TitlePanelBorderThickness != null)
             {
-                b_titleborder.BorderThickness = TitlePanelBorderThickness;
+                mb.b_titleborder.BorderThickness = TitlePanelBorderThickness;
             }
             if (MessagePanelBorderThickness != null)
             {
-                b_messageborder.BorderThickness = MessagePanelBorderThickness;
+                mb.b_messageborder.BorderThickness = MessagePanelBorderThickness;
             }
             if (ButtonPanelBorderThickness != null)
             {
-                b_buttonborder.BorderThickness = ButtonPanelBorderThickness;
+                mb.b_buttonborder.BorderThickness = ButtonPanelBorderThickness;
             }
-            l_title.FontFamily = TitleFontFamily;
-            tb_msg.FontFamily = MessageFontFamily;
-            tb_msg.TextWrapping = TextWrappingMode;
-            da_win.Duration = WindowShowDuration;
-            i_close.Source = CloseIcon;
+            mb.l_title.FontFamily = TitleFontFamily;
+            mb.tb_msg.FontFamily = MessageFontFamily;
+            mb.tb_msg.TextWrapping = TextWrappingMode;
+            mb.da_win.Duration = WindowShowDuration;
+            mb.i_close.Source = CloseIcon;
+            if (enableCloseButton)
+            {
+                mb.i_close.Visibility = Visibility.Visible;
+            }
         }
 
         /// <summary>
@@ -508,6 +957,8 @@ namespace MessageBoxTouch
                 // 初始化窗口
                 mb = new MessageBox();
 
+                InitProperties();
+
                 // 计算像素密度
                 pixelsPerDip = VisualTreeHelper.GetDpi(mb).PixelsPerDip;
 
@@ -531,174 +982,14 @@ namespace MessageBoxTouch
                 mb.Title = title;
 
                 // 判断消息类型并显示相应的图像
-                switch (img)
-                {
-                    case MessageBoxImage.Warning:
-                        mb.i_img.Source = WarningIcon;
-                        mb.i_img.Visibility = Visibility.Visible;
-                        break;
-
-                    case MessageBoxImage.Error:
-                        mb.i_img.Source = ErrorIcon;
-                        mb.i_img.Visibility = Visibility.Visible;
-                        break;
-
-                    case MessageBoxImage.Information:
-                        mb.i_img.Source = InfoIcon;
-                        mb.i_img.Visibility = Visibility.Visible;
-                        break;
-
-                    case MessageBoxImage.Question:
-                        mb.i_img.Source = QuestionIcon;
-                        mb.i_img.Visibility = Visibility.Visible;
-                        break;
-
-                    case MessageBoxImage.None:
-                        break;
-
-                    default:
-                        break;
-                }
-
-                // 显示关闭图标
-                if (enableCloseButton)
-                {
-                    mb.i_close.Visibility = Visibility.Visible;
-                }
+                SetIconType(img);
 
                 // 显示消息内容
                 mb.tb_msg.Text = mb.tb_msg.Text + msg;
 
-                // 根据按钮字体计算自定按钮文本中最长的文本的宽度和字符高度
-                double maxContentWidth = 0;
-                double contentHeight = 0;
+                LoadButtonPanel();
 
-                double highestItemHeight = -1;
-
-                int styleIndex = 0;
-
-                // 判断按钮类型并显示相应的按钮
-                for (int i = 0; i < btnList.Count; ++i)
-                {
-                    // 当有多于两个选项时, 增加Grid的列数
-                    if (i >= 2)
-                    {
-                        mb.g_buttongrid.ColumnDefinitions.Add(new ColumnDefinition());
-                    }
-                    Button newBtn = null;
-                    if (btnList[i] is string)
-                    {
-                        // 实例化一个新的按钮
-                        newBtn = new Button();
-                        // 将按钮加入Grid中
-                        mb.g_buttongrid.Children.Add(newBtn);
-                        // 设置按钮在Grid中的行列
-                        newBtn.SetValue(Grid.RowProperty, 0);
-                        newBtn.SetValue(Grid.ColumnProperty, i);
-                        // 设置按钮样式
-                        newBtn.Style = buttonStyleList.Count > styleIndex + 1 ? buttonStyleList[styleIndex++] : buttonStyleList[styleIndex];
-
-                        //设置按钮文本
-                        newBtn.Content = btnList[i];
-                        // 设置按钮外边距
-                        newBtn.Margin = new Thickness(10, 6, 10, 6);
-                        // 设置按钮可见
-                        newBtn.Visibility = Visibility.Visible;
-                        // 绑定按钮点击事件
-                        newBtn.Click += BtnClicked;
-
-                        newBtn.FontSize = ButtonFontSize;
-                        newBtn.FontFamily = ButtonFontFamily;
-                        newBtn.Foreground = ButtonFontColor.GetSolidColorBrush();
-                        newBtn.BorderBrush = ButtonBorderColor.GetSolidColorBrush();
-                        newBtn.BorderThickness = ButtonBorderThickness;
-                    }
-                    else if (btnList[i] is ButtonSpacer)
-                    {
-                        double length = ((ButtonSpacer)btnList[i]).GetLength();
-                        if (length != -1)
-                        {
-                            // 修改列宽度
-                            mb.g_buttongrid.ColumnDefinitions[i].Width = new GridLength(length);
-                        }
-                    }
-                    else if (btnList[i] is FrameworkElement)
-                    {
-                        FrameworkElement fe = (FrameworkElement)btnList[i];
-                        // 将按钮加入Grid中
-                        mb.g_buttongrid.Children.Add(fe);
-                        // 修改列宽度
-                        mb.g_buttongrid.ColumnDefinitions[i].Width = new GridLength(!fe.Width.Equals(Double.NaN) ? fe.Width : 1, !fe.Width.Equals(Double.NaN) ? GridUnitType.Pixel : GridUnitType.Star);
-                        // 设置按钮在Grid中的行列
-                        fe.SetValue(Grid.RowProperty, 0);
-                        fe.SetValue(Grid.ColumnProperty, i);
-                        if (fe.Height > highestItemHeight)
-                        {
-                            highestItemHeight = fe.Height;
-                        }
-                        fe.SizeChanged += ButtonObjectSizeChanged;
-                    }
-
-                    // 当该变量还没计算时
-                    if (newBtn != null && maxContentWidth == 0)
-                    {
-                        foreach (object s in btnList)
-                        {
-                            if (s is string)
-                            {
-                                // 使用字符串和字体设置作为参数实例化FormattedText
-                                FormattedText ft = new FormattedText(s.ToString(), CultureInfo.CurrentCulture, System.Windows.FlowDirection.LeftToRight, new Typeface(newBtn.FontFamily.ToString()), newBtn.FontSize, System.Windows.Media.Brushes.Black, pixelsPerDip);
-                                // 计算字符串在按钮中的宽度
-                                double contentWidth = ft.Width;
-                                // 如果值比maxContentWidth值更大则赋值给maxContentWidth
-                                maxContentWidth = contentWidth > maxContentWidth ? contentWidth : maxContentWidth;
-                                if (contentHeight == 0)
-                                {
-                                    contentHeight = ft.Height;
-                                }
-                            }
-                        }
-                    }
-
-                    // 设置按钮的宽高
-                    // newBtn.Width = maxContentWidth + 7;
-                    //if (newBtn != null)
-                    //{
-                    //    newBtn.Height = contentHeight + 7;
-                    //}
-                }
-
-                // 设置消息区域宽度
-                if (mb.i_img.Visibility == Visibility.Visible)
-                {
-                    mb.tb_msg.Width = mb.Width - mb.i_img.Width - mb.i_img.Margin.Left - mb.i_img.Margin.Right - mb.tb_msg.Margin.Left - mb.tb_msg.Margin.Right;
-                }
-                else
-                {
-                    mb.tb_msg.Width = mb.Width - mb.tb_msg.Margin.Left - mb.tb_msg.Margin.Right;
-                }
-
-                // 根据字体计算标题字符串高度
-                double height = new FormattedText(" ", CultureInfo.CurrentCulture, System.Windows.FlowDirection.LeftToRight, new Typeface(mb.l_title.FontFamily.ToString()), mb.l_title.FontSize, System.Windows.Media.Brushes.Black, pixelsPerDip).Height;
-                // 设置标题栏高度
-                mb.g_titlegrid.Height = height + 14;
-                mb.rd_title.Height = new GridLength(height + 14);
-                mb.b_titleborder.Height = height + 14;
-
-                // 设置按钮栏高度
-                mb.buttonHeight = contentHeight + 7;
-                if (highestItemHeight > mb.buttonHeight)
-                {
-                    mb.g_buttongrid.Height = highestItemHeight + 13;
-                    mb.rd_button.Height = new GridLength(highestItemHeight + 13, GridUnitType.Pixel);
-                    mb.b_buttonborder.Height = highestItemHeight + 13;
-                }
-                else
-                {
-                    mb.g_buttongrid.Height = mb.buttonHeight + 13;
-                    mb.rd_button.Height = new GridLength(mb.buttonHeight + 13, GridUnitType.Pixel);
-                    mb.b_buttonborder.Height = mb.buttonHeight + 13;
-                }
+                LoadTitlePanel();
 
                 if (CloseTimer != null)
                 {
@@ -733,6 +1024,152 @@ namespace MessageBoxTouch
         }
 
         /// <summary>
+        /// 重新设定标题区域大小
+        /// </summary>
+        private static void LoadTitlePanel()
+        {
+            // 根据字体计算标题字符串高度
+            double height = new FormattedText(" ", CultureInfo.CurrentCulture, System.Windows.FlowDirection.LeftToRight, new Typeface(mb.l_title.FontFamily.ToString()), mb.l_title.FontSize, System.Windows.Media.Brushes.Black, pixelsPerDip).Height;
+            // 设置标题栏高度
+            mb.g_titlegrid.Height = height + 14;
+            mb.rd_title.Height = new GridLength(height + 14);
+            mb.b_titleborder.Height = height + 14;
+        }
+
+        /// <summary>
+        /// 载入按钮区域并设定大小
+        /// </summary>
+        private static void LoadButtonPanel()
+        {
+            // 根据按钮字体计算自定按钮文本中最长的文本的宽度和字符高度
+            double maxContentWidth = 0;
+            double contentHeight = 0;
+
+            double highestItemHeight = -1;
+
+            int styleIndex = 0;
+
+            mb.g_buttongrid.Children.Clear();
+
+            // 判断按钮类型并显示相应的按钮
+            for (int i = 0; i < btnList.Count; ++i)
+            {
+                // 当有多于两个选项时, 增加Grid的列数
+                if (i >= 2)
+                {
+                    mb.g_buttongrid.ColumnDefinitions.Add(new ColumnDefinition());
+                }
+                Button newBtn = null;
+                
+                if (btnList[i] is string)
+                {
+                    // 实例化一个新的按钮
+                    newBtn = new Button();
+                    // 将按钮加入Grid中
+                    mb.g_buttongrid.Children.Add(newBtn);
+                    // 设置按钮在Grid中的行列
+                    newBtn.SetValue(Grid.RowProperty, 0);
+                    newBtn.SetValue(Grid.ColumnProperty, i);
+                    // 设置按钮样式
+                    newBtn.Style = buttonStyleList.Count > styleIndex + 1 ? buttonStyleList[styleIndex++] : buttonStyleList[styleIndex];
+
+                    //设置按钮文本
+                    newBtn.Content = btnList[i];
+                    // 设置按钮外边距
+                    newBtn.Margin = new Thickness(10, 6, 10, 6);
+                    // 设置按钮可见
+                    newBtn.Visibility = Visibility.Visible;
+                    // 绑定按钮点击事件
+                    newBtn.Click += BtnClicked;
+
+                    newBtn.FontSize = ButtonFontSize;
+                    newBtn.FontFamily = ButtonFontFamily;
+                    newBtn.Foreground = ButtonFontColor.GetSolidColorBrush();
+                    newBtn.BorderBrush = ButtonBorderColor.GetSolidColorBrush();
+                    newBtn.BorderThickness = ButtonBorderThickness;
+                }
+                else if (btnList[i] is ButtonSpacer)
+                {
+                    double length = ((ButtonSpacer)btnList[i]).GetLength();
+                    if (length != -1)
+                    {
+                        // 修改列宽度
+                        mb.g_buttongrid.ColumnDefinitions[i].Width = new GridLength(length);
+                    }
+                }
+                else if (btnList[i] is FrameworkElement)
+                {
+                    FrameworkElement fe = (FrameworkElement)btnList[i];
+                    // 将按钮加入Grid中
+                    mb.g_buttongrid.Children.Add(fe);
+                    // 修改列宽度
+                    mb.g_buttongrid.ColumnDefinitions[i].Width = new GridLength(!fe.Width.Equals(Double.NaN) ? fe.Width : 1, !fe.Width.Equals(Double.NaN) ? GridUnitType.Pixel : GridUnitType.Star);
+                    // 设置按钮在Grid中的行列
+                    fe.SetValue(Grid.RowProperty, 0);
+                    fe.SetValue(Grid.ColumnProperty, i);
+                    if (fe.Height > highestItemHeight)
+                    {
+                        highestItemHeight = fe.Height;
+                    }
+                    fe.SizeChanged += ButtonObjectSizeChanged;
+                }
+
+                // 当该变量还没计算时
+                if (newBtn != null && maxContentWidth == 0)
+                {
+                    foreach (object s in btnList)
+                    {
+                        if (s is string)
+                        {
+                            // 使用字符串和字体设置作为参数实例化FormattedText
+                            FormattedText ft = new FormattedText(s.ToString(), CultureInfo.CurrentCulture, System.Windows.FlowDirection.LeftToRight, new Typeface(newBtn.FontFamily.ToString()), newBtn.FontSize, System.Windows.Media.Brushes.Black, pixelsPerDip);
+                            // 计算字符串在按钮中的宽度
+                            double contentWidth = ft.Width;
+                            // 如果值比maxContentWidth值更大则赋值给maxContentWidth
+                            maxContentWidth = contentWidth > maxContentWidth ? contentWidth : maxContentWidth;
+                            if (contentHeight == 0)
+                            {
+                                contentHeight = ft.Height;
+                            }
+                        }
+                    }
+                }
+
+                // 设置按钮的宽高
+                // newBtn.Width = maxContentWidth + 7;
+                //if (newBtn != null)
+                //{
+                //    newBtn.Height = contentHeight + 7;
+                //}
+            }
+
+            // 设置消息区域宽度
+            if (mb.i_img.Visibility == Visibility.Visible)
+            {
+                mb.tb_msg.Width = mb.Width - mb.i_img.Width - mb.i_img.Margin.Left - mb.i_img.Margin.Right - mb.tb_msg.Margin.Left - mb.tb_msg.Margin.Right;
+            }
+            else
+            {
+                mb.tb_msg.Width = mb.Width - mb.tb_msg.Margin.Left - mb.tb_msg.Margin.Right;
+            }
+
+            // 设置按钮栏高度
+            mb.buttonHeight = contentHeight + 7;
+            if (highestItemHeight > mb.buttonHeight)
+            {
+                mb.g_buttongrid.Height = highestItemHeight + 13;
+                mb.rd_button.Height = new GridLength(highestItemHeight + 13, GridUnitType.Pixel);
+                mb.b_buttonborder.Height = highestItemHeight + 13;
+            }
+            else
+            {
+                mb.g_buttongrid.Height = mb.buttonHeight + 13;
+                mb.rd_button.Height = new GridLength(mb.buttonHeight + 13, GridUnitType.Pixel);
+                mb.b_buttonborder.Height = mb.buttonHeight + 13;
+            }
+        }
+
+        /// <summary>
         /// 调出消息窗口
         /// </summary>
         /// <param name="propertiesSetter">样式</param>
@@ -748,7 +1185,7 @@ namespace MessageBoxTouch
         }
 
         /// <summary>
-        /// 
+        /// 调出消息窗口
         /// </summary>
         /// <param name="propertiesSetter">样式</param>
         /// <param name="btnList">自定按钮列表</param>
@@ -802,49 +1239,49 @@ namespace MessageBoxTouch
         private void Window_Closed(Object sender, EventArgs e)
         {
             // 防止上次调用影响
-            LockHeight = false;
-            TextWrappingMode = TextWrapping.Wrap;
-            WindowWidth = -1;
-            WindowMinHeight = -1;
-            TitleFontSize = -1;
-            MessageFontSize = -1;
-            ButtonFontSize = -1;
-            TitleFontColor = new MessageBoxColor(Colors.Black);
-            MessageFontColor = new MessageBoxColor(Colors.Black);
-            ButtonFontColor = new MessageBoxColor(Colors.Black);
-            WindowOpacity = -1;
-            TitleBarOpacity = -1;
-            MessageBarOpacity = -1;
-            ButtonBarOpacity = -1;
-            TitlePanelColor = new MessageBoxColor(Colors.White, ColorType.COLORNAME);
-            MessagePanelColor = new MessageBoxColor(Colors.White, ColorType.COLORNAME);
-            ButtonPanelColor = new MessageBoxColor("#DDDDDD", ColorType.HEX);
-            WndBorderColor = new MessageBoxColor(Colors.White, ColorType.COLORNAME);
-            TitlePanelBorderColor = new MessageBoxColor(Colors.White, ColorType.COLORNAME);
-            MessagePanelBorderColor = new MessageBoxColor(Colors.White, ColorType.COLORNAME);
-            ButtonPanelBorderColor = new MessageBoxColor(Colors.White, ColorType.COLORNAME);
-            ButtonBorderColor = new MessageBoxColor(Colors.Black, ColorType.COLORNAME);
-            WndBorderThickness = new Thickness(2);
-            TitlePanelBorderThickness = new Thickness(0, 0, 0, 1);
-            MessagePanelBorderThickness = new Thickness(0);
-            ButtonPanelBorderThickness = new Thickness(0);
-            ButtonBorderThickness = new Thickness(0);
-            TitleFontFamily = new FontFamily("Times New Roman");
-            MessageFontFamily = new FontFamily("Times New Roman");
-            ButtonFontFamily = new FontFamily("Times New Roman");
-            WindowShowDuration = new Duration(new TimeSpan(0, 0, 0, 0, 200));
-            WindowShowAnimations = null;
-            WindowCloseAnimations = null;
-            CloseIcon = new BitmapImage(new Uri(".\\Image\\close.png", UriKind.RelativeOrAbsolute));
-            WarningIcon = new BitmapImage(new Uri(".\\Image\\warn.png", UriKind.RelativeOrAbsolute));
-            ErrorIcon = new BitmapImage(new Uri(".\\Image\\error.png", UriKind.RelativeOrAbsolute));
-            InfoIcon = new BitmapImage(new Uri(".\\Image\\info.png", UriKind.RelativeOrAbsolute));
-            QuestionIcon = new BitmapImage(new Uri(".\\Image\\question.png", UriKind.RelativeOrAbsolute));
-            EnableCloseButton = false;
-            ButtonStyleList = new List<Style> { new ResourceDictionary { Source = new Uri("pack://application:,,,/MessageBoxTouch;component/WndStyles.xaml") }["MessageBoxButtonStyle"] as Style };
-            CloseTimer = null;
+            lockHeight = false;
+            textWrappingMode = TextWrapping.Wrap;
+            windowWidth = 800;
+            windowMinHeight = 450;
+            titleFontSize = 30;
+            messageFontSize = 25;
+            buttonFontSize = 30;
+            titleFontColor = new MessageBoxColor(Colors.Black);
+            messageFontColor = new MessageBoxColor(Colors.Black);
+            buttonFontColor = new MessageBoxColor(Colors.Black);
+            windowOpacity = 0.95;
+            titleBarOpacity = 1;
+            messageBarOpacity = 1;
+            buttonBarOpacity = 1;
+            titlePanelColor = new MessageBoxColor(Colors.White, ColorType.COLORNAME);
+            messagePanelColor = new MessageBoxColor(Colors.White, ColorType.COLORNAME);
+            buttonPanelColor = new MessageBoxColor("#DDDDDD", ColorType.HEX);
+            wndBorderColor = new MessageBoxColor(Colors.White, ColorType.COLORNAME);
+            titlePanelBorderColor = new MessageBoxColor(Colors.White, ColorType.COLORNAME);
+            messagePanelBorderColor = new MessageBoxColor(Colors.White, ColorType.COLORNAME);
+            buttonPanelBorderColor = new MessageBoxColor(Colors.White, ColorType.COLORNAME);
+            buttonBorderColor = new MessageBoxColor(Colors.Black, ColorType.COLORNAME);
+            wndBorderThickness = new Thickness(2);
+            titlePanelBorderThickness = new Thickness(0, 0, 0, 1);
+            messagePanelBorderThickness = new Thickness(0);
+            buttonPanelBorderThickness = new Thickness(0);
+            buttonBorderThickness = new Thickness(0);
+            titleFontFamily = new FontFamily("Times New Roman");
+            messageFontFamily = new FontFamily("Times New Roman");
+            buttonFontFamily = new FontFamily("Times New Roman");
+            windowShowDuration = new Duration(new TimeSpan(0, 0, 0, 0, 200));
+            windowShowAnimations = null;
+            windowCloseAnimations = null;
+            closeIcon = new BitmapImage(new Uri(".\\Image\\close.png", UriKind.RelativeOrAbsolute));
+            warningIcon = new BitmapImage(new Uri(".\\Image\\warn.png", UriKind.RelativeOrAbsolute));
+            errorIcon = new BitmapImage(new Uri(".\\Image\\error.png", UriKind.RelativeOrAbsolute));
+            infoIcon = new BitmapImage(new Uri(".\\Image\\info.png", UriKind.RelativeOrAbsolute));
+            questionIcon = new BitmapImage(new Uri(".\\Image\\question.png", UriKind.RelativeOrAbsolute));
+            enableCloseButton = false;
+            buttonStyleList = new List<Style> { new ResourceDictionary { Source = new Uri("pack://application:,,,/MessageBoxTouch;component/WndStyles.xaml") }["MessageBoxButtonStyle"] as Style };
+            closeTimer = null;
 
-            PropertiesSetter = new PropertiesSetter();
+            propertiesSetter = new PropertiesSetter();
 
             if (mb.timer != null)
             {
@@ -866,150 +1303,7 @@ namespace MessageBoxTouch
             {
                 if (!LockHeight)
                 {
-                    // 单字符高度
-                    double height = new FormattedText(" ", CultureInfo.CurrentCulture, System.Windows.FlowDirection.LeftToRight, new Typeface(mb.tb_msg.FontFamily.ToString()), mb.tb_msg.FontSize, System.Windows.Media.Brushes.Black, pixelsPerDip).Height;
-                    // 行数
-                    double lineCount = 1;
-                    // 当行字符串累积宽度
-                    double lineWidth = 0;
-                    // 格式化的字符串
-                    FormattedText ft;
-
-                    // 遍历消息字符串中的每个字符
-                    for (int i = 0; i < mb.tb_msg.Text.Count(); ++i)
-                    {
-                        if (mb.tb_msg.Text[i] == '\n')
-                        {
-                            lineWidth = 0;
-                            ++lineCount;
-                        }
-                        else
-                        {
-                            if (wrapMode == WrapMode.NOWRAP)
-                            {
-                                // DO NOTHING
-                            }
-                            else if (wrapMode == WrapMode.WORDWITHOVERFLOW)
-                            {
-                                // 当这个字符为英文或数字, 即为一个单词的开头
-                                if (Regex.IsMatch(mb.tb_msg.Text[i].ToString(), "[a-zA-Z0-9]"))
-                                {
-                                    //获取这个单词
-                                    string nextWord = GetNextWord(mb.tb_msg.Text, i);
-                                    // 使用单词字符串和字体设置作为参数实例化FormattedText
-                                    ft = new FormattedText(nextWord, CultureInfo.CurrentCulture, System.Windows.FlowDirection.LeftToRight, new Typeface(mb.tb_msg.FontFamily.ToString()), mb.tb_msg.FontSize, System.Windows.Media.Brushes.Black, pixelsPerDip);
-                                    //如果单词长度超过TextBlock宽度, 则直接换一行 //TODO 是否应该是换两行? 
-                                    if (ft.Width > mb.tb_msg.Width)
-                                    {
-                                        lineWidth = 0;
-                                        ++lineCount;
-                                        i += nextWord.Length - 1;
-                                        continue;
-                                    }
-                                    // 累加这个单词的宽度
-                                    lineWidth += ft.Width;
-                                    // 如果累加后的宽度超过TextBlock宽度, 则直接换一行, 并重新计算
-                                    if (Math.Ceiling(lineWidth) >= mb.tb_msg.Width)
-                                    {
-                                        lineWidth = 0;
-                                        ++lineCount;
-                                        --i;
-                                        continue;
-                                    }
-                                    else
-                                    {
-                                        i += nextWord.Length - 1;
-                                    }
-                                }
-                                else
-                                {
-                                    // 使用字符和字体设置作为参数实例化FormattedText
-                                    ft = new FormattedText(mb.tb_msg.Text[i].ToString(), CultureInfo.CurrentCulture, System.Windows.FlowDirection.LeftToRight, new Typeface(mb.tb_msg.FontFamily.ToString()), mb.tb_msg.FontSize, System.Windows.Media.Brushes.Black, pixelsPerDip);
-                                    // 累加这个字符的宽度
-                                    lineWidth += ft.Width;
-                                    // 如果累加后的宽度超过TextBlock宽度, 则直接换一行, 并重新计算
-                                    if (Math.Ceiling(lineWidth) >= mb.tb_msg.Width)
-                                    {
-                                        lineWidth = 0;
-                                        ++lineCount;
-                                        --i;
-                                        continue;
-                                    }
-                                }
-                            }
-                            else if (wrapMode == WrapMode.WORD)
-                            {
-                                // 当这个字符为英文或数字, 即为一个单词的开头
-                                if (Regex.IsMatch(mb.tb_msg.Text[i].ToString(), "[a-zA-Z0-9]"))
-                                {
-                                    //获取这个单词
-                                    string nextWord = GetNextWord(mb.tb_msg.Text, i);
-                                    // 使用单词字符串和字体设置作为参数实例化FormattedText
-                                    ft = new FormattedText(nextWord, CultureInfo.CurrentCulture, System.Windows.FlowDirection.LeftToRight, new Typeface(mb.tb_msg.FontFamily.ToString()), mb.tb_msg.FontSize, System.Windows.Media.Brushes.Black, pixelsPerDip);
-                                    //如果单词长度超过TextBlock宽度, 则直接换一行, 并以C模式开始计算
-                                    if (ft.Width > mb.tb_msg.Width)
-                                    {
-                                        lineWidth = 0;
-                                        ++lineCount;
-                                        --i;
-                                        wrapMode = WrapMode.TEXTINWORD;
-                                        continue;
-                                    }
-                                    // 累加这个单词的宽度
-                                    lineWidth += ft.Width;
-                                    // 如果累加后的宽度超过TextBlock宽度, 则直接换一行, 并重新计算
-                                    if (Math.Ceiling(lineWidth) >= mb.tb_msg.Width)
-                                    {
-                                        lineWidth = 0;
-                                        ++lineCount;
-                                        --i;
-                                        continue;
-                                    }
-                                    else
-                                    {
-                                        i += nextWord.Length - 1;
-                                    }
-                                }
-                                else
-                                {
-                                    // 使用字符和字体设置作为参数实例化FormattedText
-                                    ft = new FormattedText(mb.tb_msg.Text[i].ToString(), CultureInfo.CurrentCulture, System.Windows.FlowDirection.LeftToRight, new Typeface(mb.tb_msg.FontFamily.ToString()), mb.tb_msg.FontSize, System.Windows.Media.Brushes.Black, pixelsPerDip);
-                                    // 累加这个字符的宽度
-                                    lineWidth += ft.Width;
-                                    // 如果累加后的宽度超过TextBlock宽度, 则直接换一行, 并重新计算
-                                    if (Math.Ceiling(lineWidth) >= mb.tb_msg.Width)
-                                    {
-                                        lineWidth = 0;
-                                        ++lineCount;
-                                        --i;
-                                        continue;
-                                    }
-                                }
-                            }
-                            else if (wrapMode == WrapMode.TEXTINWORD)
-                            {
-                                if (!Regex.IsMatch(mb.tb_msg.Text[i].ToString(), "[a-zA-Z0-9]"))
-                                {
-                                    wrapMode = WrapMode.WORD;
-                                    continue;
-                                }
-                                // 使用字符串和字体设置作为参数实例化FormattedText
-                                ft = new FormattedText(mb.tb_msg.Text[i].ToString(), CultureInfo.CurrentCulture, System.Windows.FlowDirection.LeftToRight, new Typeface(mb.tb_msg.FontFamily.ToString()), mb.tb_msg.FontSize, System.Windows.Media.Brushes.Black, pixelsPerDip);
-                                // 累加这个字符的宽度
-                                lineWidth += ft.Width;
-                                if (lineWidth > mb.tb_msg.Width)
-                                {
-                                    lineWidth = 0;
-                                    ++lineCount;
-                                    --i;
-                                    continue;
-                                }
-                            }
-                        }
-                    }
-
-                    // 计算窗口高度
-                    mb.Height = height * lineCount + rd_title.Height.Value + rd_button.Height.Value + mb.tb_msg.Margin.Top + mb.tb_msg.Margin.Bottom;
+                    SetWindowSize();
                 }
 
                 // 将窗口初始位置设置在屏幕中心
@@ -1020,6 +1314,157 @@ namespace MessageBoxTouch
                     StartOpenAnimation();
                 }
             }
+        }
+
+        /// <summary>
+        /// 设置窗口大小
+        /// </summary>
+        private static void SetWindowSize()
+        {
+            // 单字符高度
+            double height = new FormattedText(" ", CultureInfo.CurrentCulture, System.Windows.FlowDirection.LeftToRight, new Typeface(mb.tb_msg.FontFamily.ToString()), mb.tb_msg.FontSize, System.Windows.Media.Brushes.Black, pixelsPerDip).Height;
+            // 行数
+            double lineCount = 1;
+            // 当行字符串累积宽度
+            double lineWidth = 0;
+            // 格式化的字符串
+            FormattedText ft;
+
+            // 遍历消息字符串中的每个字符
+            for (int i = 0; i < mb.tb_msg.Text.Count(); ++i)
+            {
+                if (mb.tb_msg.Text[i] == '\n')
+                {
+                    lineWidth = 0;
+                    ++lineCount;
+                }
+                else
+                {
+                    if (wrapMode == WrapMode.NOWRAP)
+                    {
+                        // DO NOTHING
+                    }
+                    else if (wrapMode == WrapMode.WORDWITHOVERFLOW)
+                    {
+                        // 当这个字符为英文或数字, 即为一个单词的开头
+                        if (Regex.IsMatch(mb.tb_msg.Text[i].ToString(), "[a-zA-Z0-9]"))
+                        {
+                            //获取这个单词
+                            string nextWord = GetNextWord(mb.tb_msg.Text, i);
+                            // 使用单词字符串和字体设置作为参数实例化FormattedText
+                            ft = new FormattedText(nextWord, CultureInfo.CurrentCulture, System.Windows.FlowDirection.LeftToRight, new Typeface(mb.tb_msg.FontFamily.ToString()), mb.tb_msg.FontSize, System.Windows.Media.Brushes.Black, pixelsPerDip);
+                            //如果单词长度超过TextBlock宽度, 则直接换一行 //TODO 是否应该是换两行? 
+                            if (ft.Width > mb.tb_msg.Width)
+                            {
+                                lineWidth = 0;
+                                ++lineCount;
+                                i += nextWord.Length - 1;
+                                continue;
+                            }
+                            // 累加这个单词的宽度
+                            lineWidth += ft.Width;
+                            // 如果累加后的宽度超过TextBlock宽度, 则直接换一行, 并重新计算
+                            if (Math.Ceiling(lineWidth) >= mb.tb_msg.Width)
+                            {
+                                lineWidth = 0;
+                                ++lineCount;
+                                --i;
+                                continue;
+                            }
+                            else
+                            {
+                                i += nextWord.Length - 1;
+                            }
+                        }
+                        else
+                        {
+                            // 使用字符和字体设置作为参数实例化FormattedText
+                            ft = new FormattedText(mb.tb_msg.Text[i].ToString(), CultureInfo.CurrentCulture, System.Windows.FlowDirection.LeftToRight, new Typeface(mb.tb_msg.FontFamily.ToString()), mb.tb_msg.FontSize, System.Windows.Media.Brushes.Black, pixelsPerDip);
+                            // 累加这个字符的宽度
+                            lineWidth += ft.Width;
+                            // 如果累加后的宽度超过TextBlock宽度, 则直接换一行, 并重新计算
+                            if (Math.Ceiling(lineWidth) >= mb.tb_msg.Width)
+                            {
+                                lineWidth = 0;
+                                ++lineCount;
+                                --i;
+                                continue;
+                            }
+                        }
+                    }
+                    else if (wrapMode == WrapMode.WORD)
+                    {
+                        // 当这个字符为英文或数字, 即为一个单词的开头
+                        if (Regex.IsMatch(mb.tb_msg.Text[i].ToString(), "[a-zA-Z0-9]"))
+                        {
+                            //获取这个单词
+                            string nextWord = GetNextWord(mb.tb_msg.Text, i);
+                            // 使用单词字符串和字体设置作为参数实例化FormattedText
+                            ft = new FormattedText(nextWord, CultureInfo.CurrentCulture, System.Windows.FlowDirection.LeftToRight, new Typeface(mb.tb_msg.FontFamily.ToString()), mb.tb_msg.FontSize, System.Windows.Media.Brushes.Black, pixelsPerDip);
+                            //如果单词长度超过TextBlock宽度, 则直接换一行, 并以C模式开始计算
+                            if (ft.Width > mb.tb_msg.Width)
+                            {
+                                lineWidth = 0;
+                                ++lineCount;
+                                --i;
+                                wrapMode = WrapMode.TEXTINWORD;
+                                continue;
+                            }
+                            // 累加这个单词的宽度
+                            lineWidth += ft.Width;
+                            // 如果累加后的宽度超过TextBlock宽度, 则直接换一行, 并重新计算
+                            if (Math.Ceiling(lineWidth) >= mb.tb_msg.Width)
+                            {
+                                lineWidth = 0;
+                                ++lineCount;
+                                --i;
+                                continue;
+                            }
+                            else
+                            {
+                                i += nextWord.Length - 1;
+                            }
+                        }
+                        else
+                        {
+                            // 使用字符和字体设置作为参数实例化FormattedText
+                            ft = new FormattedText(mb.tb_msg.Text[i].ToString(), CultureInfo.CurrentCulture, System.Windows.FlowDirection.LeftToRight, new Typeface(mb.tb_msg.FontFamily.ToString()), mb.tb_msg.FontSize, System.Windows.Media.Brushes.Black, pixelsPerDip);
+                            // 累加这个字符的宽度
+                            lineWidth += ft.Width;
+                            // 如果累加后的宽度超过TextBlock宽度, 则直接换一行, 并重新计算
+                            if (Math.Ceiling(lineWidth) >= mb.tb_msg.Width)
+                            {
+                                lineWidth = 0;
+                                ++lineCount;
+                                --i;
+                                continue;
+                            }
+                        }
+                    }
+                    else if (wrapMode == WrapMode.TEXTINWORD)
+                    {
+                        if (!Regex.IsMatch(mb.tb_msg.Text[i].ToString(), "[a-zA-Z0-9]"))
+                        {
+                            wrapMode = WrapMode.WORD;
+                            continue;
+                        }
+                        // 使用字符串和字体设置作为参数实例化FormattedText
+                        ft = new FormattedText(mb.tb_msg.Text[i].ToString(), CultureInfo.CurrentCulture, System.Windows.FlowDirection.LeftToRight, new Typeface(mb.tb_msg.FontFamily.ToString()), mb.tb_msg.FontSize, System.Windows.Media.Brushes.Black, pixelsPerDip);
+                        // 累加这个字符的宽度
+                        lineWidth += ft.Width;
+                        if (lineWidth > mb.tb_msg.Width)
+                        {
+                            lineWidth = 0;
+                            ++lineCount;
+                            --i;
+                            continue;
+                        }
+                    }
+                }
+            }
+
+            // 计算窗口高度
+            mb.Height = height * lineCount + mb.rd_title.Height.Value + mb.rd_button.Height.Value + mb.tb_msg.Margin.Top + mb.tb_msg.Margin.Bottom;
         }
 
         /// <summary>
@@ -1151,6 +1596,73 @@ namespace MessageBoxTouch
             currentClickIndex = CloseTimer.result;
             mb.Hide();
             mb.Close();
+        }
+
+        /// <summary>
+        /// 判断消息类型并显示相应的图像
+        /// </summary>
+        /// <param name="iconType">显示的图标类型</param>
+        public static void SetIconType(MessageBoxImage iconType)
+        {
+            switch (iconType)
+            {
+                case MessageBoxImage.Warning:
+                    mb.i_img.Source = WarningIcon;
+                    mb.i_img.Visibility = Visibility.Visible;
+                    break;
+
+                case MessageBoxImage.Error:
+                    mb.i_img.Source = ErrorIcon;
+                    mb.i_img.Visibility = Visibility.Visible;
+                    break;
+
+                case MessageBoxImage.Information:
+                    mb.i_img.Source = InfoIcon;
+                    mb.i_img.Visibility = Visibility.Visible;
+                    break;
+
+                case MessageBoxImage.Question:
+                    mb.i_img.Source = QuestionIcon;
+                    mb.i_img.Visibility = Visibility.Visible;
+                    break;
+
+                case MessageBoxImage.None:
+                    mb.i_img.Visibility = Visibility.Collapsed;
+                    break;
+
+                default:
+                    break;
+            }
+        }
+
+        /// <summary>
+        /// 设置按钮样式
+        /// </summary>
+        private static void SetButtonStyle()
+        {
+            int buttonIndex = -1;
+            List<object> btnObjList = new List<object>();
+            for (int i = 0; i < btnList.Count; i++)
+            {
+                if (!(btnList[i] is ButtonSpacer))
+                {
+                    btnObjList.Add(btnList[i]);
+                }
+            }
+            for (int i =0; i < btnObjList.Count; i++)
+            { 
+                if(btnObjList[i] is string)
+                {
+                    ++buttonIndex;
+                    Button btn = (Button)mb.g_buttongrid.Children[i];
+                    btn.Style = ButtonStyleList.Count > buttonIndex ? ButtonStyleList[buttonIndex] : ButtonStyleList[ButtonStyleList.Count - 1];
+                    btn.FontSize = ButtonFontSize;
+                    btn.FontFamily = ButtonFontFamily;
+                    btn.Foreground = ButtonFontColor.GetSolidColorBrush();
+                    btn.BorderBrush = ButtonBorderColor.GetSolidColorBrush();
+                    btn.BorderThickness = ButtonBorderThickness;
+                }
+            }
         }
     }
 }
