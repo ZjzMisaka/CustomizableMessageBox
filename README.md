@@ -7,6 +7,7 @@
 - 如果消息框窗口高度达到窗口工作区高度, 但还是容不下消息字符串显示时, 消息框高度不再增长, 但是可以通过滚动消息区域查看剩余消息. 
 - 可以自由改变外观. 
 - 可在按钮区域插入自定义控件 (如输入框, 另一个按钮, 进度条, 等等). 调用后可获取用户对插入的自定控件的操作结果. 
+- 可以在运行时改变消息框内容与样式. 
 ### 用法
 - 生成项目MessageBoxTouch, 得到对应动态链接库, 引用到自己的项目中, 并调用. 本工程自带有示例. 
 - 工具的MessageBox的Show函数参数与System.Windows.MessageBox的参数兼容, 简单而言只要引入一下dll, 不用做过多改动即可使用工具提供的MessageBox. 
@@ -66,6 +67,7 @@ MessageBox.Show(tb.Text == string.Empty ? "用户未输入" : tb.Text, (string)M
 ### 可操作的属性
 |属性|状态|
 |----|----|
+|窗口标题 / 消息 / 按钮|已实装|
 |窗口锁高|已实装|
 |窗口初始高度与宽度|已实装|
 |消息区域换行风格|已实装|
@@ -85,6 +87,8 @@ MessageBox.Show(tb.Text == string.Empty ? "用户未输入" : tb.Text, (string)M
 ### 成员函数与属性
 |MessageBox属性|类型|含义|静态|状态|
 |----|----|----|----|----|
+|TitleText|string|设置 / 取得标题文字|是|已实装|
+|MessageText|string|设置 / 取得消息文字|是|已实装|
 |LockHeight|bool|是否锁住窗口高度不允许自动增长|是|已实装|
 |TextWrappingMode|TextWrapping|消息段落换行风格|是|已实装|
 |WindowWidth|double|窗口宽度|是|已实装|
@@ -134,6 +138,7 @@ MessageBox.Show(tb.Text == string.Empty ? "用户未输入" : tb.Text, (string)M
 |Show(PropertiesSetter, string, string, MessageBoxButton, MessageBoxImage)|兼容形式调出消息窗口, 并使用既有样式|样式, 消息, 标题 (选), 按钮类型 (选), 图标类型 (选)|MessageBoxResult|是|
 |Show(PropertiesSetter, List&lt;object&gt;, string, string, MessageBoxImage)|自定义形式调出消息窗口, 并使用既有样式|样式, 按钮列表, 消息, 标题 (选), 图标类型 (选)|int|是|
 |GetBtnList()|获取按钮列表||List&lt;object&gt;|是|
+|SetButtonStyle()|设定当前显示的图标类型||void|是|
  
 |MessageBoxColor属性|含义|类型|
 |----|----|----|
