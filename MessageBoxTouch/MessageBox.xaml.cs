@@ -58,6 +58,30 @@ namespace MessageBoxTouch
             NOWRAP
         }
 
+        // 设置 / 取得标题文字
+        public static string TitleText
+        {
+            set
+            {
+                if (mb != null)
+                {
+                    mb.l_title.Content = value;
+                }
+            }
+        }
+
+        // 设置 / 取得消息文字
+        public static string MessageText
+        {
+            set
+            {
+                if (mb != null)
+                {
+                    mb.tb_msg.Text = value;
+                }
+            }
+        }
+
         static WrapMode wrapMode = WrapMode.WORD;
 
         // Messagebox实例
