@@ -2,11 +2,10 @@
   xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
   xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
 
-    <!-- 通常時のボタンの色 -->
     <SolidColorBrush x:Key="NormalButtonBrush" Color="Black"/>
-    <!-- 通常時のボタンの色（白色） -->
+
     <SolidColorBrush x:Key="WhiteButtonBrush" Color="White"/>
-    <!-- マウスオーバー時のボタンの色 -->
+
     <SolidColorBrush x:Key="HoverButtonBrush" Color="#ffffff"/>
 
     <SolidColorBrush x:Key="MessageBoxBackgroundBrush" Color="LightGray"/>
@@ -27,13 +26,11 @@
                         <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center"/>
                     </Border>
                     <ControlTemplate.Triggers>
-                        <!-- マウスオーバー -->
                         <Trigger Property="IsMouseOver"  Value="True">
                             <Setter TargetName="HoverButtonBorder" Property="BorderBrush" Value="{StaticResource HoverButtonBrush}" />
                             <Setter TargetName="HoverButtonBorder" Property="Background" Value="{StaticResource MessageBoxPressBackgroundBrush}" />
                             <Setter Property="Foreground" Value="{StaticResource HoverButtonBrush}"/>
                         </Trigger>
-                        <!-- ボタンを押した時に、背景色を透過 -->
                         <Trigger Property="IsPressed" Value="True">
                             <Setter TargetName="HoverButtonBorder" Property="Background" Value="{StaticResource MessageBoxPressBackgroundBrush}" />
                         </Trigger>

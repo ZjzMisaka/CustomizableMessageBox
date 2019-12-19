@@ -14,8 +14,8 @@ namespace MessageBoxTouch
         // 窗口关闭后返回的返回值
         public int result;
         // 立即关闭消息窗口
-        public delegate void CloseWindowByTimer(object sender, EventArgs e) ;
-        public CloseWindowByTimer CloseNow;
+        internal delegate void CloseWindowByTimer(object sender, EventArgs e) ;
+        internal CloseWindowByTimer closeWindowByTimer;
 
         /// <summary>
         /// 构造函数
@@ -37,6 +37,14 @@ namespace MessageBoxTouch
         {
             this.timeSpan = new TimeSpan(0, 0, 0, seconds);
             this.result = result;
+        }
+
+        /// <summary>
+        /// 立即关闭消息窗口
+        /// </summary>
+        public void CloseNow()
+        {
+            closeWindowByTimer(null, null);
         }
     }
 }

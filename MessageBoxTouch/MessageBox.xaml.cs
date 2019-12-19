@@ -248,7 +248,8 @@ namespace MessageBoxTouch
         public static bool EnableCloseButton { get => enableCloseButton; set => enableCloseButton = value; }
 
         // 按钮动作样式
-        // TODO
+        private static List<Style> styleList = new List<Style> { new ResourceDictionary { Source = new Uri("pack://application:,,,/MessageBoxTouch;component/WndStyles.xaml") }["MessageBoxButtonStyle"] as Style };
+        public static List<Style> StyleList { get => styleList; set => styleList = value; }
 
         // 窗口计时关闭
         private static MessageBoxCloseTimer closeTimer = null;
@@ -300,6 +301,7 @@ namespace MessageBoxTouch
                 InfoIcon = value.InfoIcon;
                 QuestionIcon = value.QuestionIcon;
                 EnableCloseButton = value.EnableCloseButton;
+                StyleList = value.StyleList;
                 CloseTimer = value.CloseTimer;
             }
         }
@@ -458,7 +460,7 @@ namespace MessageBoxTouch
             {
                 result = MessageBoxResult.Cancel;
             }
-            
+
             return result;
         }
 
@@ -549,6 +551,8 @@ namespace MessageBoxTouch
 
                 double highestItemHeight = -1;
 
+                int styleIndex = 0;
+
                 // 判断按钮类型并显示相应的按钮
                 for (int i = 0; i < btnList.Count; ++i)
                 {
@@ -567,15 +571,9 @@ namespace MessageBoxTouch
                         // 设置按钮在Grid中的行列
                         newBtn.SetValue(Grid.RowProperty, 0);
                         newBtn.SetValue(Grid.ColumnProperty, i);
-                        // 引入按钮的样式
-                        var myResourceDictionary = new ResourceDictionary
-                        {
-                            // 指定样式文件的路径
-                            Source = new Uri("pack://application:,,,/MessageBoxTouch;component/WndStyles.xaml")
-                        };
-                        // 通过key找到指定的样式并赋值给按钮
-                        var myButtonStyle = myResourceDictionary["MessageBoxButtonStyle"] as Style;
-                        newBtn.Style = myButtonStyle;
+                        // 设置按钮样式
+                        newBtn.Style = styleList.Count > styleIndex + 1 ? styleList[styleIndex++] : styleList[styleIndex];
+
                         //设置按钮文本
                         newBtn.Content = btnList[i];
                         // 设置按钮外边距
@@ -678,13 +676,15 @@ namespace MessageBoxTouch
                     mb.b_buttonborder.Height = mb.buttonHeight + 13;
                 }
 
-                if(CloseTimer != null)
+                if (CloseTimer != null)
                 {
-                    CloseTimer.CloseNow = new MessageBoxCloseTimer.CloseWindowByTimer(CloseWindowByTimer);
+                    CloseTimer.closeWindowByTimer = new MessageBoxCloseTimer.CloseWindowByTimer(CloseWindowByTimer);
 
+                    // 设置定时关闭窗口时间
+                    // TODO 换成Timer类 + 委托调用关闭函数的形式是不是更好
                     mb.timer = new DispatcherTimer();
                     mb.timer.Interval = CloseTimer.timeSpan;
-                    mb.timer.Tick += CloseWindowByTimer;  //你的事件
+                    mb.timer.Tick += CloseWindowByTimer;
                     mb.timer.Start();
                 }
 
@@ -817,6 +817,7 @@ namespace MessageBoxTouch
             InfoIcon = new BitmapImage(new Uri(".\\Image\\info.png", UriKind.RelativeOrAbsolute));
             QuestionIcon = new BitmapImage(new Uri(".\\Image\\question.png", UriKind.RelativeOrAbsolute));
             EnableCloseButton = false;
+            StyleList = new List<Style> { new ResourceDictionary { Source = new Uri("pack://application:,,,/MessageBoxTouch;component/WndStyles.xaml") }["MessageBoxButtonStyle"] as Style };
             CloseTimer = null;
 
             PropertiesSetter = new PropertiesSetter();

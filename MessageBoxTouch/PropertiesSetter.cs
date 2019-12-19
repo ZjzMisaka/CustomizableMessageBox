@@ -59,6 +59,7 @@ namespace MessageBoxTouch
             InfoIcon = propertiesSetter.InfoIcon;
             QuestionIcon = propertiesSetter.QuestionIcon;
             EnableCloseButton = propertiesSetter.EnableCloseButton;
+            StyleList = propertiesSetter.StyleList;
             CloseTimer = propertiesSetter.CloseTimer;
         }
 
@@ -187,12 +188,10 @@ namespace MessageBoxTouch
         public Duration WindowShowDuration { get => windowShowDuration; set => windowShowDuration = value; }
 
         // 窗口显示动画
-        // TODO
         private List<KeyValuePair<DependencyProperty, AnimationTimeline>> windowShowAnimations = null;
         public List<KeyValuePair<DependencyProperty, AnimationTimeline>> WindowShowAnimations { get => windowShowAnimations; set => windowShowAnimations = value; }
 
         // 窗口关闭动画
-        // TODO
         private List<KeyValuePair<DependencyProperty, AnimationTimeline>> windowCloseAnimations = null;
         public List<KeyValuePair<DependencyProperty, AnimationTimeline>> WindowCloseAnimations { get => windowCloseAnimations; set => windowCloseAnimations = value; }
 
@@ -219,6 +218,10 @@ namespace MessageBoxTouch
         // 应用窗口关闭按钮
         private bool enableCloseButton = false;
         public bool EnableCloseButton { get => enableCloseButton; set => enableCloseButton = value; }
+
+        // 按钮动作样式
+        private List<Style> styleList = new List<Style> { new ResourceDictionary { Source = new Uri("pack://application:,,,/MessageBoxTouch;component/WndStyles.xaml") }["MessageBoxButtonStyle"] as Style };
+        public List<Style> StyleList { get => styleList; set => styleList = value; }
 
         // 窗口计时关闭
         private MessageBoxCloseTimer closeTimer = null;
