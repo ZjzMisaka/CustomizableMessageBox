@@ -1644,7 +1644,7 @@ namespace MessageBoxTouch
             List<object> btnObjList = new List<object>();
             for (int i = 0; i < btnList.Count; i++)
             {
-                if (!(btnList[i] is ButtonSpacer))
+                if (btnList[i] is string || btnList[i] is FrameworkElement)
                 {
                     btnObjList.Add(btnList[i]);
                 }
