@@ -6,7 +6,7 @@
 - 消息框最初有一定高度, 但如果Message文本内容过多, 超出了高度限制, MessageBox显示不下时, 窗口高度会对应增加, 使消息能被完整显示出来. 
 - 如果消息框窗口高度达到窗口工作区高度, 但还是容不下消息字符串显示时, 消息框高度不再增长, 但是可以通过滚动消息区域查看剩余消息. 
 - 可以自由改变外观. 
-- 可在按钮区域插入自定义控件 (如输入框, 另一个按钮, 等等). 调用后可获取用户对插入的自定控件的操作结果. 
+- 可在按钮区域插入自定义控件 (如输入框, 另一个按钮, 进度条, 等等). 调用后可获取用户对插入的自定控件的操作结果. 
 ### 用法
 - 生成项目MessageBoxTouch, 得到对应动态链接库, 引用到自己的项目中, 并调用. 本工程自带有示例. 
 - 工具的MessageBox的Show函数参数与System.Windows.MessageBox的参数兼容, 简单而言只要引入一下dll, 不用做过多改动即可使用工具提供的MessageBox. 
@@ -80,7 +80,7 @@ MessageBox.Show(tb.Text == string.Empty ? "用户未输入" : tb.Text, (string)M
 |自定窗口打开与关闭动画|已实装|
 |自定义图标|已实装|
 |是否应用窗口关闭按钮|已实装|
-|按钮动作样式|未实装|
+|按钮动作样式|已实装|
 |窗口计时 / 立即关闭|已实装|
 ### 成员函数与属性
 |MessageBox属性|类型|含义|静态|状态|
@@ -124,7 +124,7 @@ MessageBox.Show(tb.Text == string.Empty ? "用户未输入" : tb.Text, (string)M
 |InfoIcon|BitmapImage|自定义信息图标|是|已实装|
 |QuestionIcon|BitmapImage|自定义问题图标|是|已实装|
 |EnableCloseButton|bool|应用窗口关闭按钮|是|已实装|
-|?|?|按钮动作样式|是|未实装|
+|ButtonStyleList|List&lt;Style&gt;|按钮动作样式|是|已实装|
 |CloseTimer|MessageBoxCloseTimer|窗口计时 / 立即关闭|是|已实装|
 
 |MessageBox函数|含义|参数|返回值|静态|
@@ -155,7 +155,7 @@ MessageBox.Show(tb.Text == string.Empty ? "用户未输入" : tb.Text, (string)M
 |----|----|----|----|----|
 |MessageBoxCloseTimer(TimeSpan, int)|构造函数|TimeSpan实例 (距关闭的时间), 窗口关闭后返回的返回值||否|
 |MessageBoxCloseTimer(int, int)|构造函数|距关闭的秒数, 窗口关闭后返回的返回值||否|
-|CloseNow(Object, EventArgs)|委托, 立即关闭窗口|无用, 无用||否|
+|CloseNow()|立即关闭窗口|||否|
 
 |PropertiesSetter属性|含义|
 |----|----|
