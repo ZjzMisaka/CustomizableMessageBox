@@ -183,9 +183,4 @@ MessageBox.Show(tb.Text == string.Empty ? "用户未输入" : tb.Text, (string)M
 |GetLength()|获取留白长度||double|否|
 
 ### 示例图片
-![样式1](https://www.iaders.com/wp-content/uploads/2019/12/mb1.png "样式1")
-![样式1](https://www.iaders.com/wp-content/uploads/2019/12/mb6.png "样式1")
-![样式1](https://www.iaders.com/wp-content/uploads/2019/12/mb5.png "样式1")
-![样式2](https://www.iaders.com/wp-content/uploads/2019/12/mb4.png "样式2")
-![样式2](https://www.iaders.com/wp-content/uploads/2019/12/mb2.png "样式2")
-![样式2](https://www.iaders.com/wp-content/uploads/2019/12/mb3.png "样式2")
+![示例](https://www.iaders.com/wp-content/uploads/2019/12/mb.gif "示例")
