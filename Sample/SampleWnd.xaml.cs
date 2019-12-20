@@ -60,7 +60,7 @@ namespace Sample
             ps3.CloseTimer = new MessageBoxCloseTimer(5, -100);
 
             ps4 = new PropertiesSetter(ps1);
-            ps4.WarningIcon = new BitmapImage(new Uri("C:\\Users\\admin\\Pictures\\Global-Book-Close.png"));
+            ps4.WarningIcon = new BitmapImage(new Uri("C:\\Users\\admin\\Pictures\\ssccicon.png"));
             ps4.MessageFontSize = 20;
             ps4.TitleFontFamily = new FontFamily("黑体");
             ps4.ButtonFontFamily = new FontFamily("黑体");
@@ -159,14 +159,108 @@ namespace Sample
 
             DDChallenge();
 
-            MessageBox.WarningIcon = new BitmapImage(new Uri("C:\\Users\\admin\\Pictures\\lys1.jpg"));
             MessageBox.ErrorIcon = new BitmapImage(new Uri("C:\\Users\\admin\\Pictures\\lys2.png"));
             MessageBox.WindowShowDuration = new Duration(new TimeSpan(0, 0, 0, 1));
+            //MessageBox.MessageFontSize += 5;
             timer = new Timer();
             timer.Interval = 1000;
             timer.Elapsed += Tick_AddStr;
             timer.Start();
-            MessageBox.Show("ルイズ！ルイズ！ルイズ！ルイズぅぅうううわぁああああああああああああああああああああああん！！！", "露易丝定型文全文鉴赏", MessageBoxButton.OK);
+            MessageBox.Show(new List<object> { new ButtonSpacer(), new ButtonSpacer(), "露易丝!", "露易丝?", "露易丝." }, "ルイズ！ルイズ！ルイズ！ルイズぅぅうううわぁああああああああああああああああああああああん！！！", "露易丝定型文全文鉴赏");
+            timer.Stop();
+
+            MessageBox.WindowShowDuration = new Duration(new TimeSpan(0, 0, 0, 1));
+            timer = new Timer();
+            timer.Interval = 1000;
+            timer.Elapsed += Tick_ShaMaTe;
+            MessageBox.WarningIcon = new BitmapImage(new Uri("C:\\Users\\admin\\Pictures\\lys1.jpg"));
+            List<Style> buttonStyleList = new List<Style>();
+            Style s1 = new Style();
+            s1.TargetType = typeof(Button);
+            s1.Setters.Add(new Setter(Button.BackgroundProperty, new SolidColorBrush(Colors.Blue)));
+            s1.Setters.Add(new Setter(Button.BorderBrushProperty, new SolidColorBrush(Colors.Fuchsia)));
+            s1.Setters.Add(new Setter(Button.ForegroundProperty, new SolidColorBrush(Colors.Bisque)));
+            s1.Setters.Add(new Setter(Button.BorderThicknessProperty, new Thickness(13, 20, 6, 11)));
+            s1.Setters.Add(new Setter(Button.FontFamilyProperty, new FontFamily("宋体")));
+            Trigger t1 = new Trigger();
+            t1.Property = Button.IsMouseOverProperty;
+            t1.Setters.Add(new Setter(Button.BackgroundProperty, new SolidColorBrush(Colors.Red)));
+            t1.Setters.Add(new Setter(Button.BorderBrushProperty, new SolidColorBrush(Colors.MediumAquamarine)));
+            t1.Setters.Add(new Setter(Button.ForegroundProperty, new SolidColorBrush(Colors.DarkOrange)));
+            t1.Setters.Add(new Setter(Button.BorderThicknessProperty, new Thickness(5, 6, 0, 4)));
+            t1.Setters.Add(new Setter(Button.FontFamilyProperty, new FontFamily("幼圆")));
+            t1.Value = true;
+            s1.Triggers.Add(t1);
+            Trigger t4 = new Trigger();
+            t4.Property = Button.IsPressedProperty;
+            t4.Setters.Add(new Setter(Button.BackgroundProperty, new SolidColorBrush(Colors.Green)));
+            t4.Setters.Add(new Setter(Button.BorderBrushProperty, new SolidColorBrush(Colors.Brown)));
+            t4.Setters.Add(new Setter(Button.ForegroundProperty, new SolidColorBrush(Colors.Aqua)));
+            t4.Setters.Add(new Setter(Button.BorderThicknessProperty, new Thickness(0, 7, 5, 0)));
+            t4.Setters.Add(new Setter(Button.FontFamilyProperty, new FontFamily("楷体")));
+            t4.Value = true;
+            s1.Triggers.Add(t1);
+            s1.Triggers.Add(t4);
+            buttonStyleList.Add(s1);
+            Style s2 = new Style();
+            s2.TargetType = typeof(Button);
+            s2.Setters.Add(new Setter(Button.BackgroundProperty, new SolidColorBrush(Colors.Red)));
+            s2.Setters.Add(new Setter(Button.BorderBrushProperty, new SolidColorBrush(Colors.MediumAquamarine)));
+            s2.Setters.Add(new Setter(Button.ForegroundProperty, new SolidColorBrush(Colors.DarkOrange)));
+            s2.Setters.Add(new Setter(Button.BorderThicknessProperty, new Thickness(5, 6, 0, 4)));
+            s2.Setters.Add(new Setter(Button.FontFamilyProperty, new FontFamily("幼圆")));
+            Trigger t2 = new Trigger();
+            t2.Property = Button.IsMouseOverProperty;
+            t2.Setters.Add(new Setter(Button.BackgroundProperty, new SolidColorBrush(Colors.Green)));
+            t2.Setters.Add(new Setter(Button.BorderBrushProperty, new SolidColorBrush(Colors.Brown)));
+            t2.Setters.Add(new Setter(Button.ForegroundProperty, new SolidColorBrush(Colors.Aqua)));
+            t2.Setters.Add(new Setter(Button.BorderThicknessProperty, new Thickness(0, 7, 5, 0)));
+            t2.Setters.Add(new Setter(Button.FontFamilyProperty, new FontFamily("楷体")));
+            t2.Value = true;
+            Trigger t5 = new Trigger();
+            t5.Property = Button.IsPressedProperty;
+            t5.Setters.Add(new Setter(Button.BackgroundProperty, new SolidColorBrush(Colors.Blue)));
+            t5.Setters.Add(new Setter(Button.BorderBrushProperty, new SolidColorBrush(Colors.Fuchsia)));
+            t5.Setters.Add(new Setter(Button.ForegroundProperty, new SolidColorBrush(Colors.Bisque)));
+            t5.Setters.Add(new Setter(Button.BorderThicknessProperty, new Thickness(13, 20, 6, 11)));
+            t5.Setters.Add(new Setter(Button.FontFamilyProperty, new FontFamily("宋体")));
+            t5.Value = true;
+            s1.Triggers.Add(t2);
+            s2.Triggers.Add(t5);
+            buttonStyleList.Add(s2);
+            Style s3 = new Style();
+            s3.TargetType = typeof(Button);
+            s3.Setters.Add(new Setter(Button.BackgroundProperty, new SolidColorBrush(Colors.Green)));
+            s3.Setters.Add(new Setter(Button.BorderBrushProperty, new SolidColorBrush(Colors.Brown)));
+            s3.Setters.Add(new Setter(Button.ForegroundProperty, new SolidColorBrush(Colors.Aqua)));
+            s3.Setters.Add(new Setter(Button.BorderThicknessProperty, new Thickness(0, 7, 5, 0)));
+            s3.Setters.Add(new Setter(Button.FontFamilyProperty, new FontFamily("楷体")));
+            Trigger t3 = new Trigger();
+            t3.Property = Button.IsMouseOverProperty;
+            t3.Setters.Add(new Setter(Button.BackgroundProperty, new SolidColorBrush(Colors.Red)));
+            t3.Setters.Add(new Setter(Button.BorderBrushProperty, new SolidColorBrush(Colors.MediumAquamarine)));
+            t3.Setters.Add(new Setter(Button.ForegroundProperty, new SolidColorBrush(Colors.DarkOrange)));
+            t3.Setters.Add(new Setter(Button.BorderThicknessProperty, new Thickness(5, 6, 0, 4)));
+            t3.Setters.Add(new Setter(Button.FontFamilyProperty, new FontFamily("幼圆")));
+            t3.Value = true;
+            Trigger t6 = new Trigger();
+            t6.Property = Button.IsPressedProperty;
+            t6.Setters.Add(new Setter(Button.BackgroundProperty, new SolidColorBrush(Colors.Blue)));
+            t6.Setters.Add(new Setter(Button.BorderBrushProperty, new SolidColorBrush(Colors.Fuchsia)));
+            t6.Setters.Add(new Setter(Button.ForegroundProperty, new SolidColorBrush(Colors.Bisque)));
+            t6.Setters.Add(new Setter(Button.BorderThicknessProperty, new Thickness(13, 20, 6, 11)));
+            t6.Setters.Add(new Setter(Button.FontFamilyProperty, new FontFamily("宋体")));
+            t6.Value = true;
+            s3.Triggers.Add(t3);
+            s3.Triggers.Add(t6);
+            buttonStyleList.Add(s3);
+            MessageBox.ButtonStyleList = buttonStyleList;
+            MessageBox.ButtonFontFamily = null;
+            MessageBox.ButtonBorderThickness = new Thickness();
+            MessageBox.ButtonBorderColor = null;
+            MessageBox.ButtonFontColor = null;
+            timer.Start();
+            MessageBox.Show(new List<object> { new ButtonSpacer(30), "露易丝!", "露易丝?", "露易丝.", new ButtonSpacer(60) }, "杀马特", "走马灯");
             timer.Stop();
         }
 
@@ -216,18 +310,44 @@ namespace Sample
 
         private static void Tick_AddStr()
         {
-            if (MessageBox.MessageFontSize < 40)
-            {
-                MessageBox.SetIconType(MessageBoxImage.Warning);
-                MessageBox.MessageFontSize += 5;
-                ++MessageBox.ButtonFontSize;
-                ++MessageBox.TitleFontSize;
-            }
-            else if (++lys_i < lys.Count)
+            if (++lys_i + 1 < lys.Count)
             {
                 MessageBox.SetIconType(MessageBoxImage.Error);
                 MessageBox.MessageText += "\n" + lys[lys_i];
             }
+        }
+
+        private static void Tick_ShaMaTe(object sender, EventArgs e)
+        {
+            pb.Dispatcher.Invoke(DispatcherPriority.Normal, new TimerDispatcherDelegate(Tick_ShaMaTe));
+        }
+
+        private static void Tick_ShaMaTe()
+        {
+            MessageBox.SetIconType(MessageBoxImage.Warning);
+            Random random = new Random();
+            MessageBox.MessageFontSize = random.Next(10, 50);
+            MessageBox.ButtonFontSize = random.Next(10, 50);
+            MessageBox.TitleFontSize = random.Next(10, 50);
+            MessageBox.ButtonPanelColor = new MessageBoxColor("#" + random.Next(10000000, 99999999));
+            MessageBox.MessagePanelColor = new MessageBoxColor("#" + random.Next(10000000, 99999999));
+            MessageBox.TitlePanelColor = new MessageBoxColor("#" + random.Next(10000000, 99999999));
+            MessageBox.ButtonPanelBorderColor = new MessageBoxColor("#" + random.Next(10000000, 99999999));
+            MessageBox.MessagePanelBorderColor = new MessageBoxColor("#" + random.Next(10000000, 99999999));
+            MessageBox.TitlePanelBorderColor = new MessageBoxColor("#" + random.Next(10000000, 99999999));
+            MessageBox.MessageFontColor = new MessageBoxColor("#" + random.Next(10000000, 99999999));
+            MessageBox.TitleFontColor = new MessageBoxColor("#" + random.Next(10000000, 99999999));
+            MessageBox.ButtonPanelBorderThickness = new Thickness(random.Next(0, 15), random.Next(0, 15), random.Next(0, 15), random.Next(0, 15));
+            MessageBox.MessagePanelBorderThickness = new Thickness(random.Next(0, 15), random.Next(0, 15), random.Next(0, 15), random.Next(0, 15));
+            MessageBox.TitlePanelBorderThickness = new Thickness(random.Next(0, 15), random.Next(0, 15), random.Next(0, 15), random.Next(0, 15));
+            MessageBox.WndBorderColor = new MessageBoxColor("#" + random.Next(10000000, 99999999));
+            MessageBox.WndBorderThickness = new Thickness(random.Next(0, 15), random.Next(0, 15), random.Next(0, 15), random.Next(0, 15));
+
+            List<Style> buttonStyleList = MessageBox.ButtonStyleList;
+            Style temp = buttonStyleList[0];
+            buttonStyleList.RemoveAt(0);
+            buttonStyleList.Add(temp);
+            MessageBox.ButtonStyleList = buttonStyleList;
         }
 
         private void Button_Click_5(object sender, RoutedEventArgs e)
@@ -297,10 +417,11 @@ namespace Sample
             if (sbtn.ActualHeight - 20 > 0)
                 sbtn.Height = sbtn.ActualHeight - 20;
 
-            sbtn.Content = "嘶哈嘶哈";
-            lbl.Content = "awsl";
+            sbtn.Content += "嘶哈";
+            lbl.Content += "awsl";
 
-            MessageBox.MessageText = "1145141919810";
+            MessageBox.MessageText += "\nAWSL";
+            MessageBox.TitleText += "嘶哈";
         }
     }
 }

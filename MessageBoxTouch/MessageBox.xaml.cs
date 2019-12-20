@@ -240,7 +240,6 @@ namespace MessageBoxTouch
                 }
                 InitProperties();
                 LoadButtonPanel();
-                SetButtonStyle();
             }
         }
 
@@ -289,7 +288,6 @@ namespace MessageBoxTouch
                     return;
                 }
                 InitProperties();
-                LoadButtonPanel();
                 SetButtonStyle();
             }
         }
@@ -483,7 +481,6 @@ namespace MessageBoxTouch
                     return;
                 }
                 InitProperties();
-                LoadButtonPanel();
                 SetButtonStyle();
             }
         }
@@ -565,7 +562,6 @@ namespace MessageBoxTouch
                     return;
                 }
                 InitProperties();
-                LoadButtonPanel();
                 SetButtonStyle();
             }
         }
@@ -618,7 +614,6 @@ namespace MessageBoxTouch
                 }
                 InitProperties();
                 LoadButtonPanel();
-                SetButtonStyle();
             }
         }
 
@@ -711,7 +706,6 @@ namespace MessageBoxTouch
                     return;
                 }
                 SetButtonStyle();
-                LoadButtonPanel();
             }
         }
 
@@ -1030,10 +1024,12 @@ namespace MessageBoxTouch
         {
             // 根据字体计算标题字符串高度
             double height = new FormattedText(" ", CultureInfo.CurrentCulture, System.Windows.FlowDirection.LeftToRight, new Typeface(mb.l_title.FontFamily.ToString()), mb.l_title.FontSize, System.Windows.Media.Brushes.Black, pixelsPerDip).Height;
+            double titleAndBorderHeight = height + mb.b_titleborder.BorderThickness.Top + mb.b_titleborder.BorderThickness.Bottom + 14;
+
             // 设置标题栏高度
-            mb.g_titlegrid.Height = height + 14;
-            mb.rd_title.Height = new GridLength(height + 14);
-            mb.b_titleborder.Height = height + 14;
+            mb.g_titlegrid.Height = titleAndBorderHeight;
+            mb.rd_title.Height = new GridLength(titleAndBorderHeight);
+            mb.b_titleborder.Height = titleAndBorderHeight;
         }
 
         /// <summary>
@@ -1041,15 +1037,12 @@ namespace MessageBoxTouch
         /// </summary>
         private static void LoadButtonPanel()
         {
-            // 根据按钮字体计算自定按钮文本中最长的文本的宽度和字符高度
-            double maxContentWidth = 0;
-            double contentHeight = 0;
-
-            double highestItemHeight = -1;
-
             int styleIndex = 0;
 
             mb.g_buttongrid.Children.Clear();
+            mb.g_buttongrid.ColumnDefinitions.Clear();
+            mb.g_buttongrid.ColumnDefinitions.Add(new ColumnDefinition());
+            mb.g_buttongrid.ColumnDefinitions.Add(new ColumnDefinition());
 
             // 判断按钮类型并显示相应的按钮
             for (int i = 0; i < btnList.Count; ++i)
@@ -1081,12 +1074,6 @@ namespace MessageBoxTouch
                     newBtn.Visibility = Visibility.Visible;
                     // 绑定按钮点击事件
                     newBtn.Click += BtnClicked;
-
-                    newBtn.FontSize = ButtonFontSize;
-                    newBtn.FontFamily = ButtonFontFamily;
-                    newBtn.Foreground = ButtonFontColor.GetSolidColorBrush();
-                    newBtn.BorderBrush = ButtonBorderColor.GetSolidColorBrush();
-                    newBtn.BorderThickness = ButtonBorderThickness;
                 }
                 else if (btnList[i] is ButtonSpacer)
                 {
@@ -1107,41 +1094,12 @@ namespace MessageBoxTouch
                     // 设置按钮在Grid中的行列
                     fe.SetValue(Grid.RowProperty, 0);
                     fe.SetValue(Grid.ColumnProperty, i);
-                    if (fe.Height > highestItemHeight)
-                    {
-                        highestItemHeight = fe.Height;
-                    }
+                    
                     fe.SizeChanged += ButtonObjectSizeChanged;
                 }
-
-                // 当该变量还没计算时
-                if (newBtn != null && maxContentWidth == 0)
-                {
-                    foreach (object s in btnList)
-                    {
-                        if (s is string)
-                        {
-                            // 使用字符串和字体设置作为参数实例化FormattedText
-                            FormattedText ft = new FormattedText(s.ToString(), CultureInfo.CurrentCulture, System.Windows.FlowDirection.LeftToRight, new Typeface(newBtn.FontFamily.ToString()), newBtn.FontSize, System.Windows.Media.Brushes.Black, pixelsPerDip);
-                            // 计算字符串在按钮中的宽度
-                            double contentWidth = ft.Width;
-                            // 如果值比maxContentWidth值更大则赋值给maxContentWidth
-                            maxContentWidth = contentWidth > maxContentWidth ? contentWidth : maxContentWidth;
-                            if (contentHeight == 0)
-                            {
-                                contentHeight = ft.Height;
-                            }
-                        }
-                    }
-                }
-
-                // 设置按钮的宽高
-                // newBtn.Width = maxContentWidth + 7;
-                //if (newBtn != null)
-                //{
-                //    newBtn.Height = contentHeight + 7;
-                //}
             }
+
+            SetButtonStyle();
 
             // 设置消息区域宽度
             if (mb.i_img.Visibility == Visibility.Visible)
@@ -1151,21 +1109,6 @@ namespace MessageBoxTouch
             else
             {
                 mb.tb_msg.Width = mb.Width - mb.tb_msg.Margin.Left - mb.tb_msg.Margin.Right;
-            }
-
-            // 设置按钮栏高度
-            mb.buttonHeight = contentHeight + 7;
-            if (highestItemHeight > mb.buttonHeight)
-            {
-                mb.g_buttongrid.Height = highestItemHeight + 13;
-                mb.rd_button.Height = new GridLength(highestItemHeight + 13, GridUnitType.Pixel);
-                mb.b_buttonborder.Height = highestItemHeight + 13;
-            }
-            else
-            {
-                mb.g_buttongrid.Height = mb.buttonHeight + 13;
-                mb.rd_button.Height = new GridLength(mb.buttonHeight + 13, GridUnitType.Pixel);
-                mb.b_buttonborder.Height = mb.buttonHeight + 13;
             }
         }
 
@@ -1607,22 +1550,26 @@ namespace MessageBoxTouch
             switch (iconType)
             {
                 case MessageBoxImage.Warning:
-                    mb.i_img.Source = WarningIcon;
+                    if (WarningIcon != null)
+                        mb.i_img.Source = WarningIcon;
                     mb.i_img.Visibility = Visibility.Visible;
                     break;
 
                 case MessageBoxImage.Error:
-                    mb.i_img.Source = ErrorIcon;
+                    if (ErrorIcon != null)
+                        mb.i_img.Source = ErrorIcon;
                     mb.i_img.Visibility = Visibility.Visible;
                     break;
 
                 case MessageBoxImage.Information:
-                    mb.i_img.Source = InfoIcon;
+                    if (InfoIcon != null)
+                        mb.i_img.Source = InfoIcon;
                     mb.i_img.Visibility = Visibility.Visible;
                     break;
 
                 case MessageBoxImage.Question:
-                    mb.i_img.Source = QuestionIcon;
+                    if (QuestionIcon != null)
+                        mb.i_img.Source = QuestionIcon;
                     mb.i_img.Visibility = Visibility.Visible;
                     break;
 
@@ -1640,11 +1587,14 @@ namespace MessageBoxTouch
         /// </summary>
         private static void SetButtonStyle()
         {
+            double highestItemHeight = -1;
+            //double maxContentWidth = 0;
+            double contentAndBorderHeight = 0;
             int buttonIndex = -1;
             List<object> btnObjList = new List<object>();
             for (int i = 0; i < btnList.Count; i++)
             {
-                if (!(btnList[i] is ButtonSpacer))
+                if (btnList[i] is string || btnList[i] is FrameworkElement)
                 {
                     btnObjList.Add(btnList[i]);
                 }
@@ -1655,13 +1605,70 @@ namespace MessageBoxTouch
                 {
                     ++buttonIndex;
                     Button btn = (Button)mb.g_buttongrid.Children[i];
-                    btn.Style = ButtonStyleList.Count > buttonIndex ? ButtonStyleList[buttonIndex] : ButtonStyleList[ButtonStyleList.Count - 1];
-                    btn.FontSize = ButtonFontSize;
-                    btn.FontFamily = ButtonFontFamily;
-                    btn.Foreground = ButtonFontColor.GetSolidColorBrush();
-                    btn.BorderBrush = ButtonBorderColor.GetSolidColorBrush();
-                    btn.BorderThickness = ButtonBorderThickness;
+
+                    if (ButtonFontSize > 0)
+                        btn.FontSize = ButtonFontSize;
+                    if (ButtonFontFamily != null)
+                        btn.FontFamily = ButtonFontFamily;
+                    if (ButtonFontColor != null)
+                        btn.Foreground = ButtonFontColor.GetSolidColorBrush();
+                    if (ButtonBorderColor != null)
+                        btn.BorderBrush = ButtonBorderColor.GetSolidColorBrush();
+                    if (!ButtonBorderThickness.Equals(new Thickness()))
+                        btn.BorderThickness = ButtonBorderThickness;
+
+                    Style style = null;
+
+                    if (ButtonStyleList != null)
+                    {
+                        btn.Style = style = ButtonStyleList.Count > buttonIndex ? ButtonStyleList[buttonIndex] : ButtonStyleList[ButtonStyleList.Count - 1];
+                    }
+
+                    // 使用字符串和字体设置作为参数实例化FormattedText
+                    FormattedText ft = new FormattedText(btn.Content.ToString(), CultureInfo.CurrentCulture, System.Windows.FlowDirection.LeftToRight, new Typeface(btn.FontFamily.ToString()), btn.FontSize, System.Windows.Media.Brushes.Black, pixelsPerDip);
+                    // 计算字符串在按钮中的宽度
+                    //double contentWidth = ft.Width;
+                    // 如果值比maxContentWidth值更大则赋值给maxContentWidth
+                    //maxContentWidth = contentWidth > maxContentWidth ? contentWidth : maxContentWidth;
+                    Thickness thickness = btn.BorderThickness;
+                    if(style != null)
+                    {
+                        foreach(Setter setter in style.Setters)
+                        {
+                            if (setter.Property == Button.BorderThicknessProperty && setter.Value != null)
+                            {
+                                thickness = (Thickness)setter.Value;
+                            }
+                        }
+                    }
+                    if (ft.Height + thickness.Top + thickness.Bottom > contentAndBorderHeight)
+                    {
+                        contentAndBorderHeight = ft.Height + btn.BorderThickness.Top + btn.BorderThickness.Bottom + mb.b_buttonborder.BorderThickness.Top + mb.b_buttonborder.BorderThickness.Bottom;
+                    }
                 }
+                else if(btnObjList[i] is FrameworkElement)
+                {
+                    FrameworkElement fe = (FrameworkElement)btnObjList[i];
+                    if (fe.Height > highestItemHeight)
+                    {
+                        highestItemHeight = fe.Height;
+                    }
+                }
+            }
+
+            // 设置按钮栏高度
+            mb.buttonHeight = contentAndBorderHeight + 7;
+            if (highestItemHeight > mb.buttonHeight)
+            {
+                mb.g_buttongrid.Height = highestItemHeight + 13;
+                mb.rd_button.Height = new GridLength(highestItemHeight + 13, GridUnitType.Pixel);
+                mb.b_buttonborder.Height = highestItemHeight + 13;
+            }
+            else
+            {
+                mb.g_buttongrid.Height = mb.buttonHeight + 13;
+                mb.rd_button.Height = new GridLength(mb.buttonHeight + 13, GridUnitType.Pixel);
+                mb.b_buttonborder.Height = mb.buttonHeight + 13;
             }
         }
     }
