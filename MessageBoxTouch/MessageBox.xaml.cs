@@ -968,9 +968,6 @@ namespace MessageBoxTouch
                 // 重置选择结果
                 currentClickIndex = -1;
 
-                // 关闭按钮
-                mb.i_close.Source = new BitmapImage(new Uri(".\\Image\\close.png", UriKind.RelativeOrAbsolute));
-
                 // 显示标题
                 mb.l_title.Content = title;
                 mb.Title = title;
@@ -984,6 +981,8 @@ namespace MessageBoxTouch
                 LoadButtonPanel();
 
                 LoadTitlePanel();
+
+                SetMessagePanelWidth();
 
                 if (CloseTimer != null)
                 {
@@ -1023,7 +1022,7 @@ namespace MessageBoxTouch
         private static void LoadTitlePanel()
         {
             // 根据字体计算标题字符串高度
-            double height = new FormattedText(" ", CultureInfo.CurrentCulture, System.Windows.FlowDirection.LeftToRight, new Typeface(mb.l_title.FontFamily.ToString()), mb.l_title.FontSize, System.Windows.Media.Brushes.Black, pixelsPerDip).Height;
+            double height = new FormattedText(" ", CultureInfo.CurrentCulture, System.Windows.FlowDirection.LeftToRight, new Typeface(mb.l_title.FontFamily, mb.l_title.FontStyle, mb.l_title.FontWeight, mb.l_title.FontStretch), mb.l_title.FontSize, System.Windows.Media.Brushes.Black, pixelsPerDip).Height;
             double titleAndBorderHeight = height + mb.b_titleborder.BorderThickness.Top + mb.b_titleborder.BorderThickness.Bottom + 14;
 
             // 设置标题栏高度
@@ -1100,15 +1099,20 @@ namespace MessageBoxTouch
             }
 
             SetButtonStyle();
+        }
 
-            // 设置消息区域宽度
+        /// <summary>
+        /// 设置消息区域宽度
+        /// </summary>
+        private static void SetMessagePanelWidth()
+        {
             if (mb.i_img.Visibility == Visibility.Visible)
             {
-                mb.tb_msg.Width = mb.Width - mb.i_img.Width - mb.i_img.Margin.Left - mb.i_img.Margin.Right - mb.tb_msg.Margin.Left - mb.tb_msg.Margin.Right;
+                mb.tb_msg.Width = mb.Width - mb.i_img.Width - mb.i_img.Margin.Left - mb.i_img.Margin.Right - mb.tb_msg.Margin.Left - mb.tb_msg.Margin.Right - mb.b_messageborder.BorderThickness.Left - mb.b_messageborder.BorderThickness.Right;
             }
             else
             {
-                mb.tb_msg.Width = mb.Width - mb.tb_msg.Margin.Left - mb.tb_msg.Margin.Right;
+                mb.tb_msg.Width = mb.Width - mb.tb_msg.Margin.Left - mb.tb_msg.Margin.Right - mb.b_messageborder.BorderThickness.Left - mb.b_messageborder.BorderThickness.Right;
             }
         }
 
@@ -1265,7 +1269,7 @@ namespace MessageBoxTouch
         private static void SetWindowSize()
         {
             // 单字符高度
-            double height = new FormattedText(" ", CultureInfo.CurrentCulture, System.Windows.FlowDirection.LeftToRight, new Typeface(mb.tb_msg.FontFamily.ToString()), mb.tb_msg.FontSize, System.Windows.Media.Brushes.Black, pixelsPerDip).Height;
+            double height = new FormattedText(" ", CultureInfo.CurrentCulture, System.Windows.FlowDirection.LeftToRight, new Typeface(mb.tb_msg.FontFamily, mb.tb_msg.FontStyle, mb.tb_msg.FontWeight, mb.tb_msg.FontStretch), mb.tb_msg.FontSize, System.Windows.Media.Brushes.Black, pixelsPerDip).Height;
             // 行数
             double lineCount = 1;
             // 当行字符串累积宽度
@@ -1295,7 +1299,7 @@ namespace MessageBoxTouch
                             //获取这个单词
                             string nextWord = GetNextWord(mb.tb_msg.Text, i);
                             // 使用单词字符串和字体设置作为参数实例化FormattedText
-                            ft = new FormattedText(nextWord, CultureInfo.CurrentCulture, System.Windows.FlowDirection.LeftToRight, new Typeface(mb.tb_msg.FontFamily.ToString()), mb.tb_msg.FontSize, System.Windows.Media.Brushes.Black, pixelsPerDip);
+                            ft = new FormattedText(nextWord, CultureInfo.CurrentCulture, System.Windows.FlowDirection.LeftToRight, new Typeface(mb.tb_msg.FontFamily, mb.tb_msg.FontStyle, mb.tb_msg.FontWeight, mb.tb_msg.FontStretch), mb.tb_msg.FontSize, System.Windows.Media.Brushes.Black, pixelsPerDip);
                             //如果单词长度超过TextBlock宽度, 则直接换一行 //TODO 是否应该是换两行? 
                             if (ft.Width > mb.tb_msg.Width)
                             {
@@ -1322,7 +1326,7 @@ namespace MessageBoxTouch
                         else
                         {
                             // 使用字符和字体设置作为参数实例化FormattedText
-                            ft = new FormattedText(mb.tb_msg.Text[i].ToString(), CultureInfo.CurrentCulture, System.Windows.FlowDirection.LeftToRight, new Typeface(mb.tb_msg.FontFamily.ToString()), mb.tb_msg.FontSize, System.Windows.Media.Brushes.Black, pixelsPerDip);
+                            ft = new FormattedText(mb.tb_msg.Text[i].ToString(), CultureInfo.CurrentCulture, System.Windows.FlowDirection.LeftToRight, new Typeface(mb.tb_msg.FontFamily, mb.tb_msg.FontStyle, mb.tb_msg.FontWeight, mb.tb_msg.FontStretch), mb.tb_msg.FontSize, System.Windows.Media.Brushes.Black, pixelsPerDip);
                             // 累加这个字符的宽度
                             lineWidth += ft.Width;
                             // 如果累加后的宽度超过TextBlock宽度, 则直接换一行, 并重新计算
@@ -1343,7 +1347,7 @@ namespace MessageBoxTouch
                             //获取这个单词
                             string nextWord = GetNextWord(mb.tb_msg.Text, i);
                             // 使用单词字符串和字体设置作为参数实例化FormattedText
-                            ft = new FormattedText(nextWord, CultureInfo.CurrentCulture, System.Windows.FlowDirection.LeftToRight, new Typeface(mb.tb_msg.FontFamily.ToString()), mb.tb_msg.FontSize, System.Windows.Media.Brushes.Black, pixelsPerDip);
+                            ft = new FormattedText(nextWord, CultureInfo.CurrentCulture, System.Windows.FlowDirection.LeftToRight, new Typeface(mb.tb_msg.FontFamily, mb.tb_msg.FontStyle, mb.tb_msg.FontWeight, mb.tb_msg.FontStretch), mb.tb_msg.FontSize, System.Windows.Media.Brushes.Black, pixelsPerDip);
                             //如果单词长度超过TextBlock宽度, 则直接换一行, 并以C模式开始计算
                             if (ft.Width > mb.tb_msg.Width)
                             {
@@ -1371,7 +1375,7 @@ namespace MessageBoxTouch
                         else
                         {
                             // 使用字符和字体设置作为参数实例化FormattedText
-                            ft = new FormattedText(mb.tb_msg.Text[i].ToString(), CultureInfo.CurrentCulture, System.Windows.FlowDirection.LeftToRight, new Typeface(mb.tb_msg.FontFamily.ToString()), mb.tb_msg.FontSize, System.Windows.Media.Brushes.Black, pixelsPerDip);
+                            ft = new FormattedText(mb.tb_msg.Text[i].ToString(), CultureInfo.CurrentCulture, System.Windows.FlowDirection.LeftToRight, new Typeface(mb.tb_msg.FontFamily, mb.tb_msg.FontStyle, mb.tb_msg.FontWeight, mb.tb_msg.FontStretch), mb.tb_msg.FontSize, System.Windows.Media.Brushes.Black, pixelsPerDip);
                             // 累加这个字符的宽度
                             lineWidth += ft.Width;
                             // 如果累加后的宽度超过TextBlock宽度, 则直接换一行, 并重新计算
@@ -1392,7 +1396,7 @@ namespace MessageBoxTouch
                             continue;
                         }
                         // 使用字符串和字体设置作为参数实例化FormattedText
-                        ft = new FormattedText(mb.tb_msg.Text[i].ToString(), CultureInfo.CurrentCulture, System.Windows.FlowDirection.LeftToRight, new Typeface(mb.tb_msg.FontFamily.ToString()), mb.tb_msg.FontSize, System.Windows.Media.Brushes.Black, pixelsPerDip);
+                        ft = new FormattedText(mb.tb_msg.Text[i].ToString(), CultureInfo.CurrentCulture, System.Windows.FlowDirection.LeftToRight, new Typeface(mb.tb_msg.FontFamily, mb.tb_msg.FontStyle, mb.tb_msg.FontWeight, mb.tb_msg.FontStretch), mb.tb_msg.FontSize, System.Windows.Media.Brushes.Black, pixelsPerDip);
                         // 累加这个字符的宽度
                         lineWidth += ft.Width;
                         if (lineWidth > mb.tb_msg.Width)
@@ -1407,7 +1411,7 @@ namespace MessageBoxTouch
             }
 
             // 计算窗口高度
-            mb.Height = height * lineCount + mb.rd_title.Height.Value + mb.rd_button.Height.Value + mb.tb_msg.Margin.Top + mb.tb_msg.Margin.Bottom;
+            mb.Height = height * lineCount + mb.rd_title.Height.Value + mb.rd_button.Height.Value + mb.tb_msg.Margin.Top + mb.tb_msg.Margin.Bottom + mb.b_messageborder.BorderThickness.Top + mb.b_messageborder.BorderThickness.Bottom + height;
         }
 
         /// <summary>
@@ -1580,6 +1584,8 @@ namespace MessageBoxTouch
                 default:
                     break;
             }
+
+            SetMessagePanelWidth();
         }
 
         /// <summary>
@@ -1625,7 +1631,7 @@ namespace MessageBoxTouch
                     }
 
                     // 使用字符串和字体设置作为参数实例化FormattedText
-                    FormattedText ft = new FormattedText(btn.Content.ToString(), CultureInfo.CurrentCulture, System.Windows.FlowDirection.LeftToRight, new Typeface(btn.FontFamily.ToString()), btn.FontSize, System.Windows.Media.Brushes.Black, pixelsPerDip);
+                    FormattedText ft = new FormattedText(btn.Content.ToString(), CultureInfo.CurrentCulture, System.Windows.FlowDirection.LeftToRight, new Typeface(btn.FontFamily, btn.FontStyle, btn.FontWeight, btn.FontStretch), btn.FontSize, System.Windows.Media.Brushes.Black, pixelsPerDip);
                     // 计算字符串在按钮中的宽度
                     //double contentWidth = ft.Width;
                     // 如果值比maxContentWidth值更大则赋值给maxContentWidth
