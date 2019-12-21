@@ -873,6 +873,10 @@ namespace MessageBoxTouch
             {
                 mb.i_close.Visibility = Visibility.Visible;
             }
+            else
+            {
+                mb.i_close.Visibility = Visibility.Collapsed;
+            }
         }
 
         /// <summary>
@@ -1023,12 +1027,12 @@ namespace MessageBoxTouch
         {
             // 根据字体计算标题字符串高度
             double height = new FormattedText(" ", CultureInfo.CurrentCulture, System.Windows.FlowDirection.LeftToRight, new Typeface(mb.l_title.FontFamily, mb.l_title.FontStyle, mb.l_title.FontWeight, mb.l_title.FontStretch), mb.l_title.FontSize, System.Windows.Media.Brushes.Black, pixelsPerDip).Height;
-            double titleAndBorderHeight = height + mb.b_titleborder.BorderThickness.Top + mb.b_titleborder.BorderThickness.Bottom + 14;
+            double titleAndBorderHeight = height + mb.b_titleborder.BorderThickness.Top + mb.b_titleborder.BorderThickness.Bottom;
 
             // 设置标题栏高度
-            mb.g_titlegrid.Height = titleAndBorderHeight;
-            mb.rd_title.Height = new GridLength(titleAndBorderHeight);
-            mb.b_titleborder.Height = titleAndBorderHeight;
+            mb.g_titlegrid.Height = titleAndBorderHeight + 14;
+            mb.rd_title.Height = new GridLength(titleAndBorderHeight + 14);
+            mb.b_titleborder.Height = titleAndBorderHeight + 14;
         }
 
         /// <summary>
@@ -1457,7 +1461,7 @@ namespace MessageBoxTouch
         }
 
         /// <summary>
-        /// 当用户改变自定控件的大小时触发
+        /// 当自定控件的大小被改变时触发
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
