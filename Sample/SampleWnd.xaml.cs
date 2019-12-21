@@ -60,7 +60,7 @@ namespace Sample
             ps3.CloseTimer = new MessageBoxCloseTimer(5, -100);
 
             ps4 = new PropertiesSetter(ps1);
-            ps4.WarningIcon = new BitmapImage(new Uri("C:\\Users\\admin\\Pictures\\ssccicon.png"));
+            ps4.WarningIcon = new BitmapImage(new Uri("C:\\Users\\1\\Pictures\\ssccicon.png"));
             ps4.MessageFontSize = 20;
             ps4.TitleFontFamily = new FontFamily("黑体");
             ps4.ButtonFontFamily = new FontFamily("黑体");
@@ -159,9 +159,13 @@ namespace Sample
 
             DDChallenge();
 
-            MessageBox.ErrorIcon = new BitmapImage(new Uri("C:\\Users\\admin\\Pictures\\lys2.png"));
+            MessageBox.ErrorIcon = new BitmapImage(new Uri("C:\\Users\\1\\Pictures\\lys2.png"));
             MessageBox.WindowShowDuration = new Duration(new TimeSpan(0, 0, 0, 1));
-            //MessageBox.MessageFontSize += 5;
+            MessageBox.MessageFontSize += 5;
+            MessageBox.MessageFontFamily = new FontFamily("幼圆");
+            // MessageBox.MessagePanelBorderThickness = new Thickness(50);
+            MessageBox.MessagePanelBorderColor = new MessageBoxColor(Colors.Red);
+            MessageBox.TextWrappingMode = TextWrapping.Wrap;
             timer = new Timer();
             timer.Interval = 1000;
             timer.Elapsed += Tick_AddStr;
@@ -173,7 +177,7 @@ namespace Sample
             timer = new Timer();
             timer.Interval = 1000;
             timer.Elapsed += Tick_ShaMaTe;
-            MessageBox.WarningIcon = new BitmapImage(new Uri("C:\\Users\\admin\\Pictures\\lys1.jpg"));
+            MessageBox.WarningIcon = new BitmapImage(new Uri("C:\\Users\\1\\Pictures\\lys1.jpg"));
             List<Style> buttonStyleList = new List<Style>();
             Style s1 = new Style();
             s1.TargetType = typeof(Button);
@@ -260,7 +264,8 @@ namespace Sample
             MessageBox.ButtonBorderColor = null;
             MessageBox.ButtonFontColor = null;
             timer.Start();
-            MessageBox.Show(new List<object> { new ButtonSpacer(30), "露易丝!", "露易丝?", "露易丝.", new ButtonSpacer(60) }, "杀马特", "走马灯");
+            lys_i = 0;
+            MessageBox.Show(new List<object> { new ButtonSpacer(30), "余裕余裕", "理解理解", "いいっすね", new ButtonSpacer(60) }, "Neeeeeeeeeeeeeeeeeeeee", "Mooooooooooooooooooooooo");
             timer.Stop();
         }
 
@@ -342,6 +347,9 @@ namespace Sample
             MessageBox.TitlePanelBorderThickness = new Thickness(random.Next(0, 15), random.Next(0, 15), random.Next(0, 15), random.Next(0, 15));
             MessageBox.WndBorderColor = new MessageBoxColor("#" + random.Next(10000000, 99999999));
             MessageBox.WndBorderThickness = new Thickness(random.Next(0, 15), random.Next(0, 15), random.Next(0, 15), random.Next(0, 15));
+            MessageBox.WindowWidth = random.Next(750, 950);
+            MessageBox.EnableCloseButton = random.Next(-1, 1) == 0 ? false : true;
+            MessageBox.SetIconType(random.Next(-1, 1) == 0 ? MessageBoxImage.Warning : MessageBoxImage.None);
 
             List<Style> buttonStyleList = MessageBox.ButtonStyleList;
             Style temp = buttonStyleList[0];
@@ -405,7 +413,7 @@ namespace Sample
 
             MessageBox.CloseTimer = new MessageBoxCloseTimer(5, -100);
 
-            MessageBox.WarningIcon = new BitmapImage(new Uri("C:\\Users\\admin\\Pictures\\ssccicon.png"));
+            MessageBox.WarningIcon = new BitmapImage(new Uri("C:\\Users\\1\\Pictures\\ssccicon.png"));
 
             lbl.Content = MessageBox.Show(new List<object> { btn, "洋葱", "awsl", "fbk", "艾维斯了", "DD" }, "啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊\n啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊\n啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊\n啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊\naaaaaaaaaaaaa\naaaaaaaaaaaaaaa啊啊啊啊啊啊aaaaaaaaaaaaaaaaaaaaa啊aaaaaaaaaaaaaaaaaaaa\n1514564464\nrgeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeee\nerfewfwf\nerwfwfewfewfef\nefewfewgfewgewrewqrwqedwqwqqqqqqqqqjj\nyrhhhhtr\nyhhhhhhhhhhh\nrythr\nrthyrhr\nryhrhrqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqjj\nyrhhhhtr\nyhhhhhhhhhhh\nrythr\nrthyrhr\nryhrhrqq\nefwfewfefqfqfwqwqedwqew\nfewf", "123123", MessageBoxImage.Warning);
         }
