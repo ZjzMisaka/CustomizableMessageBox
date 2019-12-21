@@ -1,6 +1,6 @@
 # MessageBoxTouch
- ![WTFPL](http://www.wtfpl.net/wp-content/uploads/2012/12/wtfpl-badge-1.png)<br />
- 因为系统MessageBox按钮和字体太小, 所以自己写了个方便更改外观的MessageBox. 有什么好玩的功能也可以扩展上去. 下有截图. <br />
+ ![WTFPL](https://user-gold-cdn.xitu.io/2019/12/21/16f27ee15f822a02)<br />
+ 因为系统MessageBox按钮和字体太小, 所以自己写了个方便更改外观的MessageBox. 有什么好玩的功能也可以扩展上去. 下有演示图. <br />
 ### 特性
 - 单例模式运行, 运行时无法操作父窗口. 
 - 因为可以改变字体且支持触摸操作, 所以适合在平板上使用. 
@@ -14,7 +14,9 @@
 - 工具的MessageBox的Show函数参数与System.Windows.MessageBox的参数兼容, 简单而言只要引入一下dll, 不用做过多改动即可使用工具提供的MessageBox. 
 - 工具的MessageBox.Show函数还有与系统函数不同的重载, 可以实现更多功能. 例如自定义消息框按钮. 
 - 可以通过设置属性改变MessageBox的外观, 例如窗口各部分的字体, 透明度, 背景, 边框, 窗口大小, 限制高度增长, 设置窗口宽度等等. 
-### 示例
+### 图片示例
+![示例](https://www.iaders.com/wp-content/uploads/2019/12/mb-1.gif "粗略做了两种样式")
+### 代码示例
 #### 兼容写法
 返回值为MessageBoxResult型. 
 ```csharp
@@ -181,6 +183,3 @@ MessageBox.Show(tb.Text == string.Empty ? "用户未输入" : tb.Text, (string)M
 |ButtonSpacer()|构造函数|||否|
 |ButtonSpacer(double)|构造函数|留白长度||否|
 |GetLength()|获取留白长度||double|否|
-
-### 示例图片
-![示例](https://www.iaders.com/wp-content/uploads/2019/12/mb-1.gif "示例")
