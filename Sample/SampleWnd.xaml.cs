@@ -60,7 +60,7 @@ namespace Sample
             ps3.CloseTimer = new MessageBoxCloseTimer(5, -100);
 
             ps4 = new PropertiesSetter(ps1);
-            ps4.WarningIcon = new BitmapImage(new Uri("C:\\Users\\1\\Pictures\\ssccicon.png"));
+            ps4.WarningIcon = new BitmapImage(new Uri("C:\\Users\\admin\\Pictures\\ssccicon.png"));
             ps4.MessageFontSize = 20;
             ps4.TitleFontFamily = new FontFamily("黑体");
             ps4.ButtonFontFamily = new FontFamily("黑体");
@@ -159,10 +159,12 @@ namespace Sample
 
             DDChallenge();
 
-            MessageBox.ErrorIcon = new BitmapImage(new Uri("C:\\Users\\1\\Pictures\\lys2.png"));
+            MessageBox.ErrorIcon = new BitmapImage(new Uri("C:\\Users\\admin\\Pictures\\lys2.png"));
             MessageBox.WindowShowDuration = new Duration(new TimeSpan(0, 0, 0, 1));
             MessageBox.MessageFontSize += 5;
-            MessageBox.MessageFontFamily = new FontFamily("幼圆");
+            MessageBox.TitleFontFamily = new FontFamily("游明朝");
+            MessageBox.MessageFontFamily = new FontFamily("UD デジタル 教科書体 NP-B");
+            MessageBox.ButtonFontFamily = new FontFamily("Yu Gothic UI Light");
             // MessageBox.MessagePanelBorderThickness = new Thickness(50);
             MessageBox.MessagePanelBorderColor = new MessageBoxColor(Colors.Red);
             MessageBox.TextWrappingMode = TextWrapping.Wrap;
@@ -177,7 +179,7 @@ namespace Sample
             timer = new Timer();
             timer.Interval = 1000;
             timer.Elapsed += Tick_ShaMaTe;
-            MessageBox.WarningIcon = new BitmapImage(new Uri("C:\\Users\\1\\Pictures\\lys1.jpg"));
+            MessageBox.WarningIcon = new BitmapImage(new Uri("C:\\Users\\admin\\Pictures\\lys1.jpg"));
             List<Style> buttonStyleList = new List<Style>();
             Style s1 = new Style();
             s1.TargetType = typeof(Button);
@@ -185,14 +187,14 @@ namespace Sample
             s1.Setters.Add(new Setter(Button.BorderBrushProperty, new SolidColorBrush(Colors.Fuchsia)));
             s1.Setters.Add(new Setter(Button.ForegroundProperty, new SolidColorBrush(Colors.Bisque)));
             s1.Setters.Add(new Setter(Button.BorderThicknessProperty, new Thickness(13, 20, 6, 11)));
-            s1.Setters.Add(new Setter(Button.FontFamilyProperty, new FontFamily("宋体")));
+            s1.Setters.Add(new Setter(Button.FontFamilyProperty, new FontFamily("游明朝")));
             Trigger t1 = new Trigger();
             t1.Property = Button.IsMouseOverProperty;
             t1.Setters.Add(new Setter(Button.BackgroundProperty, new SolidColorBrush(Colors.Red)));
             t1.Setters.Add(new Setter(Button.BorderBrushProperty, new SolidColorBrush(Colors.MediumAquamarine)));
             t1.Setters.Add(new Setter(Button.ForegroundProperty, new SolidColorBrush(Colors.DarkOrange)));
             t1.Setters.Add(new Setter(Button.BorderThicknessProperty, new Thickness(5, 6, 0, 4)));
-            t1.Setters.Add(new Setter(Button.FontFamilyProperty, new FontFamily("幼圆")));
+            t1.Setters.Add(new Setter(Button.FontFamilyProperty, new FontFamily("Yu Gothic UI Light")));
             t1.Value = true;
             s1.Triggers.Add(t1);
             Trigger t4 = new Trigger();
@@ -201,7 +203,7 @@ namespace Sample
             t4.Setters.Add(new Setter(Button.BorderBrushProperty, new SolidColorBrush(Colors.Brown)));
             t4.Setters.Add(new Setter(Button.ForegroundProperty, new SolidColorBrush(Colors.Aqua)));
             t4.Setters.Add(new Setter(Button.BorderThicknessProperty, new Thickness(0, 7, 5, 0)));
-            t4.Setters.Add(new Setter(Button.FontFamilyProperty, new FontFamily("楷体")));
+            t4.Setters.Add(new Setter(Button.FontFamilyProperty, new FontFamily("UD デジタル 教科書体 NP-B")));
             t4.Value = true;
             s1.Triggers.Add(t1);
             s1.Triggers.Add(t4);
@@ -212,14 +214,14 @@ namespace Sample
             s2.Setters.Add(new Setter(Button.BorderBrushProperty, new SolidColorBrush(Colors.MediumAquamarine)));
             s2.Setters.Add(new Setter(Button.ForegroundProperty, new SolidColorBrush(Colors.DarkOrange)));
             s2.Setters.Add(new Setter(Button.BorderThicknessProperty, new Thickness(5, 6, 0, 4)));
-            s2.Setters.Add(new Setter(Button.FontFamilyProperty, new FontFamily("幼圆")));
+            s2.Setters.Add(new Setter(Button.FontFamilyProperty, new FontFamily("Yu Gothic UI Light")));
             Trigger t2 = new Trigger();
             t2.Property = Button.IsMouseOverProperty;
             t2.Setters.Add(new Setter(Button.BackgroundProperty, new SolidColorBrush(Colors.Green)));
             t2.Setters.Add(new Setter(Button.BorderBrushProperty, new SolidColorBrush(Colors.Brown)));
             t2.Setters.Add(new Setter(Button.ForegroundProperty, new SolidColorBrush(Colors.Aqua)));
             t2.Setters.Add(new Setter(Button.BorderThicknessProperty, new Thickness(0, 7, 5, 0)));
-            t2.Setters.Add(new Setter(Button.FontFamilyProperty, new FontFamily("楷体")));
+            t2.Setters.Add(new Setter(Button.FontFamilyProperty, new FontFamily("UD デジタル 教科書体 NP-B")));
             t2.Value = true;
             Trigger t5 = new Trigger();
             t5.Property = Button.IsPressedProperty;
@@ -227,7 +229,7 @@ namespace Sample
             t5.Setters.Add(new Setter(Button.BorderBrushProperty, new SolidColorBrush(Colors.Fuchsia)));
             t5.Setters.Add(new Setter(Button.ForegroundProperty, new SolidColorBrush(Colors.Bisque)));
             t5.Setters.Add(new Setter(Button.BorderThicknessProperty, new Thickness(13, 20, 6, 11)));
-            t5.Setters.Add(new Setter(Button.FontFamilyProperty, new FontFamily("宋体")));
+            t5.Setters.Add(new Setter(Button.FontFamilyProperty, new FontFamily("游明朝")));
             t5.Value = true;
             s1.Triggers.Add(t2);
             s2.Triggers.Add(t5);
@@ -238,14 +240,14 @@ namespace Sample
             s3.Setters.Add(new Setter(Button.BorderBrushProperty, new SolidColorBrush(Colors.Brown)));
             s3.Setters.Add(new Setter(Button.ForegroundProperty, new SolidColorBrush(Colors.Aqua)));
             s3.Setters.Add(new Setter(Button.BorderThicknessProperty, new Thickness(0, 7, 5, 0)));
-            s3.Setters.Add(new Setter(Button.FontFamilyProperty, new FontFamily("楷体")));
+            s3.Setters.Add(new Setter(Button.FontFamilyProperty, new FontFamily("UD デジタル 教科書体 NP-B")));
             Trigger t3 = new Trigger();
             t3.Property = Button.IsMouseOverProperty;
             t3.Setters.Add(new Setter(Button.BackgroundProperty, new SolidColorBrush(Colors.Red)));
             t3.Setters.Add(new Setter(Button.BorderBrushProperty, new SolidColorBrush(Colors.MediumAquamarine)));
             t3.Setters.Add(new Setter(Button.ForegroundProperty, new SolidColorBrush(Colors.DarkOrange)));
             t3.Setters.Add(new Setter(Button.BorderThicknessProperty, new Thickness(5, 6, 0, 4)));
-            t3.Setters.Add(new Setter(Button.FontFamilyProperty, new FontFamily("幼圆")));
+            t3.Setters.Add(new Setter(Button.FontFamilyProperty, new FontFamily("游明朝")));
             t3.Value = true;
             Trigger t6 = new Trigger();
             t6.Property = Button.IsPressedProperty;
@@ -253,7 +255,7 @@ namespace Sample
             t6.Setters.Add(new Setter(Button.BorderBrushProperty, new SolidColorBrush(Colors.Fuchsia)));
             t6.Setters.Add(new Setter(Button.ForegroundProperty, new SolidColorBrush(Colors.Bisque)));
             t6.Setters.Add(new Setter(Button.BorderThicknessProperty, new Thickness(13, 20, 6, 11)));
-            t6.Setters.Add(new Setter(Button.FontFamilyProperty, new FontFamily("宋体")));
+            t6.Setters.Add(new Setter(Button.FontFamilyProperty, new FontFamily("Yu Gothic UI Light")));
             t6.Value = true;
             s3.Triggers.Add(t3);
             s3.Triggers.Add(t6);
@@ -413,7 +415,7 @@ namespace Sample
 
             MessageBox.CloseTimer = new MessageBoxCloseTimer(5, -100);
 
-            MessageBox.WarningIcon = new BitmapImage(new Uri("C:\\Users\\1\\Pictures\\ssccicon.png"));
+            MessageBox.WarningIcon = new BitmapImage(new Uri("C:\\Users\\admin\\Pictures\\ssccicon.png"));
 
             lbl.Content = MessageBox.Show(new List<object> { btn, "洋葱", "awsl", "fbk", "艾维斯了", "DD" }, "啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊\n啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊\n啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊\n啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊\naaaaaaaaaaaaa\naaaaaaaaaaaaaaa啊啊啊啊啊啊aaaaaaaaaaaaaaaaaaaaa啊aaaaaaaaaaaaaaaaaaaa\n1514564464\nrgeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeee\nerfewfwf\nerwfwfewfewfef\nefewfewgfewgewrewqrwqedwqwqqqqqqqqqjj\nyrhhhhtr\nyhhhhhhhhhhh\nrythr\nrthyrhr\nryhrhrqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqjj\nyrhhhhtr\nyhhhhhhhhhhh\nrythr\nrthyrhr\nryhrhrqq\nefwfewfefqfqfwqwqedwqew\nfewf", "123123", MessageBoxImage.Warning);
         }
