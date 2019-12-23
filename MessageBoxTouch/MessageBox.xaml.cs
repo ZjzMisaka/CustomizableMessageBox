@@ -1550,7 +1550,7 @@ namespace MessageBoxTouch
         }
 
         /// <summary>
-        /// 判断消息类型并显示相应的图像
+        /// 运行时设定当前显示的图标类型
         /// </summary>
         /// <param name="iconType">显示的图标类型</param>
         public static void SetIconType(MessageBoxImage iconType)
