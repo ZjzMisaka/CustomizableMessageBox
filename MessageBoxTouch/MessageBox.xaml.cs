@@ -98,6 +98,37 @@ namespace MessageBoxTouch
             }
         }
 
+        public static MessageBoxImage MessageBoxImageType
+        {
+            get
+            {
+                if (mb.i_img.Visibility == Visibility.Collapsed)
+                {
+                    return MessageBoxImage.None;
+                }
+                else
+                {
+                    if (mb.i_img.Source == WarningIcon)
+                        return MessageBoxImage.Warning;
+                    if (mb.i_img.Source == ErrorIcon)
+                        return MessageBoxImage.Error;
+                    if (mb.i_img.Source == InfoIcon)
+                        return MessageBoxImage.Information;
+                    if (mb.i_img.Source == QuestionIcon)
+                        return MessageBoxImage.Question;
+                    else
+                        return MessageBoxImage.None;
+                }
+            }
+            set
+            {
+                if (mb != null)
+                {
+                    SetIconType(value);
+                }
+            }
+        }
+
         static WrapMode wrapMode = WrapMode.WORD;
 
         // Messagebox实例
@@ -973,14 +1004,14 @@ namespace MessageBoxTouch
                 currentClickIndex = -1;
 
                 // 显示标题
-                mb.l_title.Content = title;
+                TitleText = title;
                 mb.Title = title;
 
                 // 判断消息类型并显示相应的图像
-                SetIconType(img);
+                MessageBoxImageType = img;
 
                 // 显示消息内容
-                mb.tb_msg.Text = mb.tb_msg.Text + msg;
+                MessageText += msg;
 
                 LoadButtonPanel();
 
@@ -1553,7 +1584,7 @@ namespace MessageBoxTouch
         /// 运行时设定当前显示的图标类型
         /// </summary>
         /// <param name="iconType">显示的图标类型</param>
-        public static void SetIconType(MessageBoxImage iconType)
+        private static void SetIconType(MessageBoxImage iconType)
         {
             switch (iconType)
             {

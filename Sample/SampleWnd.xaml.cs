@@ -319,7 +319,7 @@ namespace Sample
         {
             if (++lys_i + 1 < lys.Count)
             {
-                MessageBox.SetIconType(MessageBoxImage.Error);
+                MessageBox.MessageBoxImageType = MessageBoxImage.Error;
                 MessageBox.MessageText += "\n" + lys[lys_i];
             }
         }
@@ -331,7 +331,7 @@ namespace Sample
 
         private static void Tick_ShaMaTe()
         {
-            MessageBox.SetIconType(MessageBoxImage.Warning);
+            MessageBox.MessageBoxImageType = MessageBoxImage.Warning;
             Random random = new Random();
             MessageBox.MessageFontSize = random.Next(10, 50);
             MessageBox.ButtonFontSize = random.Next(10, 50);
@@ -351,7 +351,7 @@ namespace Sample
             MessageBox.WndBorderThickness = new Thickness(random.Next(0, 15), random.Next(0, 15), random.Next(0, 15), random.Next(0, 15));
             MessageBox.WindowWidth = random.Next(750, 950);
             MessageBox.EnableCloseButton = random.Next(-1, 1) == 0 ? false : true;
-            MessageBox.SetIconType(random.Next(-1, 1) == 0 ? MessageBoxImage.Warning : MessageBoxImage.None);
+            MessageBox.MessageBoxImageType = random.Next(-1, 1) == 0 ? MessageBoxImage.Warning : MessageBoxImage.None;
 
             List<Style> buttonStyleList = MessageBox.ButtonStyleList;
             Style temp = buttonStyleList[0];
