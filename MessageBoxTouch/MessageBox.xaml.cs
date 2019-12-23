@@ -98,6 +98,7 @@ namespace MessageBoxTouch
             }
         }
 
+        // 设定显示的图标类型
         public static MessageBoxImage MessageBoxImageType
         {
             get
