@@ -141,7 +141,7 @@ MessageBox.Show(tb.Text == string.Empty ? "用户未输入" : tb.Text, (string)M
 |Show(PropertiesSetter, string, string, MessageBoxButton, MessageBoxImage)|兼容形式调出消息窗口, 并使用既有样式|样式, 消息, 标题 (选), 按钮类型 (选), 图标类型 (选)|MessageBoxResult|是|
 |Show(PropertiesSetter, List&lt;object&gt;, string, string, MessageBoxImage)|自定义形式调出消息窗口, 并使用既有样式|样式, 按钮列表, 消息, 标题 (选), 图标类型 (选)|int|是|
 |GetBtnList()|获取按钮列表||List&lt;object&gt;|是|
-|SetButtonStyle()|设定当前显示的图标类型||void|是|
+|SetIconType(MessageBoxImage)|设定当前显示的图标类型||void|是|
  
 |MessageBoxColor属性|含义|类型|
 |----|----|----|
