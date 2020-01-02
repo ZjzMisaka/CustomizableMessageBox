@@ -61,11 +61,11 @@ MessageBox.Show(new List<object> { new TextBox(), "btn1" }, "msg");
 ##### 插入自定义控件
 在传入的List&lt;object&gt;中对应位置插入插入一个FrameworkElement派生类的实例, 即可在对应位置显示相应控件. </br>
 列宽由插入的控件的宽度决定. </br>
-- Show函数调用结束返回后可调用MessageBox.GetBtnList()获取该控件, 得到用户输入 / 操作结果.
+- Show函数调用结束返回后可再次获取该控件, 得到用户输入 / 操作结果.
 ```csharp
 int result = MessageBox.Show(new List<object> { new TextBox(), "btn1", "btn2" }, "msg");
-TextBox tb = (TextBox)MessageBox.GetBtnList()[0];
-MessageBox.Show(tb.Text == string.Empty ? "用户未输入" : tb.Text, (string)MessageBox.GetBtnList()[result]);
+TextBox tb = (TextBox)MessageBox.ButtonList[0];
+MessageBox.Show(tb.Text == string.Empty ? "用户未输入" : tb.Text, (string)MessageBox.ButtonList[result]);
 ```
 ### 可操作的属性
 |属性|状态|
