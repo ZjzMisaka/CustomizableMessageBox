@@ -29,6 +29,9 @@ namespace Sample
         PropertiesSetter ps2 = null;
         PropertiesSetter ps3 = null;
         PropertiesSetter ps4 = null;
+        PropertiesSetter ps5 = null;
+        PropertiesSetter ps6 = null;
+        PropertiesSetter ps7 = null;
 
         public SampleWnd()
         {
@@ -64,6 +67,67 @@ namespace Sample
             ps4.MessageFontSize = 20;
             ps4.TitleFontFamily = new FontFamily("黑体");
             ps4.ButtonFontFamily = new FontFamily("黑体");
+
+            ps5 = new PropertiesSetter(ps1);
+            ps5.CloseTimer = new MessageBoxCloseTimer(5, -100);
+            ps5.WindowWidth = 700;
+            ps5.ButtonFontSize = -1;
+            ps5.ButtonFontColor = null;
+            ps5.ButtonBorderThickness = new Thickness();
+            ps5.ButtonBorderColor = null;
+            ps5.WindowMinHeight = 400;
+            List<Style> buttonStyleList = new List<Style>();
+            Style s1 = new Style();
+            s1.TargetType = typeof(Button);
+            s1.Setters.Add(new Setter(Button.BackgroundProperty, new SolidColorBrush(Colors.White)));
+            s1.Setters.Add(new Setter(Button.BorderBrushProperty, new SolidColorBrush(Colors.DarkGray)));
+            s1.Setters.Add(new Setter(Button.ForegroundProperty, new SolidColorBrush(Colors.Black)));
+            s1.Setters.Add(new Setter(Button.BorderThicknessProperty, new Thickness(4)));
+            s1.Setters.Add(new Setter(Button.FontFamilyProperty, new FontFamily("黑体")));
+            s1.Setters.Add(new Setter(Button.FontSizeProperty, new FontSizeConverter().ConvertFrom("14")));
+            s1.Setters.Add(new Setter(Button.MarginProperty, new Thickness(3, 6, 3, 6)));
+            s1.Setters.Add(new Setter(Button.WidthProperty, 180.0));
+            buttonStyleList.Add(s1);
+            Style s2 = new Style();
+            s2.TargetType = typeof(Button);
+            s2.Setters.Add(new Setter(Button.BorderThicknessProperty, new Thickness(2)));
+            s2.Setters.Add(new Setter(Button.FontFamilyProperty, new FontFamily("宋体")));
+            s2.Setters.Add(new Setter(Button.FontSizeProperty, new FontSizeConverter().ConvertFrom("10")));
+            s2.Setters.Add(new Setter(Button.MarginProperty, new Thickness(3, 6, 3, 6)));
+            s2.Setters.Add(new Setter(Button.BackgroundProperty, new SolidColorBrush(Colors.Gray)));
+            s2.Setters.Add(new Setter(Button.BorderBrushProperty, new SolidColorBrush(Colors.Gray)));
+            s2.Setters.Add(new Setter(Button.ForegroundProperty, new SolidColorBrush(Colors.LightGray)));
+            s2.Setters.Add(new Setter(Button.WidthProperty, 70.0));
+            buttonStyleList.Add(s2);
+            Style s3 = new Style();
+            s3.TargetType = typeof(Button);
+            s3.Setters.Add(new Setter(Button.BorderThicknessProperty, new Thickness(2)));
+            s3.Setters.Add(new Setter(Button.FontFamilyProperty, new FontFamily("宋体")));
+            s3.Setters.Add(new Setter(Button.FontSizeProperty, new FontSizeConverter().ConvertFrom("10")));
+            s3.Setters.Add(new Setter(Button.MarginProperty, new Thickness(3, 6, 3, 6)));
+            s3.Setters.Add(new Setter(Button.BackgroundProperty, new SolidColorBrush(Colors.Gray)));
+            s3.Setters.Add(new Setter(Button.BorderBrushProperty, new SolidColorBrush(Colors.Gray)));
+            s3.Setters.Add(new Setter(Button.ForegroundProperty, new SolidColorBrush(Colors.LightGray)));
+            s3.Setters.Add(new Setter(Button.WidthProperty, 70.0));
+            buttonStyleList.Add(s3);
+            Style s4 = new Style();
+            s4.TargetType = typeof(Button);
+            s4.Setters.Add(new Setter(Button.BorderThicknessProperty, new Thickness(2)));
+            s4.Setters.Add(new Setter(Button.FontFamilyProperty, new FontFamily("宋体")));
+            s4.Setters.Add(new Setter(Button.FontSizeProperty, new FontSizeConverter().ConvertFrom("10")));
+            s4.Setters.Add(new Setter(Button.MarginProperty, new Thickness(3, 6, 3, 6)));
+            s4.Setters.Add(new Setter(Button.BackgroundProperty, new SolidColorBrush(Colors.Gray)));
+            s4.Setters.Add(new Setter(Button.BorderBrushProperty, new SolidColorBrush(Colors.Gray)));
+            s4.Setters.Add(new Setter(Button.ForegroundProperty, new SolidColorBrush(Colors.LightGray)));
+            s4.Setters.Add(new Setter(Button.WidthProperty, 40.0));
+            buttonStyleList.Add(s4);
+            ps5.ButtonStyleList = buttonStyleList;
+
+            ps6 = new PropertiesSetter(ps5);
+            ps6.EnableCloseButton = true;
+
+            ps7 = new PropertiesSetter(ps1);
+            ps7.CloseTimer = new MessageBoxCloseTimer(1, -100);
         }
 
         private void Button_Click(object sender, RoutedEventArgs e)
@@ -154,8 +218,8 @@ namespace Sample
 
             int result;
             lbl.Content = result = MessageBox.Show(ps2, new List<object> { new ButtonSpacer(30), newTb, new ButtonSpacer(90), "提交", "取消", new ButtonSpacer(30) }, "你对露易丝定型文有什么看法吗?", "问题", MessageBoxImage.Question);
-            TextBox tb = (TextBox)MessageBox.GetBtnList()[1];
-            MessageBox.Show(ps4, tb.Text == string.Empty ? "用户未输入" : "内容: \n" + tb.Text, "您点击了" + (string)MessageBox.GetBtnList()[result]);
+            TextBox tb = (TextBox)MessageBox.ButtonList[1];
+            MessageBox.Show(ps4, tb.Text == string.Empty ? "用户未输入" : "内容: \n" + tb.Text, "您点击了" + (string)MessageBox.ButtonList[result]);
 
             DDChallenge();
 
@@ -188,6 +252,7 @@ namespace Sample
             s1.Setters.Add(new Setter(Button.ForegroundProperty, new SolidColorBrush(Colors.Bisque)));
             s1.Setters.Add(new Setter(Button.BorderThicknessProperty, new Thickness(13, 20, 6, 11)));
             s1.Setters.Add(new Setter(Button.FontFamilyProperty, new FontFamily("游明朝")));
+            s1.Setters.Add(new Setter(Button.MarginProperty, new Thickness(10, 6, 10, 6)));
             Trigger t1 = new Trigger();
             t1.Property = Button.IsMouseOverProperty;
             t1.Setters.Add(new Setter(Button.BackgroundProperty, new SolidColorBrush(Colors.Red)));
@@ -215,6 +280,7 @@ namespace Sample
             s2.Setters.Add(new Setter(Button.ForegroundProperty, new SolidColorBrush(Colors.DarkOrange)));
             s2.Setters.Add(new Setter(Button.BorderThicknessProperty, new Thickness(5, 6, 0, 4)));
             s2.Setters.Add(new Setter(Button.FontFamilyProperty, new FontFamily("Yu Gothic UI Light")));
+            s2.Setters.Add(new Setter(Button.MarginProperty, new Thickness(10, 6, 10, 6)));
             Trigger t2 = new Trigger();
             t2.Property = Button.IsMouseOverProperty;
             t2.Setters.Add(new Setter(Button.BackgroundProperty, new SolidColorBrush(Colors.Green)));
@@ -241,6 +307,7 @@ namespace Sample
             s3.Setters.Add(new Setter(Button.ForegroundProperty, new SolidColorBrush(Colors.Aqua)));
             s3.Setters.Add(new Setter(Button.BorderThicknessProperty, new Thickness(0, 7, 5, 0)));
             s3.Setters.Add(new Setter(Button.FontFamilyProperty, new FontFamily("UD デジタル 教科書体 NP-B")));
+            s3.Setters.Add(new Setter(Button.MarginProperty, new Thickness(10, 6, 10, 6)));
             Trigger t3 = new Trigger();
             t3.Property = Button.IsMouseOverProperty;
             t3.Setters.Add(new Setter(Button.BackgroundProperty, new SolidColorBrush(Colors.Red)));
@@ -362,29 +429,55 @@ namespace Sample
 
         private void Button_Click_5(object sender, RoutedEventArgs e)
         {
-            MessageBox.WindowOpacity = 1;
-            MessageBox.TitleBarOpacity = 1;
-            MessageBox.MessageBarOpacity = 0.1;
-            MessageBox.ButtonBarOpacity = 1;
-            MessageBox.WindowShowDuration = new Duration(new TimeSpan(0, 0, 0, 0, 1500));
-            MessageBox.ButtonFontFamily = new FontFamily("黑体");
-            lbl.Content = MessageBox.Show(new List<object> { new ButtonSpacer(500), "hello" }, "56145456454564544514\n51515615", "title", MessageBoxImage.Asterisk);
+            TextBox newTb = new TextBox();
+            newTb.Margin = new Thickness(10, 7, 10, 7);
+            newTb.FontSize = 16;
+            newTb.Width = 150;
+            newTb.VerticalContentAlignment = VerticalAlignment.Center;
+            int result;
+            lbl.Content = result = MessageBox.Show(ps5, new List<object> { new ButtonSpacer(20), "手滑了", new ButtonSpacer(80), "不好用", "界面不好看", new ButtonSpacer(20), "其他: ", newTb, new ButtonSpacer(20) }, "您为什么卸载本软件", "问卷调查", MessageBoxImage.Information);
+            if (result == -100 || (result >= 0 && result < MessageBox.ButtonList.Count && (string)MessageBox.ButtonList[result] == "手滑了"))
+            {
+                lbl.Content = result = MessageBox.Show(ps1, new List<object> { new ButtonSpacer(300), "不用谢" }, "感谢您的留情", "取消卸载", MessageBoxImage.Information);
+            }
+            else
+            {
+                lbl.Content = result = MessageBox.Show(ps5, new List<object> { "确定", new ButtonSpacer(400), "狠心拒绝" }, "您真的要卸载我吗, 请不要卸载我, 嘤嘤嘤...", "正在卸载", MessageBoxImage.Information);
+                if (result == -100 || (result >= 0 && result < MessageBox.ButtonList.Count && (string)MessageBox.ButtonList[result] == "确定"))
+                {
+                    lbl.Content = result = MessageBox.Show(ps1, new List<object> { new ButtonSpacer(300), "不用谢" }, "感谢您的留情", "取消卸载", MessageBoxImage.Information);
+                }
+                else
+                {
+                    lbl.Content = result = MessageBox.Show(ps6, new List<object> { "好的", new ButtonSpacer(400)}, "感谢您的一路陪伴, 欢迎今后再次安装", "卸载成功", MessageBoxImage.Information);
+                    if(result == -100 || (result >= 0 && result < MessageBox.ButtonList.Count && (string)MessageBox.ButtonList[result] == "好的"))
+                    {
+                        lbl.Content = result = MessageBox.Show(ps7, new List<object> { new ButtonSpacer(300), "不用谢" }, "请勿关闭本界面", "安装中...", MessageBoxImage.Information);
+                    }
+                }
+            }
         }
 
+        TextBox bc6Tb = new TextBox();
+        List<object> bc6BtnList = new List<object>();
+        Button bc6Btn = new Button();
         private void Button_Click_6(object sender, RoutedEventArgs e)
         {
-            MessageBox.TitleFontSize = 25;
-            MessageBox.ButtonFontSize = 25;
-            MessageBox.MessageFontSize = 22;
-            MessageBox.TextWrappingMode = TextWrapping.WrapWithOverflow;
-            TextBox newTb = new TextBox();
-            //newTb.Margin = new Thickness(10, 7, 10, 7);
-            newTb.FontSize = 25;
-            newTb.Height = 100;
+            bc6Btn.Content = "增加一个按钮";
+            bc6Btn.Click += Btn6_Btn_Click;
+            bc6Btn.Margin = new Thickness(10, 6, 10, 6);
+            bc6Tb.VerticalContentAlignment = VerticalAlignment.Center;
+            bc6Tb.FontSize = 25;
+            bc6Tb.Margin = new Thickness(10, 6, 10, 6);
+            bc6BtnList = new List<object> { bc6Btn, bc6Tb, "132" };
             int result;
-            lbl.Content = result = MessageBox.Show(new List<object> { newTb, "awsl", "banana", "艾维斯了" }, "啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊qqqqqqqq\nefwfewfefqfqfaaaaaaaaaaaq\nefwfewfefqfqfaaaaaaaaaaaq\nefwfewfefqfqfaaaaaaaaaaaq\nefwfewfefqfqfaaaaaaaaa aaaaaiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiaaaaaaa aaaaaaaaaaaaaaaaaaaaaaaa aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa aaaaaaaaaaaaaaaaa aaaaaaaaaaa aaaaawqwqedwqewfewsddddddd dddddddddddd ddddddddddddd dddddd\ndwddddddddddddddddddddddddddddddddfddd\ndwdddddddddddddddddddd\ndwdddddddddddddddddddd\ndwdddddddddddddddddefeeeeeeeeeeeeeeeeeeeeeeeeeeeeeef\nhnujyyyyyyyyyyyyy\nutjjjjjjjjjeeeeeeeeeeeeeeeef\nhnujyyyyyyyyyyyyy\nutjjjjjjjjjeeeeeeeeeeeeeeeeeeeeeeeeef\nhnujyyyyyyyyyyyyy\nutjjjjjjjjjjjjjjjjjjjjjjjjjjjj\nyrhhhhtr\nyhhhhhhhhhhh\nrythr\nrthyrhr\nryhrhr", "123123", MessageBoxImage.Error);
-            TextBox tb = (TextBox)MessageBox.GetBtnList()[0];
-            MessageBox.Show(ps2, tb.Text == string.Empty ? "用户未输入" : tb.Text, (string)MessageBox.GetBtnList()[result]);
+            lbl.Content = result = MessageBox.Show(bc6BtnList, "点击最左边的按钮, 添加一个内容为输入框内容的按钮. ", "增加一个按钮", MessageBoxImage.Information);
+        }
+
+        private void Btn6_Btn_Click(object sender, RoutedEventArgs e)
+        {
+            bc6BtnList.Add(bc6Tb.Text);
+            MessageBox.ButtonList = bc6BtnList;
         }
 
         private void Button_Click_7(object sender, RoutedEventArgs e)

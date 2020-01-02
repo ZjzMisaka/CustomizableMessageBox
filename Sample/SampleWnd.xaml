@@ -18,11 +18,11 @@
         <Label Content="兼容" HorizontalAlignment="Left" Margin="460,40,0,0" FontSize="10" VerticalAlignment="Top" Width="150" />
         <Button Content="Button" HorizontalAlignment="Left" Margin="460,60,0,0" VerticalAlignment="Top" Width="150" Click="Button_Click_3"/>
         <Label Content="自定" HorizontalAlignment="Left" Margin="10,90,0,0" FontSize="10" VerticalAlignment="Top" Width="150" />
-        <Button Content="Button" HorizontalAlignment="Left" Margin="10,110,0,0" VerticalAlignment="Top" Width="150" Click="Button_Click_4"/>
+        <Button Content="露易丝定型文" HorizontalAlignment="Left" Margin="10,110,0,0" VerticalAlignment="Top" Width="150" Click="Button_Click_4"/>
         <Label Content="自定" HorizontalAlignment="Left" Margin="160,90,0,0" FontSize="10" VerticalAlignment="Top" Width="150" />
-        <Button Content="Button" HorizontalAlignment="Left" Margin="160,110,0,0" VerticalAlignment="Top" Width="150" Click="Button_Click_5"/>
+        <Button Content="问卷调查" HorizontalAlignment="Left" Margin="160,110,0,0" VerticalAlignment="Top" Width="150" Click="Button_Click_5"/>
         <Label Content="自定" HorizontalAlignment="Left" Margin="310,90,0,0" FontSize="10" VerticalAlignment="Top" Width="150" />
-        <Button Content="Button" HorizontalAlignment="Left" Margin="310,110,0,0" VerticalAlignment="Top" Width="150" Click="Button_Click_6"/>
+        <Button Content="增加一个按钮" HorizontalAlignment="Left" Margin="310,110,0,0" VerticalAlignment="Top" Width="150" Click="Button_Click_6"/>
         <Label Content="自定" HorizontalAlignment="Left" Margin="460,90,0,0" FontSize="10" VerticalAlignment="Top" Width="150" />
         <Button Content="Button" HorizontalAlignment="Left" Margin="460,110,0,0" VerticalAlignment="Top" Width="150" Click="Button_Click_7"/>
 

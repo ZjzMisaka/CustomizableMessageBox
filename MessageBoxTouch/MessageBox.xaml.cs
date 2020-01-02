@@ -37,9 +37,6 @@ namespace MessageBoxTouch
         // 根据用户设定属性计算得到的按钮标准高度
         private double buttonHeight = 0;
 
-        // 是否是在调用ShowDialog后触发的SizeChanged事件
-        private bool isSizeChangedByShowDialog = true;
-
         // 关闭窗口计时器
         private DispatcherTimer timer;
 
@@ -130,6 +127,24 @@ namespace MessageBoxTouch
             }
         }
 
+        // 自定按钮列表
+        private static List<object> buttonList = null;
+        public static List<object> ButtonList
+        {
+            get
+            {
+                return buttonList;
+            }
+            set
+            {
+                if (mb != null)
+                {
+                    buttonList = value;
+                    LoadButtonPanel();
+                }
+            }
+        }
+
         static WrapMode wrapMode = WrapMode.WORD;
 
         // Messagebox实例
@@ -137,9 +152,6 @@ namespace MessageBoxTouch
 
         // 用户选择的结果
         private static int currentClickIndex = -1;
-
-        // 自定按钮列表
-        private static List<object> btnList = null;
 
         // 锁定高度
         private static bool lockHeight = false;
@@ -977,8 +989,6 @@ namespace MessageBoxTouch
         /// <returns>选中的按钮索引</returns>
         public static int Show(List<object> btnList, string msg, string title = "", MessageBoxImage img = MessageBoxImage.None)
         {
-            MessageBox.btnList = btnList;
-
             try
             {
                 if (mb != null)
@@ -1014,7 +1024,7 @@ namespace MessageBoxTouch
                 // 显示消息内容
                 MessageText += msg;
 
-                LoadButtonPanel();
+                ButtonList = btnList;
 
                 LoadTitlePanel();
 
@@ -1038,7 +1048,7 @@ namespace MessageBoxTouch
                 // 显示窗口
                 mb.ShowDialog();
             }
-            catch
+            catch (Exception ex)
             {
                 // 调用系统MessageBox
                 currentClickIndex = (int)System.Windows.MessageBox.Show(msg, title, MessageBoxButton.OK, img);
@@ -1080,7 +1090,7 @@ namespace MessageBoxTouch
             mb.g_buttongrid.ColumnDefinitions.Add(new ColumnDefinition());
 
             // 判断按钮类型并显示相应的按钮
-            for (int i = 0; i < btnList.Count; ++i)
+            for (int i = 0; i < buttonList.Count; ++i)
             {
                 // 当有多于两个选项时, 增加Grid的列数
                 if (i >= 2)
@@ -1089,7 +1099,7 @@ namespace MessageBoxTouch
                 }
                 Button newBtn = null;
                 
-                if (btnList[i] is string)
+                if (buttonList[i] is string)
                 {
                     // 实例化一个新的按钮
                     newBtn = new Button();
@@ -1102,26 +1112,24 @@ namespace MessageBoxTouch
                     newBtn.Style = buttonStyleList.Count > styleIndex + 1 ? buttonStyleList[styleIndex++] : buttonStyleList[styleIndex];
 
                     //设置按钮文本
-                    newBtn.Content = btnList[i];
-                    // 设置按钮外边距
-                    newBtn.Margin = new Thickness(10, 6, 10, 6);
+                    newBtn.Content = buttonList[i];
                     // 设置按钮可见
                     newBtn.Visibility = Visibility.Visible;
                     // 绑定按钮点击事件
                     newBtn.Click += BtnClicked;
                 }
-                else if (btnList[i] is ButtonSpacer)
+                else if (buttonList[i] is ButtonSpacer)
                 {
-                    double length = ((ButtonSpacer)btnList[i]).GetLength();
+                    double length = ((ButtonSpacer)buttonList[i]).GetLength();
                     if (length != -1)
                     {
                         // 修改列宽度
                         mb.g_buttongrid.ColumnDefinitions[i].Width = new GridLength(length);
                     }
                 }
-                else if (btnList[i] is FrameworkElement)
+                else if (buttonList[i] is FrameworkElement)
                 {
-                    FrameworkElement fe = (FrameworkElement)btnList[i];
+                    FrameworkElement fe = (FrameworkElement)buttonList[i];
                     // 将按钮加入Grid中
                     mb.g_buttongrid.Children.Add(fe);
                     // 修改列宽度
@@ -1183,15 +1191,6 @@ namespace MessageBoxTouch
         }
 
         /// <summary>
-        /// 获取按钮列表
-        /// </summary>
-        /// <returns>按钮列表</returns>
-        public static List<object> GetBtnList()
-        {
-            return btnList;
-        }
-
-        /// <summary>
         /// 选择后保存选择结果并关闭窗口
         /// </summary>
         /// <param name="sender"></param>
@@ -1201,7 +1200,7 @@ namespace MessageBoxTouch
             Button btn = (Button)sender;
 
             // 遍历按钮列表寻找和按钮文本相符的元素的索引
-            currentClickIndex = btnList.IndexOf(btn.Content.ToString());
+            currentClickIndex = buttonList.IndexOf(btn.Content.ToString());
 
             if (WindowCloseAnimations != null)
             {
@@ -1499,39 +1498,26 @@ namespace MessageBoxTouch
         /// <param name="e"></param>
         private static void ButtonObjectSizeChanged(object sender, SizeChangedEventArgs e)
         {
-            // 如果是在调用ShowDialog后触发的SizeChanged事件则无视
-            if (mb.isSizeChangedByShowDialog)
-            {
-                mb.isSizeChangedByShowDialog = false;
-                return;
-            }
-
-            // 如果新高度大于按钮标准高度
-            if (e.NewSize.Height > mb.buttonHeight)
-            {
-                mb.g_buttongrid.Height = e.NewSize.Height + 13;
-                mb.rd_button.Height = new GridLength(e.NewSize.Height + 13, GridUnitType.Pixel);
-                mb.b_buttonborder.Height = e.NewSize.Height + 13;
-            }
-            else
-            {
-                mb.g_buttongrid.Height = mb.buttonHeight + 13;
-                mb.rd_button.Height = new GridLength(mb.buttonHeight + 13, GridUnitType.Pixel);
-                mb.b_buttonborder.Height = mb.buttonHeight + 13;
-            }
+            FrameworkElement fe = (FrameworkElement)sender;
 
             // 如果宽度有变化, 重新设置列宽
             if (e.WidthChanged)
             {
-                for (int i = 0; i < btnList.Count; i++)
+                for (int i = 0; i < buttonList.Count; i++)
                 {
-                    if (btnList[i].Equals(sender))
+                    if (buttonList[i].Equals(sender))
                     {
-                        FrameworkElement fe = (FrameworkElement)sender;
                         mb.g_buttongrid.ColumnDefinitions[i].Width = new GridLength(!fe.Width.Equals(Double.NaN) ? fe.Width : 1, !fe.Width.Equals(Double.NaN) ? GridUnitType.Pixel : GridUnitType.Star);
                     }
                 }
             }
+
+            if (e.PreviousSize == new Size(0, 0))
+            {
+                return;
+            }
+
+            SetButtonAndButtonPanelHeight();
         }
 
         /// <summary>
@@ -1629,24 +1615,21 @@ namespace MessageBoxTouch
         /// </summary>
         private static void SetButtonStyle()
         {
-            double highestItemHeight = -1;
             //double maxContentWidth = 0;
             double contentAndBorderHeight = 0;
             int buttonIndex = -1;
-            List<object> btnObjList = new List<object>();
-            for (int i = 0; i < btnList.Count; i++)
+            int btnObjIndex = -1;
+            for (int i = 0; i < buttonList.Count; i++)
             {
-                if (btnList[i] is string || btnList[i] is FrameworkElement)
+                if (!(buttonList[i] is string || buttonList[i] is FrameworkElement))
                 {
-                    btnObjList.Add(btnList[i]);
+                    continue;
                 }
-            }
-            for (int i =0; i < btnObjList.Count; i++)
-            { 
-                if(btnObjList[i] is string)
+                ++btnObjIndex;
+                if (buttonList[i] is string)
                 {
                     ++buttonIndex;
-                    Button btn = (Button)mb.g_buttongrid.Children[i];
+                    Button btn = (Button)mb.g_buttongrid.Children[btnObjIndex];
 
                     if (ButtonFontSize > 0)
                         btn.FontSize = ButtonFontSize;
@@ -1675,11 +1658,27 @@ namespace MessageBoxTouch
                     Thickness thickness = btn.BorderThickness;
                     if(style != null)
                     {
-                        foreach(Setter setter in style.Setters)
+                        bool needSetColumnDefinitionWidth = false;
+                        double ColumnDefinitionWidth = 0;
+                        foreach (Setter setter in style.Setters)
                         {
                             if (setter.Property == Button.BorderThicknessProperty && setter.Value != null)
                             {
                                 thickness = (Thickness)setter.Value;
+                            }
+                            else if (setter.Property == Button.WidthProperty && setter.Value != null)
+                            {
+                                needSetColumnDefinitionWidth = true;
+                                ColumnDefinitionWidth += (double)setter.Value;
+                            }
+                            else if (setter.Property == Button.MarginProperty && setter.Value != null)
+                            {
+                                ColumnDefinitionWidth += ((Thickness)setter.Value).Left + ((Thickness)setter.Value).Right;
+                            }
+
+                            if (needSetColumnDefinitionWidth && ColumnDefinitionWidth > 0)
+                            {
+                                mb.g_buttongrid.ColumnDefinitions[i].Width = new GridLength(ColumnDefinitionWidth, GridUnitType.Pixel);
                             }
                         }
                     }
@@ -1688,9 +1687,34 @@ namespace MessageBoxTouch
                         contentAndBorderHeight = ft.Height + btn.BorderThickness.Top + btn.BorderThickness.Bottom + mb.b_buttonborder.BorderThickness.Top + mb.b_buttonborder.BorderThickness.Bottom;
                     }
                 }
-                else if(btnObjList[i] is FrameworkElement)
+            }
+
+            // 设置按钮栏高度
+            mb.buttonHeight = contentAndBorderHeight + 7;
+
+            SetButtonAndButtonPanelHeight();
+        }
+
+        /// <summary>
+        /// 根据最大高度设置按钮和按钮区域高度
+        /// </summary>
+        private static void SetButtonAndButtonPanelHeight()
+        {
+            double highestItemHeight = -1;
+            int btnObjIndex = -1;
+
+            highestItemHeight = mb.buttonHeight;
+
+            for (int i = 0; i < buttonList.Count; i++)
+            {
+                if (!(buttonList[i] is string || buttonList[i] is FrameworkElement))
                 {
-                    FrameworkElement fe = (FrameworkElement)btnObjList[i];
+                    continue;
+                }
+                ++btnObjIndex;
+                if (buttonList[i] is FrameworkElement)
+                {
+                    FrameworkElement fe = (FrameworkElement)buttonList[i];
                     if (fe.Height > highestItemHeight)
                     {
                         highestItemHeight = fe.Height;
@@ -1698,20 +1722,9 @@ namespace MessageBoxTouch
                 }
             }
 
-            // 设置按钮栏高度
-            mb.buttonHeight = contentAndBorderHeight + 7;
-            if (highestItemHeight > mb.buttonHeight)
-            {
-                mb.g_buttongrid.Height = highestItemHeight + 13;
-                mb.rd_button.Height = new GridLength(highestItemHeight + 13, GridUnitType.Pixel);
-                mb.b_buttonborder.Height = highestItemHeight + 13;
-            }
-            else
-            {
-                mb.g_buttongrid.Height = mb.buttonHeight + 13;
-                mb.rd_button.Height = new GridLength(mb.buttonHeight + 13, GridUnitType.Pixel);
-                mb.b_buttonborder.Height = mb.buttonHeight + 13;
-            }
+            mb.g_buttongrid.Height = highestItemHeight + 13;
+            mb.rd_button.Height = new GridLength(highestItemHeight + 13, GridUnitType.Pixel);
+            mb.b_buttonborder.Height = highestItemHeight + 13;
         }
     }
 }
