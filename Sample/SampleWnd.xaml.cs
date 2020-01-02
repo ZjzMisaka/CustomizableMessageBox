@@ -463,9 +463,11 @@ namespace Sample
         Button bc6Btn = new Button();
         private void Button_Click_6(object sender, RoutedEventArgs e)
         {
+            bc6Btn = new Button();
             bc6Btn.Content = "增加一个按钮";
             bc6Btn.Click += Btn6_Btn_Click;
             bc6Btn.Margin = new Thickness(10, 6, 10, 6);
+            bc6Tb = new TextBox();
             bc6Tb.VerticalContentAlignment = VerticalAlignment.Center;
             bc6Tb.FontSize = 25;
             bc6Tb.Margin = new Thickness(10, 6, 10, 6);
