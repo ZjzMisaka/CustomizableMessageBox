@@ -91,8 +91,9 @@ MessageBox.Show(tb.Text == string.Empty ? "用户未输入" : tb.Text, (string)M
 ### 成员函数与属性
 |MessageBox属性|类型|含义|静态|状态|
 |----|----|----|----|----|
-|TitleText|string|设置 / 取得标题文字|是|已实装|
-|MessageText|string|设置 / 取得消息文字|是|已实装|
+|TitleText|string|设置 / 获取标题文字|是|已实装|
+|MessageText|string|设置 / 获取消息文字|是|已实装|
+|ButtonList|List&lt;object&gt;|设置 / 获取按钮列表|是|已实装|
 |LockHeight|bool|是否锁住窗口高度不允许自动增长|是|已实装|
 |TextWrappingMode|TextWrapping|消息段落换行风格|是|已实装|
 |WindowWidth|double|窗口宽度|是|已实装|
@@ -142,7 +143,6 @@ MessageBox.Show(tb.Text == string.Empty ? "用户未输入" : tb.Text, (string)M
 |Show(List&lt;object&gt;, string, string, MessageBoxImage)|自定义形式调出消息窗口|按钮列表, 消息, 标题 (选), 图标类型 (选)|int|是|
 |Show(PropertiesSetter, string, string, MessageBoxButton, MessageBoxImage)|兼容形式调出消息窗口, 并使用既有样式|样式, 消息, 标题 (选), 按钮类型 (选), 图标类型 (选)|MessageBoxResult|是|
 |Show(PropertiesSetter, List&lt;object&gt;, string, string, MessageBoxImage)|自定义形式调出消息窗口, 并使用既有样式|样式, 按钮列表, 消息, 标题 (选), 图标类型 (选)|int|是|
-|GetBtnList()|获取按钮列表||List&lt;object&gt;|是|
  
 |MessageBoxColor属性|含义|类型|
 |----|----|----|
