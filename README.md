@@ -39,7 +39,7 @@ MessageBox.MessageFontSize = 22;
 MessageBox.Show(new List<object> { "btn1" }, "msg");
 ```
 ##### 批量修改
-- 设置PropertiesSetter
+- 事先设定PropertiesSetter
 ```csharp
 PropertiesSetter ps0 = new PropertiesSetter();
 ps0.ButtonBorderThickness = new Thickness(10);
