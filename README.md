@@ -31,7 +31,7 @@ MessageBox.Show(new List<object> { new ButtonSpacer(250), "btn1", "btn2", "btn3"
 ```
 #### 修改式样属性
 ##### 单独修改
-添加在Show函数之前
+- 在调用Show函数前设置
 ```csharp
 MessageBox.ButtonPanelColor = new MessageBoxColor("red");
 MessageBox.WindowMinHeight = 300;
@@ -39,20 +39,27 @@ MessageBox.MessageFontSize = 22;
 MessageBox.Show(new List<object> { "btn1" }, "msg");
 ```
 ##### 批量修改
-- **推荐** 在Show函数参数中设置
+- 设置PropertiesSetter
 ```csharp
-PropertiesSetter propertiesSetter = new PropertiesSetter();
-propertiesSetter.ButtonBorderThickness = new Thickness(10);
-propertiesSetter.MessagePanelColor = new MessageBoxColor(Colors.black);
-MessageBox.Show(propertiesSetter, "message", "title", MessageBoxButton.OKCancel, MessageBoxImage.Question);
-MessageBox.Show(propertiesSetter, new List<object> { "btn1" }, "msg");
+PropertiesSetter ps0 = new PropertiesSetter();
+ps0.ButtonBorderThickness = new Thickness(10);
+ps0.MessagePanelColor = new MessageBoxColor(Colors.Black);
+
+PropertiesSetter ps1 = new PropertiesSetter(ps0);
+ps1.MessagePanelBorderThickness = new Thickness(10, 0, 0, 0);
+ps1.ButtonBorderColor = new MessageBoxColor("#222DDD");
+ps1.MessageFontFamily = new FontFamily("宋体");
+ps1.CloseTimer = new MessageBoxCloseTimer(10, -1);
 ```
-- 在Show函数之前设置
+- 使用PropertiesSetter
+1. **推荐** 在Show函数参数中设置
 ```csharp
-PropertiesSetter propertiesSetter = new PropertiesSetter();
-propertiesSetter.ButtonBorderThickness = new Thickness(10, 0, 0, 0);
-propertiesSetter.MessagePanelColor = new MessageBoxColor("#222DDD");
-MessageBox.PropertiesSetter = propertiesSetter;
+MessageBox.Show(ps0, "message", "title", MessageBoxButton.OKCancel, MessageBoxImage.Question);
+MessageBox.Show(ps1, new List<object> { "btn1" }, "msg");
+```
+2. 在调用Show函数前设置
+```csharp
+MessageBox.PropertiesSetter = ps1;
 MessageBox.Show(new List<object> { new TextBox(), "btn1" }, "msg");
 ```
 #### 修改按钮区域
