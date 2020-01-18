@@ -77,72 +77,72 @@ MessageBox.Show(tb.Text == string.Empty ? "用户未输入" : tb.Text, (string)M
 ### 可操作的属性
 |属性|状态|
 |----|----|
-|窗口标题 / 消息 / 按钮|已实装|
-|窗口锁高|已实装|
-|窗口初始高度与宽度|已实装|
-|消息区域换行风格|已实装|
-|各区域文本字体|已实装|
-|各区域文本大小|已实装|
-|各区域文本颜色|已实装|
-|各区域透明度|已实装|
-|各区域背景色|已实装|
-|各区域边框颜色|已实装|
-|各区域边框宽度|已实装|
-|窗口渐显时间|已实装|
-|自定窗口打开与关闭动画|已实装|
-|自定义显示图标类型|已实装|
-|自定义图标|已实装|
-|是否应用窗口关闭按钮|已实装|
-|按钮动作样式|已实装|
-|窗口计时 / 立即关闭|已实装|
+|窗口标题 / 消息 / 按钮|[]|
+|窗口锁高|[]|
+|窗口初始高度与宽度|[]|
+|消息区域换行风格|[]|
+|各区域文本字体|[]|
+|各区域文本大小|[]|
+|各区域文本颜色|[]|
+|各区域透明度|[]|
+|各区域背景色|[]|
+|各区域边框颜色|[]|
+|各区域边框宽度|[]|
+|窗口渐显时间|[]|
+|自定窗口打开与关闭动画|[]|
+|自定义显示图标类型|[]|
+|自定义图标|[]|
+|是否应用窗口关闭按钮|[]|
+|按钮动作样式|[]|
+|窗口计时 / 立即关闭|[]|
 ### 成员函数与属性
 |MessageBox属性|类型|含义|静态|状态|
 |----|----|----|----|----|
-|TitleText|string|设置 / 获取标题文字|是|已实装|
-|MessageText|string|设置 / 获取消息文字|是|已实装|
-|ButtonList|List&lt;object&gt;|设置 / 获取按钮列表|是|已实装|
-|LockHeight|bool|是否锁住窗口高度不允许自动增长|是|已实装|
-|TextWrappingMode|TextWrapping|消息段落换行风格|是|已实装|
-|WindowWidth|double|窗口宽度|是|已实装|
-|WindowMinHeight|double|窗口最小 (初始) 高度|是|已实装|
-|TitleFontFamily|FontFamily|标题文本字体|是|已实装|
-|MessageFontFamily|FontFamily|消息文本字体|是|已实装|
-|ButtonFontFamily|FontFamily|按钮文本字体|是|已实装|
-|TitleFontSize|int|标题文本大小|是|已实装|
-|MessageFontSize|int|消息文本大小|是|已实装|
-|ButtonFontSize|int|按钮文本大小|是|已实装|
-|TitleFontColor|MessageBoxColor|标题文本颜色|是|已实装|
-|MessageFontColor|MessageBoxColor|消息文本颜色|是|已实装|
-|ButtonFontColor|MessageBoxColor|按钮文本颜色|是|已实装|
-|WindowOpacity|double|窗口整体透明度|是|已实装|
-|TitleBarOpacity|double|标题区域透明度|是|已实装|
-|MessageBarOpacity|double|消息区域透明度|是|已实装|
-|ButtonBarOpacity|double|按钮区域透明度|是|已实装|
-|TitlePanelColor|MessageBoxColor|标题区域背景色|是|已实装|
-|MessagePanelColor|MessageBoxColor|消息区域背景色|是|已实装|
-|ButtonPanelColor|MessageBoxColor|按钮区域背景色|是|已实装|
-|WndBorderColor|MessageBoxColor|窗口边框颜色|是|已实装|
-|TitlePanelBorderColor|MessageBoxColor|标题区域边框颜色|是|已实装|
-|MessagePanelBorderColor|MessageBoxColor|消息区域边框颜色|是|已实装|
-|ButtonPanelBorderColor|MessageBoxColor|按钮区域边框颜色|是|已实装|
-|ButtonBorderColor|MessageBoxColor|按钮边框颜色|是|已实装|
-|WndBorderThickness|MessageBoxColor|窗口边框宽度|是|已实装|
-|TitlePanelBorderThickness|Thickness|标题区域边框宽度|是|已实装|
-|MessagePanelBorderThickness|Thickness|消息区域边框宽度|是|已实装|
-|ButtonPanelBorderThickness|Thickness|按钮区域边框宽度|是|已实装|
-|ButtonBorderThickness|Thickness|按钮边框宽度|是|已实装|
-|WindowShowDuration|Duration|窗口渐显时间|是|已实装|
-|WindowShowAnimations|List&lt;KeyValuePair&lt;DependencyProperty, AnimationTimeline&gt;&gt;|窗口显示动画|是|已实装|
-|WindowCloseAnimations|List&lt;KeyValuePair&lt;DependencyProperty, AnimationTimeline&gt;&gt;|窗口关闭动画|是|已实装|
-|CloseIcon|BitmapImage|自定义关闭图标|是|已实装|
-|WarningIcon|BitmapImage|自定义警告图标|是|已实装|
-|ErrorIcon|BitmapImage|自定义错误图标|是|已实装|
-|InfoIcon|BitmapImage|自定义信息图标|是|已实装|
-|QuestionIcon|BitmapImage|自定义问题图标|是|已实装|
-|EnableCloseButton|bool|应用窗口关闭按钮|是|已实装|
-|ButtonStyleList|List&lt;Style&gt;|按钮动作样式|是|已实装|
-|CloseTimer|MessageBoxCloseTimer|窗口计时 / 立即关闭|是|已实装|
-|MessageBoxImageType|MessageBoxImage|设定显示的图标类型|是|已实装|
+|TitleText|string|设置 / 获取标题文字|是|[]|
+|MessageText|string|设置 / 获取消息文字|是|[]|
+|ButtonList|List&lt;object&gt;|设置 / 获取按钮列表|是|[]|
+|LockHeight|bool|是否锁住窗口高度不允许自动增长|是|[]|
+|TextWrappingMode|TextWrapping|消息段落换行风格|是|[]|
+|WindowWidth|double|窗口宽度|是|[]|
+|WindowMinHeight|double|窗口最小 (初始) 高度|是|[]|
+|TitleFontFamily|FontFamily|标题文本字体|是|[]|
+|MessageFontFamily|FontFamily|消息文本字体|是|[]|
+|ButtonFontFamily|FontFamily|按钮文本字体|是|[]|
+|TitleFontSize|int|标题文本大小|是|[]|
+|MessageFontSize|int|消息文本大小|是|[]|
+|ButtonFontSize|int|按钮文本大小|是|[]|
+|TitleFontColor|MessageBoxColor|标题文本颜色|是|[]|
+|MessageFontColor|MessageBoxColor|消息文本颜色|是|[]|
+|ButtonFontColor|MessageBoxColor|按钮文本颜色|是|[]|
+|WindowOpacity|double|窗口整体透明度|是|[]|
+|TitleBarOpacity|double|标题区域透明度|是|[]|
+|MessageBarOpacity|double|消息区域透明度|是|[]|
+|ButtonBarOpacity|double|按钮区域透明度|是|[]|
+|TitlePanelColor|MessageBoxColor|标题区域背景色|是|[]|
+|MessagePanelColor|MessageBoxColor|消息区域背景色|是|[]|
+|ButtonPanelColor|MessageBoxColor|按钮区域背景色|是|[]|
+|WndBorderColor|MessageBoxColor|窗口边框颜色|是|[]|
+|TitlePanelBorderColor|MessageBoxColor|标题区域边框颜色|是|[]|
+|MessagePanelBorderColor|MessageBoxColor|消息区域边框颜色|是|[]|
+|ButtonPanelBorderColor|MessageBoxColor|按钮区域边框颜色|是|[]|
+|ButtonBorderColor|MessageBoxColor|按钮边框颜色|是|[]|
+|WndBorderThickness|MessageBoxColor|窗口边框宽度|是|[]|
+|TitlePanelBorderThickness|Thickness|标题区域边框宽度|是|[]|
+|MessagePanelBorderThickness|Thickness|消息区域边框宽度|是|[]|
+|ButtonPanelBorderThickness|Thickness|按钮区域边框宽度|是|[]|
+|ButtonBorderThickness|Thickness|按钮边框宽度|是|[]|
+|WindowShowDuration|Duration|窗口渐显时间|是|[]|
+|WindowShowAnimations|List&lt;KeyValuePair&lt;DependencyProperty, AnimationTimeline&gt;&gt;|窗口显示动画|是|[]|
+|WindowCloseAnimations|List&lt;KeyValuePair&lt;DependencyProperty, AnimationTimeline&gt;&gt;|窗口关闭动画|是|[]|
+|CloseIcon|BitmapImage|自定义关闭图标|是|[]|
+|WarningIcon|BitmapImage|自定义警告图标|是|[]|
+|ErrorIcon|BitmapImage|自定义错误图标|是|[]|
+|InfoIcon|BitmapImage|自定义信息图标|是|[]|
+|QuestionIcon|BitmapImage|自定义问题图标|是|[]|
+|EnableCloseButton|bool|应用窗口关闭按钮|是|[]|
+|ButtonStyleList|List&lt;Style&gt;|按钮动作样式|是|[]|
+|CloseTimer|MessageBoxCloseTimer|窗口计时 / 立即关闭|是|[]|
+|MessageBoxImageType|MessageBoxImage|设定显示的图标类型|是|[]|
 
 |MessageBox函数|含义|参数|返回值|静态|
 |----|----|----|----|----|
