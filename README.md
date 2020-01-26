@@ -6,8 +6,8 @@
 - Running in Singleton Pattern, it is not suitable for use on a tablet because it can change the font and supports touch operation at runtime.
 - The font can be changed and touch operation is supported, so it is suitable for use on a tablet.
 - The MessageBox initially has a certain height, but if the Message text content is too much and exceeds the height limit, so that the MessageBox cannot be displayed, the window height will increase accordingly, so that the message can be completely displayed.
-- If the height of the message box window reaches the height of the working area of the display, but the message string cannot be displayed, the height of the message box no longer increases, but you can view the remaining messages by scrolling the message area.
-- You can change the appearance at will.
+- If the height of the MessageBox window reaches the height of the working area of the display, but the message string cannot be displayed, the height of the message box no longer increases, but you can view the remaining messages by scrolling the message area.
+- You can change the appearance of your MessageBox at will.
 - You can insert custom controls (such as an input box, another button, a progress bar, etc.) in the button area. You can get the user's operation results after calling.
 - You can change the content and style of the MessageBox at runtime.
 ### Usage
