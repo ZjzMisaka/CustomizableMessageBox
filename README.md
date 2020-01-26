@@ -1,6 +1,6 @@
 # MessageBoxTouch
- ![WTFPL](http://www.wtfpl.net/wp-content/uploads/2012/12/wtfpl-badge-1.png)<br />
- [中文ReadMe](https://github.com/ZjzMisaka/MessageBoxTouch/blob/master/README_CH.md)
+ ![WTFPL](http://www.wtfpl.net/wp-content/uploads/2012/12/wtfpl-badge-1.png) <br />
+ [中文ReadMe](https://github.com/ZjzMisaka/MessageBoxTouch/blob/master/README_CH.md) <br />
  The system MessageBox button and font are too small, so I wrote a MessageBox that is convenient for changing the appearance. What fun features can also be extended. There are demo pictures below. <br />
 ### Features
 - Running in Singleton Pattern, it is not suitable for use on a tablet because it can change the font and supports touch operation at runtime.
