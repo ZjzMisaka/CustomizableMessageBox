@@ -1,45 +1,46 @@
 # MessageBoxTouch
  ![WTFPL](http://www.wtfpl.net/wp-content/uploads/2012/12/wtfpl-badge-1.png)<br />
- 因为系统MessageBox按钮和字体太小, 所以自己写了个方便更改外观的MessageBox. 有什么好玩的功能也可以扩展上去. 下有演示图. <br />
-### 特性
-- 单例模式运行, 运行时无法操作父窗口. 
-- 因为可以改变字体且支持触摸操作, 所以适合在平板上使用. 
-- 消息框最初有一定高度, 但如果Message文本内容过多, 超出了高度限制, MessageBox显示不下时, 窗口高度会对应增加, 使消息能被完整显示出来. 
-- 如果消息框窗口高度达到窗口工作区高度, 但还是容不下消息字符串显示时, 消息框高度不再增长, 但是可以通过滚动消息区域查看剩余消息. 
-- 可以自由改变外观. 
-- 可在按钮区域插入自定义控件 (如输入框, 另一个按钮, 进度条, 等等). 调用后可获取用户对插入的自定控件的操作结果. 
-- 可以在运行时改变消息框内容与样式. 
-### 用法
-- 生成项目MessageBoxTouch, 得到对应动态链接库, 引用到自己的项目中, 并调用. 本工程自带有示例. 
-- 工具的MessageBox的Show函数参数与System.Windows.MessageBox的参数兼容, 简单而言只要引入一下dll, 不用做过多改动即可使用工具提供的MessageBox. 
-- 工具的MessageBox.Show函数还有与系统函数不同的重载, 可以实现更多功能. 例如自定义消息框按钮. 
-- 可以通过设置属性改变MessageBox的外观, 例如窗口各部分的字体, 透明度, 背景, 边框, 窗口大小, 限制高度增长, 设置窗口宽度等等. 
-### 图片示例
-![示例](https://www.iaders.com/wp-content/uploads/2019/12/mb-1.gif "粗略做了两种样式")
-### 代码示例
-#### 兼容写法
-返回值为MessageBoxResult型. 
+ [中文ReadMe](https://github.com/ZjzMisaka/MessageBoxTouch/blob/master/README_CH.md)
+ The system MessageBox button and font are too small, so I wrote a MessageBox that is convenient for changing the appearance. What fun features can also be extended. There are demo pictures below. <br />
+### Features
+- Running in Singleton Pattern, it is not suitable for use on a tablet because it can change the font and supports touch operation at runtime.
+- The font can be changed and touch operation is supported, so it is suitable for use on a tablet.
+- The MessageBox initially has a certain height, but if the Message text content is too much and exceeds the height limit, so that the MessageBox cannot be displayed, the window height will increase accordingly, so that the message can be completely displayed.
+- If the height of the message box window reaches the height of the working area of the display, but the message string cannot be displayed, the height of the message box no longer increases, but you can view the remaining messages by scrolling the message area.
+- You can change the appearance at will.
+- 可You can insert custom controls (such as an input box, another button, a progress bar, etc.) in the button area. You can get the user's operation results after calling.
+- You can change the content and style of the MessageBox at runtime.
+### Usage
+- Generate the project MessageBoxTouch, get the corresponding dynamic link library, refer to your own project, and call it. This project comes with examples.
+- The Show function parameters of the tool's MessageBox are compatible with the parameters of System.Windows.MessageBox. Simply put in the dll, you can use the MessageBox provided by the tool without making too many changes.
+- The MessageBox.Show function of the tool also has some overloads different from the system functions, which can achieve more functions. For example, you can customize the message box button.
+- You can change the appearance of the MessageBox by setting properties, such as the font of each part of the window, transparency, background, border, window size, limit height growth, set window width, etc.
+### Demo pictures
+![Demo](https://www.iaders.com/wp-content/uploads/2019/12/mb-1.gif "I made two styles roughly")
+### Code example
+#### Compatible calling methods
+The return value is MessageBoxResult.
 ```csharp
 MessageBox.Show("message");
 MessageBox.Show("message", "title", MessageBoxButton.OKCancel, MessageBoxImage.Question);
 ```
-#### 自定义写法
-返回值为int型, 值为参数按钮列表中的索引. 
+#### Custom calling method
+The return value is int, and the value is the index in the parameter button list.
 ```csharp
 MessageBox.Show(new List<object> { "btn1" }, "msg");
 MessageBox.Show(new List<object> { new ButtonSpacer(250), "btn1", "btn2", "btn3", "btn4", "btn5", new ButtonSpacer(30) }, "msg", "title", MessageBoxImage.Asterisk);
 ```
-#### 修改式样属性
-##### 单独修改
-- 在调用Show函数前设置
+#### Modify style attributes
+##### Modify individually
+- Set before calling Show function
 ```csharp
 MessageBox.ButtonPanelColor = new MessageBoxColor("red");
 MessageBox.WindowMinHeight = 300;
 MessageBox.MessageFontSize = 22;
 MessageBox.Show(new List<object> { "btn1" }, "msg");
 ```
-##### 批量修改
-- 事先设定PropertiesSetter
+##### Modify in batches
+- Set PropertiesSetter in advance
 ```csharp
 PropertiesSetter ps0 = new PropertiesSetter();
 ps0.ButtonBorderThickness = new Thickness(10);
@@ -51,143 +52,142 @@ ps1.ButtonBorderColor = new MessageBoxColor("#222DDD");
 ps1.MessageFontFamily = new FontFamily("宋体");
 ps1.CloseTimer = new MessageBoxCloseTimer(10, -1);
 ```
-- 使用PropertiesSetter
-1. **推荐** 在Show函数参数中设置
+- Use PropertiesSetter
+1. **Recommended** Set in Show function parameters
 ```csharp
 MessageBox.Show(ps0, "message", "title", MessageBoxButton.OKCancel, MessageBoxImage.Question);
 MessageBox.Show(ps1, new List<object> { "btn1" }, "msg");
 ```
-2. 在调用Show函数前设置
+2. Set before calling Show function
 ```csharp
 MessageBox.PropertiesSetter = ps1;
 MessageBox.Show(new List<object> { new TextBox(), "btn1" }, "msg");
 ```
-#### 修改按钮区域
-##### 插入空白
-在传入的List&lt;object&gt;中对应位置插入一个ButtonSpacer实例. 构造函数参数可为空或指定宽度值. </br>
-##### 插入自定义控件
-在传入的List&lt;object&gt;中对应位置插入插入一个FrameworkElement派生类的实例, 即可在对应位置显示相应控件. </br>
-列宽由插入的控件的宽度决定. </br>
-- Show函数调用结束返回后可再次获取该控件, 得到用户输入 / 操作结果.
+#### Modify button area
+##### Insert blank
+Insert a ButtonSpacer instance at the corresponding position in the passed in List&lt;object&gt;. The constructor parameter can be empty or specify a width value.
+##### Insert custom control
+Insert an instance of a FrameworkElement-derived class at the corresponding position in the passed-in List&lt;object&gt; to display the corresponding control at the corresponding position. </br>
+The column width is determined by the width of the inserted control. </br>
+- You can get the control again after the Show function call returns and get the user input / operation result.
 ```csharp
 int result = MessageBox.Show(new List<object> { new TextBox(), "btn1", "btn2" }, "msg");
 TextBox tb = (TextBox)MessageBox.ButtonList[0];
 MessageBox.Show(tb.Text == string.Empty ? "用户未输入" : tb.Text, (string)MessageBox.ButtonList[result]);
 ```
-### 可操作的属性
-|属性|状态|
+|Properties|Status|
 |----|----|
-|窗口标题 / 消息 / 按钮|√|
-|窗口锁高|√|
-|窗口初始高度与宽度|√|
-|消息区域换行风格|√|
-|各区域文本字体|√|
-|各区域文本大小|√|
-|各区域文本颜色|√|
-|各区域透明度|√|
-|各区域背景色|√|
-|各区域边框颜色|√|
-|各区域边框宽度|√|
-|窗口渐显时间|√|
-|自定窗口打开与关闭动画|√|
-|自定义显示图标类型|√|
-|自定义图标|√|
-|是否应用窗口关闭按钮|√|
-|按钮动作样式|√|
-|窗口计时 / 立即关闭|√|
-### 成员函数与属性
-|MessageBox属性|类型|含义|静态|状态|
+|Window Title / Message / Button|√|
+|Window lock height|√|
+|Window initial height and width|√|
+|Wrap style in message area|√|
+|Text font for each area|√|
+|Text size of each area|√|
+|Text color of each area|√|
+|Transparency of each area|√|
+|Background color of each area|√|
+|Border color of each area|√|
+|Border width of each area|√|
+|Window fade time|√|
+|Custom window opening and closing animation|√|
+|Custom display icon type|√|
+|Custom Icon|√|
+|Whether the window close button is applied|√|
+|Button Action Style|√|
+|Window Timing / Close Now|√|
+### Member Functions and Properties
+|MessageBox Properties|Type|Meaning|Is Static|Status|
 |----|----|----|----|----|
-|TitleText|string|设置 / 获取标题文字|√|√|
-|MessageText|string|设置 / 获取消息文字|√|√|
-|ButtonList|List&lt;object&gt;|设置 / 获取按钮列表|√|√|
-|LockHeight|bool|是否锁住窗口高度不允许自动增长|√|√|
-|TextWrappingMode|TextWrapping|消息段落换行风格|√|√|
-|WindowWidth|double|窗口宽度|√|√|
-|WindowMinHeight|double|窗口最小 (初始) 高度|√|√|
-|TitleFontFamily|FontFamily|标题文本字体|√|√|
-|MessageFontFamily|FontFamily|消息文本字体|√|√|
-|ButtonFontFamily|FontFamily|按钮文本字体|√|√|
-|TitleFontSize|int|标题文本大小|√|√|
-|MessageFontSize|int|消息文本大小|√|√|
-|ButtonFontSize|int|按钮文本大小|√|√|
-|TitleFontColor|MessageBoxColor|标题文本颜色|√|√|
-|MessageFontColor|MessageBoxColor|消息文本颜色|√|√|
-|ButtonFontColor|MessageBoxColor|按钮文本颜色|√|√|
-|WindowOpacity|double|窗口整体透明度|√|√|
-|TitleBarOpacity|double|标题区域透明度|√|√|
-|MessageBarOpacity|double|消息区域透明度|√|√|
-|ButtonBarOpacity|double|按钮区域透明度|√|√|
-|TitlePanelColor|MessageBoxColor|标题区域背景色|√|√|
-|MessagePanelColor|MessageBoxColor|消息区域背景色|√|√|
-|ButtonPanelColor|MessageBoxColor|按钮区域背景色|√|√|
-|WndBorderColor|MessageBoxColor|窗口边框颜色|√|√|
-|TitlePanelBorderColor|MessageBoxColor|标题区域边框颜色|√|√|
-|MessagePanelBorderColor|MessageBoxColor|消息区域边框颜色|√|√|
-|ButtonPanelBorderColor|MessageBoxColor|按钮区域边框颜色|√|√|
-|ButtonBorderColor|MessageBoxColor|按钮边框颜色|√|√|
-|WndBorderThickness|MessageBoxColor|窗口边框宽度|√|√|
-|TitlePanelBorderThickness|Thickness|标题区域边框宽度|√|√|
-|MessagePanelBorderThickness|Thickness|消息区域边框宽度|√|√|
-|ButtonPanelBorderThickness|Thickness|按钮区域边框宽度|√|√|
-|ButtonBorderThickness|Thickness|按钮边框宽度|√|√|
-|WindowShowDuration|Duration|窗口渐显时间|√|√|
-|WindowShowAnimations|List&lt;KeyValuePair&lt;DependencyProperty, AnimationTimeline&gt;&gt;|窗口显示动画|√|√|
-|WindowCloseAnimations|List&lt;KeyValuePair&lt;DependencyProperty, AnimationTimeline&gt;&gt;|窗口关闭动画|√|√|
-|CloseIcon|BitmapImage|自定义关闭图标|√|√|
-|WarningIcon|BitmapImage|自定义警告图标|√|√|
-|ErrorIcon|BitmapImage|自定义错误图标|√|√|
-|InfoIcon|BitmapImage|自定义信息图标|√|√|
-|QuestionIcon|BitmapImage|自定义问题图标|√|√|
-|EnableCloseButton|bool|应用窗口关闭按钮|√|√|
-|ButtonStyleList|List&lt;Style&gt;|按钮动作样式|√|√|
-|CloseTimer|MessageBoxCloseTimer|窗口计时 / 立即关闭|√|√|
-|MessageBoxImageType|MessageBoxImage|设定显示的图标类型|√|√|
+|TitleText|string|Set / Get Title Text|√|√|
+|MessageText|string|Set / Get Message Text|√|√|
+|ButtonList|List&lt;object&gt;|Set / Get Button List|√|√|
+|LockHeight|bool|Whether the height of the locked window is not allowed to grow automatically|√|√|
+|TextWrappingMode|TextWrapping|Wrap style of message paragraph|√|√|
+|WindowWidth|double|Window width|√|√|
+|WindowMinHeight|double|Window minimum (initial) height|√|√|
+|TitleFontFamily|FontFamily|Title text font|√|√|
+|MessageFontFamily|FontFamily|Message text font|√|√|
+|ButtonFontFamily|FontFamily|Button text font|√|√|
+|TitleFontSize|int|Title text size|√|√|
+|MessageFontSize|int|Message text size|√|√|
+|ButtonFontSize|int|Button text size|√|√|
+|TitleFontColor|MessageBoxColor|Title Text Color|√|√|
+|MessageFontColor|MessageBoxColor|Message text color|√|√|
+|ButtonFontColor|MessageBoxColor|Button text color|√|√|
+|WindowOpacity|double|The overall transparency of the window|√|√|
+|TitleBarOpacity|double|Title area transparency|√|√|
+|MessageBarOpacity|double|Message area transparency|√|√|
+|ButtonBarOpacity|double|Button area transparency|√|√|
+|TitlePanelColor|MessageBoxColor|Title area background color|√|√|
+|MessagePanelColor|MessageBoxColor|Message area background color|√|√|
+|ButtonPanelColor|MessageBoxColor|Button area background color|√|√|
+|WndBorderColor|MessageBoxColor|Window border color|√|√|
+|TitlePanelBorderColor|MessageBoxColor|Title Area Border Color|√|√|
+|MessagePanelBorderColor|MessageBoxColor|Message area border color|√|√|
+|ButtonPanelBorderColor|MessageBoxColor|Button area border color|√|√|
+|ButtonBorderColor|MessageBoxColor|Button Border Color|√|√|
+|WndBorderThickness|MessageBoxColor|Window border width|√|√|
+|TitlePanelBorderThickness|Thickness|Title Area Border Width|√|√|
+|MessagePanelBorderThickness|Thickness|Message area border width|√|√|
+|ButtonPanelBorderThickness|Thickness|Button area border width|√|√|
+|ButtonBorderThickness|Thickness|Button Border Width|√|√|
+|WindowShowDuration|Duration|Window fade time|√|√|
+|WindowShowAnimations|List&lt;KeyValuePair&lt;DependencyProperty, AnimationTimeline&gt;&gt;|Window display animation |√|√|
+|WindowCloseAnimations|List&lt;KeyValuePair&lt;DependencyProperty, AnimationTimeline&gt;&gt;|Window Close Animation|√|√|
+|CloseIcon|BitmapImage|Custom Close Icon|√|√|
+|WarningIcon|BitmapImage|Custom warning icon|√|√|
+|ErrorIcon|BitmapImage|Custom error icon|√|√|
+|InfoIcon|BitmapImage|Custom information icon|√|√|
+|QuestionIcon|BitmapImage|Custom Question Icon|√|√|
+|EnableCloseButton|bool|Application window close button|√|√|
+|ButtonStyleList|List&lt;Style&gt;|Button Action Style|√|√|
+|CloseTimer|MessageBoxCloseTimer|Window timing / Close now|√|√|
+|MessageBoxImageType|MessageBoxImage|Set the type of icon displayed|√|√|
 
-|MessageBox函数|含义|参数|返回值|静态|
+|MessageBox function|Meaning|Parameter|Return value|Is Static|
 |----|----|----|----|----|
-|Show(string, string, MessageBoxButton, MessageBoxImage)|兼容形式调出消息窗口|消息, 标题 (选), 按钮类型 (选), 图标类型 (选)|MessageBoxResult|√|
-|Show(List&lt;object&gt;, string, string, MessageBoxImage)|自定义形式调出消息窗口|按钮列表, 消息, 标题 (选), 图标类型 (选)|int|√|
-|Show(PropertiesSetter, string, string, MessageBoxButton, MessageBoxImage)|兼容形式调出消息窗口, 并使用既有样式|样式, 消息, 标题 (选), 按钮类型 (选), 图标类型 (选)|MessageBoxResult|√|
-|Show(PropertiesSetter, List&lt;object&gt;, string, string, MessageBoxImage)|自定义形式调出消息窗口, 并使用既有样式|样式, 按钮列表, 消息, 标题 (选), 图标类型 (选)|int|√|
+|Show (string, string, MessageBoxButton, MessageBoxImage)|Call up the message window in compatible form|Message, Title (optional), Button type (optional), Icon type (optional)|MessageBoxResult|√|
+|Show(List&lt;object&gt;, string, string, MessageBoxImage)|Customize the message window|Button list, message, title (optional), icon type (optional)|int|√|
+|Show (PropertiesSetter, string, string, MessageBoxButton, MessageBoxImage)|Call the message window in a compatible form and use the existing style|style, message, title (optional), button type (optional), icon type (optional)|MessageBoxResult|√|
+|Show(PropertiesSetter, List&lt;object&gt;, string, string, MessageBoxImage)|Customize the message window, and use the existing style|style, style, button list, message, title (optional), icon type (optional)|int|√|
  
-|MessageBoxColor属性|含义|类型|
+|MessageBoxColor Property|Meaning|Type|
 |----|----|----|
-|color|颜色值|object|
-|colorType|颜色类型|ColorType|
- 
-|MessageBoxColor函数|含义|参数|返回值|静态|
-|----|----|----|----|----|
-|MessageBoxColor(object)|构造函数|十六进制颜色码字符串或者Color类的实例或颜色名字符串||×|
-|MessageBoxColor(object, ColorType)|构造函数|十六进制颜色码字符串或者Color类的实例或颜色名字符串, ColorType枚举值||×|
-|GetSolidColorBrush()|输出这个实例颜色实例对应的SolidColorBrush||SolidColorBrush|×|
+|color|Color value|object|
+|colorType|Color Type|ColorType|
 
-|MessageBoxCloseTimer属性|含义|类型|
+|MessageBoxColor function|Meaning|Parameter|Return value|Is Static|
+|----|----|----|----|----|
+|MessageBoxColor (object)|Constructor|Hex color code string or instance of Color class or color name string||×|
+|MessageBoxColor (object, ColorType)|Constructor|Hexadecimal color code string or instance of Color class or color name string, ColorType enumeration value||×|
+|GetSolidColorBrush ()|Output the SolidColorBrush corresponding to this instance color instance||SolidColorBrush|×|
+
+|MessageBoxCloseTimer Property|Meaning|Type|
 |----|----|----|
-|timeSpan|距窗口关闭的时间|TimeSpan|
-|result|int|窗口关闭后返回的返回值|
+|timeSpan|Time to close window|TimeSpan|
+|result|int|The return value returned after the window is closed|
 
-|MessageBoxCloseTimer函数|含义|参数|返回值|静态|
+|MessageBoxCloseTimer function|Meaning|Parameter|Return Value|Is Static|
 |----|----|----|----|----|
-|MessageBoxCloseTimer(TimeSpan, int)|构造函数|TimeSpan实例 (距关闭的时间), 窗口关闭后返回的返回值||×|
-|MessageBoxCloseTimer(int, int)|构造函数|距关闭的秒数, 窗口关闭后返回的返回值||×|
-|CloseNow()|立即关闭窗口|||×|
+|MessageBoxCloseTimer (TimeSpan, int)|Constructor|TimeSpan instance (time to close), return value returned after window close||×|
+|MessageBoxCloseTimer (int, int)|Constructor|seconds to close, return value after window close||×|
+|CloseNow ()|Close window immediately|||×|
 
-|PropertiesSetter属性|含义|
+|PropertiesSetter Properties|Meaning|
 |----|----|
-|略 (参考MessageBox属性)||
+|Omitted (Refer to the MessageBox property)||
 
-|PropertiesSetter函数|含义|参数|返回值|静态|
+|PropertiesSetter Function|Meaning|Parameter|Return Value|Is Static|
 |----|----|----|----|----|
-|PropertiesSetter()|构造函数|||×|
-|PropertiesSetter(PropertiesSetter)|构造函数|一个既有的PropertiesSetter实例||×|
+|PropertiesSetter ()|Constructor|||×|
+|PropertiesSetter (PropertiesSetter)|Constructor|An existing PropertiesSetter instance||×|
 
-|ButtonSpacer属性|含义|类型|
+|ButtonSpacer Properties|Meaning|Type|
 |----|----|----|
-|length|留白长度|double|
+|length|Leave blank length|double|
 
-|ButtonSpacer函数|含义|参数|返回值|静态|
+|ButtonSpacer function|Meaning|Parameter|Return value|Is Static|
 |----|----|----|----|----|
-|ButtonSpacer()|构造函数|||×|
-|ButtonSpacer(double)|构造函数|留白长度||×|
-|GetLength()|获取留白长度||double|×|
+|ButtonSpacer ()|Constructor|||×|
+|ButtonSpacer (double)|Constructor|Leave length||×|
+|GetLength ()|Get the blank length||double|×|
