@@ -8,7 +8,7 @@
 - The MessageBox initially has a certain height, but if the Message text content is too much and exceeds the height limit, so that the MessageBox cannot be displayed, the window height will increase accordingly, so that the message can be completely displayed.
 - If the height of the message box window reaches the height of the working area of the display, but the message string cannot be displayed, the height of the message box no longer increases, but you can view the remaining messages by scrolling the message area.
 - You can change the appearance at will.
-- 可You can insert custom controls (such as an input box, another button, a progress bar, etc.) in the button area. You can get the user's operation results after calling.
+- You can insert custom controls (such as an input box, another button, a progress bar, etc.) in the button area. You can get the user's operation results after calling.
 - You can change the content and style of the MessageBox at runtime.
 ### Usage
 - Generate the project MessageBoxTouch, get the corresponding dynamic link library, refer to your own project, and call it. This project comes with examples.
@@ -49,7 +49,7 @@ ps0.MessagePanelColor = new MessageBoxColor(Colors.Black);
 PropertiesSetter ps1 = new PropertiesSetter(ps0);
 ps1.MessagePanelBorderThickness = new Thickness(10, 0, 0, 0);
 ps1.ButtonBorderColor = new MessageBoxColor("#222DDD");
-ps1.MessageFontFamily = new FontFamily("宋体");
+ps1.MessageFontFamily = new FontFamily("Times New Roman");
 ps1.CloseTimer = new MessageBoxCloseTimer(10, -1);
 ```
 - Use PropertiesSetter
@@ -73,7 +73,7 @@ The column width is determined by the width of the inserted control. </br>
 ```csharp
 int result = MessageBox.Show(new List<object> { new TextBox(), "btn1", "btn2" }, "msg");
 TextBox tb = (TextBox)MessageBox.ButtonList[0];
-MessageBox.Show(tb.Text == string.Empty ? "用户未输入" : tb.Text, (string)MessageBox.ButtonList[result]);
+MessageBox.Show(tb.Text == string.Empty ? "User did not enter" : tb.Text, (string)MessageBox.ButtonList[result]);
 ```
 |Properties|Status|
 |----|----|
