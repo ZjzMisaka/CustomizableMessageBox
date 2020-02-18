@@ -27,13 +27,14 @@ namespace CustomizableMessageBox
                 return false;
             }
 
-            switch(messageBoxType)
+            string msg = "Message: \n" + StackException.Peek().Message + "\nStackTrace: \n" + StackException.Peek().StackTrace;
+            switch (messageBoxType)
             {
                 case MessageBoxType.CustomizableMessageBox:
-                    MessageBox.Show("Message: \n" + StackException.Peek().Message + "\nStackTrace: \n" + StackException.Peek().StackTrace, "Log", System.Windows.MessageBoxButton.OK);
+                    MessageBox.Show(msg, "Log", System.Windows.MessageBoxButton.OK);
                     break;
                 case MessageBoxType.SystemMessageBox:
-                    System.Windows.MessageBox.Show("Message: \n" + StackException.Peek().Message + "\nStackTrace: \n" + StackException.Peek().StackTrace, "Log", System.Windows.MessageBoxButton.OK);
+                    System.Windows.MessageBox.Show(msg, "Log", System.Windows.MessageBoxButton.OK);
                     break;
             }
             return true;
@@ -47,7 +48,7 @@ namespace CustomizableMessageBox
                 Exception ex = StackException.Pop();
                 using (System.IO.StreamWriter file = new System.IO.StreamWriter(path, needAppend))
                 {
-                    file.WriteLine("Message: \n" + ex.Message + "\nStackTrace: \n" + ex.StackTrace + "\n");
+                    file.WriteLine(DateTime.Now.ToLocalTime().ToString() + "\nMessage: \n   " + ex.Message + "\nStackTrace: \n" + ex.StackTrace + "\n");
                 }
             }
             if (needHoldStack)
