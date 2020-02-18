@@ -38,8 +38,8 @@
     <StartupObject>Test.App</StartupObject>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="MessageBoxTouch">
-      <HintPath>..\MessageBoxTouch\bin\Debug\MessageBoxTouch.dll</HintPath>
+    <Reference Include="CustomizableMessageBox">
+      <HintPath>..\CustomizableMessageBox\bin\Debug\CustomizableMessageBox.dll</HintPath>
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Data" />

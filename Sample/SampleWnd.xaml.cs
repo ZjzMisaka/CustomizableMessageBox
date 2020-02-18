@@ -1,4 +1,4 @@
-﻿using MessageBoxTouch;
+﻿using CustomizableMessageBox;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -16,7 +16,7 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 using System.Windows.Threading;
-using MessageBox = MessageBoxTouch.MessageBox;
+using MessageBox = CustomizableMessageBox.MessageBox;
 
 namespace Sample
 {
@@ -63,7 +63,7 @@ namespace Sample
             ps3.CloseTimer = new MessageBoxCloseTimer(5, -100);
 
             ps4 = new PropertiesSetter(ps1);
-            ps4.WarningIcon = new BitmapImage(new Uri("C:\\Users\\admin\\Pictures\\ssccicon.png"));
+            ps4.WarningIcon = new BitmapImage(new Uri("C:\\Users\\1\\Pictures\\ssccicon.png"));
             ps4.MessageFontSize = 20;
             ps4.TitleFontFamily = new FontFamily("黑体");
             ps4.ButtonFontFamily = new FontFamily("黑体");
@@ -223,7 +223,7 @@ namespace Sample
 
             DDChallenge();
 
-            MessageBox.ErrorIcon = new BitmapImage(new Uri("C:\\Users\\admin\\Pictures\\lys2.png"));
+            MessageBox.ErrorIcon = new BitmapImage(new Uri("C:\\Users\\1\\Pictures\\lys2.png"));
             MessageBox.WindowShowDuration = new Duration(new TimeSpan(0, 0, 0, 1));
             MessageBox.MessageFontSize += 5;
             MessageBox.TitleFontFamily = new FontFamily("游明朝");
@@ -243,7 +243,7 @@ namespace Sample
             timer = new Timer();
             timer.Interval = 1000;
             timer.Elapsed += Tick_ShaMaTe;
-            MessageBox.WarningIcon = new BitmapImage(new Uri("C:\\Users\\admin\\Pictures\\lys1.jpg"));
+            MessageBox.WarningIcon = new BitmapImage(new Uri("C:\\Users\\1\\Pictures\\lys1.jpg"));
             List<Style> buttonStyleList = new List<Style>();
             Style s1 = new Style();
             s1.TargetType = typeof(Button);
@@ -510,7 +510,7 @@ namespace Sample
 
             MessageBox.CloseTimer = new MessageBoxCloseTimer(5, -100);
 
-            MessageBox.WarningIcon = new BitmapImage(new Uri("C:\\Users\\admin\\Pictures\\ssccicon.png"));
+            MessageBox.WarningIcon = new BitmapImage(new Uri("C:\\Users\\1\\Pictures\\ssccicon.png"));
 
             lbl.Content = MessageBox.Show(new List<object> { btn, "洋葱", "awsl", "fbk", "艾维斯了", "DD" }, "啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊\n啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊\n啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊\n啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊\naaaaaaaaaaaaa\naaaaaaaaaaaaaaa啊啊啊啊啊啊aaaaaaaaaaaaaaaaaaaaa啊aaaaaaaaaaaaaaaaaaaa\n1514564464\nrgeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeee\nerfewfwf\nerwfwfewfewfef\nefewfewgfewgewrewqrwqedwqwqqqqqqqqqjj\nyrhhhhtr\nyhhhhhhhhhhh\nrythr\nrthyrhr\nryhrhrqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqjj\nyrhhhhtr\nyhhhhhhhhhhh\nrythr\nrthyrhr\nryhrhrqq\nefwfewfefqfqfwqwqedwqew\nfewf", "123123", MessageBoxImage.Warning);
         }

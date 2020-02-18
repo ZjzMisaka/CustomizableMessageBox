@@ -7,9 +7,9 @@ using System.Windows;
 using System.Windows.Media;
 using System.Windows.Media.Animation;
 using System.Windows.Media.Imaging;
-using static MessageBoxTouch.MessageBoxColor;
+using static CustomizableMessageBox.MessageBoxColor;
 
-namespace MessageBoxTouch
+namespace CustomizableMessageBox
 {
     public class PropertiesSetter
     {
@@ -220,7 +220,7 @@ namespace MessageBoxTouch
         public bool EnableCloseButton { get => enableCloseButton; set => enableCloseButton = value; }
 
         // 按钮动作样式
-        private List<Style> buttonStyleList = new List<Style> { new ResourceDictionary { Source = new Uri("pack://application:,,,/MessageBoxTouch;component/WndStyles.xaml") }["MessageBoxButtonStyle"] as Style };
+        private List<Style> buttonStyleList = new List<Style> { new ResourceDictionary { Source = new Uri("pack://application:,,,/CustomizableMessageBox;component/WndStyles.xaml") }["MessageBoxButtonStyle"] as Style };
         public List<Style> ButtonStyleList { get => buttonStyleList; set => buttonStyleList = value; }
 
         // 窗口计时关闭

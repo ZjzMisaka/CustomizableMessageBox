@@ -7,8 +7,8 @@
     <ProjectGuid>{C4313CE4-E87D-439D-874C-D235E902F777}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>MessageBoxTouch</RootNamespace>
-    <AssemblyName>MessageBoxTouch</AssemblyName>
+    <RootNamespace>CustomizableMessageBox</RootNamespace>
+    <AssemblyName>CustomizableMessageBox</AssemblyName>
     <TargetFrameworkVersion>v4.7.2</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <Deterministic>true</Deterministic>

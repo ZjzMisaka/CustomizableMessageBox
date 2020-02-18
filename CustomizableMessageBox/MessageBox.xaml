@@ -1,9 +1,9 @@
-﻿<Window x:Class="MessageBoxTouch.MessageBox" Opacity="0.9" MinHeight="450"
+﻿<Window x:Class="CustomizableMessageBox.MessageBox" Opacity="0.9" MinHeight="450"
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-        xmlns:local="clr-namespace:MessageBoxTouch"
+        xmlns:local="clr-namespace:CustomizableMessageBox"
         mc:Ignorable="d"
         Title="MessageBox" Height="450" Width="800" IsVisibleChanged="Window_IsVisibleChanged" Closed="Window_Closed" ResizeMode="NoResize" AllowsTransparency="True" WindowStyle="None"  x:Name="main">
     <Window.Triggers>

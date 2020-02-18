@@ -19,11 +19,11 @@ using System.Windows.Media.Animation;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
 using System.Windows.Threading;
-using static MessageBoxTouch.MessageBoxColor;
+using static CustomizableMessageBox.MessageBoxColor;
 using Application = System.Windows.Application;
 using Button = System.Windows.Controls.Button;
 
-namespace MessageBoxTouch
+namespace CustomizableMessageBox
 {
     /// <summary>
     /// MessageBox.xaml 的交互逻辑
@@ -738,7 +738,7 @@ namespace MessageBoxTouch
         }
 
         // 按钮动作样式
-        private static List<Style> buttonStyleList = new List<Style> { new ResourceDictionary { Source = new Uri("pack://application:,,,/MessageBoxTouch;component/WndStyles.xaml") }["MessageBoxButtonStyle"] as Style };
+        private static List<Style> buttonStyleList = new List<Style> { new ResourceDictionary { Source = new Uri("pack://application:,,,/CustomizableMessageBox;component/WndStyles.xaml") }["MessageBoxButtonStyle"] as Style };
         public static List<Style> ButtonStyleList
         {
             get => buttonStyleList;
@@ -1260,7 +1260,7 @@ namespace MessageBoxTouch
             infoIcon = new BitmapImage(new Uri(".\\Image\\info.png", UriKind.RelativeOrAbsolute));
             questionIcon = new BitmapImage(new Uri(".\\Image\\question.png", UriKind.RelativeOrAbsolute));
             enableCloseButton = false;
-            buttonStyleList = new List<Style> { new ResourceDictionary { Source = new Uri("pack://application:,,,/MessageBoxTouch;component/WndStyles.xaml") }["MessageBoxButtonStyle"] as Style };
+            buttonStyleList = new List<Style> { new ResourceDictionary { Source = new Uri("pack://application:,,,/CustomizableMessageBox;component/WndStyles.xaml") }["MessageBoxButtonStyle"] as Style };
             closeTimer = null;
 
             propertiesSetter = new PropertiesSetter();
