@@ -963,15 +963,16 @@ namespace CustomizableMessageBox
             // 返回值
             MessageBoxResult result;
 
-            try
+            int index = Show(btnList, msg, title, img);
+
+            if (Info.IsLastShowSucceed)
             {
                 // 获取返回值字符串
-                string resultStr = btnList[Show(btnList, msg, title, img)].ToString();
-
+                string resultStr = btnList[index].ToString();
                 // 找到对应的MessageBoxResult元素并返回
                 result = (MessageBoxResult)System.Enum.Parse(typeof(MessageBoxResult), resultStr);
             }
-            catch
+            else
             {
                 result = MessageBoxResult.Cancel;
             }
@@ -993,6 +994,9 @@ namespace CustomizableMessageBox
             {
                 if (mb != null)
                     return -1;
+
+                // 重置
+                Info.IsLastShowSucceed = true;
 
                 // 初始化窗口
                 mb = new MessageBox();
@@ -1050,14 +1054,23 @@ namespace CustomizableMessageBox
             }
             catch (Exception ex)
             {
+                // 将异常插入栈中
+                Info.StackException.Push(ex);
+
+                // 保存这次调用成功与否
+                Info.IsLastShowSucceed = false;
+
                 // 调用系统MessageBox
                 currentClickIndex = (int)System.Windows.MessageBox.Show(msg, title, MessageBoxButton.OK, img);
 
                 // 关闭窗口
                 mb.Hide();
                 mb.Close();
+                return currentClickIndex;
             }
 
+            // 保存这次调用成功与否
+            Info.IsLastShowSucceed = true;
             // 返回用户选择的结果
             return currentClickIndex;
         }
@@ -1098,7 +1111,7 @@ namespace CustomizableMessageBox
                     mb.g_buttongrid.ColumnDefinitions.Add(new ColumnDefinition());
                 }
                 Button newBtn = null;
-                
+
                 if (buttonList[i] is string)
                 {
                     // 实例化一个新的按钮
@@ -1137,7 +1150,7 @@ namespace CustomizableMessageBox
                     // 设置按钮在Grid中的行列
                     fe.SetValue(Grid.RowProperty, 0);
                     fe.SetValue(Grid.ColumnProperty, i);
-                    
+
                     fe.SizeChanged += ButtonObjectSizeChanged;
                 }
             }
@@ -1656,7 +1669,7 @@ namespace CustomizableMessageBox
                     // 如果值比maxContentWidth值更大则赋值给maxContentWidth
                     //maxContentWidth = contentWidth > maxContentWidth ? contentWidth : maxContentWidth;
                     Thickness thickness = btn.BorderThickness;
-                    if(style != null)
+                    if (style != null)
                     {
                         bool needSetColumnDefinitionWidth = false;
                         double ColumnDefinitionWidth = 0;
