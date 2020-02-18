@@ -39,24 +39,6 @@ namespace CustomizableMessageBox
             return true;
         }
 
-        public static bool PrintLog(Uri uri, bool needHoldStack = false, bool needAppend = true)
-        {
-            Stack<Exception> temp = StackException;
-            while (StackException.Count > 0)
-            {
-                Exception ex = StackException.Pop();
-                using (System.IO.StreamWriter file = new System.IO.StreamWriter(uri.AbsoluteUri, needAppend))
-                {
-                    file.WriteLine("Message: \n" + ex.Message + "\nStackTrace: \n\n" + ex.StackTrace);
-                }
-            }
-            if(needHoldStack)
-            {
-                StackException = temp;
-            }
-            return true;
-        }
-
         public static bool PrintLog(string path, bool needHoldStack = false, bool needAppend = true)
         {
             Stack<Exception> temp = new Stack<Exception>(StackException);
