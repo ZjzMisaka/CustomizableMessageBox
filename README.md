@@ -1,6 +1,6 @@
-# MessageBoxTouch
+# CustomizableMessageBox
  ![WTFPL](http://www.wtfpl.net/wp-content/uploads/2012/12/wtfpl-badge-1.png) <br />
- [中文ReadMe](https://github.com/ZjzMisaka/MessageBoxTouch/blob/master/README_CH.md) <br />
+ [中文ReadMe](https://github.com/ZjzMisaka/CustomizableMessageBox/blob/master/README_CH.md) <br />
  The system MessageBox button and font are too small, so I wrote a MessageBox that is convenient for changing the appearance. What fun features can also be extended. There are demo pictures below. <br />
 ### Features
 - Running in Singleton Pattern, it is not suitable for use on a tablet because it can change the font and supports touch operation at runtime.
@@ -11,7 +11,7 @@
 - You can insert custom controls (such as an input box, another button, a progress bar, etc.) in the button area. You can get the user's operation results after calling.
 - You can change the content and style of the MessageBox at runtime.
 ### Usage
-- Generate the project MessageBoxTouch, get the corresponding dynamic link library, refer to your own project, and call it. This project comes with examples.
+- Generate the project CustomizableMessageBox, get the corresponding dynamic link library, refer to your own project, and call it. This project comes with examples.
 - The Show function parameters of the tool's MessageBox are compatible with the parameters of System.Windows.MessageBox. Simply put in the dll, you can use the MessageBox provided by the tool without making too many changes.
 - The MessageBox.Show function of the tool also has some overloads different from the system functions, which can achieve more functions. For example, you can customize the message box button.
 - You can change the appearance of the MessageBox by setting properties, such as the font of each part of the window, transparency, background, border, window size, limit height growth, set window width, etc.
