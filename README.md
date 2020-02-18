@@ -191,3 +191,14 @@ MessageBox.Show(tb.Text == string.Empty ? "User did not enter" : tb.Text, (strin
 |ButtonSpacer ()|Constructor|||×|
 |ButtonSpacer (double)|Constructor|Leave length||×|
 |GetLength ()|Get the blank length||double|×|
+
+
+|Info Properties|Meaning|Type|
+|----|----|----|
+|StackException|Stack with Reported Exception|Stack&lt;Exception&gt;|
+|IsLastShowSucceed|Whether the last call was successful|bool|
+
+|Info function|Meaning|Parameter|Return value|Is Static|
+|----|----|----|----|----|
+|PrintLog(MessageBoxType)|Call MessageBox to display exception information|Type of MessageBox (custom or system)|bool|√|
+|PrintLog(string, bool, bool)|Output exception information to a text file|Path to output text, Whether to keep the contents of the stack, Whether to append the end of the file|bool|√|

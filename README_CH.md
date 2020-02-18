@@ -191,3 +191,13 @@ MessageBox.Show(tb.Text == string.Empty ? "用户未输入" : tb.Text, (string)M
 |ButtonSpacer()|构造函数|||×|
 |ButtonSpacer(double)|构造函数|留白长度||×|
 |GetLength()|获取留白长度||double|×|
+
+|Info属性|含义|类型|
+|----|----|----|
+|StackException|保存报出的异常的栈|Stack&lt;Exception&gt;|
+|IsLastShowSucceed|上次调用是否成功|bool|
+
+|Info函数|含义|参数|返回值|静态|
+|----|----|----|----|----|
+|PrintLog(MessageBoxType)|调用消息框显示异常信息|消息框的类型 (自定或系统)|bool|√|
+|PrintLog(string, bool, bool)|将异常信息输出到文本文件中|输出文本路径, 是否保留栈的内容, 是否输出到文件末尾|bool|√|
