@@ -9,60 +9,33 @@ namespace CustomizableMessageBox
 {
     public class MessageBoxColor
     {
-        // 颜色种类
-        public enum ColorType
-        {
-            // 十六进制颜色码字符串
-            HEX,
-            // COLOR类的实例
-            COLORNAME
-        }
-        public object color;
-        public ColorType colorType;
+        public SolidColorBrush solidColorBrush;
 
         /// <summary>
-        /// 构造函数, 自动判断颜色分类
+        /// 构造函数
         /// </summary>
-        /// <param name="color">十六进制颜色码字符串或者COLOR类的实例</param>
-        public MessageBoxColor(object color)
+        /// <param name="color">COLOR类的实例</param>
+        public MessageBoxColor(Color color)
         {
-            this.color = color;
-            if (color is Color)
-            {
-                colorType = ColorType.COLORNAME;
-            }
-            else if (color is string)
-            {
-                colorType = ColorType.HEX;
-            }
-            else
-            {
-                throw new Exception();
-            }
+            this.solidColorBrush = new SolidColorBrush((Color)color);
         }
-
+        
         /// <summary>
-        /// 构造函数, 手动输入颜色分类
+        /// 构造函数
         /// </summary>
-        /// <param name="color">十六进制颜色码字符串或者COLOR类的实例</param>
-        public MessageBoxColor(object color, ColorType colorType)
+        /// <param name="color">十六进制颜色码字符串的实例</param>
+        public MessageBoxColor(string color)
         {
-            this.color = color;
-            this.colorType = colorType;
+            this.solidColorBrush = (SolidColorBrush)(new BrushConverter().ConvertFrom(color));
         }
 
         /// <summary>
-        /// 输出这个颜色实例对应的SolidColorBrush
+        /// 返回这个颜色实例对应的SolidColorBrush
         /// </summary>
         /// <returns>这个颜色实例对应的SolidColorBrush</returns>
         public SolidColorBrush GetSolidColorBrush()
         {
-            switch (colorType)
-            {
-                case ColorType.COLORNAME: return new SolidColorBrush((Color)color);
-                case ColorType.HEX: return (SolidColorBrush)(new BrushConverter().ConvertFrom(color));
-                default: return null;
-            }
+            return solidColorBrush;
         }
     }
 }
