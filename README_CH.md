@@ -165,7 +165,7 @@ MessageBox.Show(tb.Text == string.Empty ? "用户未输入" : tb.Text, (string)M
 |MessageBoxCloseTimer属性|含义|类型|
 |----|----|----|
 |timeSpan|距窗口关闭的时间|TimeSpan|
-|result|int|窗口关闭后返回的返回值|
+|result|窗口关闭后返回的返回值|int|
 
 |MessageBoxCloseTimer函数|含义|参数|返回值|静态|
 |----|----|----|----|----|
