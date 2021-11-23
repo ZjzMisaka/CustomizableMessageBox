@@ -165,7 +165,7 @@ MessageBox.Show(tb.Text == string.Empty ? "User did not enter" : tb.Text, (strin
 |MessageBoxCloseTimer Property|Meaning|Type|
 |----|----|----|
 |timeSpan|Time to close window|TimeSpan|
-|result|int|The return value returned after the window is closed|
+|result|The return value returned after the window is closed|int|
 
 |MessageBoxCloseTimer function|Meaning|Parameter|Return Value|Is Static|
 |----|----|----|----|----|
