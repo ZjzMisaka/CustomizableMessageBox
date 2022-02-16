@@ -3,7 +3,7 @@
  [中文ReadMe](https://github.com/ZjzMisaka/CustomizableMessageBox/blob/master/README_CH.md) <br />
  The system MessageBox button and font are too small, so I wrote a MessageBox that is convenient for changing the appearance. If there are any interesting features will also be added. There are demo pictures below. <br />
 ### Download
-CustomizableMessageBox is available as [Nuget Package](https://www.nuget.org/packages/CustomizableMessageBox/) Now.
+CustomizableMessageBox is available as [Nuget Package](https://www.nuget.org/packages/CustomizableMessageBox/) now.
 ### Features
 - Running in Singleton Pattern, it is not suitable for use on a tablet because it can change the font and supports touch operation at runtime.
 - The font can be changed and touch operation is supported, so it is suitable for use on a tablet.
