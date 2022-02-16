@@ -1,6 +1,8 @@
 # CustomizableMessageBox
  ![WTFPL](http://www.wtfpl.net/wp-content/uploads/2012/12/wtfpl-badge-1.png)<br />
  因为系统MessageBox按钮和字体太小, 所以自己写了个方便更改外观的MessageBox. 有什么好玩的功能也可以扩展上去. 下有演示图. <br />
+### 下载
+你可以在 [Nuget Package](https://www.nuget.org/packages/CustomizableMessageBox/) 下载使用CustomizableMessageBox.
 ### 特性
 - 单例模式运行, 运行时无法操作父窗口. 
 - 因为可以改变字体且支持触摸操作, 所以适合在平板上使用. 
