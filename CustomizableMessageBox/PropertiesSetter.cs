@@ -120,35 +120,35 @@ namespace CustomizableMessageBox
         public double ButtonBarOpacity { get => buttonBarOpacity; set => buttonBarOpacity = value; }
 
         // 标题区域背景颜色
-        private MessageBoxColor titlePanelColor = new MessageBoxColor(Colors.White, ColorType.COLORNAME);
+        private MessageBoxColor titlePanelColor = new MessageBoxColor(Colors.White);
         public MessageBoxColor TitlePanelColor { get => titlePanelColor; set => titlePanelColor = value; }
 
         // 消息区域背景颜色
-        private MessageBoxColor messagePanelColor = new MessageBoxColor(Colors.White, ColorType.COLORNAME);
+        private MessageBoxColor messagePanelColor = new MessageBoxColor(Colors.White);
         public MessageBoxColor MessagePanelColor { get => messagePanelColor; set => messagePanelColor = value; }
 
         // 按钮区域背景颜色
-        private MessageBoxColor buttonPanelColor = new MessageBoxColor("#DDDDDD", ColorType.HEX);
+        private MessageBoxColor buttonPanelColor = new MessageBoxColor("#DDDDDD");
         public MessageBoxColor ButtonPanelColor { get => buttonPanelColor; set => buttonPanelColor = value; }
 
         // 窗口边框颜色
-        private MessageBoxColor wndBorderColor = new MessageBoxColor(Colors.White, ColorType.COLORNAME);
+        private MessageBoxColor wndBorderColor = new MessageBoxColor(Colors.White);
         public MessageBoxColor WndBorderColor { get => wndBorderColor; set => wndBorderColor = value; }
 
         // 标题区域边框颜色
-        private MessageBoxColor titlePanelBorderColor = new MessageBoxColor(Colors.White, ColorType.COLORNAME);
+        private MessageBoxColor titlePanelBorderColor = new MessageBoxColor(Colors.White);
         public MessageBoxColor TitlePanelBorderColor { get => titlePanelBorderColor; set => titlePanelBorderColor = value; }
 
         // 消息区域边框颜色
-        private MessageBoxColor messagePanelBorderColor = new MessageBoxColor(Colors.White, ColorType.COLORNAME);
+        private MessageBoxColor messagePanelBorderColor = new MessageBoxColor(Colors.White);
         public MessageBoxColor MessagePanelBorderColor { get => messagePanelBorderColor; set => messagePanelBorderColor = value; }
 
         // 按钮区域边框颜色
-        private MessageBoxColor buttonPanelBorderColor = new MessageBoxColor(Colors.LightGray, ColorType.COLORNAME);
+        private MessageBoxColor buttonPanelBorderColor = new MessageBoxColor(Colors.LightGray);
         public MessageBoxColor ButtonPanelBorderColor { get => buttonPanelBorderColor; set => buttonPanelBorderColor = value; }
 
         // 按钮边框颜色
-        private MessageBoxColor buttonBorderColor = new MessageBoxColor(Colors.White, ColorType.COLORNAME);
+        private MessageBoxColor buttonBorderColor = new MessageBoxColor(Colors.White);
         public MessageBoxColor ButtonBorderColor { get => buttonBorderColor; set => buttonBorderColor = value; }
 
         // 窗口边框宽度

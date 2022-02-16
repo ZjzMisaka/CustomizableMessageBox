@@ -401,7 +401,7 @@ namespace CustomizableMessageBox
         }
 
         // 标题区域背景颜色
-        private static MessageBoxColor titlePanelColor = new MessageBoxColor(Colors.White, ColorType.COLORNAME);
+        private static MessageBoxColor titlePanelColor = new MessageBoxColor(Colors.White);
         public static MessageBoxColor TitlePanelColor
         {
             get => titlePanelColor;
@@ -417,7 +417,7 @@ namespace CustomizableMessageBox
         }
 
         // 消息区域背景颜色
-        private static MessageBoxColor messagePanelColor = new MessageBoxColor(Colors.White, ColorType.COLORNAME);
+        private static MessageBoxColor messagePanelColor = new MessageBoxColor(Colors.White);
         public static MessageBoxColor MessagePanelColor
         {
             get => messagePanelColor;
@@ -433,7 +433,7 @@ namespace CustomizableMessageBox
         }
 
         // 按钮区域背景颜色
-        private static MessageBoxColor buttonPanelColor = new MessageBoxColor("#DDDDDD", ColorType.HEX);
+        private static MessageBoxColor buttonPanelColor = new MessageBoxColor("#DDDDDD");
         public static MessageBoxColor ButtonPanelColor
         {
             get => buttonPanelColor;
@@ -449,7 +449,7 @@ namespace CustomizableMessageBox
         }
 
         // 窗口边框颜色
-        private static MessageBoxColor wndBorderColor = new MessageBoxColor(Colors.White, ColorType.COLORNAME);
+        private static MessageBoxColor wndBorderColor = new MessageBoxColor(Colors.White);
         public static MessageBoxColor WndBorderColor
         {
             get => wndBorderColor;
@@ -465,7 +465,7 @@ namespace CustomizableMessageBox
         }
 
         // 标题区域边框颜色
-        private static MessageBoxColor titlePanelBorderColor = new MessageBoxColor(Colors.White, ColorType.COLORNAME);
+        private static MessageBoxColor titlePanelBorderColor = new MessageBoxColor(Colors.White);
         public static MessageBoxColor TitlePanelBorderColor
         {
             get => titlePanelBorderColor;
@@ -481,7 +481,7 @@ namespace CustomizableMessageBox
         }
 
         // 消息区域边框颜色
-        private static MessageBoxColor messagePanelBorderColor = new MessageBoxColor(Colors.White, ColorType.COLORNAME);
+        private static MessageBoxColor messagePanelBorderColor = new MessageBoxColor(Colors.White);
         public static MessageBoxColor MessagePanelBorderColor
         {
             get => messagePanelBorderColor;
@@ -497,7 +497,7 @@ namespace CustomizableMessageBox
         }
 
         // 按钮区域边框颜色
-        private static MessageBoxColor buttonPanelBorderColor = new MessageBoxColor(Colors.White, ColorType.COLORNAME);
+        private static MessageBoxColor buttonPanelBorderColor = new MessageBoxColor(Colors.White);
         public static MessageBoxColor ButtonPanelBorderColor
         {
             get => buttonPanelBorderColor;
@@ -513,7 +513,7 @@ namespace CustomizableMessageBox
         }
 
         // 按钮边框颜色
-        private static MessageBoxColor buttonBorderColor = new MessageBoxColor(Colors.Black, ColorType.COLORNAME);
+        private static MessageBoxColor buttonBorderColor = new MessageBoxColor(Colors.Black);
         public static MessageBoxColor ButtonBorderColor
         {
             get => buttonBorderColor;
@@ -1248,14 +1248,14 @@ namespace CustomizableMessageBox
             titleBarOpacity = 1;
             messageBarOpacity = 1;
             buttonBarOpacity = 1;
-            titlePanelColor = new MessageBoxColor(Colors.White, ColorType.COLORNAME);
-            messagePanelColor = new MessageBoxColor(Colors.White, ColorType.COLORNAME);
-            buttonPanelColor = new MessageBoxColor("#DDDDDD", ColorType.HEX);
-            wndBorderColor = new MessageBoxColor(Colors.White, ColorType.COLORNAME);
-            titlePanelBorderColor = new MessageBoxColor(Colors.White, ColorType.COLORNAME);
-            messagePanelBorderColor = new MessageBoxColor(Colors.White, ColorType.COLORNAME);
-            buttonPanelBorderColor = new MessageBoxColor(Colors.White, ColorType.COLORNAME);
-            buttonBorderColor = new MessageBoxColor(Colors.Black, ColorType.COLORNAME);
+            titlePanelColor = new MessageBoxColor(Colors.White);
+            messagePanelColor = new MessageBoxColor(Colors.White);
+            buttonPanelColor = new MessageBoxColor("#DDDDDD");
+            wndBorderColor = new MessageBoxColor(Colors.White);
+            titlePanelBorderColor = new MessageBoxColor(Colors.White);
+            messagePanelBorderColor = new MessageBoxColor(Colors.White);
+            buttonPanelBorderColor = new MessageBoxColor(Colors.White);
+            buttonBorderColor = new MessageBoxColor(Colors.Black);
             wndBorderThickness = new Thickness(2);
             titlePanelBorderThickness = new Thickness(0, 0, 0, 1);
             messagePanelBorderThickness = new Thickness(0);
