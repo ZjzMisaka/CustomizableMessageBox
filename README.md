@@ -1,5 +1,6 @@
 # CustomizableMessageBox
- ![WTFPL](http://www.wtfpl.net/wp-content/uploads/2012/12/wtfpl-badge-1.png) <br />
+ ![WTFPL](http://www.wtfpl.net/wp-content/uploads/2012/12/wtfpl-badge-1.png)
+<img src="https://www.nuget.org/Content/gallery/img/logo-header.svg?sanitize=true" height="30px"> <br />
  [中文ReadMe](https://github.com/ZjzMisaka/CustomizableMessageBox/blob/master/README_CH.md) <br />
  The system MessageBox button and font are too small, so I wrote a MessageBox that is convenient for changing the appearance. If there are any interesting features will also be added. There are demo pictures below. <br />
 ### Download
