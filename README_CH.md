@@ -1,7 +1,7 @@
 # CustomizableMessageBox
  ![WTFPL](http://www.wtfpl.net/wp-content/uploads/2012/12/wtfpl-badge-1.png)
-<img src="https://www.nuget.org/Content/gallery/img/logo-header.svg?sanitize=true" height="30px"> <br />
- 因为系统MessageBox按钮和字体太小, 所以自己写了个方便更改外观的MessageBox. 有什么好玩的功能也可以扩展上去. 下有演示图. <br />
+<img src="https://www.nuget.org/Content/gallery/img/logo-header.svg?sanitize=true" height="30px">  
+ 因为系统MessageBox按钮和字体太小, 所以自己写了个方便更改外观的MessageBox. 有什么好玩的功能也可以扩展上去. 下有演示图.  
 ### 下载
 你可以在 [Nuget Package](https://www.nuget.org/packages/CustomizableMessageBox/) 下载使用CustomizableMessageBox.
 ### 特性
