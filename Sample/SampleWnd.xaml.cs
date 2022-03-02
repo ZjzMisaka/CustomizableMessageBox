@@ -531,5 +531,11 @@ namespace Sample
             MessageBox.MessageText += "\nAWSL";
             MessageBox.TitleText += "嘶哈";
         }
+
+        private void Button_Click_8(object sender, RoutedEventArgs e)
+        {
+            NewWindow newWindow = new NewWindow();
+            newWindow.Show();
+        }
     }
 }

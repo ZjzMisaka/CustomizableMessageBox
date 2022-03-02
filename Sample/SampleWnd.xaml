@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Test"
         mc:Ignorable="d"
-        Title="Sample" Height="200" Width="640">
+        Title="Sample" Height="250" Width="640">
     <Grid>
         <Label Content="选择结果: " HorizontalAlignment="Left" Margin="10,10,0,0" VerticalAlignment="Top"/>
         <Label x:Name="lbl" Content="/" HorizontalAlignment="Left" Margin="70,10,0,0" VerticalAlignment="Top"/>
@@ -25,6 +25,8 @@
         <Button Content="增加一个按钮" HorizontalAlignment="Left" Margin="310,110,0,0" VerticalAlignment="Top" Width="150" Click="Button_Click_6"/>
         <Label Content="自定" HorizontalAlignment="Left" Margin="460,90,0,0" FontSize="10" VerticalAlignment="Top" Width="150" />
         <Button Content="Button" HorizontalAlignment="Left" Margin="460,110,0,0" VerticalAlignment="Top" Width="150" Click="Button_Click_7"/>
+        <Label Content="新窗口" HorizontalAlignment="Left" Margin="10,140,0,0" FontSize="10" VerticalAlignment="Top" Width="150" />
+        <Button Content="Button" HorizontalAlignment="Left" Margin="10,160,0,0" VerticalAlignment="Top" Width="150" Click="Button_Click_8"/>
 
 
     </Grid>

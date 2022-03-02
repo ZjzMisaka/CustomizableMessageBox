@@ -1047,7 +1047,17 @@ namespace CustomizableMessageBox
                 }
 
                 // 设置所属的窗口
-                mb.Owner = Application.Current.MainWindow;
+                foreach (Window window in Application.Current.Windows)
+                {
+                    if (window.IsActive)
+                    {
+                        mb.Owner = window;
+                    }
+                }
+                if (mb.Owner == null)
+                {
+                    mb.Owner = Application.Current.MainWindow;
+                }
 
                 // 显示窗口
                 mb.ShowDialog();
