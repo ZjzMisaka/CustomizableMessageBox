@@ -153,6 +153,7 @@ MessageBox.Show(tb.Text == string.Empty ? "User did not enter" : tb.Text, (strin
 |Show(List&lt;object&gt;, string, string, MessageBoxImage)|Customize the message window|Button list, message, title (optional), icon type (optional)|int|√|
 |Show (PropertiesSetter, string, string, MessageBoxButton, MessageBoxImage)|Call the message window in a compatible form and use the existing style|style, message, title (optional), button type (optional), icon type (optional)|MessageBoxResult|√|
 |Show(PropertiesSetter, List&lt;object&gt;, string, string, MessageBoxImage)|Customize the message window, and use the existing style|style, style, button list, message, title (optional), icon type (optional)|int|√|
+|CloseNow ()|Close window immediately|||√|
  
 |MessageBoxColor Property|Meaning|Type|
 |----|----|----|
@@ -174,7 +175,6 @@ MessageBox.Show(tb.Text == string.Empty ? "User did not enter" : tb.Text, (strin
 |----|----|----|----|----|
 |MessageBoxCloseTimer (TimeSpan, int)|Constructor|TimeSpan instance (time to close), return value returned after window close||×|
 |MessageBoxCloseTimer (int, int)|Constructor|seconds to close, return value after window close||×|
-|CloseNow ()|Close window immediately|||×|
 
 |PropertiesSetter Properties|Meaning|
 |----|----|

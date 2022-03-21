@@ -32,6 +32,7 @@ namespace Sample
         PropertiesSetter ps5 = null;
         PropertiesSetter ps6 = null;
         PropertiesSetter ps7 = null;
+        PropertiesSetter ps8 = new PropertiesSetter();
 
         public SampleWnd()
         {
@@ -128,6 +129,9 @@ namespace Sample
 
             ps7 = new PropertiesSetter(ps1);
             ps7.CloseTimer = new MessageBoxCloseTimer(1, -100);
+
+            ps8.CloseTimer = new MessageBoxCloseTimer(10, -100);
+            ps8.EnableCloseButton = true;
         }
 
         private void Button_Click(object sender, RoutedEventArgs e)
@@ -536,6 +540,15 @@ namespace Sample
         {
             NewWindow newWindow = new NewWindow();
             newWindow.Show();
+        }
+
+        private void Button_Click_9(object sender, RoutedEventArgs e)
+        {
+            Button btn = new Button();
+            btn.Click += (s, eventArgs) => { MessageBox.CloseNow(); };
+
+            MessageBox.Show(ps8, new List<object> { "close",  }, "123", "123");
+
         }
     }
 }

@@ -1086,6 +1086,15 @@ namespace CustomizableMessageBox
         }
 
         /// <summary>
+        /// 立即关闭消息框
+        /// </summary>
+        public static void CloseNow()
+        {
+            mb.Hide();
+            mb.Close();
+        }
+
+        /// <summary>
         /// 重新设定标题区域大小
         /// </summary>
         private static void LoadTitlePanel()

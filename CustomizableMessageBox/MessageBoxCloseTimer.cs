@@ -38,13 +38,5 @@ namespace CustomizableMessageBox
             this.timeSpan = new TimeSpan(0, 0, 0, seconds);
             this.result = result;
         }
-
-        /// <summary>
-        /// 立即关闭消息窗口
-        /// </summary>
-        public void CloseNow()
-        {
-            closeWindowByTimer(null, null);
-        }
     }
 }

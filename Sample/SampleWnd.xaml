@@ -27,6 +27,8 @@
         <Button Content="Button" HorizontalAlignment="Left" Margin="460,110,0,0" VerticalAlignment="Top" Width="150" Click="Button_Click_7"/>
         <Label Content="新窗口" HorizontalAlignment="Left" Margin="10,140,0,0" FontSize="10" VerticalAlignment="Top" Width="150" />
         <Button Content="Button" HorizontalAlignment="Left" Margin="10,160,0,0" VerticalAlignment="Top" Width="150" Click="Button_Click_8"/>
+        <Label Content="定时关闭与直接关闭" HorizontalAlignment="Left" Margin="160,140,0,0" FontSize="10" VerticalAlignment="Top" Width="150" />
+        <Button Content="定时关闭与直接关闭" HorizontalAlignment="Left" Margin="160,160,0,0" VerticalAlignment="Top" Width="150" Click="Button_Click_9"/>
 
 
     </Grid>
