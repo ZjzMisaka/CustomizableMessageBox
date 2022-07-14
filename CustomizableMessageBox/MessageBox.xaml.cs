@@ -1747,16 +1747,17 @@ namespace CustomizableMessageBox
                 if (buttonList[i] is FrameworkElement)
                 {
                     FrameworkElement fe = (FrameworkElement)buttonList[i];
-                    if (fe.Height > highestItemHeight)
+                    double heightTemp = fe.Height + fe.Margin.Top + fe.Margin.Bottom;
+                    if (heightTemp > highestItemHeight)
                     {
-                        highestItemHeight = fe.Height + fe.Margin.Top + fe.Margin.Bottom;
+                        highestItemHeight = heightTemp;
                     }
                 }
             }
 
-            mb.g_buttongrid.Height = highestItemHeight + 13;
-            mb.rd_button.Height = new GridLength(highestItemHeight + 13, GridUnitType.Pixel);
-            mb.b_buttonborder.Height = highestItemHeight + 13;
+            mb.g_buttongrid.Height = highestItemHeight;
+            mb.rd_button.Height = new GridLength(highestItemHeight, GridUnitType.Pixel);
+            mb.b_buttonborder.Height = highestItemHeight;
         }
     }
 }
