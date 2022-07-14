@@ -1749,7 +1749,7 @@ namespace CustomizableMessageBox
                     FrameworkElement fe = (FrameworkElement)buttonList[i];
                     if (fe.Height > highestItemHeight)
                     {
-                        highestItemHeight = fe.Height;
+                        highestItemHeight = fe.Height + fe.Margin.Top + fe.Margin.Bottom;
                     }
                 }
             }
