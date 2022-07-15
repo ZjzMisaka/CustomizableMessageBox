@@ -60,7 +60,7 @@
             </Border>
 
             <Border x:Name="b_buttonborder" Grid.Row="2" Grid.Column="0" VerticalAlignment="Stretch" HorizontalAlignment="Stretch" BorderBrush="#F09A9A9A" BorderThickness="0,0,0,0">
-                <Grid x:Name="g_buttongrid" VerticalAlignment="Bottom" Background="#DDDDDD" >
+                <Grid x:Name="g_buttongrid" VerticalAlignment="Stretch" Background="#DDDDDD" >
                     <Grid.RowDefinitions>
                         <RowDefinition />
                     </Grid.RowDefinitions>

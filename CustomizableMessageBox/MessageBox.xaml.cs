@@ -146,7 +146,6 @@ namespace CustomizableMessageBox
                         if (obj is FrameworkElement)
                         {
                             FrameworkElement fe = (FrameworkElement)obj;
-                            fe.SizeChanged += (a, b) => { SetButtonAndButtonPanelHeight(); };
                         }
                     }
                     
@@ -1672,7 +1671,7 @@ namespace CustomizableMessageBox
         private static void SetButtonStyle()
         {
             //double maxContentWidth = 0;
-            double contentAndBorderHeight = 0;
+            double contentAndBorderAndMarginHeight = 0;
             int buttonIndex = -1;
             int btnObjIndex = -1;
             for (int i = 0; i < buttonList.Count; i++)
@@ -1742,15 +1741,15 @@ namespace CustomizableMessageBox
                     }
 
                     double heightTemp = ft.Height + thickness.Top + thickness.Bottom + mb.b_buttonborder.BorderThickness.Top + mb.b_buttonborder.BorderThickness.Bottom + margin.Top + margin.Bottom;
-                    if (heightTemp > contentAndBorderHeight)
+                    if (heightTemp > contentAndBorderAndMarginHeight)
                     {
-                        contentAndBorderHeight = heightTemp;
+                        contentAndBorderAndMarginHeight = heightTemp;
                     }
                 }
             }
 
             // 设置按钮栏高度
-            mb.buttonHeight = contentAndBorderHeight;
+            mb.buttonHeight = contentAndBorderAndMarginHeight;
 
             SetButtonAndButtonPanelHeight();
         }
@@ -1761,20 +1760,20 @@ namespace CustomizableMessageBox
         private static void SetButtonAndButtonPanelHeight()
         {
             double highestItemHeight = -1;
-            int btnObjIndex = -1;
-
-            highestItemHeight = mb.buttonHeight;
-
             for (int i = 0; i < buttonList.Count; i++)
             {
-                if (!(buttonList[i] is string || buttonList[i] is FrameworkElement))
+                if (buttonList[i] is string)
                 {
-                    continue;
+                    highestItemHeight = mb.buttonHeight;
+                    break;
                 }
-                ++btnObjIndex;
-                if (buttonList[i] is FrameworkElement)
+            }
+            
+
+            if (mb.g_buttongrid.Children != null)
+            {
+                foreach (FrameworkElement fe in mb.g_buttongrid.Children)
                 {
-                    FrameworkElement fe = (FrameworkElement)buttonList[i];
                     double heightTemp = (fe.Height < fe.ActualHeight ? fe.ActualHeight : fe.Height) + fe.Margin.Top + fe.Margin.Bottom;
                     if (heightTemp > highestItemHeight)
                     {
