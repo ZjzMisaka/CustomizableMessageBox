@@ -60,13 +60,13 @@ namespace CustomizableMessageBox
         {
             get
             {
-                return mb.l_title.Content == null ? "" : mb.l_title.Content.ToString();
+                return mb.i_title.Content == null ? "" : mb.i_title.Content.ToString();
             }
             set
             {
                 if (mb != null)
                 {
-                    mb.l_title.Content = value;
+                    mb.i_title.Content = value;
                 }
             }
         }
@@ -140,6 +140,16 @@ namespace CustomizableMessageBox
                 if (mb != null)
                 {
                     buttonList = value;
+
+                    foreach (object obj in buttonList)
+                    {
+                        if (obj is FrameworkElement)
+                        {
+                            FrameworkElement fe = (FrameworkElement)obj;
+                            fe.SizeChanged += (a, b) => { SetButtonAndButtonPanelHeight(); };
+                        }
+                    }
+                    
                     LoadButtonPanel();
                 }
             }
@@ -833,7 +843,7 @@ namespace CustomizableMessageBox
             }
             if (TitleFontSize > 0)
             {
-                mb.l_title.FontSize = TitleFontSize;
+                mb.i_title.FontSize = TitleFontSize;
             }
             if (MessageFontSize > 0)
             {
@@ -858,7 +868,7 @@ namespace CustomizableMessageBox
             }
             if (TitleFontColor != null)
             {
-                mb.l_title.Foreground = TitleFontColor.GetSolidColorBrush();
+                mb.i_title.Foreground = TitleFontColor.GetSolidColorBrush();
             }
             if (MessageFontColor != null)
             {
@@ -908,7 +918,7 @@ namespace CustomizableMessageBox
             {
                 mb.b_buttonborder.BorderThickness = ButtonPanelBorderThickness;
             }
-            mb.l_title.FontFamily = TitleFontFamily;
+            mb.i_title.FontFamily = TitleFontFamily;
             mb.tb_msg.FontFamily = MessageFontFamily;
             mb.tb_msg.TextWrapping = TextWrappingMode;
             mb.da_win.Duration = WindowShowDuration;
@@ -916,10 +926,12 @@ namespace CustomizableMessageBox
             if (enableCloseButton)
             {
                 mb.i_close.Visibility = Visibility.Visible;
+                Grid.SetColumnSpan(mb.i_title, 1);
             }
             else
             {
                 mb.i_close.Visibility = Visibility.Collapsed;
+                Grid.SetColumnSpan(mb.i_title, 2);
             }
         }
 
@@ -1003,6 +1015,8 @@ namespace CustomizableMessageBox
 
                 InitProperties();
 
+                mb.ContentRendered += (a, b) => { SetButtonAndButtonPanelHeight(); };
+
                 // 计算像素密度
                 pixelsPerDip = VisualTreeHelper.GetDpi(mb).PixelsPerDip;
 
@@ -1013,7 +1027,7 @@ namespace CustomizableMessageBox
                 mb.i_close.MouseLeftButtonUp += I_close_TouchDown;
 
                 // 绑定标题栏鼠标事件, 拖动窗口
-                mb.l_title.MouseLeftButtonDown += L_title_MouseLeftButtonDown;
+                mb.i_title.MouseLeftButtonDown += i_title_MouseLeftButtonDown;
 
                 // 重置选择结果
                 currentClickIndex = -1;
@@ -1100,7 +1114,7 @@ namespace CustomizableMessageBox
         private static void LoadTitlePanel()
         {
             // 根据字体计算标题字符串高度
-            double height = new FormattedText(" ", CultureInfo.CurrentCulture, System.Windows.FlowDirection.LeftToRight, new Typeface(mb.l_title.FontFamily, mb.l_title.FontStyle, mb.l_title.FontWeight, mb.l_title.FontStretch), mb.l_title.FontSize, System.Windows.Media.Brushes.Black, pixelsPerDip).Height;
+            double height = new FormattedText(" ", CultureInfo.CurrentCulture, System.Windows.FlowDirection.LeftToRight, new Typeface(mb.i_title.FontFamily, mb.i_title.FontStyle, mb.i_title.FontWeight, mb.i_title.FontStretch), mb.i_title.FontSize, System.Windows.Media.Brushes.Black, pixelsPerDip).Height;
             double titleAndBorderHeight = height + mb.b_titleborder.BorderThickness.Top + mb.b_titleborder.BorderThickness.Bottom;
 
             // 设置标题栏高度
@@ -1152,11 +1166,21 @@ namespace CustomizableMessageBox
                 }
                 else if (buttonList[i] is ButtonSpacer)
                 {
-                    double length = ((ButtonSpacer)buttonList[i]).GetLength();
-                    if (length != -1)
+                    ButtonSpacer buttonSpacer = (ButtonSpacer)buttonList[i];
+
+                    if (buttonSpacer.IsForSpan && i >= 2 && buttonList[i - 1] is FrameworkElement)
+                    {
+                        Grid.SetColumnSpan((FrameworkElement)buttonList[i], 2);
+                    }
+
+                    if (buttonSpacer.GridUnitType == GridUnitType.Pixel && buttonSpacer.Value != -1)
                     {
                         // 修改列宽度
-                        mb.g_buttongrid.ColumnDefinitions[i].Width = new GridLength(length);
+                        mb.g_buttongrid.ColumnDefinitions[i].Width = new GridLength(buttonSpacer.Value);
+                    }
+                    else if (buttonSpacer.GridUnitType == GridUnitType.Star && buttonSpacer.Value != -1)
+                    {
+                        mb.g_buttongrid.ColumnDefinitions[i].Width = new GridLength(buttonSpacer.Value, GridUnitType.Star);
                     }
                 }
                 else if (buttonList[i] is FrameworkElement)
@@ -1518,7 +1542,7 @@ namespace CustomizableMessageBox
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
-        private static void L_title_MouseLeftButtonDown(Object sender, MouseButtonEventArgs e)
+        private static void i_title_MouseLeftButtonDown(Object sender, MouseButtonEventArgs e)
         {
             mb.DragMove();
         }
@@ -1688,6 +1712,7 @@ namespace CustomizableMessageBox
                     // 如果值比maxContentWidth值更大则赋值给maxContentWidth
                     //maxContentWidth = contentWidth > maxContentWidth ? contentWidth : maxContentWidth;
                     Thickness thickness = btn.BorderThickness;
+                    Thickness margin = btn.Margin;
                     if (style != null)
                     {
                         bool needSetColumnDefinitionWidth = false;
@@ -1706,6 +1731,7 @@ namespace CustomizableMessageBox
                             else if (setter.Property == Button.MarginProperty && setter.Value != null)
                             {
                                 ColumnDefinitionWidth += ((Thickness)setter.Value).Left + ((Thickness)setter.Value).Right;
+                                margin = (Thickness)setter.Value;
                             }
 
                             if (needSetColumnDefinitionWidth && ColumnDefinitionWidth > 0)
@@ -1714,15 +1740,17 @@ namespace CustomizableMessageBox
                             }
                         }
                     }
-                    if (ft.Height + thickness.Top + thickness.Bottom > contentAndBorderHeight)
+
+                    double heightTemp = ft.Height + thickness.Top + thickness.Bottom + mb.b_buttonborder.BorderThickness.Top + mb.b_buttonborder.BorderThickness.Bottom + margin.Top + margin.Bottom;
+                    if (heightTemp > contentAndBorderHeight)
                     {
-                        contentAndBorderHeight = ft.Height + btn.BorderThickness.Top + btn.BorderThickness.Bottom + mb.b_buttonborder.BorderThickness.Top + mb.b_buttonborder.BorderThickness.Bottom;
+                        contentAndBorderHeight = heightTemp;
                     }
                 }
             }
 
             // 设置按钮栏高度
-            mb.buttonHeight = contentAndBorderHeight + 7;
+            mb.buttonHeight = contentAndBorderHeight;
 
             SetButtonAndButtonPanelHeight();
         }
@@ -1747,7 +1775,7 @@ namespace CustomizableMessageBox
                 if (buttonList[i] is FrameworkElement)
                 {
                     FrameworkElement fe = (FrameworkElement)buttonList[i];
-                    double heightTemp = fe.Height + fe.Margin.Top + fe.Margin.Bottom;
+                    double heightTemp = (fe.Height < fe.ActualHeight ? fe.ActualHeight : fe.Height) + fe.Margin.Top + fe.Margin.Bottom;
                     if (heightTemp > highestItemHeight)
                     {
                         highestItemHeight = heightTemp;

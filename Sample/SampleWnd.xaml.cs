@@ -64,7 +64,7 @@ namespace Sample
             ps3.CloseTimer = new MessageBoxCloseTimer(5, -100);
 
             ps4 = new PropertiesSetter(ps1);
-            ps4.WarningIcon = new BitmapImage(new Uri("C:\\Users\\1\\Pictures\\ssccicon.png"));
+            // ps4.WarningIcon = new BitmapImage(new Uri("C:\\Users\\1\\Pictures\\ssccicon.png"));
             ps4.MessageFontSize = 20;
             ps4.TitleFontFamily = new FontFamily("黑体");
             ps4.ButtonFontFamily = new FontFamily("黑体");

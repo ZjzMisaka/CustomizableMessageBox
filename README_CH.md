@@ -192,8 +192,11 @@ MessageBox.Show(tb.Text == string.Empty ? "用户未输入" : tb.Text, (string)M
 |ButtonSpacer函数|含义|参数|返回值|静态|
 |----|----|----|----|----|
 |ButtonSpacer()|构造函数|||×|
+|ButtonSpacer(bool)|构造函数|是否与前一个元素进行行合并||×|
 |ButtonSpacer(double)|构造函数|留白长度||×|
-|GetLength()|获取留白长度||double|×|
+|ButtonSpacer(double, bool)|构造函数|留白长度, 是否与前一个元素进行行合并|留白长度|×|
+|ButtonSpacer(double, GridUnitType)|构造函数|GridLength对象包含的值, GridLength对象包含的值的种类||×|
+|ButtonSpacer(double, GridUnitType, bool)|构造函数|GridLength对象包含的值, GridLength对象包含的值的种类, 是否与前一个元素进行行合并||×|
 
 |Info属性|含义|类型|
 |----|----|----|

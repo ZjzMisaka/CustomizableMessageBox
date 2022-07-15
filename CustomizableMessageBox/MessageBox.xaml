@@ -43,7 +43,7 @@
                         <ColumnDefinition Width="35pt"/>
                     </Grid.ColumnDefinitions>
 
-                    <Label x:Name="l_title" Grid.Row=" 0" Content="" Padding="50,0,0,0" Grid.Column="0" HorizontalContentAlignment="Left" HorizontalAlignment="Left"  VerticalAlignment="Center" VerticalContentAlignment="Center" FontSize="30pt" Width="765"/>
+                    <Label x:Name="i_title" Grid.Row=" 0" Content="" Padding="50,0,0,0" Grid.Column="0" HorizontalContentAlignment="Left" HorizontalAlignment="Left"  VerticalAlignment="Center" VerticalContentAlignment="Center" FontSize="30pt" Width="765"/>
                     <Image x:Name="i_close" Grid.Row=" 0" Grid.Column="1" Width="25pt" Height="25pt" Source=".\Image\close.png" HorizontalAlignment="Left"  VerticalAlignment="Center"  Visibility="Hidden"/>
                 </Grid>
             </Border>

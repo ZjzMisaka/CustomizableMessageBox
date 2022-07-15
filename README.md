@@ -191,9 +191,12 @@ MessageBox.Show(tb.Text == string.Empty ? "User did not enter" : tb.Text, (strin
 
 |ButtonSpacer function|Meaning|Parameter|Return value|Is Static|
 |----|----|----|----|----|
-|ButtonSpacer ()|Constructor|||×|
-|ButtonSpacer (double)|Constructor|Leave length||×|
-|GetLength ()|Get the blank length||double|×|
+|ButtonSpacer()|Constructor|||×|
+|ButtonSpacer(bool)|Constructor|whether to do row merging with the previous element||×|
+|ButtonSpacer(double)|Constructor|space length||×|
+|ButtonSpacer(double, bool)|Constructor|space length, whether to do row merging with the previous element||×|
+|ButtonSpacer(double, GridUnitType)|Constructor|Describes the value that a GridLength object is holding, Describes the kind of value that a GridLength object is holding||×|
+|ButtonSpacer(double, GridUnitType, bool)|Constructor|Describes the value that a GridLength object is holding, Describes the kind of value that a GridLength object is holding, whether to do row merging with the previous element||×|
 
 
 |Info Properties|Meaning|Type|
