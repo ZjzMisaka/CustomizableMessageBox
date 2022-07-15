@@ -1167,9 +1167,9 @@ namespace CustomizableMessageBox
                 {
                     ButtonSpacer buttonSpacer = (ButtonSpacer)buttonList[i];
 
-                    if (buttonSpacer.IsForSpan && i >= 1 && buttonList[i - 1] is FrameworkElement)
+                    if (buttonSpacer.IsForSpan && i >= 1 && mb.g_buttongrid.Children[i - 1] is FrameworkElement)
                     {
-                        Grid.SetColumnSpan((FrameworkElement)buttonList[i], 2);
+                        Grid.SetColumnSpan((FrameworkElement)mb.g_buttongrid.Children[i - 1], 2);
                     }
 
                     if (buttonSpacer.GridUnitType == GridUnitType.Pixel && buttonSpacer.Value != -1)

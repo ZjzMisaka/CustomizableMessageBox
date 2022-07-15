@@ -547,7 +547,7 @@ namespace Sample
             Button btn = new Button();
             btn.Click += (s, eventArgs) => { MessageBox.CloseNow(); };
 
-            MessageBox.Show(ps8, new List<object> { "close",  }, "123", "123");
+            MessageBox.Show(ps8, new List<object> { "close", "close", new ButtonSpacer(1, GridUnitType.Star, true), "123"  }, "123", "123");
 
         }
     }
