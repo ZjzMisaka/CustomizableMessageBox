@@ -762,6 +762,262 @@ namespace CustomizableMessageBox
             }
         }
 
+        
+        private static List<double> buttonWidthList = null;
+        public static List<double> ButtonWidthList
+        {
+            get => buttonWidthList;
+            set
+            {
+                buttonWidthList = value;
+                if (mb == null)
+                {
+                    return;
+                }
+                SetButtonStyle();
+            }
+        }
+
+        private static List<double> buttonHeightList = null;
+        public static List<double> ButtonHeightList
+        {
+            get => buttonHeightList;
+            set
+            {
+                buttonHeightList = value;
+                if (mb == null)
+                {
+                    return;
+                }
+                SetButtonStyle();
+            }
+        }
+
+        private static List<System.Windows.HorizontalAlignment> buttonHorizontalAlignmentList = null;
+        public static List<System.Windows.HorizontalAlignment> ButtonHorizontalAlignmentList
+        {
+            get => buttonHorizontalAlignmentList;
+            set
+            {
+                buttonHorizontalAlignmentList = value;
+                if (mb == null)
+                {
+                    return;
+                }
+                SetButtonStyle();
+            }
+        }
+
+        private static List<VerticalAlignment> buttonVerticalAlignmentList = null;
+        public static List<VerticalAlignment> ButtonVerticalAlignmentList
+        {
+            get => buttonVerticalAlignmentList;
+            set
+            {
+                buttonVerticalAlignmentList = value;
+                if (mb == null)
+                {
+                    return;
+                }
+                SetButtonStyle();
+            }
+        }
+
+        private static List<System.Windows.HorizontalAlignment> buttonHorizontalContentAlignmentList = null;
+        public static List<System.Windows.HorizontalAlignment> ButtonHorizontalContentAlignmentList
+        {
+            get => buttonHorizontalContentAlignmentList;
+            set
+            {
+                buttonHorizontalContentAlignmentList = value;
+                if (mb == null)
+                {
+                    return;
+                }
+                SetButtonStyle();
+            }
+        }
+
+        private static List<VerticalAlignment> buttonVerticalContentAlignmentList = null;
+        public static List<VerticalAlignment> ButtonVerticalContentAlignmentList
+        {
+            get => buttonVerticalContentAlignmentList;
+            set
+            {
+                buttonVerticalContentAlignmentList = value;
+                if (mb == null)
+                {
+                    return;
+                }
+                SetButtonStyle();
+            }
+        }
+
+        private static List<Thickness> buttonMarginList = null;
+        public static List<Thickness> ButtonMarginList
+        {
+            get => buttonMarginList;
+            set
+            {
+                buttonMarginList = value;
+                if (mb == null)
+                {
+                    return;
+                }
+                SetButtonStyle();
+            }
+        }
+
+        private static List<Thickness> buttonPaddingList = null;
+        public static List<Thickness> ButtonPaddingList
+        {
+            get => buttonPaddingList;
+            set
+            {
+                buttonPaddingList = value;
+                if (mb == null)
+                {
+                    return;
+                }
+                SetButtonStyle();
+            }
+        }
+
+        private static List<Brush> buttonBackgroundList = null;
+        public static List<Brush> ButtonBackgroundList
+        {
+            get => buttonBackgroundList;
+            set
+            {
+                buttonBackgroundList = value;
+                if (mb == null)
+                {
+                    return;
+                }
+                SetButtonStyle();
+            }
+        }
+
+        private static List<Brush> buttonBorderBrushList = null;
+        public static List<Brush> ButtonBorderBrushList
+        {
+            get => buttonBorderBrushList;
+            set
+            {
+                buttonBorderBrushList = value;
+                if (mb == null)
+                {
+                    return;
+                }
+                SetButtonStyle();
+            }
+        }
+
+        private static List<Thickness> buttonBorderThicknessList = null;
+        public static List<Thickness> ButtonBorderThicknessList
+        {
+            get => buttonBorderThicknessList;
+            set
+            {
+                buttonBorderThicknessList = value;
+                if (mb == null)
+                {
+                    return;
+                }
+                SetButtonStyle();
+            }
+        }
+
+        private static List<System.Windows.Input.Cursor> buttonCursorList = null;
+        public static List<System.Windows.Input.Cursor> ButtonCursorList
+        {
+            get => buttonCursorList;
+            set
+            {
+                buttonCursorList = value;
+                if (mb == null)
+                {
+                    return;
+                }
+                SetButtonStyle();
+            }
+        }
+
+        private static List<FontFamily> buttonFontFamilyList = null;
+        public static List<FontFamily> ButtonFontFamilyList
+        {
+            get => buttonFontFamilyList;
+            set
+            {
+                buttonFontFamilyList = value;
+                if (mb == null)
+                {
+                    return;
+                }
+                SetButtonStyle();
+            }
+        }
+
+        private static List<double> buttonFontSizeList = null;
+        public static List<double> ButtonFontSizeList
+        {
+            get => buttonFontSizeList;
+            set
+            {
+                buttonFontSizeList = value;
+                if (mb == null)
+                {
+                    return;
+                }
+                SetButtonStyle();
+            }
+        }
+
+        private static List<FontStretch> buttonFontStretchList = null;
+        public static List<FontStretch> ButtonFontStretchList
+        {
+            get => buttonFontStretchList;
+            set
+            {
+                buttonFontStretchList = value;
+                if (mb == null)
+                {
+                    return;
+                }
+                SetButtonStyle();
+            }
+        }
+
+        private static List<FontStyle> buttonFontStyleList = null;
+        public static List<FontStyle> ButtonFontStyleList
+        {
+            get => buttonFontStyleList;
+            set
+            {
+                buttonFontStyleList = value;
+                if (mb == null)
+                {
+                    return;
+                }
+                SetButtonStyle();
+            }
+        }
+
+        private static List<FontWeight> buttonFontWeightList = null;
+        public static List<FontWeight> ButtonFontWeightList
+        {
+            get => buttonFontWeightList;
+            set
+            {
+                buttonFontWeightList = value;
+                if (mb == null)
+                {
+                    return;
+                }
+                SetButtonStyle();
+            }
+        }
+
         // 窗口计时关闭
         private static MessageBoxCloseTimer closeTimer = null;
         public static MessageBoxCloseTimer CloseTimer { get => closeTimer; set => closeTimer = value; }
@@ -813,6 +1069,15 @@ namespace CustomizableMessageBox
                 QuestionIcon = value.QuestionIcon;
                 EnableCloseButton = value.EnableCloseButton;
                 ButtonStyleList = value.ButtonStyleList;
+                ButtonWidthList = value.ButtonWidthList;
+                ButtonHeightList = value.ButtonHeightList;
+                ButtonHorizontalAlignmentList = value.ButtonHorizontalAlignmentList;
+                ButtonVerticalAlignmentList = value.ButtonVerticalAlignmentList;
+                ButtonMarginList = value.ButtonMarginList;
+                ButtonBackgroundList = value.ButtonBackgroundList;
+                ButtonBorderBrushList = value.ButtonBorderBrushList;
+                ButtonBorderThicknessList = value.ButtonBorderThicknessList;
+                ButtonCursorList = value.ButtonCursorList;
                 CloseTimer = value.CloseTimer;
             }
         }
@@ -1148,8 +1413,7 @@ namespace CustomizableMessageBox
                 {
                     // 实例化一个新的按钮
                     newBtn = new Button();
-
-                    newBtn.HorizontalAlignment = System.Windows.HorizontalAlignment.Stretch;
+                    
                     // 将按钮加入Grid中
                     mb.g_buttongrid.Children.Add(newBtn);
                     // 设置按钮在Grid中的行列
@@ -1167,6 +1431,10 @@ namespace CustomizableMessageBox
                     newBtn.Visibility = Visibility.Visible;
                     // 绑定按钮点击事件
                     newBtn.Click += BtnClicked;
+
+                    // 设置拉伸
+                    newBtn.HorizontalAlignment = System.Windows.HorizontalAlignment.Stretch;
+                    newBtn.VerticalAlignment = System.Windows.VerticalAlignment.Stretch;
                 }
                 else if (buttonList[i] is ButtonSpacer)
                 {
@@ -1321,6 +1589,23 @@ namespace CustomizableMessageBox
             questionIcon = new BitmapImage(new Uri(".\\Image\\question.png", UriKind.RelativeOrAbsolute));
             enableCloseButton = false;
             buttonStyleList = null;
+            ButtonWidthList = null;
+            ButtonHeightList = null;
+            ButtonHorizontalAlignmentList = null;
+            ButtonVerticalAlignmentList = null;
+            ButtonHorizontalContentAlignmentList = null;
+            ButtonVerticalContentAlignmentList = null;
+            ButtonMarginList = null;
+            ButtonPaddingList = null;
+            ButtonBackgroundList = null;
+            ButtonBorderBrushList = null;
+            ButtonBorderThicknessList = null;
+            ButtonCursorList = null;
+            ButtonFontFamilyList = null;
+            ButtonFontSizeList = null;
+            ButtonFontStretchList = null;
+            ButtonFontStyleList = null;
+            ButtonFontWeightList = null;
             closeTimer = null;
 
             propertiesSetter = new PropertiesSetter();
@@ -1702,9 +1987,74 @@ namespace CustomizableMessageBox
                     if (!ButtonBorderThickness.Equals(new Thickness()))
                         btn.BorderThickness = ButtonBorderThickness;
 
+                    if (ButtonWidthList != null && ButtonWidthList.Count >= 1)
+                    {
+                        btn.Width = ButtonWidthList.Count > buttonIndex ? ButtonWidthList[buttonIndex] : ButtonWidthList[ButtonWidthList.Count - 1];
+                    }
+                    if (ButtonHeightList != null && ButtonHeightList.Count >= 1)
+                    {
+                        btn.Height = ButtonHeightList.Count > buttonIndex ? ButtonHeightList[buttonIndex] : ButtonHeightList[ButtonHeightList.Count - 1];
+                    }
+                    if (ButtonHorizontalAlignmentList != null && ButtonHorizontalAlignmentList.Count >= 1)
+                    {
+                        btn.HorizontalAlignment = ButtonHorizontalAlignmentList.Count > buttonIndex ? ButtonHorizontalAlignmentList[buttonIndex] : ButtonHorizontalAlignmentList[ButtonHorizontalAlignmentList.Count - 1];
+                    }
+                    if (ButtonVerticalAlignmentList != null && ButtonVerticalAlignmentList.Count >= 1)
+                    {
+                        btn.VerticalAlignment = ButtonVerticalAlignmentList.Count > buttonIndex ? ButtonVerticalAlignmentList[buttonIndex] : ButtonVerticalAlignmentList[ButtonVerticalAlignmentList.Count - 1];
+                    }
+                    if (ButtonHorizontalContentAlignmentList != null && ButtonHorizontalContentAlignmentList.Count >= 1)
+                    {
+                        btn.HorizontalContentAlignment = ButtonHorizontalContentAlignmentList.Count > buttonIndex ? ButtonHorizontalContentAlignmentList[buttonIndex] : ButtonHorizontalContentAlignmentList[ButtonHorizontalContentAlignmentList.Count - 1];
+                    }
+                    if (ButtonVerticalContentAlignmentList != null && ButtonVerticalContentAlignmentList.Count >= 1)
+                    {
+                        btn.VerticalContentAlignment = ButtonVerticalContentAlignmentList.Count > buttonIndex ? ButtonVerticalContentAlignmentList[buttonIndex] : ButtonVerticalContentAlignmentList[ButtonVerticalContentAlignmentList.Count - 1];
+                    }
+                    if (ButtonMarginList != null && ButtonMarginList.Count >= 1)
+                    {
+                        btn.Margin = ButtonMarginList.Count > buttonIndex ? ButtonMarginList[buttonIndex] : ButtonMarginList[ButtonMarginList.Count - 1];
+                    }
+                    if (ButtonBackgroundList != null && ButtonBackgroundList.Count >= 1)
+                    {
+                        btn.Background = ButtonBackgroundList.Count > buttonIndex ? ButtonBackgroundList[buttonIndex] : ButtonBackgroundList[ButtonBackgroundList.Count - 1];
+                    }
+                    if (ButtonBorderBrushList != null && ButtonBorderBrushList.Count >= 1)
+                    {
+                        btn.BorderBrush = ButtonBorderBrushList.Count > buttonIndex ? ButtonBorderBrushList[buttonIndex] : ButtonBorderBrushList[ButtonBorderBrushList.Count - 1];
+                    }
+                    if (ButtonBorderThicknessList != null && ButtonBorderThicknessList.Count >= 1)
+                    {
+                        btn.BorderThickness = ButtonBorderThicknessList.Count > buttonIndex ? ButtonBorderThicknessList[buttonIndex] : ButtonBorderThicknessList[ButtonBorderThicknessList.Count - 1];
+                    }
+                    if (ButtonCursorList != null && ButtonCursorList.Count >= 1)
+                    {
+                        btn.Cursor = ButtonCursorList.Count > buttonIndex ? ButtonCursorList[buttonIndex] : ButtonCursorList[ButtonCursorList.Count - 1];
+                    }
+                    if (ButtonFontFamilyList != null && ButtonFontFamilyList.Count >= 1)
+                    {
+                        btn.FontFamily = ButtonFontFamilyList.Count > buttonIndex ? ButtonFontFamilyList[buttonIndex] : ButtonFontFamilyList[ButtonFontFamilyList.Count - 1];
+                    }
+                    if (ButtonFontSizeList != null && ButtonFontSizeList.Count >= 1)
+                    {
+                        btn.FontSize = ButtonFontSizeList.Count > buttonIndex ? ButtonFontSizeList[buttonIndex] : ButtonFontSizeList[ButtonFontSizeList.Count - 1];
+                    }
+                    if (ButtonFontStretchList != null && ButtonFontStretchList.Count >= 1)
+                    {
+                        btn.FontStretch = ButtonFontStretchList.Count > buttonIndex ? ButtonFontStretchList[buttonIndex] : ButtonFontStretchList[ButtonFontStretchList.Count - 1];
+                    }
+                    if (ButtonFontStyleList != null && ButtonFontStyleList.Count >= 1)
+                    {
+                        btn.FontStyle = ButtonFontStyleList.Count > buttonIndex ? ButtonFontStyleList[buttonIndex] : ButtonFontStyleList[ButtonFontStyleList.Count - 1];
+                    }
+                    if (ButtonFontWeightList != null && ButtonFontWeightList.Count >= 1)
+                    {
+                        btn.FontWeight = ButtonFontWeightList.Count > buttonIndex ? ButtonFontWeightList[buttonIndex] : ButtonFontWeightList[ButtonFontWeightList.Count - 1];
+                    }
+
                     Style style = null;
 
-                    if (buttonStyleList != null && buttonStyleList.Count >= 1)
+                    if (ButtonStyleList != null && ButtonStyleList.Count >= 1)
                     {
                         btn.Style = style = ButtonStyleList.Count > buttonIndex ? ButtonStyleList[buttonIndex] : ButtonStyleList[ButtonStyleList.Count - 1];
                     }

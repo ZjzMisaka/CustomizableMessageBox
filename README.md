@@ -144,6 +144,23 @@ MessageBox.Show(tb.Text == string.Empty ? "User did not enter" : tb.Text, (strin
 |QuestionIcon|BitmapImage|Custom Question Icon|√|√|
 |EnableCloseButton|bool|Application window close button|√|√|
 |ButtonStyleList|List&lt;Style&gt;|Button Action Style|√|√|
+|ButtonWidthList|List&lt;double&gt;|-|√|√|
+|ButtonHeightList|List&lt;double&gt;|-|√|√|
+|ButtonHorizontalAlignmentList|List&lt;HorizontalAlignment&gt;|-|√|√|
+|ButtonVerticalAlignmentList|List&lt;VerticalAlignment&gt;|-|√|√|
+|ButtonHorizontalContentAlignmentList|List&lt;HorizontalAlignment&gt;|-|√|√|
+|ButtonVerticalContentAlignmentList|List&lt;VerticalAlignment&gt;|-|√|√|
+|ButtonMarginList|List&lt;Thickness&gt;|-|√|√|
+|ButtonPaddingList|List&lt;Thickness&gt;|-|√|√|
+|ButtonBackgroundList|List&lt;Brush&gt;|-|√|√|
+|ButtonBorderBrushList|List&lt;Brush&gt;|-|√|√|
+|ButtonBorderThicknessList|List&lt;Thickness&gt;|-|√|√|
+|ButtonCursorList|List&lt;Cursor&gt;|-|√|√|
+|ButtonFontFamilyList|List&lt;FontFamily&gt;|-|√|√|
+|ButtonFontSizeList|List&lt;double&gt;|-|√|√|
+|ButtonFontStretchList|List&lt;FontStretch&gt;|-|√|√|
+|ButtonFontStyleList|List&lt;FontStyle&gt;|-|√|√|
+|ButtonFontWeightList|List&lt;FontWeight&gt;|-|√|√|
 |CloseTimer|MessageBoxCloseTimer|Window timing / Close now|√|√|
 |MessageBoxImageType|MessageBoxImage|Set the type of icon displayed|√|√|
 

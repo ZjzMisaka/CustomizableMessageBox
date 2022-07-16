@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
+using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Animation;
 using System.Windows.Media.Imaging;
@@ -60,6 +61,23 @@ namespace CustomizableMessageBox
             QuestionIcon = propertiesSetter.QuestionIcon;
             EnableCloseButton = propertiesSetter.EnableCloseButton;
             ButtonStyleList = propertiesSetter.ButtonStyleList;
+            ButtonWidthList = propertiesSetter.ButtonWidthList;
+            ButtonHeightList = propertiesSetter.ButtonHeightList;
+            ButtonHorizontalAlignmentList = propertiesSetter.ButtonHorizontalAlignmentList;
+            ButtonVerticalAlignmentList = propertiesSetter.ButtonVerticalAlignmentList;
+            ButtonHorizontalContentAlignmentList = propertiesSetter.ButtonHorizontalContentAlignmentList;
+            ButtonVerticalContentAlignmentList = propertiesSetter.ButtonVerticalContentAlignmentList;
+            ButtonMarginList = propertiesSetter.ButtonMarginList;
+            ButtonPaddingList = propertiesSetter.ButtonPaddingList;
+            ButtonBackgroundList = propertiesSetter.ButtonBackgroundList;
+            ButtonBorderBrushList = propertiesSetter.ButtonBorderBrushList;
+            ButtonBorderThicknessList = propertiesSetter.ButtonBorderThicknessList;
+            ButtonCursorList = propertiesSetter.ButtonCursorList;
+            ButtonFontFamilyList = propertiesSetter.ButtonFontFamilyList;
+            ButtonFontSizeList = propertiesSetter.ButtonFontSizeList;
+            ButtonFontStretchList = propertiesSetter.ButtonFontStretchList;
+            ButtonFontStyleList = propertiesSetter.ButtonFontStyleList;
+            ButtonFontWeightList = propertiesSetter.ButtonFontWeightList;
             CloseTimer = propertiesSetter.CloseTimer;
         }
 
@@ -222,6 +240,57 @@ namespace CustomizableMessageBox
         // 按钮动作样式
         private List<Style> buttonStyleList = null;
         public List<Style> ButtonStyleList { get => buttonStyleList; set => buttonStyleList = value; }
+
+        private List<double> buttonWidthList = null;
+        public List<double> ButtonWidthList { get => buttonWidthList; set => buttonWidthList = value; }
+
+        private List<double> buttonHeightList = null;
+        public List<double> ButtonHeightList { get => buttonHeightList; set => buttonHeightList = value; }
+
+        private List<System.Windows.HorizontalAlignment> buttonHorizontalAlignmentList = null;
+        public List<HorizontalAlignment> ButtonHorizontalAlignmentList { get => buttonHorizontalAlignmentList; set => buttonHorizontalAlignmentList = value; }
+
+        private List<VerticalAlignment> buttonVerticalAlignmentList = null;
+        public List<VerticalAlignment> ButtonVerticalAlignmentList { get => buttonVerticalAlignmentList; set => buttonVerticalAlignmentList = value; }
+
+        private List<System.Windows.HorizontalAlignment> buttonHorizontalContentAlignmentList = null;
+        public List<HorizontalAlignment> ButtonHorizontalContentAlignmentList { get => buttonHorizontalContentAlignmentList; set => buttonHorizontalContentAlignmentList = value; }
+
+        private List<VerticalAlignment> buttonVerticalContentAlignmentList = null;
+        public List<VerticalAlignment> ButtonVerticalContentAlignmentList { get => buttonVerticalContentAlignmentList; set => buttonVerticalContentAlignmentList = value; }
+
+        private List<Thickness> buttonMarginList = null;
+        public List<Thickness> ButtonMarginList { get => buttonMarginList; set => buttonMarginList = value; }
+
+        private List<Thickness> buttonPaddingList = null;
+        public List<Thickness> ButtonPaddingList { get => buttonPaddingList; set => buttonPaddingList = value; }
+
+        private List<Brush> buttonBackgroundList = null;
+        public List<Brush> ButtonBackgroundList { get => buttonBackgroundList; set => buttonBackgroundList = value; }
+
+        private List<Brush> buttonBorderBrushList = null;
+        public List<Brush> ButtonBorderBrushList { get => buttonBorderBrushList; set => buttonBorderBrushList = value; }
+
+        private List<Thickness> buttonBorderThicknessList = null;
+        public List<Thickness> ButtonBorderThicknessList { get => buttonBorderThicknessList; set => buttonBorderThicknessList = value; }
+
+        private List<System.Windows.Input.Cursor> buttonCursorList = null;
+        public List<Cursor> ButtonCursorList { get => buttonCursorList; set => buttonCursorList = value; }
+
+        private List<FontFamily> buttonFontFamilyList = null;
+        public List<FontFamily> ButtonFontFamilyList { get => buttonFontFamilyList; set => buttonFontFamilyList = value; }
+
+        private List<double> buttonFontSizeList = null;
+        public List<double> ButtonFontSizeList { get => buttonFontSizeList; set => buttonFontSizeList = value; }
+
+        private List<FontStretch> buttonFontStretchList = null;
+        public List<FontStretch> ButtonFontStretchList { get => buttonFontStretchList; set => buttonFontStretchList = value; }
+
+        private List<FontStyle> buttonFontStyleList = null;
+        public List<FontStyle> ButtonFontStyleList { get => buttonFontStyleList; set => buttonFontStyleList = value; }
+
+        private List<FontWeight> buttonFontWeightList = null;
+        public List<FontWeight> ButtonFontWeightList { get => buttonFontWeightList; set => buttonFontWeightList = value; }
 
         // 窗口计时关闭
         private MessageBoxCloseTimer closeTimer = null;

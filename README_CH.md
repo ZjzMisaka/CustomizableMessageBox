@@ -144,6 +144,23 @@ MessageBox.Show(tb.Text == string.Empty ? "用户未输入" : tb.Text, (string)M
 |QuestionIcon|BitmapImage|自定义问题图标|√|√|
 |EnableCloseButton|bool|应用窗口关闭按钮|√|√|
 |ButtonStyleList|List&lt;Style&gt;|按钮动作样式|√|√|
+|ButtonWidthList|List&lt;double&gt;|-|√|√|
+|ButtonHeightList|List&lt;double&gt;|-|√|√|
+|ButtonHorizontalAlignmentList|List&lt;HorizontalAlignment&gt;|-|√|√|
+|ButtonVerticalAlignmentList|List&lt;VerticalAlignment&gt;|-|√|√|
+|ButtonHorizontalContentAlignmentList|List&lt;HorizontalAlignment&gt;|-|√|√|
+|ButtonVerticalContentAlignmentList|List&lt;VerticalAlignment&gt;|-|√|√|
+|ButtonMarginList|List&lt;Thickness&gt;|-|√|√|
+|ButtonPaddingList|List&lt;Thickness&gt;|-|√|√|
+|ButtonBackgroundList|List&lt;Brush&gt;|-|√|√|
+|ButtonBorderBrushList|List&lt;Brush&gt;|-|√|√|
+|ButtonBorderThicknessList|List&lt;Thickness&gt;|-|√|√|
+|ButtonCursorList|List&lt;Cursor&gt;|-|√|√|
+|ButtonFontFamilyList|List&lt;FontFamily&gt;|-|√|√|
+|ButtonFontSizeList|List&lt;double&gt;|-|√|√|
+|ButtonFontStretchList|List&lt;FontStretch&gt;|-|√|√|
+|ButtonFontStyleList|List&lt;FontStyle&gt;|-|√|√|
+|ButtonFontWeightList|List&lt;FontWeight&gt;|-|√|√|
 |CloseTimer|MessageBoxCloseTimer|窗口计时 / 立即关闭|√|√|
 |MessageBoxImageType|MessageBoxImage|设定显示的图标类型|√|√|
 
