@@ -220,7 +220,7 @@ namespace CustomizableMessageBox
         public bool EnableCloseButton { get => enableCloseButton; set => enableCloseButton = value; }
 
         // 按钮动作样式
-        private List<Style> buttonStyleList = new List<Style> { new ResourceDictionary { Source = new Uri("pack://application:,,,/CustomizableMessageBox;component/WndStyles.xaml") }["MessageBoxButtonStyle"] as Style };
+        private List<Style> buttonStyleList = null;
         public List<Style> ButtonStyleList { get => buttonStyleList; set => buttonStyleList = value; }
 
         // 窗口计时关闭

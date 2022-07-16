@@ -54,6 +54,7 @@
     </Compile>
     <Compile Include="MessageBoxCloseTimer.cs" />
     <Compile Include="MessageBoxColor.cs" />
+    <Compile Include="Prefab.cs" />
     <Compile Include="PropertiesSetter.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>

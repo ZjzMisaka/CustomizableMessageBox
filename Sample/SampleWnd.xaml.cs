@@ -56,7 +56,8 @@ namespace Sample
             ps1.LockHeight = true;
             ps1.WindowWidth = 450;
             ps1.WindowShowDuration = new Duration(new TimeSpan(0, 0, 0, 0, 300));
-
+            ps1 = Prefab.GetPropertiesSetter(PropertiesSetterName.Gray);
+            ps1.ButtonStyleList = new List<Style>() { Prefab.GetButonStyle(ButtonStyleName.White) };
             ps2 = new PropertiesSetter(ps1);
             ps2.MessageFontSize = 18;
 
@@ -547,7 +548,7 @@ namespace Sample
             Button btn = new Button();
             btn.Click += (s, eventArgs) => { MessageBox.CloseNow(); };
 
-            MessageBox.Show(ps8, new List<object> { "close", "close", new ButtonSpacer(1, GridUnitType.Star, true), "123"  }, "123", "123");
+            MessageBox.Show(new PropertiesSetter(), new List<object> { "close", "123"  }, "123", "123");
 
         }
     }

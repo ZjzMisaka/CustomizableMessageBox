@@ -747,7 +747,7 @@ namespace CustomizableMessageBox
         }
 
         // 按钮动作样式
-        private static List<Style> buttonStyleList = new List<Style> { new ResourceDictionary { Source = new Uri("pack://application:,,,/CustomizableMessageBox;component/WndStyles.xaml") }["MessageBoxButtonStyle"] as Style };
+        private static List<Style> buttonStyleList = null;
         public static List<Style> ButtonStyleList
         {
             get => buttonStyleList;
@@ -1148,13 +1148,18 @@ namespace CustomizableMessageBox
                 {
                     // 实例化一个新的按钮
                     newBtn = new Button();
+
+                    newBtn.HorizontalAlignment = System.Windows.HorizontalAlignment.Stretch;
                     // 将按钮加入Grid中
                     mb.g_buttongrid.Children.Add(newBtn);
                     // 设置按钮在Grid中的行列
                     newBtn.SetValue(Grid.RowProperty, 0);
                     newBtn.SetValue(Grid.ColumnProperty, i);
                     // 设置按钮样式
-                    newBtn.Style = buttonStyleList.Count > styleIndex + 1 ? buttonStyleList[styleIndex++] : buttonStyleList[styleIndex];
+                    if (buttonStyleList != null && buttonStyleList.Count >= 1)
+                    {
+                        newBtn.Style = buttonStyleList.Count > styleIndex + 1 ? buttonStyleList[styleIndex++] : buttonStyleList[styleIndex];
+                    }
 
                     //设置按钮文本
                     newBtn.Content = buttonList[i];
@@ -1315,7 +1320,7 @@ namespace CustomizableMessageBox
             infoIcon = new BitmapImage(new Uri(".\\Image\\info.png", UriKind.RelativeOrAbsolute));
             questionIcon = new BitmapImage(new Uri(".\\Image\\question.png", UriKind.RelativeOrAbsolute));
             enableCloseButton = false;
-            buttonStyleList = new List<Style> { new ResourceDictionary { Source = new Uri("pack://application:,,,/CustomizableMessageBox;component/WndStyles.xaml") }["MessageBoxButtonStyle"] as Style };
+            buttonStyleList = null;
             closeTimer = null;
 
             propertiesSetter = new PropertiesSetter();
@@ -1699,7 +1704,7 @@ namespace CustomizableMessageBox
 
                     Style style = null;
 
-                    if (ButtonStyleList != null)
+                    if (buttonStyleList != null && buttonStyleList.Count >= 1)
                     {
                         btn.Style = style = ButtonStyleList.Count > buttonIndex ? ButtonStyleList[buttonIndex] : ButtonStyleList[ButtonStyleList.Count - 1];
                     }
