@@ -207,3 +207,12 @@ MessageBox.Show(tb.Text == string.Empty ? "用户未输入" : tb.Text, (string)M
 |----|----|----|----|----|
 |PrintLog(MessageBoxType)|调用消息框显示异常信息|消息框的类型 (自定或系统)|bool|√|
 |PrintLog(string, bool, bool)|将异常信息输出到文本文件中|输出文本路径, 是否保留栈的内容, 是否输出到文件末尾|bool|√|
+
+### Prefab 静态类
+|GetPropertiesSetter函数|含义|参数|返回值|静态|
+|----|----|----|----|----|
+|GetPropertiesSetter(PropertiesSetterName)|获取预制的PropertiesSetter|枚举|PropertiesSetter|√|
+
+|GetButonStyle函数|含义|参数|返回值|静态|
+|----|----|----|----|----|
+|GetButonStyle(ButtonStyleName)|获取预制的ButonStyle|枚举|Style|√|

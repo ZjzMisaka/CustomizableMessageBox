@@ -208,3 +208,12 @@ MessageBox.Show(tb.Text == string.Empty ? "User did not enter" : tb.Text, (strin
 |----|----|----|----|----|
 |PrintLog(MessageBoxType)|Call MessageBox to display exception information|Type of MessageBox (custom or system)|bool|√|
 |PrintLog(string, bool, bool)|Output exception information to a text file|Path to output text, Whether to keep the contents of the stack, Whether to append the end of the file|bool|√|
+
+### Prefab Static class
+|GetPropertiesSetter function|Meaning|Parameter|Return value|Is Static|
+|----|----|----|----|----|
+|GetPropertiesSetter(PropertiesSetterName)|Get the pre-made PropertiesSetter|Enum|PropertiesSetter|√|
+
+|GetButonStyle function|Meaning|Parameter|Return value|Is Static|
+|----|----|----|----|----|
+|GetButonStyle(ButtonStyleName)|Get the pre-made ButonStyle|Enum|Style|√|

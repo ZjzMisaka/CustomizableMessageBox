@@ -548,7 +548,7 @@ namespace Sample
             Button btn = new Button();
             btn.Click += (s, eventArgs) => { MessageBox.CloseNow(); };
 
-            MessageBox.Show(new PropertiesSetter(), new List<object> { "close", "123"  }, "123", "123");
+            MessageBox.Show(ps1, new List<object> { "close", "123"  }, "123", "123");
 
         }
     }
