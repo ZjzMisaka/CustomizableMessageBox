@@ -548,8 +548,8 @@ namespace Sample
             ps1.ButtonMarginList = new List<Thickness>() { new Thickness(5) };
 
             MessageBox.Show(ps1, new List<object> { 
-                "close", new RoutedEventHandler((s, ea) => { System.Windows.MessageBox.Show("123456"); MessageBox.CloseNow(); }), new ButtonSpacer(true), 
-                new Button(), new RoutedEventHandler((s, ea) => { System.Windows.MessageBox.Show("654321"); MessageBox.CloseNow(); }), 
+                "close", new RoutedEventHandler((s, ea) => { MessageBox.MessageText = "2222222222222222222"; System.Windows.MessageBox.Show("123456"); MessageBox.CloseNow(); }), new ButtonSpacer(true), 
+                new Button(), new RoutedEventHandler((s, ea) => { MessageBox.MessageText = "111111111111111111111"; }), 
                 "123", new ButtonSpacer(true) }
             , "123", "123");
 
