@@ -1400,25 +1400,32 @@ namespace CustomizableMessageBox
             mb.g_buttongrid.ColumnDefinitions.Add(new ColumnDefinition());
 
             // 判断按钮类型并显示相应的按钮
+            int elementCount = 0;
+            int FrameworkElementCount = 0;
             for (int i = 0; i < buttonList.Count; ++i)
             {
+                if (buttonList[i] is RoutedEventHandler)
+                {
+                    continue;
+                }
+
                 // 当有多于两个选项时, 增加Grid的列数
-                if (i >= 2)
+                if (elementCount >= 2)
                 {
                     mb.g_buttongrid.ColumnDefinitions.Add(new ColumnDefinition());
                 }
-                Button newBtn = null;
+                
 
                 if (buttonList[i] is string)
                 {
                     // 实例化一个新的按钮
-                    newBtn = new Button();
+                    Button newBtn = new Button();
                     
                     // 将按钮加入Grid中
                     mb.g_buttongrid.Children.Add(newBtn);
                     // 设置按钮在Grid中的行列
                     newBtn.SetValue(Grid.RowProperty, 0);
-                    newBtn.SetValue(Grid.ColumnProperty, i);
+                    newBtn.SetValue(Grid.ColumnProperty, elementCount);
                     // 设置按钮样式
                     if (buttonStyleList != null && buttonStyleList.Count >= 1)
                     {
@@ -1430,29 +1437,38 @@ namespace CustomizableMessageBox
                     // 设置按钮可见
                     newBtn.Visibility = Visibility.Visible;
                     // 绑定按钮点击事件
-                    newBtn.Click += BtnClicked;
+                    if (buttonList.Count - 1 >= i + 1 && buttonList[i + 1] is RoutedEventHandler)
+                    {
+                        newBtn.Click += (RoutedEventHandler)buttonList[i + 1];
+                    }
+                    else
+                    {
+                        newBtn.Click += BtnClickedClose;
+                    }
 
                     // 设置拉伸
                     newBtn.HorizontalAlignment = System.Windows.HorizontalAlignment.Stretch;
                     newBtn.VerticalAlignment = System.Windows.VerticalAlignment.Stretch;
+
+                    ++FrameworkElementCount;
                 }
                 else if (buttonList[i] is ButtonSpacer)
                 {
                     ButtonSpacer buttonSpacer = (ButtonSpacer)buttonList[i];
 
-                    if (buttonSpacer.IsForSpan && i >= 1 && mb.g_buttongrid.Children[i - 1] is FrameworkElement)
+                    if (buttonSpacer.IsForSpan && elementCount >= 1 && mb.g_buttongrid.Children[FrameworkElementCount - 1] is FrameworkElement)
                     {
-                        Grid.SetColumnSpan((FrameworkElement)mb.g_buttongrid.Children[i - 1], 2);
+                        Grid.SetColumnSpan((FrameworkElement)mb.g_buttongrid.Children[FrameworkElementCount - 1], 2);
                     }
 
                     if (buttonSpacer.GridUnitType == GridUnitType.Pixel && buttonSpacer.Value != -1)
                     {
                         // 修改列宽度
-                        mb.g_buttongrid.ColumnDefinitions[i].Width = new GridLength(buttonSpacer.Value);
+                        mb.g_buttongrid.ColumnDefinitions[elementCount].Width = new GridLength(buttonSpacer.Value);
                     }
                     else if (buttonSpacer.GridUnitType == GridUnitType.Star && buttonSpacer.Value != -1)
                     {
-                        mb.g_buttongrid.ColumnDefinitions[i].Width = new GridLength(buttonSpacer.Value, GridUnitType.Star);
+                        mb.g_buttongrid.ColumnDefinitions[elementCount].Width = new GridLength(buttonSpacer.Value, GridUnitType.Star);
                     }
                 }
                 else if (buttonList[i] is FrameworkElement)
@@ -1461,13 +1477,22 @@ namespace CustomizableMessageBox
                     // 将按钮加入Grid中
                     mb.g_buttongrid.Children.Add(fe);
                     // 修改列宽度
-                    mb.g_buttongrid.ColumnDefinitions[i].Width = new GridLength(!fe.Width.Equals(Double.NaN) ? fe.Width : 1, !fe.Width.Equals(Double.NaN) ? GridUnitType.Pixel : GridUnitType.Star);
+                    mb.g_buttongrid.ColumnDefinitions[elementCount].Width = new GridLength(!fe.Width.Equals(Double.NaN) ? fe.Width : 1, !fe.Width.Equals(Double.NaN) ? GridUnitType.Pixel : GridUnitType.Star);
                     // 设置按钮在Grid中的行列
                     fe.SetValue(Grid.RowProperty, 0);
-                    fe.SetValue(Grid.ColumnProperty, i);
+                    fe.SetValue(Grid.ColumnProperty, elementCount);
 
                     fe.SizeChanged += ButtonObjectSizeChanged;
+
+                    if (buttonList[i] is Button && buttonList.Count - 1 >= i + 1 && buttonList[i + 1] is RoutedEventHandler)
+                    {
+                        ((Button)fe).Click += (RoutedEventHandler)buttonList[i + 1];
+                    }
+
+                    ++FrameworkElementCount;
                 }
+
+                ++elementCount;
             }
 
             SetButtonStyle();
@@ -1523,7 +1548,7 @@ namespace CustomizableMessageBox
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
-        private static void BtnClicked(Object sender, RoutedEventArgs e)
+        private static void BtnClickedClose(Object sender, RoutedEventArgs e)
         {
             Button btn = (Button)sender;
 

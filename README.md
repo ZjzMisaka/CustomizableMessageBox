@@ -66,9 +66,11 @@ MessageBox.Show(ps1, new List<object> { "btn1" }, "msg");
 MessageBox.PropertiesSetter = ps1;
 MessageBox.Show(new List<object> { new TextBox(), "btn1" }, "msg");
 ```
+#### Button action
+The button action can be set in a general way, or it can be directly set in the parameters of the List&lt;object&gt; in the Show function using the lambda expression. After setting, it will be bound to the previous button of the List.
 #### Modify button area
 ##### Insert blank
-Insert a ButtonSpacer instance at the corresponding position in the passed in List&lt;object&gt;. The constructor parameter can be empty or specify a width value.
+Insert a ButtonSpacer instance at the corresponding position in the passed in List&lt;object&gt;. Constructor parameter can be null, width information, span column information.
 ##### Insert custom control
 Insert an instance of a FrameworkElement-derived class at the corresponding position in the passed-in List&lt;object&gt; to display the corresponding control at the corresponding position. </br>
 The column width is determined by the width of the inserted control. </br>

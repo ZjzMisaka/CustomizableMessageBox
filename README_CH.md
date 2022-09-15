@@ -65,9 +65,11 @@ MessageBox.Show(ps1, new List<object> { "btn1" }, "msg");
 MessageBox.PropertiesSetter = ps1;
 MessageBox.Show(new List<object> { new TextBox(), "btn1" }, "msg");
 ```
+#### 按钮动作
+按钮动作可以以一般方法设定, 也可以直接在Show函数中List&lt;object&gt;的参数中使用lambda表达式设定, 设定后将绑定在该List的前一个按钮上.
 #### 修改按钮区域
 ##### 插入空白
-在传入的List&lt;object&gt;中对应位置插入一个ButtonSpacer实例. 构造函数参数可为空或指定宽度值. </br>
+在传入的List&lt;object&gt;中对应位置插入一个ButtonSpacer实例. 构造函数参数可为空, 宽度信息, 跨列信息. </br>
 ##### 插入自定义控件
 在传入的List&lt;object&gt;中对应位置插入插入一个FrameworkElement派生类的实例, 即可在对应位置显示相应控件. </br>
 列宽由插入的控件的宽度决定. </br>

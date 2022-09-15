@@ -544,13 +544,14 @@ namespace Sample
 
         private void Button_Click_9(object sender, RoutedEventArgs e)
         {
-            Button btn = new Button();
-            btn.Click += (s, eventArgs) => { MessageBox.CloseNow(); };
-
             ps1.ButtonStyleList = new List<Style>() { Prefab.GetButonStyle(ButtonStyleName.White) };
             ps1.ButtonMarginList = new List<Thickness>() { new Thickness(5) };
 
-            MessageBox.Show(ps1, new List<object> { "close", "123"  }, "123", "123");
+            MessageBox.Show(ps1, new List<object> { 
+                "close", new RoutedEventHandler((s, ea) => { System.Windows.MessageBox.Show("123456"); MessageBox.CloseNow(); }), new ButtonSpacer(true), 
+                new Button(), new RoutedEventHandler((s, ea) => { System.Windows.MessageBox.Show("654321"); MessageBox.CloseNow(); }), 
+                "123", new ButtonSpacer(true) }
+            , "123", "123");
 
         }
     }
