@@ -544,7 +544,7 @@ namespace Sample
 
         private void Button_Click_9(object sender, RoutedEventArgs e)
         {
-            ps1.ButtonStyleList = new List<Style>() { Prefab.GetButonStyle(ButtonStyleName.White) };
+            ps1.ButtonStyleList = new List<Style>() { Prefab.GetButtonStyle(ButtonStyleName.White) };
             ps1.ButtonMarginList = new List<Thickness>() { new Thickness(5) };
 
             MessageBox.Show(ps1, new List<object> { 

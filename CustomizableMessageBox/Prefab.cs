@@ -94,7 +94,7 @@ namespace CustomizableMessageBox
         }
 
 
-        public static Style GetButonStyle(ButtonStyleName buttonStyleName)
+        public static Style GetButtonStyle(ButtonStyleName buttonStyleName)
         {
             Style style = null;
             if (buttonStyleName == ButtonStyleName.White)
