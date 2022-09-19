@@ -142,7 +142,7 @@ namespace Sample
             MessageBox.ButtonBorderColor = new MessageBoxColor("#19198100");
             MessageBox.WindowMinHeight = 150;
             MessageBox.EnableCloseButton = true;
-            MessageBox.CloseTimer = new MessageBoxCloseTimer(2, 106);
+            MessageBox.CloseTimer = new MessageBoxCloseTimer(2, -1);
             lbl.Content = MessageBox.Show("123123", "123123", MessageBoxButton.OKCancel, MessageBoxImage.Question);
         }
 

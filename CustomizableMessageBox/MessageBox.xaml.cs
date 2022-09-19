@@ -162,6 +162,9 @@ namespace CustomizableMessageBox
         // 用户选择的结果
         private static int currentClickIndex = -1;
 
+        // 是否定时关闭
+        private static bool isClosedByTimer = false;
+
         // 锁定高度
         private static bool lockHeight = false;
         public static bool LockHeight
@@ -1243,6 +1246,10 @@ namespace CustomizableMessageBox
 
             if (Info.IsLastShowSucceed)
             {
+                if (isClosedByTimer)
+                {
+                    return MessageBoxResult.None;
+                }
                 // 获取返回值字符串
                 string resultStr = btnList[index].ToString();
                 // 找到对应的MessageBoxResult元素并返回
@@ -1295,6 +1302,9 @@ namespace CustomizableMessageBox
 
                 // 重置选择结果
                 currentClickIndex = -1;
+
+                // 重置是否定时关闭
+                isClosedByTimer = false;
 
                 // 显示标题
                 TitleText = title;
@@ -1932,6 +1942,7 @@ namespace CustomizableMessageBox
         /// <param name="e"></param>
         private static void CloseWindowByTimer(object sender, EventArgs e)
         {
+            isClosedByTimer = true;
             currentClickIndex = CloseTimer.result;
             mb.Hide();
             mb.Close();
