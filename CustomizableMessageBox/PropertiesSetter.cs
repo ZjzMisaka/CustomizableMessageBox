@@ -61,7 +61,7 @@ namespace CustomizableMessageBox
             InfoIcon = propertiesSetter.InfoIcon;
             QuestionIcon = propertiesSetter.QuestionIcon;
             EnableCloseButton = propertiesSetter.EnableCloseButton;
-            EnableTitleButton = propertiesSetter.EnableTitleButton;
+            EnableTitleIcon = propertiesSetter.EnableTitleIcon;
             ButtonStyleList = propertiesSetter.ButtonStyleList;
             ButtonWidthList = propertiesSetter.ButtonWidthList;
             ButtonHeightList = propertiesSetter.ButtonHeightList;
@@ -244,8 +244,8 @@ namespace CustomizableMessageBox
         public bool EnableCloseButton { get => enableCloseButton; set => enableCloseButton = value; }
 
         // 应用标题图标
-        private bool enableTitleButton = false;
-        public bool EnableTitleButton { get => enableTitleButton; set => enableTitleButton = value; }
+        private bool enableTitleIcon = false;
+        public bool EnableTitleIcon { get => enableTitleIcon; set => enableTitleIcon = value; }
 
         // 按钮动作样式
         private List<Style> buttonStyleList = null;
