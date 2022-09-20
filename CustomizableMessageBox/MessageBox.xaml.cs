@@ -31,6 +31,100 @@ namespace CustomizableMessageBox
     /// 
     public partial class MessageBox : Window
     {
+        public class RefreshList : List<object>
+        {
+            public new void RemoveAt(int index)
+            {
+                base.RemoveAt(index);
+                if (mb == null)
+                {
+                    return;
+                }
+                LoadButtonPanel();
+            }
+
+            public new void Remove(object item)
+            {
+                base.Remove(item);
+                if (mb == null)
+                {
+                    return;
+                }
+                LoadButtonPanel();
+            }
+
+            public new int RemoveAll(Predicate<object> match)
+            {
+                int res = base.RemoveAll(match);
+                if (mb == null)
+                {
+                    return res;
+                }
+                LoadButtonPanel();
+                return res;
+            }
+
+            public new void RemoveRange(int index, int count)
+            {
+                base.RemoveRange(index, count);
+                if (mb == null)
+                {
+                    return;
+                }
+                LoadButtonPanel();
+            }
+
+            public new void Add(object obj)
+            {
+                base.Add(obj);
+                if (mb == null)
+                {
+                    return;
+                }
+                LoadButtonPanel();
+            }
+
+            public new void AddRange(object obj)
+            {
+                base.Add(obj);
+                if (mb == null)
+                {
+                    return;
+                }
+                LoadButtonPanel();
+            }
+
+            public new void AddRange(IEnumerable<object> collection)
+            {
+                base.AddRange(collection);
+                if (mb == null)
+                {
+                    return;
+                }
+                LoadButtonPanel();
+            }
+
+            public new void Insert(int index, object item)
+            {
+                base.Insert(index, item);
+                if (mb == null)
+                {
+                    return;
+                }
+                LoadButtonPanel();
+            }
+
+            public new void InsertRange(int index, IEnumerable<object> collection)
+            {
+                base.InsertRange(index, collection);
+                if (mb == null)
+                {
+                    return;
+                }
+                LoadButtonPanel();
+            }
+        }
+
         [DllImport("User32.dll", SetLastError = true, CharSet = CharSet.Auto)]
         private static extern Boolean SetWindowPos(IntPtr hWnd, IntPtr hWndInsertAfter, int X, int Y, int cx, int cy, uint uFlags);
 
@@ -128,8 +222,8 @@ namespace CustomizableMessageBox
         }
 
         // 自定按钮列表
-        private static List<object> buttonList = null;
-        public static List<object> ButtonList
+        private static RefreshList buttonList = null;
+        public static RefreshList ButtonList
         {
             get
             {
@@ -1023,7 +1117,18 @@ namespace CustomizableMessageBox
 
         // 窗口计时关闭
         private static MessageBoxCloseTimer closeTimer = null;
-        public static MessageBoxCloseTimer CloseTimer { get => closeTimer; set => closeTimer = value; }
+        public static MessageBoxCloseTimer CloseTimer 
+        {
+            get => closeTimer;
+            set
+            {
+                closeTimer = value;
+                if (mb != null)
+                {
+                    SetCloseTimer();
+                }
+            }
+        }
 
         // 属性集合
         private static PropertiesSetter propertiesSetter = new PropertiesSetter();
@@ -1213,29 +1318,29 @@ namespace CustomizableMessageBox
         public static MessageBoxResult Show(string msg, string title = "", MessageBoxButton selectStyle = MessageBoxButton.OK, MessageBoxImage img = MessageBoxImage.None)
         {
             // 按钮列表
-            List<object> btnList;
+            RefreshList btnList;
 
             // 判断按钮类型并显示相应的按钮
             switch (selectStyle)
             {
                 case MessageBoxButton.OK:
-                    btnList = new List<object> { MessageBoxResult.OK.ToString() };
+                    btnList = new RefreshList { MessageBoxResult.OK.ToString() };
                     break;
 
                 case MessageBoxButton.OKCancel:
-                    btnList = new List<object> { MessageBoxResult.OK.ToString(), MessageBoxResult.Cancel.ToString() };
+                    btnList = new RefreshList { MessageBoxResult.OK.ToString(), MessageBoxResult.Cancel.ToString() };
                     break;
 
                 case MessageBoxButton.YesNo:
-                    btnList = new List<object> { MessageBoxResult.Yes.ToString(), MessageBoxResult.No.ToString() };
+                    btnList = new RefreshList { MessageBoxResult.Yes.ToString(), MessageBoxResult.No.ToString() };
                     break;
 
                 case MessageBoxButton.YesNoCancel:
-                    btnList = new List<object> { MessageBoxResult.Yes.ToString(), MessageBoxResult.No.ToString(), MessageBoxResult.Cancel.ToString() };
+                    btnList = new RefreshList { MessageBoxResult.Yes.ToString(), MessageBoxResult.No.ToString(), MessageBoxResult.Cancel.ToString() };
                     break;
 
                 default:
-                    btnList = new List<object> { MessageBoxResult.OK.ToString() };
+                    btnList = new RefreshList { MessageBoxResult.OK.ToString() };
                     break;
             }
 
@@ -1250,10 +1355,17 @@ namespace CustomizableMessageBox
                 {
                     return MessageBoxResult.None;
                 }
-                // 获取返回值字符串
-                string resultStr = btnList[index].ToString();
-                // 找到对应的MessageBoxResult元素并返回
-                result = (MessageBoxResult)System.Enum.Parse(typeof(MessageBoxResult), resultStr);
+                if (index == -1)
+                {
+                    result = MessageBoxResult.None;
+                }
+                else
+                {
+                    // 获取返回值字符串
+                    string resultStr = btnList[index].ToString();
+                    // 找到对应的MessageBoxResult元素并返回
+                    result = (MessageBoxResult)System.Enum.Parse(typeof(MessageBoxResult), resultStr);
+                }
             }
             else
             {
@@ -1271,7 +1383,7 @@ namespace CustomizableMessageBox
         /// <param name="title">MessageBox窗口标题</param>
         /// <param name="img">消息类型</param>
         /// <returns>选中的按钮索引</returns>
-        public static int Show(List<object> btnList, string msg, string title = "", MessageBoxImage img = MessageBoxImage.None)
+        public static int Show(RefreshList btnList, string msg, string title = "", MessageBoxImage img = MessageBoxImage.None)
         {
             try
             {
@@ -1324,14 +1436,7 @@ namespace CustomizableMessageBox
 
                 if (CloseTimer != null)
                 {
-                    CloseTimer.closeWindowByTimer = new MessageBoxCloseTimer.CloseWindowByTimer(CloseWindowByTimer);
-
-                    // 设置定时关闭窗口时间
-                    // TODO 换成Timer类 + 委托调用关闭函数的形式是不是更好
-                    mb.timer = new DispatcherTimer();
-                    mb.timer.Interval = CloseTimer.timeSpan;
-                    mb.timer.Tick += CloseWindowByTimer;
-                    mb.timer.Start();
+                    SetCloseTimer();
                 }
 
                 // 设置所属的窗口
@@ -1547,7 +1652,7 @@ namespace CustomizableMessageBox
         /// <param name="title">MessageBox窗口标题</param>
         /// <param name="img">消息类型</param>
         /// <returns>选中的按钮索引</returns>
-        public static int Show(PropertiesSetter propertiesSetter, List<object> btnList, string msg, string title = "", MessageBoxImage img = MessageBoxImage.None)
+        public static int Show(PropertiesSetter propertiesSetter, RefreshList btnList, string msg, string title = "", MessageBoxImage img = MessageBoxImage.None)
         {
             PropertiesSetter = propertiesSetter;
             return Show(btnList, msg, title, img);
@@ -2176,6 +2281,21 @@ namespace CustomizableMessageBox
             mb.g_buttongrid.Height = highestItemHeight;
             mb.rd_button.Height = new GridLength(highestItemHeight, GridUnitType.Pixel);
             mb.b_buttonborder.Height = highestItemHeight;
+        }
+
+        /// <summary>
+        /// 设置定时关闭
+        /// </summary>
+        private static void SetCloseTimer()
+        {
+            CloseTimer.closeWindowByTimer = new MessageBoxCloseTimer.CloseWindowByTimer(CloseWindowByTimer);
+
+            // 设置定时关闭窗口时间
+            // TODO 换成Timer类 + 委托调用关闭函数的形式是不是更好
+            mb.timer = new DispatcherTimer();
+            mb.timer.Interval = CloseTimer.timeSpan;
+            mb.timer.Tick += CloseWindowByTimer;
+            mb.timer.Start();
         }
     }
 }

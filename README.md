@@ -2,7 +2,7 @@
  ![WTFPL](http://www.wtfpl.net/wp-content/uploads/2012/12/wtfpl-badge-1.png)
 <img src="https://www.nuget.org/Content/gallery/img/logo-header.svg?sanitize=true" height="30px">  
  [中文ReadMe](https://github.com/ZjzMisaka/CustomizableMessageBox/blob/master/README_CH.md)  
- The system MessageBox button and font are too small, so I wrote a MessageBox that is convenient for changing the appearance. If there are any interesting features will also be added. There are demo pictures below.  
+ Change the appearance and controls of the messagebox and customize your messagebox.  
 ### Download
 CustomizableMessageBox is available as [Nuget Package](https://www.nuget.org/packages/CustomizableMessageBox/) now.
 ### Features
@@ -30,8 +30,8 @@ MessageBox.Show("message", "title", MessageBoxButton.OKCancel, MessageBoxImage.Q
 #### Custom calling method
 The return value is int, and the value is the index in the parameter button list.
 ```csharp
-MessageBox.Show(new List<object> { "btn1" }, "msg");
-MessageBox.Show(new List<object> { new ButtonSpacer(250), "btn1", "btn2", "btn3", "btn4", "btn5", new ButtonSpacer(30) }, "msg", "title", MessageBoxImage.Asterisk);
+MessageBox.Show(new RefreshList { "btn1" }, "msg");
+MessageBox.Show(new RefreshList { new ButtonSpacer(250), "btn1", "btn2", "btn3", "btn4", "btn5", new ButtonSpacer(30) }, "msg", "title", MessageBoxImage.Asterisk);
 ```
 #### Modify style attributes
 ##### Modify individually
@@ -40,7 +40,7 @@ MessageBox.Show(new List<object> { new ButtonSpacer(250), "btn1", "btn2", "btn3"
 MessageBox.ButtonPanelColor = new MessageBoxColor("red");
 MessageBox.WindowMinHeight = 300;
 MessageBox.MessageFontSize = 22;
-MessageBox.Show(new List<object> { "btn1" }, "msg");
+MessageBox.Show(new RefreshList { "btn1" }, "msg");
 ```
 ##### Modify in batches
 - Set PropertiesSetter in advance
@@ -59,24 +59,24 @@ ps1.CloseTimer = new MessageBoxCloseTimer(10, -1);
 1. **Recommended** Set in Show function parameters
 ```csharp
 MessageBox.Show(ps0, "message", "title", MessageBoxButton.OKCancel, MessageBoxImage.Question);
-MessageBox.Show(ps1, new List<object> { "btn1" }, "msg");
+MessageBox.Show(ps1, new RefreshList { "btn1" }, "msg");
 ```
 2. Set before calling Show function
 ```csharp
 MessageBox.PropertiesSetter = ps1;
-MessageBox.Show(new List<object> { new TextBox(), "btn1" }, "msg");
+MessageBox.Show(new RefreshList { new TextBox(), "btn1" }, "msg");
 ```
 #### Button action
-The button action can be set in a general way, or it can be directly set in the parameters of the List&lt;object&gt; in the Show function using the lambda expression. After setting, it will be bound to the previous button of the List.
+The button action can be set in a general way, or it can be directly set in the parameters of the RefreshList in the Show function using the lambda expression. After setting, it will be bound to the previous button of the List.
 #### Modify button area
 ##### Insert blank
-Insert a ButtonSpacer instance at the corresponding position in the passed in List&lt;object&gt;. Constructor parameter can be null, width information, span column information.
+Insert a ButtonSpacer instance at the corresponding position in the passed in RefreshList. Constructor parameter can be null, width information, span column information.
 ##### Insert custom control
-Insert an instance of a FrameworkElement-derived class at the corresponding position in the passed-in List&lt;object&gt; to display the corresponding control at the corresponding position. </br>
+Insert an instance of a FrameworkElement-derived class at the corresponding position in the passed-in RefreshList to display the corresponding control at the corresponding position. </br>
 The column width is determined by the width of the inserted control. </br>
 - You can get the control again after the Show function call returns and get the user input / operation result.
 ```csharp
-int result = MessageBox.Show(new List<object> { new TextBox(), "btn1", "btn2" }, "msg");
+int result = MessageBox.Show(new RefreshList { new TextBox(), "btn1", "btn2" }, "msg");
 TextBox tb = (TextBox)MessageBox.ButtonList[0];
 MessageBox.Show(tb.Text == string.Empty ? "User did not enter" : tb.Text, (string)MessageBox.ButtonList[result]);
 ```
@@ -105,7 +105,7 @@ MessageBox.Show(tb.Text == string.Empty ? "User did not enter" : tb.Text, (strin
 |----|----|----|----|----|
 |TitleText|string|Set / Get Title Text|√|√|
 |MessageText|string|Set / Get Message Text|√|√|
-|ButtonList|List&lt;object&gt;|Set / Get Button List|√|√|
+|ButtonList|RefreshList|Set / Get Button List|√|√|
 |LockHeight|bool|Whether the height of the locked window is not allowed to grow automatically|√|√|
 |TextWrappingMode|TextWrapping|Wrap style of message paragraph|√|√|
 |WindowWidth|double|Window width|√|√|
@@ -169,9 +169,9 @@ MessageBox.Show(tb.Text == string.Empty ? "User did not enter" : tb.Text, (strin
 |MessageBox function|Meaning|Parameter|Return value|Is Static|
 |----|----|----|----|----|
 |Show (string, string, MessageBoxButton, MessageBoxImage)|Call up the message window in compatible form|Message, Title (optional), Button type (optional), Icon type (optional)|MessageBoxResult|√|
-|Show(List&lt;object&gt;, string, string, MessageBoxImage)|Customize the message window|Button list, message, title (optional), icon type (optional)|int|√|
+|Show(RefreshList, string, string, MessageBoxImage)|Customize the message window|Button list, message, title (optional), icon type (optional)|int|√|
 |Show (PropertiesSetter, string, string, MessageBoxButton, MessageBoxImage)|Call the message window in a compatible form and use the existing style|style, message, title (optional), button type (optional), icon type (optional)|MessageBoxResult|√|
-|Show(PropertiesSetter, List&lt;object&gt;, string, string, MessageBoxImage)|Customize the message window, and use the existing style|style, style, button list, message, title (optional), icon type (optional)|int|√|
+|Show(PropertiesSetter, RefreshList, string, string, MessageBoxImage)|Customize the message window, and use the existing style|style, style, button list, message, title (optional), icon type (optional)|int|√|
 |CloseNow ()|Close window immediately|||√|
  
 |MessageBoxColor Property|Meaning|Type|

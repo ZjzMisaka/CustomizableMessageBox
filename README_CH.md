@@ -1,9 +1,9 @@
 # CustomizableMessageBox
  ![WTFPL](http://www.wtfpl.net/wp-content/uploads/2012/12/wtfpl-badge-1.png)
 <img src="https://www.nuget.org/Content/gallery/img/logo-header.svg?sanitize=true" height="30px">  
- 因为系统MessageBox按钮和字体太小, 所以自己写了个方便更改外观的MessageBox. 有什么好玩的功能也可以扩展上去. 下有演示图.  
+ 改变messagebox的外观与控件, 客制化你的messagebox.  
 ### 下载
-你可以在 [Nuget Package](https://www.nuget.org/packages/CustomizableMessageBox/) 下载使用CustomizableMessageBox.
+可在 [Nuget Package](https://www.nuget.org/packages/CustomizableMessageBox/) 下载使用CustomizableMessageBox.
 ### 特性
 - 单例模式运行, 运行时无法操作父窗口. 
 - 因为可以改变字体且支持触摸操作, 所以适合在平板上使用. 
@@ -29,8 +29,8 @@ MessageBox.Show("message", "title", MessageBoxButton.OKCancel, MessageBoxImage.Q
 #### 自定义写法
 返回值为int型, 值为参数按钮列表中的索引. 
 ```csharp
-MessageBox.Show(new List<object> { "btn1" }, "msg");
-MessageBox.Show(new List<object> { new ButtonSpacer(250), "btn1", "btn2", "btn3", "btn4", "btn5", new ButtonSpacer(30) }, "msg", "title", MessageBoxImage.Asterisk);
+MessageBox.Show(new RefreshList { "btn1" }, "msg");
+MessageBox.Show(new RefreshList { new ButtonSpacer(250), "btn1", "btn2", "btn3", "btn4", "btn5", new ButtonSpacer(30) }, "msg", "title", MessageBoxImage.Asterisk);
 ```
 #### 修改式样属性
 ##### 单独修改
@@ -39,7 +39,7 @@ MessageBox.Show(new List<object> { new ButtonSpacer(250), "btn1", "btn2", "btn3"
 MessageBox.ButtonPanelColor = new MessageBoxColor("red");
 MessageBox.WindowMinHeight = 300;
 MessageBox.MessageFontSize = 22;
-MessageBox.Show(new List<object> { "btn1" }, "msg");
+MessageBox.Show(new RefreshList { "btn1" }, "msg");
 ```
 ##### 批量修改
 - 事先设定PropertiesSetter
@@ -58,24 +58,24 @@ ps1.CloseTimer = new MessageBoxCloseTimer(10, -1);
 1. **推荐** 在Show函数参数中设置
 ```csharp
 MessageBox.Show(ps0, "message", "title", MessageBoxButton.OKCancel, MessageBoxImage.Question);
-MessageBox.Show(ps1, new List<object> { "btn1" }, "msg");
+MessageBox.Show(ps1, new RefreshList { "btn1" }, "msg");
 ```
 2. 在调用Show函数前设置
 ```csharp
 MessageBox.PropertiesSetter = ps1;
-MessageBox.Show(new List<object> { new TextBox(), "btn1" }, "msg");
+MessageBox.Show(new RefreshList { new TextBox(), "btn1" }, "msg");
 ```
 #### 按钮动作
-按钮动作可以以一般方法设定, 也可以直接在Show函数中List&lt;object&gt;的参数中使用lambda表达式设定, 设定后将绑定在该List的前一个按钮上.
+按钮动作可以以一般方法设定, 也可以直接在Show函数中RefreshList的参数中使用lambda表达式设定, 设定后将绑定在该List的前一个按钮上.
 #### 修改按钮区域
 ##### 插入空白
-在传入的List&lt;object&gt;中对应位置插入一个ButtonSpacer实例. 构造函数参数可为空, 宽度信息, 跨列信息. </br>
+在传入的RefreshList中对应位置插入一个ButtonSpacer实例. 构造函数参数可为空, 宽度信息, 跨列信息. </br>
 ##### 插入自定义控件
-在传入的List&lt;object&gt;中对应位置插入插入一个FrameworkElement派生类的实例, 即可在对应位置显示相应控件. </br>
+在传入的RefreshList中对应位置插入插入一个FrameworkElement派生类的实例, 即可在对应位置显示相应控件. </br>
 列宽由插入的控件的宽度决定. </br>
 - Show函数调用结束返回后可再次获取该控件, 得到用户输入 / 操作结果.
 ```csharp
-int result = MessageBox.Show(new List<object> { new TextBox(), "btn1", "btn2" }, "msg");
+int result = MessageBox.Show(new RefreshList { new TextBox(), "btn1", "btn2" }, "msg");
 TextBox tb = (TextBox)MessageBox.ButtonList[0];
 MessageBox.Show(tb.Text == string.Empty ? "用户未输入" : tb.Text, (string)MessageBox.ButtonList[result]);
 ```
@@ -105,7 +105,7 @@ MessageBox.Show(tb.Text == string.Empty ? "用户未输入" : tb.Text, (string)M
 |----|----|----|----|----|
 |TitleText|string|设置 / 获取标题文字|√|√|
 |MessageText|string|设置 / 获取消息文字|√|√|
-|ButtonList|List&lt;object&gt;|设置 / 获取按钮列表|√|√|
+|ButtonList|RefreshList|设置 / 获取按钮列表|√|√|
 |LockHeight|bool|是否锁住窗口高度不允许自动增长|√|√|
 |TextWrappingMode|TextWrapping|消息段落换行风格|√|√|
 |WindowWidth|double|窗口宽度|√|√|
@@ -169,9 +169,9 @@ MessageBox.Show(tb.Text == string.Empty ? "用户未输入" : tb.Text, (string)M
 |MessageBox函数|含义|参数|返回值|静态|
 |----|----|----|----|----|
 |Show(string, string, MessageBoxButton, MessageBoxImage)|兼容形式调出消息窗口|消息, 标题 (选), 按钮类型 (选), 图标类型 (选)|MessageBoxResult|√|
-|Show(List&lt;object&gt;, string, string, MessageBoxImage)|自定义形式调出消息窗口|按钮列表, 消息, 标题 (选), 图标类型 (选)|int|√|
+|Show(RefreshList, string, string, MessageBoxImage)|自定义形式调出消息窗口|按钮列表, 消息, 标题 (选), 图标类型 (选)|int|√|
 |Show(PropertiesSetter, string, string, MessageBoxButton, MessageBoxImage)|兼容形式调出消息窗口, 并使用既有样式|样式, 消息, 标题 (选), 按钮类型 (选), 图标类型 (选)|MessageBoxResult|√|
-|Show(PropertiesSetter, List&lt;object&gt;, string, string, MessageBoxImage)|自定义形式调出消息窗口, 并使用既有样式|样式, 按钮列表, 消息, 标题 (选), 图标类型 (选)|int|√|
+|Show(PropertiesSetter, RefreshList, string, string, MessageBoxImage)|自定义形式调出消息窗口, 并使用既有样式|样式, 按钮列表, 消息, 标题 (选), 图标类型 (选)|int|√|
 |CloseNow()|立即关闭窗口|||√|
  
 |MessageBoxColor属性|含义|类型|

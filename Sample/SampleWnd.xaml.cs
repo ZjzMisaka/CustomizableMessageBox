@@ -16,6 +16,7 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 using System.Windows.Threading;
+using static CustomizableMessageBox.MessageBox;
 using MessageBox = CustomizableMessageBox.MessageBox;
 
 namespace Sample
@@ -208,7 +209,7 @@ namespace Sample
             timer.Interval = 100;
             timer.Elapsed += Tick;
             timer.Start();
-            lbl.Content = MessageBox.Show(ps3, new List<object> { new ButtonSpacer(30), pb, new ButtonSpacer(90), "好的", "不明白", new ButtonSpacer(30) }, "露易丝定型文是流传于2ch VIP版上的一段定型文。主要内容是某阿宅对《零之使魔》作品女主角露易丝撕心裂肺的表白。 ", "露易丝定型文", MessageBoxImage.Information);
+            lbl.Content = MessageBox.Show(ps3, new RefreshList { new ButtonSpacer(30), pb, new ButtonSpacer(90), "好的", "不明白", new ButtonSpacer(30) }, "露易丝定型文是流传于2ch VIP版上的一段定型文。主要内容是某阿宅对《零之使魔》作品女主角露易丝撕心裂肺的表白。 ", "露易丝定型文", MessageBoxImage.Information);
             timer.Stop();
 
             pb = new ProgressBar();
@@ -217,11 +218,11 @@ namespace Sample
             pb.Minimum = 0;
             pb.Maximum = 10000;
             timer.Start();
-            lbl.Content = MessageBox.Show(ps3, new List<object> { new ButtonSpacer(30), pb, new ButtonSpacer(90), "好的", "不明白", new ButtonSpacer(30) }, "该篇定型文首次流行于2007年左右，具体发表的时间和出处已不可考。但就内容来看，该篇定型文提及《零之使魔》动画二期放送（2007年7月8日）、漫画第二卷发售（2007年5月23日）、小说第12卷发售（2007年8月24日），故推测成型于2007年8月左右。\n此后，该篇定型文被众多声优、up主配音。最早的配音是up主podcast于2008年4月17日投稿的sm3018556，截至2019年8月21日已有70万再生。最著名的女性声优配音则是电波 / 音游歌手ななひら于2008年11月2日投稿的成名作sm5123978，也是她的黑历史之一，截至2019年8月21日已有60万再生。 ", "露易丝定型文", MessageBoxImage.Information);
+            lbl.Content = MessageBox.Show(ps3, new RefreshList { new ButtonSpacer(30), pb, new ButtonSpacer(90), "好的", "不明白", new ButtonSpacer(30) }, "该篇定型文首次流行于2007年左右，具体发表的时间和出处已不可考。但就内容来看，该篇定型文提及《零之使魔》动画二期放送（2007年7月8日）、漫画第二卷发售（2007年5月23日）、小说第12卷发售（2007年8月24日），故推测成型于2007年8月左右。\n此后，该篇定型文被众多声优、up主配音。最早的配音是up主podcast于2008年4月17日投稿的sm3018556，截至2019年8月21日已有70万再生。最著名的女性声优配音则是电波 / 音游歌手ななひら于2008年11月2日投稿的成名作sm5123978，也是她的黑历史之一，截至2019年8月21日已有60万再生。 ", "露易丝定型文", MessageBoxImage.Information);
             timer.Stop();
 
             int result;
-            lbl.Content = result = MessageBox.Show(ps2, new List<object> { new ButtonSpacer(30), newTb, new ButtonSpacer(90), "提交", "取消", new ButtonSpacer(30) }, "你对露易丝定型文有什么看法吗?", "问题", MessageBoxImage.Question);
+            lbl.Content = result = MessageBox.Show(ps2, new RefreshList { new ButtonSpacer(30), newTb, new ButtonSpacer(90), "提交", "取消", new ButtonSpacer(30) }, "你对露易丝定型文有什么看法吗?", "问题", MessageBoxImage.Question);
             TextBox tb = (TextBox)MessageBox.ButtonList[1];
             MessageBox.Show(ps4, tb.Text == string.Empty ? "用户未输入" : "内容: \n" + tb.Text, "您点击了" + (string)MessageBox.ButtonList[result]);
 
@@ -240,7 +241,7 @@ namespace Sample
             timer.Interval = 1000;
             timer.Elapsed += Tick_AddStr;
             timer.Start();
-            MessageBox.Show(new List<object> { new ButtonSpacer(), new ButtonSpacer(), "露易丝!", "露易丝?", "露易丝." }, "ルイズ！ルイズ！ルイズ！ルイズぅぅうううわぁああああああああああああああああああああああん！！！", "露易丝定型文全文鉴赏");
+            MessageBox.Show(new RefreshList { new ButtonSpacer(), new ButtonSpacer(), "露易丝!", "露易丝?", "露易丝." }, "ルイズ！ルイズ！ルイズ！ルイズぅぅうううわぁああああああああああああああああああああああん！！！", "露易丝定型文全文鉴赏");
             timer.Stop();
 
             MessageBox.WindowShowDuration = new Duration(new TimeSpan(0, 0, 0, 1));
@@ -338,7 +339,7 @@ namespace Sample
             MessageBox.ButtonFontColor = null;
             timer.Start();
             lys_i = 0;
-            MessageBox.Show(new List<object> { new ButtonSpacer(30), "余裕余裕", "理解理解", "いいっすね", new ButtonSpacer(60) }, "Neeeeeeeeeeeeeeeeeeeee", "Mooooooooooooooooooooooo");
+            MessageBox.Show(new RefreshList { new ButtonSpacer(30), "余裕余裕", "理解理解", "いいっすね", new ButtonSpacer(60) }, "Neeeeeeeeeeeeeeeeeeeee", "Mooooooooooooooooooooooo");
             timer.Stop();
         }
 
@@ -353,7 +354,7 @@ namespace Sample
             MessageBox.TextWrappingMode = TextWrapping.WrapWithOverflow;
             MessageBox.EnableCloseButton = true;
             MessageBox.CloseTimer = new MessageBoxCloseTimer(5, -100);
-            lbl.Content = result = MessageBox.Show(new List<object> { btn, "洋葱", "fbk", "马自立", "狗妈", "新科娘" }, "在五秒内单推所有人", "DD挑战", MessageBoxImage.Exclamation);
+            lbl.Content = result = MessageBox.Show(new RefreshList { btn, "洋葱", "fbk", "马自立", "狗妈", "新科娘" }, "在五秒内单推所有人", "DD挑战", MessageBoxImage.Exclamation);
             if (result == -100)
             {
                 if (MessageBox.Show("人是有极限的. \n再试一次?", "单推失败", MessageBoxButton.YesNo, MessageBoxImage.Error) == MessageBoxResult.Yes)
@@ -439,31 +440,31 @@ namespace Sample
             newTb.Width = 150;
             newTb.VerticalContentAlignment = VerticalAlignment.Center;
             int result;
-            lbl.Content = result = MessageBox.Show(ps5, new List<object> { new ButtonSpacer(20), "手滑了", new ButtonSpacer(80), "不好用", "界面不好看", new ButtonSpacer(20), "其他: ", newTb, new ButtonSpacer(20) }, "您为什么卸载本软件", "问卷调查", MessageBoxImage.Information);
+            lbl.Content = result = MessageBox.Show(ps5, new RefreshList { new ButtonSpacer(20), "手滑了", new ButtonSpacer(80), "不好用", "界面不好看", new ButtonSpacer(20), "其他: ", newTb, new ButtonSpacer(20) }, "您为什么卸载本软件", "问卷调查", MessageBoxImage.Information);
             if (result == -100 || (result >= 0 && result < MessageBox.ButtonList.Count && (string)MessageBox.ButtonList[result] == "手滑了"))
             {
-                lbl.Content = result = MessageBox.Show(ps1, new List<object> { new ButtonSpacer(300), "不用谢" }, "感谢您的留情", "取消卸载", MessageBoxImage.Information);
+                lbl.Content = result = MessageBox.Show(ps1, new RefreshList { new ButtonSpacer(300), "不用谢" }, "感谢您的留情", "取消卸载", MessageBoxImage.Information);
             }
             else
             {
-                lbl.Content = result = MessageBox.Show(ps5, new List<object> { "确定", new ButtonSpacer(400), "狠心拒绝" }, "您真的要卸载我吗, 请不要卸载我, 嘤嘤嘤...", "正在卸载", MessageBoxImage.Information);
+                lbl.Content = result = MessageBox.Show(ps5, new RefreshList { "确定", new ButtonSpacer(400), "狠心拒绝" }, "您真的要卸载我吗, 请不要卸载我, 嘤嘤嘤...", "正在卸载", MessageBoxImage.Information);
                 if (result == -100 || (result >= 0 && result < MessageBox.ButtonList.Count && (string)MessageBox.ButtonList[result] == "确定"))
                 {
-                    lbl.Content = result = MessageBox.Show(ps1, new List<object> { new ButtonSpacer(300), "不用谢" }, "感谢您的留情", "取消卸载", MessageBoxImage.Information);
+                    lbl.Content = result = MessageBox.Show(ps1, new RefreshList { new ButtonSpacer(300), "不用谢" }, "感谢您的留情", "取消卸载", MessageBoxImage.Information);
                 }
                 else
                 {
-                    lbl.Content = result = MessageBox.Show(ps6, new List<object> { "好的", new ButtonSpacer(400)}, "感谢您的一路陪伴, 欢迎今后再次安装", "卸载成功", MessageBoxImage.Information);
+                    lbl.Content = result = MessageBox.Show(ps6, new RefreshList { "好的", new ButtonSpacer(400)}, "感谢您的一路陪伴, 欢迎今后再次安装", "卸载成功", MessageBoxImage.Information);
                     if(result == -100 || (result >= 0 && result < MessageBox.ButtonList.Count && (string)MessageBox.ButtonList[result] == "好的"))
                     {
-                        lbl.Content = result = MessageBox.Show(ps7, new List<object> { new ButtonSpacer(300), "不用谢" }, "请勿关闭本界面", "安装中...", MessageBoxImage.Information);
+                        lbl.Content = result = MessageBox.Show(ps7, new RefreshList { new ButtonSpacer(300), "不用谢" }, "请勿关闭本界面", "安装中...", MessageBoxImage.Information);
                     }
                 }
             }
         }
 
         TextBox bc6Tb = new TextBox();
-        List<object> bc6BtnList = new List<object>();
+        RefreshList bc6BtnList = new RefreshList();
         Button bc6Btn = new Button();
         private void Button_Click_6(object sender, RoutedEventArgs e)
         {
@@ -475,14 +476,14 @@ namespace Sample
             bc6Tb.VerticalContentAlignment = VerticalAlignment.Center;
             bc6Tb.FontSize = 25;
             bc6Tb.Margin = new Thickness(10, 6, 10, 6);
-            bc6BtnList = new List<object> { bc6Btn, bc6Tb, "132" };
+            bc6BtnList = new RefreshList { bc6Btn, bc6Tb, "132" };
             int result;
             lbl.Content = result = MessageBox.Show(bc6BtnList, "点击最左边的按钮, 添加一个内容为输入框内容的按钮. ", "增加一个按钮", MessageBoxImage.Information);
         }
 
         private void Btn6_Btn_Click(object sender, RoutedEventArgs e)
         {
-            bc6BtnList.Add(bc6Tb.Text);
+            bc6BtnList.AddRange(new RefreshList() { bc6Tb.Text, new RoutedEventHandler((s, ea) => { int index = MessageBox.ButtonList.IndexOf(((Button)s).Content); MessageBox.ButtonList.RemoveAt(index); MessageBox.ButtonList.RemoveAt(index); }) });
             MessageBox.ButtonList = bc6BtnList;
         }
 
@@ -516,7 +517,7 @@ namespace Sample
 
             MessageBox.WarningIcon = new BitmapImage(new Uri("C:\\Users\\1\\Pictures\\ssccicon.png"));
 
-            lbl.Content = MessageBox.Show(new List<object> { btn, "洋葱", "awsl", "fbk", "艾维斯了", "DD" }, "啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊\n啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊\n啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊\n啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊\naaaaaaaaaaaaa\naaaaaaaaaaaaaaa啊啊啊啊啊啊aaaaaaaaaaaaaaaaaaaaa啊aaaaaaaaaaaaaaaaaaaa\n1514564464\nrgeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeee\nerfewfwf\nerwfwfewfewfef\nefewfewgfewgewrewqrwqedwqwqqqqqqqqqjj\nyrhhhhtr\nyhhhhhhhhhhh\nrythr\nrthyrhr\nryhrhrqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqjj\nyrhhhhtr\nyhhhhhhhhhhh\nrythr\nrthyrhr\nryhrhrqq\nefwfewfefqfqfwqwqedwqew\nfewf", "123123", MessageBoxImage.Warning);
+            lbl.Content = MessageBox.Show(new RefreshList { btn, "洋葱", "awsl", "fbk", "艾维斯了", "DD" }, "啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊\n啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊\n啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊\n啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊\naaaaaaaaaaaaa\naaaaaaaaaaaaaaa啊啊啊啊啊啊aaaaaaaaaaaaaaaaaaaaa啊aaaaaaaaaaaaaaaaaaaa\n1514564464\nrgeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeee\nerfewfwf\nerwfwfewfewfef\nefewfewgfewgewrewqrwqedwqwqqqqqqqqqjj\nyrhhhhtr\nyhhhhhhhhhhh\nrythr\nrthyrhr\nryhrhrqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqjj\nyrhhhhtr\nyhhhhhhhhhhh\nrythr\nrthyrhr\nryhrhrqq\nefwfewfefqfqfwqwqedwqew\nfewf", "123123", MessageBoxImage.Warning);
             Info.PrintLog(MessageBoxType.CustomizableMessageBox);
             Info.PrintLog(MessageBoxType.SystemMessageBox);
             Info.PrintLog("C:\\Users\\1\\Desktop\\log.txt", false, true);
@@ -547,9 +548,9 @@ namespace Sample
             ps1.ButtonStyleList = new List<Style>() { Prefab.GetButtonStyle(ButtonStyleName.White) };
             ps1.ButtonMarginList = new List<Thickness>() { new Thickness(5) };
 
-            MessageBox.Show(ps1, new List<object> { 
+            MessageBox.Show(ps1, new RefreshList { 
                 "close", new RoutedEventHandler((s, ea) => { MessageBox.MessageText = "2222222222222222222"; System.Windows.MessageBox.Show("123456"); MessageBox.CloseNow(); }), new ButtonSpacer(true), 
-                new Button(), new RoutedEventHandler((s, ea) => { MessageBox.MessageText = "111111111111111111111"; }), 
+                new Button(), new RoutedEventHandler((s, ea) => { MessageBox.MessageText = "111111111111111111111"; MessageBox.CloseTimer = new MessageBoxCloseTimer(1, -1); }), 
                 "123", new ButtonSpacer(true) }
             , "123", "123");
 
