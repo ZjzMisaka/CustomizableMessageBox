@@ -547,7 +547,7 @@ namespace Sample
         {
             ps1.ButtonStyleList = new List<Style>() { Prefab.GetButtonStyle(ButtonStyleName.White) };
             ps1.ButtonMarginList = new List<Thickness>() { new Thickness(5) };
-            ps1.EnableTitleButton = true;
+            ps1.EnableTitleIcon = true;
 
             MessageBox.Show(ps1, new RefreshList { 
                 "close", new RoutedEventHandler((s, ea) => { MessageBox.MessageText = "2222222222222222222"; System.Windows.MessageBox.Show("123456"); MessageBox.CloseNow(); }), new ButtonSpacer(true), 
