@@ -39,12 +39,14 @@
                         <RowDefinition />
                     </Grid.RowDefinitions>
                     <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="auto"/>
                         <ColumnDefinition />
-                        <ColumnDefinition Width="35pt"/>
+                        <ColumnDefinition Width="auto"/>
                     </Grid.ColumnDefinitions>
 
-                    <Label x:Name="i_title" Grid.Row=" 0" Content="" Padding="50,0,0,0" Grid.Column="0" HorizontalContentAlignment="Left" HorizontalAlignment="Left"  VerticalAlignment="Center" VerticalContentAlignment="Center" FontSize="30pt" Width="765"/>
-                    <Image x:Name="i_close" Grid.Row=" 0" Grid.Column="1" Width="25pt" Height="25pt" Source=".\Image\close.png" HorizontalAlignment="Left" VerticalAlignment="Center" Visibility="Hidden"/>
+                    <Image x:Name="i_icon" Stretch="Uniform" Grid.Row=" 0" Grid.Column="0" Width="25pt" Height="25pt" Source=".\Image\file.png" HorizontalAlignment="Left" VerticalAlignment="Center" Visibility="Collapsed"/>
+                    <Label x:Name="i_title" Grid.Row=" 0" Grid.Column="1" Content="" Padding="50,0,0,0" HorizontalContentAlignment="Left" HorizontalAlignment="Left"  VerticalAlignment="Center" VerticalContentAlignment="Center" FontSize="30pt" Width="765"/>
+                    <Image x:Name="i_close" Stretch="Uniform" Grid.Row=" 0" Grid.Column="2" Width="25pt" Height="25pt" Source=".\Image\close.png" HorizontalAlignment="Left" VerticalAlignment="Center" Visibility="Collapsed"/>
                 </Grid>
             </Border>
 

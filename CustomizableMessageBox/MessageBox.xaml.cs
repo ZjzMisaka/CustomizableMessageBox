@@ -795,6 +795,22 @@ namespace CustomizableMessageBox
             }
         }
 
+        // 自定义标题图标
+        private static BitmapImage titleIcon = new BitmapImage(new Uri(".\\Image\\file.png", UriKind.RelativeOrAbsolute));
+        public static BitmapImage TitleIcon
+        {
+            get => titleIcon;
+            set
+            {
+                titleIcon = value;
+                if (mb == null)
+                {
+                    return;
+                }
+                InitProperties();
+            }
+        }
+
         // 自定义警告图标
         private static BitmapImage warningIcon = new BitmapImage(new Uri(".\\Image\\warn.png", UriKind.RelativeOrAbsolute));
         public static BitmapImage WarningIcon
@@ -835,6 +851,22 @@ namespace CustomizableMessageBox
             set
             {
                 enableCloseButton = value;
+                if (mb == null)
+                {
+                    return;
+                }
+                InitProperties();
+            }
+        }
+
+        // 应用标题图标
+        private static bool enableTitleIcon = false;
+        public static bool EnableTitleIcon
+        {
+            get => enableTitleIcon;
+            set
+            {
+                enableTitleIcon = value;
                 if (mb == null)
                 {
                     return;
@@ -1171,11 +1203,13 @@ namespace CustomizableMessageBox
                 WindowShowAnimations = value.WindowShowAnimations;
                 WindowCloseAnimations = value.WindowCloseAnimations;
                 CloseIcon = value.CloseIcon;
+                TitleIcon = value.TitleIcon;
                 WarningIcon = value.WarningIcon;
                 ErrorIcon = value.ErrorIcon;
                 InfoIcon = value.InfoIcon;
                 QuestionIcon = value.QuestionIcon;
                 EnableCloseButton = value.EnableCloseButton;
+                EnableTitleIcon = value.EnableTitleIcon;
                 ButtonStyleList = value.ButtonStyleList;
                 ButtonWidthList = value.ButtonWidthList;
                 ButtonHeightList = value.ButtonHeightList;
@@ -1298,12 +1332,19 @@ namespace CustomizableMessageBox
             if (enableCloseButton)
             {
                 mb.i_close.Visibility = Visibility.Visible;
-                Grid.SetColumnSpan(mb.i_title, 1);
             }
             else
             {
                 mb.i_close.Visibility = Visibility.Collapsed;
-                Grid.SetColumnSpan(mb.i_title, 2);
+            }
+            mb.i_icon.Source = TitleIcon;
+            if (enableTitleIcon)
+            {
+                mb.i_icon.Visibility = Visibility.Visible;
+            }
+            else
+            {
+                mb.i_icon.Visibility = Visibility.Collapsed;
             }
         }
 
@@ -1723,11 +1764,13 @@ namespace CustomizableMessageBox
             windowShowAnimations = null;
             windowCloseAnimations = null;
             closeIcon = new BitmapImage(new Uri(".\\Image\\close.png", UriKind.RelativeOrAbsolute));
+            titleIcon = new BitmapImage(new Uri(".\\Image\\file.png", UriKind.RelativeOrAbsolute));
             warningIcon = new BitmapImage(new Uri(".\\Image\\warn.png", UriKind.RelativeOrAbsolute));
             errorIcon = new BitmapImage(new Uri(".\\Image\\error.png", UriKind.RelativeOrAbsolute));
             infoIcon = new BitmapImage(new Uri(".\\Image\\info.png", UriKind.RelativeOrAbsolute));
             questionIcon = new BitmapImage(new Uri(".\\Image\\question.png", UriKind.RelativeOrAbsolute));
             enableCloseButton = false;
+            enableTitleIcon = false;
             buttonStyleList = null;
             ButtonWidthList = null;
             ButtonHeightList = null;

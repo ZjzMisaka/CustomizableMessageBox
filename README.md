@@ -138,14 +138,16 @@ MessageBox.Show(tb.Text == string.Empty ? "User did not enter" : tb.Text, (strin
 |ButtonBorderThickness|Thickness|Button Border Width|√|√|
 |WindowShowDuration|Duration|Window fade time|√|√|
 |WindowShowAnimations|List&lt;KeyValuePair&lt;DependencyProperty, AnimationTimeline&gt;&gt;|Window display animation |√|√|
-|WindowCloseAnimations|List&lt;KeyValuePair&lt;DependencyProperty, AnimationTimeline&gt;&gt;|Window Close Animation|√|√|
-|CloseIcon|BitmapImage|Custom Close Icon|√|√|
+|WindowCloseAnimations|List&lt;KeyValuePair&lt;DependencyProperty, AnimationTimeline&gt;&gt;|Window close animation|√|√|
+|CloseIcon|BitmapImage|Custom close icon|√|√|
+|TitleIcon|BitmapImage|Custom title icon|√|√|
 |WarningIcon|BitmapImage|Custom warning icon|√|√|
 |ErrorIcon|BitmapImage|Custom error icon|√|√|
 |InfoIcon|BitmapImage|Custom information icon|√|√|
-|QuestionIcon|BitmapImage|Custom Question Icon|√|√|
-|EnableCloseButton|bool|Application window close button|√|√|
-|ButtonStyleList|List&lt;Style&gt;|Button Action Style|√|√|
+|QuestionIcon|BitmapImage|Custom question Icon|√|√|
+|EnableCloseButton|bool|Enable window close button|√|√|
+|EnableTitleIcon|bool|Enable title icon|√|√|
+|ButtonStyleList|List&lt;Style&gt;|Button action style|√|√|
 |ButtonWidthList|List&lt;double&gt;|-|√|√|
 |ButtonHeightList|List&lt;double&gt;|-|√|√|
 |ButtonHorizontalAlignmentList|List&lt;HorizontalAlignment&gt;|-|√|√|

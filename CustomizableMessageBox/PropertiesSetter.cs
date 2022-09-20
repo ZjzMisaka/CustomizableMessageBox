@@ -55,11 +55,13 @@ namespace CustomizableMessageBox
             WindowShowAnimations = propertiesSetter.WindowShowAnimations;
             WindowCloseAnimations = propertiesSetter.WindowCloseAnimations;
             CloseIcon = propertiesSetter.CloseIcon;
+            TitleIcon = propertiesSetter.TitleIcon;
             WarningIcon = propertiesSetter.WarningIcon;
             ErrorIcon = propertiesSetter.ErrorIcon;
             InfoIcon = propertiesSetter.InfoIcon;
             QuestionIcon = propertiesSetter.QuestionIcon;
             EnableCloseButton = propertiesSetter.EnableCloseButton;
+            EnableTitleButton = propertiesSetter.EnableTitleButton;
             ButtonStyleList = propertiesSetter.ButtonStyleList;
             ButtonWidthList = propertiesSetter.ButtonWidthList;
             ButtonHeightList = propertiesSetter.ButtonHeightList;
@@ -217,6 +219,10 @@ namespace CustomizableMessageBox
         private BitmapImage closeIcon = new BitmapImage(new Uri(".\\Image\\close.png", UriKind.RelativeOrAbsolute));
         public BitmapImage CloseIcon { get => closeIcon; set => closeIcon = value; }
 
+        // 自定义标题图标
+        private BitmapImage titleIcon = new BitmapImage(new Uri(".\\Image\\file.png", UriKind.RelativeOrAbsolute));
+        public BitmapImage TitleIcon { get => titleIcon; set => titleIcon = value; }
+
         // 自定义警告图标
         private BitmapImage warningIcon = new BitmapImage(new Uri(".\\Image\\warn.png", UriKind.RelativeOrAbsolute));
         public BitmapImage WarningIcon { get => warningIcon; set => warningIcon = value; }
@@ -236,6 +242,10 @@ namespace CustomizableMessageBox
         // 应用窗口关闭按钮
         private bool enableCloseButton = false;
         public bool EnableCloseButton { get => enableCloseButton; set => enableCloseButton = value; }
+
+        // 应用标题图标
+        private bool enableTitleButton = false;
+        public bool EnableTitleButton { get => enableTitleButton; set => enableTitleButton = value; }
 
         // 按钮动作样式
         private List<Style> buttonStyleList = null;
