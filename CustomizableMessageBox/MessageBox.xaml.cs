@@ -795,6 +795,22 @@ namespace CustomizableMessageBox
             }
         }
 
+        // Message区域间距
+        private static double messgagePanelSpacing = 15;
+        public static double MessgagePanelSpacing
+        {
+            get => messgagePanelSpacing;
+            set
+            {
+                messgagePanelSpacing = value;
+                if (mb == null)
+                {
+                    return;
+                }
+                LoadMessagePanel();
+            }
+        }
+
 
         // 自定义关闭图标
         private static BitmapImage closeIcon = new BitmapImage(new Uri(".\\Image\\close.png", UriKind.RelativeOrAbsolute));
@@ -901,6 +917,22 @@ namespace CustomizableMessageBox
                 {
                     SetIconType(MessageBoxImageType);
                 }
+            }
+        }
+
+        // Message图标的高度
+        private static double messgaeIconHeight = 32;
+        public static double MessgaeIconHeight
+        {
+            get => messgaeIconHeight;
+            set
+            {
+                messgaeIconHeight = value;
+                if (mb == null)
+                {
+                    return;
+                }
+                LoadMessagePanel();
             }
         }
 
@@ -1328,12 +1360,14 @@ namespace CustomizableMessageBox
                 WindowShowAnimations = value.WindowShowAnimations;
                 WindowCloseAnimations = value.WindowCloseAnimations;
                 TitlePanelSpacing = value.TitlePanelSpacing;
+                MessgagePanelSpacing = value.MessgagePanelSpacing;
                 CloseIcon = value.CloseIcon;
                 TitleIcon = value.TitleIcon;
                 WarningIcon = value.WarningIcon;
                 ErrorIcon = value.ErrorIcon;
                 InfoIcon = value.InfoIcon;
                 QuestionIcon = value.QuestionIcon;
+                MessgaeIconHeight = value.MessgaeIconHeight;
                 CloseIconHeight = value.CloseIconHeight;
                 TitleIconHeight = value.TitleIconHeight;
                 SetCloseIconHeightAsTitleFontHeight = value.SetCloseIconHeightAsTitleFontHeight;
@@ -1603,7 +1637,7 @@ namespace CustomizableMessageBox
 
                 LoadTitlePanel();
 
-                SetMessagePanelWidth();
+                LoadMessagePanel();
 
                 if (CloseTimer != null)
                 {
@@ -1820,8 +1854,17 @@ namespace CustomizableMessageBox
         /// <summary>
         /// 设置消息区域宽度
         /// </summary>
-        private static void SetMessagePanelWidth()
+        private static void LoadMessagePanel()
         {
+            if (messgagePanelSpacing >= 0)
+            {
+                mb.i_img.Margin = new Thickness(messgagePanelSpacing, 0, messgagePanelSpacing, 0);
+                mb.tb_msg.Margin = new Thickness(messgagePanelSpacing);
+            }
+            if (messgaeIconHeight > 0)
+            {
+                mb.i_img.Height = messgaeIconHeight;
+            }
             if (mb.i_img.Visibility == Visibility.Visible)
             {
                 mb.tb_msg.Width = mb.Width - mb.i_img.Width - mb.i_img.Margin.Left - mb.i_img.Margin.Right - mb.tb_msg.Margin.Left - mb.tb_msg.Margin.Right - mb.b_messageborder.BorderThickness.Left - mb.b_messageborder.BorderThickness.Right;
@@ -1927,36 +1970,38 @@ namespace CustomizableMessageBox
             windowShowAnimations = null;
             windowCloseAnimations = null;
             titlePanelSpacing = 7;
+            messgagePanelSpacing = 15;
             closeIcon = new BitmapImage(new Uri(".\\Image\\close.png", UriKind.RelativeOrAbsolute));
             titleIcon = new BitmapImage(new Uri(".\\Image\\file.png", UriKind.RelativeOrAbsolute));
             warningIcon = new BitmapImage(new Uri(".\\Image\\warn.png", UriKind.RelativeOrAbsolute));
             errorIcon = new BitmapImage(new Uri(".\\Image\\error.png", UriKind.RelativeOrAbsolute));
             infoIcon = new BitmapImage(new Uri(".\\Image\\info.png", UriKind.RelativeOrAbsolute));
             questionIcon = new BitmapImage(new Uri(".\\Image\\question.png", UriKind.RelativeOrAbsolute));
-            CloseIconHeight = 7;
-            TitleIconHeight = 7;
-            SetCloseIconHeightAsTitleFontHeight = true;
-            SetTitleIconHeightAsTitleFontHeight = true;
+            messgaeIconHeight = 32;
+            closeIconHeight = 7;
+            titleIconHeight = 7;
+            setCloseIconHeightAsTitleFontHeight = true;
+            setTitleIconHeightAsTitleFontHeight = true;
             enableCloseButton = false;
             enableTitleIcon = false;
             buttonStyleList = null;
-            ButtonWidthList = null;
-            ButtonHeightList = null;
-            ButtonHorizontalAlignmentList = null;
-            ButtonVerticalAlignmentList = null;
-            ButtonHorizontalContentAlignmentList = null;
-            ButtonVerticalContentAlignmentList = null;
-            ButtonMarginList = null;
-            ButtonPaddingList = null;
-            ButtonBackgroundList = null;
-            ButtonBorderBrushList = null;
-            ButtonBorderThicknessList = null;
-            ButtonCursorList = null;
-            ButtonFontFamilyList = null;
-            ButtonFontSizeList = null;
-            ButtonFontStretchList = null;
-            ButtonFontStyleList = null;
-            ButtonFontWeightList = null;
+            buttonWidthList = null;
+            buttonHeightList = null;
+            buttonHorizontalAlignmentList = null;
+            buttonVerticalAlignmentList = null;
+            buttonHorizontalContentAlignmentList = null;
+            buttonVerticalContentAlignmentList = null;
+            buttonMarginList = null;
+            buttonPaddingList = null;
+            buttonBackgroundList = null;
+            buttonBorderBrushList = null;
+            buttonBorderThicknessList = null;
+            buttonCursorList = null;
+            buttonFontFamilyList = null;
+            buttonFontSizeList = null;
+            buttonFontStretchList = null;
+            buttonFontStyleList = null;
+            buttonFontWeightList = null;
             closeTimer = null;
 
             propertiesSetter = new PropertiesSetter();
@@ -2304,7 +2349,7 @@ namespace CustomizableMessageBox
                     break;
             }
 
-            SetMessagePanelWidth();
+            LoadMessagePanel();
         }
 
         /// <summary>

@@ -55,12 +55,14 @@ namespace CustomizableMessageBox
             WindowShowAnimations = propertiesSetter.WindowShowAnimations;
             WindowCloseAnimations = propertiesSetter.WindowCloseAnimations;
             TitlePanelSpacing = propertiesSetter.TitlePanelSpacing;
+            MessgagePanelSpacing = propertiesSetter.MessgagePanelSpacing;
             CloseIcon = propertiesSetter.CloseIcon;
             TitleIcon = propertiesSetter.TitleIcon;
             WarningIcon = propertiesSetter.WarningIcon;
             ErrorIcon = propertiesSetter.ErrorIcon;
             InfoIcon = propertiesSetter.InfoIcon;
             QuestionIcon = propertiesSetter.QuestionIcon;
+            MessgaeIconHeight = propertiesSetter.MessgaeIconHeight;
             CloseIconHeight = propertiesSetter.CloseIconHeight;
             TitleIconHeight = propertiesSetter.TitleIconHeight;
             SetCloseIconHeightAsTitleFontHeight = propertiesSetter.SetCloseIconHeightAsTitleFontHeight;
@@ -224,6 +226,10 @@ namespace CustomizableMessageBox
         private double titlePanelSpacing = 7;
         public double TitlePanelSpacing { get => titlePanelSpacing; set => titlePanelSpacing = value; }
 
+        // Message区域间距
+        private double messgagePanelSpacing = 15;
+        public double MessgagePanelSpacing { get => messgagePanelSpacing; set => messgagePanelSpacing = value; }
+
         // 自定义关闭图标
         private BitmapImage closeIcon = new BitmapImage(new Uri(".\\Image\\close.png", UriKind.RelativeOrAbsolute));
         public BitmapImage CloseIcon { get => closeIcon; set => closeIcon = value; }
@@ -247,6 +253,10 @@ namespace CustomizableMessageBox
         // 自定义问题图标
         private BitmapImage questionIcon = new BitmapImage(new Uri(".\\Image\\question.png", UriKind.RelativeOrAbsolute));
         public BitmapImage QuestionIcon { get => questionIcon; set => questionIcon = value; }
+
+        // Message图标的高度
+        private double messgaeIconHeight = 32;
+        public double MessgaeIconHeight { get => messgaeIconHeight; set => messgaeIconHeight = value; }
 
         // 关闭按钮图标的高度
         private double closeIconHeight = 0;

@@ -116,7 +116,7 @@ MessageBox.Show(tb.Text == string.Empty ? "User did not enter" : tb.Text, (strin
 |TitleFontSize|int|Title text size|√|√|
 |MessageFontSize|int|Message text size|√|√|
 |ButtonFontSize|int|Button text size|√|√|
-|TitleFontColor|MessageBoxColor|Title Text Color|√|√|
+|TitleFontColor|MessageBoxColor|Title text color|√|√|
 |MessageFontColor|MessageBoxColor|Message text color|√|√|
 |ButtonFontColor|MessageBoxColor|Button text color|√|√|
 |WindowOpacity|double|The overall transparency of the window|√|√|
@@ -127,24 +127,31 @@ MessageBox.Show(tb.Text == string.Empty ? "User did not enter" : tb.Text, (strin
 |MessagePanelColor|MessageBoxColor|Message area background color|√|√|
 |ButtonPanelColor|MessageBoxColor|Button area background color|√|√|
 |WndBorderColor|MessageBoxColor|Window border color|√|√|
-|TitlePanelBorderColor|MessageBoxColor|Title Area Border Color|√|√|
+|TitlePanelBorderColor|MessageBoxColor|Title area border color|√|√|
 |MessagePanelBorderColor|MessageBoxColor|Message area border color|√|√|
 |ButtonPanelBorderColor|MessageBoxColor|Button area border color|√|√|
-|ButtonBorderColor|MessageBoxColor|Button Border Color|√|√|
+|ButtonBorderColor|MessageBoxColor|Button border color|√|√|
 |WndBorderThickness|MessageBoxColor|Window border width|√|√|
-|TitlePanelBorderThickness|Thickness|Title Area Border Width|√|√|
+|TitlePanelBorderThickness|Thickness|Title area border width|√|√|
 |MessagePanelBorderThickness|Thickness|Message area border width|√|√|
 |ButtonPanelBorderThickness|Thickness|Button area border width|√|√|
-|ButtonBorderThickness|Thickness|Button Border Width|√|√|
+|ButtonBorderThickness|Thickness|Button border width|√|√|
 |WindowShowDuration|Duration|Window fade time|√|√|
 |WindowShowAnimations|List&lt;KeyValuePair&lt;DependencyProperty, AnimationTimeline&gt;&gt;|Window display animation |√|√|
 |WindowCloseAnimations|List&lt;KeyValuePair&lt;DependencyProperty, AnimationTimeline&gt;&gt;|Window close animation|√|√|
+|TitlePanelSpacing|double|Title area spacing|√|√|
+|MessagePanelSpacing|double|Message area spacing|√|√|
 |CloseIcon|BitmapImage|Custom close icon|√|√|
 |TitleIcon|BitmapImage|Custom title icon|√|√|
 |WarningIcon|BitmapImage|Custom warning icon|√|√|
 |ErrorIcon|BitmapImage|Custom error icon|√|√|
 |InfoIcon|BitmapImage|Custom information icon|√|√|
 |QuestionIcon|BitmapImage|Custom question Icon|√|√|
+|MessgaeIconHeight|double|Message icon height|√|√|
+|CloseIconHeight|double|Close icon height|√|√|
+|TitleIconHeight|double|Title icon height|√|√|
+|SetCloseIconHeightAsTitleFontHeight|bool|The height of the close icon follows the title font height|√|√|
+|SetTitleIconHeightAsTitleFontHeight|bool|The height of the title icon follows the title font height|√|√|
 |EnableCloseButton|bool|Enable window close button|√|√|
 |EnableTitleIcon|bool|Enable title icon|√|√|
 |ButtonStyleList|List&lt;Style&gt;|Button action style|√|√|

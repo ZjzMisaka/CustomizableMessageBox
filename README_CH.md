@@ -139,12 +139,19 @@ MessageBox.Show(tb.Text == string.Empty ? "用户未输入" : tb.Text, (string)M
 |WindowShowDuration|Duration|窗口渐显时间|√|√|
 |WindowShowAnimations|List&lt;KeyValuePair&lt;DependencyProperty, AnimationTimeline&gt;&gt;|窗口显示动画|√|√|
 |WindowCloseAnimations|List&lt;KeyValuePair&lt;DependencyProperty, AnimationTimeline&gt;&gt;|窗口关闭动画|√|√|
+|TitlePanelSpacing|double|标题区域间距|√|√|
+|MessagePanelSpacing|double|Message区域间距|√|√|
 |CloseIcon|BitmapImage|自定义关闭图标|√|√|
 |TitleIcon|BitmapImage|自定义标题图标|√|√|
 |WarningIcon|BitmapImage|自定义警告图标|√|√|
 |ErrorIcon|BitmapImage|自定义错误图标|√|√|
 |InfoIcon|BitmapImage|自定义信息图标|√|√|
 |QuestionIcon|BitmapImage|自定义问题图标|√|√|
+|MessgaeIconHeight|double|Message图标高度|√|√|
+|CloseIconHeight|double|关闭按钮图标高度|√|√|
+|TitleIconHeight|double|标题图标高度|√|√|
+|SetCloseIconHeightAsTitleFontHeight|bool|关闭图标的高度跟随标题字体高度|√|√|
+|SetTitleIconHeightAsTitleFontHeight|bool|标题图标的高度跟随标题字体高度|√|√|
 |EnableCloseButton|bool|应用窗口关闭按钮|√|√|
 |EnableTitleIcon|bool|应用标题图标|√|√|
 |ButtonStyleList|List&lt;Style&gt;|按钮动作样式|√|√|
