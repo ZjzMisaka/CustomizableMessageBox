@@ -44,16 +44,16 @@
                         <ColumnDefinition Width="auto"/>
                     </Grid.ColumnDefinitions>
 
-                    <Image x:Name="i_icon" Stretch="Uniform" Grid.Row=" 0" Grid.Column="0" Width="25pt" Height="25pt" Source=".\Image\file.png" HorizontalAlignment="Left" VerticalAlignment="Center" Visibility="Collapsed"/>
+                    <Image x:Name="i_icon" Stretch="Uniform" Grid.Row=" 0" Grid.Column="0" Width="auto" Height="25pt" Source=".\Image\file.png" HorizontalAlignment="Left" VerticalAlignment="Center" Visibility="Collapsed"/>
                     <Label x:Name="i_title" Grid.Row=" 0" Grid.Column="1" Content="" Padding="50,0,0,0" HorizontalContentAlignment="Left" HorizontalAlignment="Left"  VerticalAlignment="Center" VerticalContentAlignment="Center" FontSize="30pt" Width="765"/>
-                    <Image x:Name="i_close" Stretch="Uniform" Grid.Row=" 0" Grid.Column="2" Width="25pt" Height="25pt" Source=".\Image\close.png" HorizontalAlignment="Left" VerticalAlignment="Center" Visibility="Collapsed"/>
+                    <Image x:Name="i_close" Stretch="Uniform" Grid.Row=" 0" Grid.Column="2" Width="auto" Height="25pt" Source=".\Image\close.png" HorizontalAlignment="Left" VerticalAlignment="Center" Visibility="Collapsed"/>
                 </Grid>
             </Border>
 
             <Border x:Name="b_messageborder" Grid.Row="1" Grid.Column="0" VerticalAlignment="Stretch" HorizontalAlignment="Stretch" BorderBrush="#F09A9A9A" BorderThickness="0,0,0,0">
                 <Grid x:Name="g_messagegrid">
                     <StackPanel Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="2" Orientation="Horizontal">
-                        <Image x:Name="i_img" Width="32" Height="32" HorizontalAlignment="Left" Margin="15, 0, 15, 0"  VerticalAlignment="Center" Visibility="Collapsed"/>
+                        <Image x:Name="i_img" Stretch="Uniform" Width="auto" Height="32" HorizontalAlignment="Left" Margin="15, 0, 15, 0"  VerticalAlignment="Center" Visibility="Collapsed"/>
                         <ScrollViewer x:Name="sv_tb" PanningMode="Both" HorizontalAlignment="Stretch" VerticalScrollBarVisibility="Hidden" HorizontalScrollBarVisibility="Hidden" Margin="0" >
                             <TextBlock x:Name="tb_msg" Margin="15,5,15,15" FontSize="25pt" Text="" HorizontalAlignment="Stretch" VerticalAlignment="Center" TextWrapping="Wrap"/>
                         </ScrollViewer>

@@ -228,7 +228,7 @@ namespace Sample
 
             DDChallenge();
 
-            MessageBox.ErrorIcon = new BitmapImage(new Uri("C:\\Users\\1\\Pictures\\lys2.png"));
+            //MessageBox.ErrorIcon = new BitmapImage(new Uri("C:\\Users\\1\\Pictures\\lys2.png"));
             MessageBox.WindowShowDuration = new Duration(new TimeSpan(0, 0, 0, 1));
             MessageBox.MessageFontSize += 5;
             MessageBox.TitleFontFamily = new FontFamily("游明朝");
@@ -248,7 +248,7 @@ namespace Sample
             timer = new Timer();
             timer.Interval = 1000;
             timer.Elapsed += Tick_ShaMaTe;
-            MessageBox.WarningIcon = new BitmapImage(new Uri("C:\\Users\\1\\Pictures\\lys1.jpg"));
+            //MessageBox.WarningIcon = new BitmapImage(new Uri("C:\\Users\\1\\Pictures\\lys1.jpg"));
             List<Style> buttonStyleList = new List<Style>();
             Style s1 = new Style();
             s1.TargetType = typeof(Button);
@@ -551,7 +551,7 @@ namespace Sample
 
             MessageBox.Show(ps1, new RefreshList { 
                 "close", new RoutedEventHandler((s, ea) => { MessageBox.MessageText = "2222222222222222222"; System.Windows.MessageBox.Show("123456"); MessageBox.CloseNow(); }), new ButtonSpacer(true), 
-                new Button(), new RoutedEventHandler((s, ea) => { MessageBox.MessageText = "111111111111111111111"; MessageBox.CloseTimer = new MessageBoxCloseTimer(1, -1); }), 
+                new Button(), new RoutedEventHandler((s, ea) => { MessageBox.MessageText = "111111111111111111111"; MessageBox.TitleIconHeight = 50; MessageBox.SetTitleIconHeightAsTitleFontHeight = false; MessageBox.TitlePanelSpacing = 50; MessageBox.CloseTimer = new MessageBoxCloseTimer(1, -1); }), 
                 "123", new ButtonSpacer(true) }
             , "123", "123");
 

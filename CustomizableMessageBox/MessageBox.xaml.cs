@@ -779,6 +779,23 @@ namespace CustomizableMessageBox
         private static List<KeyValuePair<DependencyProperty, AnimationTimeline>> windowCloseAnimations = null;
         public static List<KeyValuePair<DependencyProperty, AnimationTimeline>> WindowCloseAnimations { get => windowCloseAnimations; set => windowCloseAnimations = value; }
 
+        // 标题区域间距
+        private static double titlePanelSpacing = 7;
+        public static double TitlePanelSpacing 
+        {
+            get => titlePanelSpacing;
+            set
+            {
+                titlePanelSpacing = value;
+                if (mb == null)
+                {
+                    return;
+                }
+                LoadTitlePanel();
+            }
+        }
+
+
         // 自定义关闭图标
         private static BitmapImage closeIcon = new BitmapImage(new Uri(".\\Image\\close.png", UriKind.RelativeOrAbsolute));
         public static BitmapImage CloseIcon
@@ -816,7 +833,18 @@ namespace CustomizableMessageBox
         public static BitmapImage WarningIcon
         {
             get => warningIcon;
-            set => warningIcon = value;
+            set
+            {
+                warningIcon = value;
+                if (mb == null)
+                {
+                    return;
+                }
+                if (MessageBoxImageType != MessageBoxImage.None)
+                {
+                    SetIconType(MessageBoxImageType);
+                }
+            }
         }
 
         // 自定义错误图标
@@ -824,7 +852,18 @@ namespace CustomizableMessageBox
         public static BitmapImage ErrorIcon
         {
             get => errorIcon;
-            set => errorIcon = value;
+            set
+            {
+                errorIcon = value;
+                if (mb == null)
+                {
+                    return;
+                }
+                if (MessageBoxImageType != MessageBoxImage.None)
+                {
+                    SetIconType(MessageBoxImageType);
+                }
+            }
         }
 
         // 自定义信息图标
@@ -832,7 +871,18 @@ namespace CustomizableMessageBox
         public static BitmapImage InfoIcon
         {
             get => infoIcon;
-            set => infoIcon = value;
+            set
+            {
+                infoIcon = value;
+                if (mb == null)
+                {
+                    return;
+                }
+                if (MessageBoxImageType != MessageBoxImage.None)
+                {
+                    SetIconType(MessageBoxImageType);
+                }
+            }
         }
 
         // 自定义问题图标
@@ -840,7 +890,82 @@ namespace CustomizableMessageBox
         public static BitmapImage QuestionIcon
         {
             get => questionIcon;
-            set => questionIcon = value;
+            set
+            {
+                questionIcon = value;
+                if (mb == null)
+                {
+                    return;
+                }
+                if (MessageBoxImageType != MessageBoxImage.None)
+                {
+                    SetIconType(MessageBoxImageType);
+                }
+            }
+        }
+
+        // 关闭按钮图标的高度
+        private static double closeIconHeight = 0;
+        public static double CloseIconHeight 
+        { 
+            get => closeIconHeight;
+            set 
+            { 
+                closeIconHeight = value;
+                if (mb == null)
+                {
+                    return;
+                }
+                LoadTitlePanel();
+            }
+        }
+
+        // 标题图标的高度
+        private static double titleIconHeight = 0;
+        public static double TitleIconHeight
+        { 
+            get => titleIconHeight;
+            set
+            {
+                titleIconHeight = value;
+                if (mb == null)
+                {
+                    return;
+                }
+                LoadTitlePanel();
+            }
+        }
+
+        // 设置关闭按钮图标高度为标题字体高度
+        private static bool setCloseIconHeightAsTitleFontHeight = true;
+        public static bool SetCloseIconHeightAsTitleFontHeight
+        { 
+            get => setCloseIconHeightAsTitleFontHeight;
+            set
+            {
+                setCloseIconHeightAsTitleFontHeight = value;
+                if (mb == null)
+                {
+                    return;
+                }
+                LoadTitlePanel();
+            }
+        }
+
+        // 设置标题图标高度为标题字体高度
+        private static bool setTitleIconHeightAsTitleFontHeight = true;
+        public static bool SetTitleIconHeightAsTitleFontHeight
+        { 
+            get => setTitleIconHeightAsTitleFontHeight;
+            set
+            {
+                setTitleIconHeightAsTitleFontHeight = value;
+                if (mb == null)
+                {
+                    return;
+                }
+                LoadTitlePanel();
+            }
         }
 
         // 应用窗口关闭按钮
@@ -1202,12 +1327,17 @@ namespace CustomizableMessageBox
                 WindowShowDuration = value.WindowShowDuration;
                 WindowShowAnimations = value.WindowShowAnimations;
                 WindowCloseAnimations = value.WindowCloseAnimations;
+                TitlePanelSpacing = value.TitlePanelSpacing;
                 CloseIcon = value.CloseIcon;
                 TitleIcon = value.TitleIcon;
                 WarningIcon = value.WarningIcon;
                 ErrorIcon = value.ErrorIcon;
                 InfoIcon = value.InfoIcon;
                 QuestionIcon = value.QuestionIcon;
+                CloseIconHeight = value.CloseIconHeight;
+                TitleIconHeight = value.TitleIconHeight;
+                SetCloseIconHeightAsTitleFontHeight = value.SetCloseIconHeightAsTitleFontHeight;
+                SetTitleIconHeightAsTitleFontHeight = value.SetTitleIconHeightAsTitleFontHeight;
                 EnableCloseButton = value.EnableCloseButton;
                 EnableTitleIcon = value.EnableTitleIcon;
                 ButtonStyleList = value.ButtonStyleList;
@@ -1534,13 +1664,46 @@ namespace CustomizableMessageBox
         private static void LoadTitlePanel()
         {
             // 根据字体计算标题字符串高度
-            double height = new FormattedText(" ", CultureInfo.CurrentCulture, System.Windows.FlowDirection.LeftToRight, new Typeface(mb.i_title.FontFamily, mb.i_title.FontStyle, mb.i_title.FontWeight, mb.i_title.FontStretch), mb.i_title.FontSize, System.Windows.Media.Brushes.Black, pixelsPerDip).Height;
+            double heightTitle = new FormattedText(" ", CultureInfo.CurrentCulture, System.Windows.FlowDirection.LeftToRight, new Typeface(mb.i_title.FontFamily, mb.i_title.FontStyle, mb.i_title.FontWeight, mb.i_title.FontStretch), mb.i_title.FontSize, System.Windows.Media.Brushes.Black, pixelsPerDip).Height;
+            if (setCloseIconHeightAsTitleFontHeight)
+            {
+                mb.i_close.Height = heightTitle;
+            }
+            else if(closeIconHeight > 0)
+            {
+                mb.i_close.Height = closeIconHeight;
+            }
+            if (setTitleIconHeightAsTitleFontHeight)
+            {
+                mb.i_icon.Height = heightTitle;
+            }
+            else if (titleIconHeight > 0)
+            {
+                mb.i_icon.Height = titleIconHeight;
+            }
+            double heightIcon = mb.i_icon.Height;
+            double heightBtn = mb.i_close.Height;
+            mb.i_icon.Margin = new Thickness(titlePanelSpacing, 0, 0, 0);
+            mb.i_close.Margin = new Thickness(0, 0, titlePanelSpacing, 0);
+            double height = 0;
+            if (heightTitle > height)
+            {
+                height = heightTitle;
+            }
+            if (heightIcon > height)
+            {
+                height = heightIcon;
+            }
+            if (heightBtn > height)
+            {
+                height = heightBtn;
+            }
             double titleAndBorderHeight = height + mb.b_titleborder.BorderThickness.Top + mb.b_titleborder.BorderThickness.Bottom;
 
             // 设置标题栏高度
-            mb.g_titlegrid.Height = titleAndBorderHeight + 14;
-            mb.rd_title.Height = new GridLength(titleAndBorderHeight + 14);
-            mb.b_titleborder.Height = titleAndBorderHeight + 14;
+            mb.g_titlegrid.Height = titleAndBorderHeight + titlePanelSpacing * 2;
+            mb.rd_title.Height = new GridLength(titleAndBorderHeight + titlePanelSpacing * 2);
+            mb.b_titleborder.Height = titleAndBorderHeight + titlePanelSpacing * 2;
         }
 
         /// <summary>
@@ -1763,12 +1926,17 @@ namespace CustomizableMessageBox
             windowShowDuration = new Duration(new TimeSpan(0, 0, 0, 0, 200));
             windowShowAnimations = null;
             windowCloseAnimations = null;
+            titlePanelSpacing = 7;
             closeIcon = new BitmapImage(new Uri(".\\Image\\close.png", UriKind.RelativeOrAbsolute));
             titleIcon = new BitmapImage(new Uri(".\\Image\\file.png", UriKind.RelativeOrAbsolute));
             warningIcon = new BitmapImage(new Uri(".\\Image\\warn.png", UriKind.RelativeOrAbsolute));
             errorIcon = new BitmapImage(new Uri(".\\Image\\error.png", UriKind.RelativeOrAbsolute));
             infoIcon = new BitmapImage(new Uri(".\\Image\\info.png", UriKind.RelativeOrAbsolute));
             questionIcon = new BitmapImage(new Uri(".\\Image\\question.png", UriKind.RelativeOrAbsolute));
+            CloseIconHeight = 7;
+            TitleIconHeight = 7;
+            SetCloseIconHeightAsTitleFontHeight = true;
+            SetTitleIconHeightAsTitleFontHeight = true;
             enableCloseButton = false;
             enableTitleIcon = false;
             buttonStyleList = null;

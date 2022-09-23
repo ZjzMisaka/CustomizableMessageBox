@@ -54,12 +54,17 @@ namespace CustomizableMessageBox
             WindowShowDuration = propertiesSetter.WindowShowDuration;
             WindowShowAnimations = propertiesSetter.WindowShowAnimations;
             WindowCloseAnimations = propertiesSetter.WindowCloseAnimations;
+            TitlePanelSpacing = propertiesSetter.TitlePanelSpacing;
             CloseIcon = propertiesSetter.CloseIcon;
             TitleIcon = propertiesSetter.TitleIcon;
             WarningIcon = propertiesSetter.WarningIcon;
             ErrorIcon = propertiesSetter.ErrorIcon;
             InfoIcon = propertiesSetter.InfoIcon;
             QuestionIcon = propertiesSetter.QuestionIcon;
+            CloseIconHeight = propertiesSetter.CloseIconHeight;
+            TitleIconHeight = propertiesSetter.TitleIconHeight;
+            SetCloseIconHeightAsTitleFontHeight = propertiesSetter.SetCloseIconHeightAsTitleFontHeight;
+            SetTitleIconHeightAsTitleFontHeight = propertiesSetter.SetTitleIconHeightAsTitleFontHeight;
             EnableCloseButton = propertiesSetter.EnableCloseButton;
             EnableTitleIcon = propertiesSetter.EnableTitleIcon;
             ButtonStyleList = propertiesSetter.ButtonStyleList;
@@ -215,6 +220,10 @@ namespace CustomizableMessageBox
         private List<KeyValuePair<DependencyProperty, AnimationTimeline>> windowCloseAnimations = null;
         public List<KeyValuePair<DependencyProperty, AnimationTimeline>> WindowCloseAnimations { get => windowCloseAnimations; set => windowCloseAnimations = value; }
 
+        // 标题区域间距
+        private double titlePanelSpacing = 7;
+        public double TitlePanelSpacing { get => titlePanelSpacing; set => titlePanelSpacing = value; }
+
         // 自定义关闭图标
         private BitmapImage closeIcon = new BitmapImage(new Uri(".\\Image\\close.png", UriKind.RelativeOrAbsolute));
         public BitmapImage CloseIcon { get => closeIcon; set => closeIcon = value; }
@@ -238,6 +247,22 @@ namespace CustomizableMessageBox
         // 自定义问题图标
         private BitmapImage questionIcon = new BitmapImage(new Uri(".\\Image\\question.png", UriKind.RelativeOrAbsolute));
         public BitmapImage QuestionIcon { get => questionIcon; set => questionIcon = value; }
+
+        // 关闭按钮图标的高度
+        private double closeIconHeight = 0;
+        public double CloseIconHeight { get => closeIconHeight; set => closeIconHeight = value; }
+
+        // 标题图标的高度
+        private double titleIconHeight = 0;
+        public double TitleIconHeight { get => titleIconHeight; set => titleIconHeight = value; }
+
+        // 设置关闭按钮图标高度为标题字体高度
+        private bool setCloseIconHeightAsTitleFontHeight = true;
+        public bool SetCloseIconHeightAsTitleFontHeight { get => setCloseIconHeightAsTitleFontHeight; set => setCloseIconHeightAsTitleFontHeight = value; }
+
+        // 设置标题图标高度为标题字体高度
+        private bool setTitleIconHeightAsTitleFontHeight = true;
+        public bool SetTitleIconHeightAsTitleFontHeight { get => setTitleIconHeightAsTitleFontHeight; set => setTitleIconHeightAsTitleFontHeight = value; }
 
         // 应用窗口关闭按钮
         private bool enableCloseButton = false;
