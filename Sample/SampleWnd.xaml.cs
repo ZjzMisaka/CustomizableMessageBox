@@ -551,7 +551,17 @@ namespace Sample
 
             MessageBox.Show(ps1, new RefreshList { 
                 "close", new RoutedEventHandler((s, ea) => { MessageBox.MessageText = "2222222222222222222"; System.Windows.MessageBox.Show("123456"); MessageBox.CloseNow(); }), new ButtonSpacer(true), 
-                new Button(), new RoutedEventHandler((s, ea) => { MessageBox.MessageText = "111111111111111111111"; MessageBox.TitleIconHeight = 50; MessageBox.SetTitleIconHeightAsTitleFontHeight = false; MessageBox.TitlePanelSpacing = 50; MessageBox.CloseTimer = new MessageBoxCloseTimer(1, -1); }), 
+                new Button(), new RoutedEventHandler((s, ea) => 
+                {
+                    MessageBox.MessageText = "111111111111111111111";
+                    MessageBox.TitleIconHeight = 50;
+                    MessageBox.SetTitleIconHeightAsTitleFontHeight = false;
+                    MessageBox.TitlePanelSpacing = 50;
+                    MessageBox.LockHeight = false;
+                    MessageBox.MessgagePanelSpacing = 50;
+
+                    MessageBox.CloseTimer = new MessageBoxCloseTimer(1, -1);
+                }), 
                 "123", new ButtonSpacer(true) }
             , "123", "123");
 

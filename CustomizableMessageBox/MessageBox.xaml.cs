@@ -792,6 +792,7 @@ namespace CustomizableMessageBox
                     return;
                 }
                 LoadTitlePanel();
+                SetWindowSize();
             }
         }
 
@@ -808,6 +809,7 @@ namespace CustomizableMessageBox
                     return;
                 }
                 LoadMessagePanel();
+                SetWindowSize();
             }
         }
 
@@ -933,6 +935,7 @@ namespace CustomizableMessageBox
                     return;
                 }
                 LoadMessagePanel();
+                SetWindowSize();
             }
         }
 
@@ -949,6 +952,7 @@ namespace CustomizableMessageBox
                     return;
                 }
                 LoadTitlePanel();
+                SetWindowSize();
             }
         }
 
@@ -2186,8 +2190,17 @@ namespace CustomizableMessageBox
                 }
             }
 
+            double contentHeight = height * lineCount + mb.tb_msg.Margin.Top + mb.tb_msg.Margin.Bottom;
+            if (mb.i_img.Visibility == Visibility.Visible)
+            {
+                if (mb.i_img.Height > contentHeight)
+                {
+                    contentHeight = mb.i_img.Height;
+                }
+            }
+
             // 计算窗口高度
-            mb.Height = height * lineCount + mb.rd_title.Height.Value + mb.rd_button.Height.Value + mb.tb_msg.Margin.Top + mb.tb_msg.Margin.Bottom + mb.b_messageborder.BorderThickness.Top + mb.b_messageborder.BorderThickness.Bottom + height;
+            mb.Height = contentHeight + mb.rd_title.Height.Value + mb.rd_button.Height.Value + mb.b_messageborder.BorderThickness.Top + mb.b_messageborder.BorderThickness.Bottom + height;
         }
 
         /// <summary>
