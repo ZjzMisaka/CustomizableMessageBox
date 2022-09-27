@@ -80,26 +80,6 @@ int result = MessageBox.Show(new RefreshList { new TextBox(), "btn1", "btn2" }, 
 TextBox tb = (TextBox)MessageBox.ButtonList[0];
 MessageBox.Show(tb.Text == string.Empty ? "User did not enter" : tb.Text, (string)MessageBox.ButtonList[result]);
 ```
-|Properties|Status|
-|----|----|
-|Window Title / Message / Button|√|
-|Window lock height|√|
-|Window initial height and width|√|
-|Wrap style in message area|√|
-|Text font for each area|√|
-|Text size of each area|√|
-|Text color of each area|√|
-|Transparency of each area|√|
-|Background color of each area|√|
-|Border color of each area|√|
-|Border width of each area|√|
-|Window fade time|√|
-|Custom window opening and closing animation|√|
-|Custom display icon type|√|
-|Custom Icon|√|
-|Whether the window close button is applied|√|
-|Button Action Style|√|
-|Window Timing / Close Now|√|
 ### Member Functions and Properties
 |MessageBox Properties|Type|Meaning|Is Static|Status|
 |----|----|----|----|----|

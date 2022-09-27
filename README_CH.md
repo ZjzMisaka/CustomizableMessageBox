@@ -79,27 +79,6 @@ int result = MessageBox.Show(new RefreshList { new TextBox(), "btn1", "btn2" }, 
 TextBox tb = (TextBox)MessageBox.ButtonList[0];
 MessageBox.Show(tb.Text == string.Empty ? "用户未输入" : tb.Text, (string)MessageBox.ButtonList[result]);
 ```
-### 可操作的属性
-|属性|状态|
-|----|----|
-|窗口标题 / 消息 / 按钮|√|
-|窗口锁高|√|
-|窗口初始高度与宽度|√|
-|消息区域换行风格|√|
-|各区域文本字体|√|
-|各区域文本大小|√|
-|各区域文本颜色|√|
-|各区域透明度|√|
-|各区域背景色|√|
-|各区域边框颜色|√|
-|各区域边框宽度|√|
-|窗口渐显时间|√|
-|自定窗口打开与关闭动画|√|
-|自定义显示图标类型|√|
-|自定义图标|√|
-|是否应用窗口关闭按钮|√|
-|按钮动作样式|√|
-|窗口计时 / 立即关闭|√|
 ### 成员函数与属性
 |MessageBox属性|类型|含义|静态|状态|
 |----|----|----|----|----|
