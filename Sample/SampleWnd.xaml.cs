@@ -7,6 +7,7 @@ using System.Threading.Tasks;
 using System.Timers;
 using System.Windows;
 using System.Windows.Controls;
+using System.Windows.Controls.Primitives;
 using System.Windows.Data;
 using System.Windows.Documents;
 using System.Windows.Input;
@@ -558,13 +559,45 @@ namespace Sample
                     MessageBox.SetTitleIconHeightAsTitleFontHeight = false;
                     MessageBox.TitlePanelSpacing = 50;
                     MessageBox.LockHeight = false;
-                    MessageBox.MessgagePanelSpacing = 50;
+                    MessageBox.MessgagePanelSpacing = 150;
 
                     MessageBox.CloseTimer = new MessageBoxCloseTimer(1, -1);
                 }), 
                 "123", new ButtonSpacer(true) }
             , "123", "123");
 
+        }
+
+        private void Button_Click_10(object sender, RoutedEventArgs e)
+        {
+            ps1 = new PropertiesSetter();
+            ps1.WndBorderThickness = new Thickness(1);
+            ps1.TitlePanelBorderThickness = new Thickness(0, 0, 0, 2);
+            ps1.MessagePanelBorderThickness = new Thickness(0);
+            ps1.ButtonPanelBorderThickness = new Thickness(0);
+            ps1.TitleFontSize = 14;
+            ps1.MessageFontSize = 14;
+            ps1.ButtonFontSize = 16;
+            ps1.ButtonBorderThicknessList = new List<Thickness>() { new Thickness(0) };
+            ps1.WindowMinHeight = 200;
+            ps1.LockHeight = false;
+            ps1.WindowWidth = 450;
+            ps1.WindowShowDuration = new Duration(new TimeSpan(0, 0, 0, 0, 300));
+            ps1.ButtonMarginList = new List<Thickness>() { new Thickness(5) };
+            ps1.ButtonHeightList = new List<double>() { 30 };
+            ps1.TextWrappingMode = TextWrapping.Wrap;
+            ps1.MessgaeIconHeight = 50;
+
+            ComboBox comboBox = new ComboBox();
+            comboBox.HorizontalAlignment = HorizontalAlignment.Stretch;
+            comboBox.Margin = new Thickness(5);
+            List<string> items = new List<string>();
+            items.Add("aaaaa");
+            items.Add("bbbbbb");
+            items.Add("ccccc");
+            items.Add("ddddddd");
+            comboBox.ItemsSource = items;
+            CustomizableMessageBox.MessageBox.Show(ps1, new RefreshList { comboBox, "Ok" }, $"{".Dllファイル「{0}」がサポートされていないかネットワークまたはほかのコンピュータから取得されましたから、先に許可して、ソフトウェアを再起動してください。\n1. ファイルを右クリックして「プロパティ」を開く\n2. 「全般」タブの「許可する」ボタンをクリックする\n3. 「OK」ボタンをクリックする\nセキュリティチェックをバイパスするには、設定を変更してください。".ToString().Replace("{0}", "aaaa.dll")}\n\n{"1516br rg rg rge rw yj5y j65v32 3r2 yj6 j6 1c56s1 c1c51c5s 1c51v51v f15v1f d1vd r1v51v56e r51v eg  ghgh 5er1v 1fv51erv5er 1er5ver1v\nfwfrgrgergergerger ferwfw rgerg rgergre rger\nerger ewf ef fewf ef"}", "Error", MessageBoxImage.Error);
         }
     }
 }

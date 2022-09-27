@@ -1863,7 +1863,14 @@ namespace CustomizableMessageBox
             if (messgagePanelSpacing >= 0)
             {
                 mb.i_img.Margin = new Thickness(messgagePanelSpacing, 0, messgagePanelSpacing, 0);
-                mb.tb_msg.Margin = new Thickness(messgagePanelSpacing);
+                if (mb.i_img.Visibility == Visibility.Visible)
+                {
+                    mb.tb_msg.Margin = new Thickness(0, messgagePanelSpacing, messgagePanelSpacing, messgagePanelSpacing);
+                }
+                else
+                {
+                    mb.tb_msg.Margin = new Thickness(messgagePanelSpacing);
+                }
             }
             if (messgaeIconHeight > 0)
             {
@@ -1871,7 +1878,7 @@ namespace CustomizableMessageBox
             }
             if (mb.i_img.Visibility == Visibility.Visible)
             {
-                mb.tb_msg.Width = mb.Width - mb.i_img.Width - mb.i_img.Margin.Left - mb.i_img.Margin.Right - mb.tb_msg.Margin.Left - mb.tb_msg.Margin.Right - mb.b_messageborder.BorderThickness.Left - mb.b_messageborder.BorderThickness.Right;
+                mb.tb_msg.Width = mb.Width - (mb.i_img.Height * (mb.i_img.Source.Width / mb.i_img.Source.Height)) - mb.i_img.Margin.Left - mb.i_img.Margin.Right - mb.tb_msg.Margin.Left - mb.tb_msg.Margin.Right - mb.b_messageborder.BorderThickness.Left - mb.b_messageborder.BorderThickness.Right;
             }
             else
             {
