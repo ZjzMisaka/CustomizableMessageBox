@@ -161,10 +161,11 @@ MessageBox.Show(tb.Text == string.Empty ? "User did not enter" : tb.Text, (strin
 |MessageBox function|Meaning|Parameter|Return value|Is Static|
 |----|----|----|----|----|
 |Show (string, string, MessageBoxButton, MessageBoxImage)|Call up the message window in compatible form|Message, Title (optional), Button type (optional), Icon type (optional)|MessageBoxResult|√|
-|Show(RefreshList, string, string, MessageBoxImage)|Customize the message window|Button list, message, title (optional), icon type (optional)|int|√|
+|Show (RefreshList, string, string, MessageBoxImage)|Customize the message window|Button list, message, title (optional), icon type (optional)|int|√|
 |Show (PropertiesSetter, string, string, MessageBoxButton, MessageBoxImage)|Call the message window in a compatible form and use the existing style|style, message, title (optional), button type (optional), icon type (optional)|MessageBoxResult|√|
-|Show(PropertiesSetter, RefreshList, string, string, MessageBoxImage)|Customize the message window, and use the existing style|style, style, button list, message, title (optional), icon type (optional)|int|√|
+|Show (PropertiesSetter, RefreshList, string, string, MessageBoxImage)|Customize the message window, and use the existing style|style, style, button list, message, title (optional), icon type (optional)|int|√|
 |CloseNow ()|Close window immediately|||√|
+|CloseNow (int)|Close window immediately|Result of MessageBox||√|
  
 |MessageBoxColor Property|Meaning|Type|
 |----|----|----|
@@ -202,12 +203,12 @@ MessageBox.Show(tb.Text == string.Empty ? "User did not enter" : tb.Text, (strin
 
 |ButtonSpacer function|Meaning|Parameter|Return value|Is Static|
 |----|----|----|----|----|
-|ButtonSpacer()|Constructor|||×|
-|ButtonSpacer(bool)|Constructor|whether to do row merging with the previous element||×|
-|ButtonSpacer(double)|Constructor|space length||×|
-|ButtonSpacer(double, bool)|Constructor|space length, whether to do row merging with the previous element||×|
-|ButtonSpacer(double, GridUnitType)|Constructor|Describes the value that a GridLength object is holding, Describes the kind of value that a GridLength object is holding||×|
-|ButtonSpacer(double, GridUnitType, bool)|Constructor|Describes the value that a GridLength object is holding, Describes the kind of value that a GridLength object is holding, whether to do row merging with the previous element||×|
+|ButtonSpacer ()|Constructor|||×|
+|ButtonSpacer (bool)|Constructor|whether to do row merging with the previous element||×|
+|ButtonSpacer (double)|Constructor|space length||×|
+|ButtonSpacer (double, bool)|Constructor|space length, whether to do row merging with the previous element||×|
+|ButtonSpacer (double, GridUnitType)|Constructor|Describes the value that a GridLength object is holding, Describes the kind of value that a GridLength object is holding||×|
+|ButtonSpacer (double, GridUnitType, bool)|Constructor|Describes the value that a GridLength object is holding, Describes the kind of value that a GridLength object is holding, whether to do row merging with the previous element||×|
 
 
 |Info Properties|Meaning|Type|
@@ -217,14 +218,14 @@ MessageBox.Show(tb.Text == string.Empty ? "User did not enter" : tb.Text, (strin
 
 |Info function|Meaning|Parameter|Return value|Is Static|
 |----|----|----|----|----|
-|PrintLog(MessageBoxType)|Call MessageBox to display exception information|Type of MessageBox (custom or system)|bool|√|
-|PrintLog(string, bool, bool)|Output exception information to a text file|Path to output text, Whether to keep the contents of the stack, Whether to append the end of the file|bool|√|
+|PrintLog (MessageBoxType)|Call MessageBox to display exception information|Type of MessageBox (custom or system)|bool|√|
+|PrintLog (string, bool, bool)|Output exception information to a text file|Path to output text, Whether to keep the contents of the stack, Whether to append the end of the file|bool|√|
 
 ### Prefab Static class
 |GetPropertiesSetter function|Meaning|Parameter|Return value|Is Static|
 |----|----|----|----|----|
-|GetPropertiesSetter(PropertiesSetterName)|Get the pre-made PropertiesSetter|Enum|PropertiesSetter|√|
+|GetPropertiesSetter (PropertiesSetterName)|Get the pre-made PropertiesSetter|Enum|PropertiesSetter|√|
 
 |GetButonStyle function|Meaning|Parameter|Return value|Is Static|
 |----|----|----|----|----|
-|GetButonStyle(ButtonStyleName)|Get the pre-made ButonStyle|Enum|Style|√|
+|GetButonStyle (ButtonStyleName)|Get the pre-made ButonStyle|Enum|Style|√|

@@ -159,11 +159,12 @@ MessageBox.Show(tb.Text == string.Empty ? "用户未输入" : tb.Text, (string)M
 
 |MessageBox函数|含义|参数|返回值|静态|
 |----|----|----|----|----|
-|Show(string, string, MessageBoxButton, MessageBoxImage)|兼容形式调出消息窗口|消息, 标题 (选), 按钮类型 (选), 图标类型 (选)|MessageBoxResult|√|
-|Show(RefreshList, string, string, MessageBoxImage)|自定义形式调出消息窗口|按钮列表, 消息, 标题 (选), 图标类型 (选)|int|√|
-|Show(PropertiesSetter, string, string, MessageBoxButton, MessageBoxImage)|兼容形式调出消息窗口, 并使用既有样式|样式, 消息, 标题 (选), 按钮类型 (选), 图标类型 (选)|MessageBoxResult|√|
-|Show(PropertiesSetter, RefreshList, string, string, MessageBoxImage)|自定义形式调出消息窗口, 并使用既有样式|样式, 按钮列表, 消息, 标题 (选), 图标类型 (选)|int|√|
-|CloseNow()|立即关闭窗口|||√|
+|Show (string, string, MessageBoxButton, MessageBoxImage)|兼容形式调出消息窗口|消息, 标题 (选), 按钮类型 (选), 图标类型 (选)|MessageBoxResult|√|
+|Show (RefreshList, string, string, MessageBoxImage)|自定义形式调出消息窗口|按钮列表, 消息, 标题 (选), 图标类型 (选)|int|√|
+|Show (PropertiesSetter, string, string, MessageBoxButton, MessageBoxImage)|兼容形式调出消息窗口, 并使用既有样式|样式, 消息, 标题 (选), 按钮类型 (选), 图标类型 (选)|MessageBoxResult|√|
+|Show (PropertiesSetter, RefreshList, string, string, MessageBoxImage)|自定义形式调出消息窗口, 并使用既有样式|样式, 按钮列表, 消息, 标题 (选), 图标类型 (选)|int|√|
+|CloseNow ()|立即关闭窗口|||√|
+|CloseNow (int)|立即关闭窗口|MessageBox的返回值||√|
  
 |MessageBoxColor属性|含义|类型|
 |----|----|----|
@@ -172,8 +173,8 @@ MessageBox.Show(tb.Text == string.Empty ? "用户未输入" : tb.Text, (string)M
  
 |MessageBoxColor函数|含义|参数|返回值|静态|
 |----|----|----|----|----|
-|MessageBoxColor(object)|构造函数|十六进制颜色码字符串或者Color类的实例或颜色名字符串||×|
-|MessageBoxColor(object, ColorType)|构造函数|十六进制颜色码字符串或者Color类的实例或颜色名字符串, ColorType枚举值||×|
+|MessageBoxColor (object)|构造函数|十六进制颜色码字符串或者Color类的实例或颜色名字符串||×|
+|MessageBoxColor (object, ColorType)|构造函数|十六进制颜色码字符串或者Color类的实例或颜色名字符串, ColorType枚举值||×|
 |GetSolidColorBrush()|输出这个实例颜色实例对应的SolidColorBrush||SolidColorBrush|×|
 
 |MessageBoxCloseTimer属性|含义|类型|
@@ -183,8 +184,8 @@ MessageBox.Show(tb.Text == string.Empty ? "用户未输入" : tb.Text, (string)M
 
 |MessageBoxCloseTimer函数|含义|参数|返回值|静态|
 |----|----|----|----|----|
-|MessageBoxCloseTimer(TimeSpan, int)|构造函数|TimeSpan实例 (距关闭的时间), 窗口关闭后返回的返回值||×|
-|MessageBoxCloseTimer(int, int)|构造函数|距关闭的秒数, 窗口关闭后返回的返回值||×|
+|MessageBoxCloseTimer (TimeSpan, int)|构造函数|TimeSpan实例 (距关闭的时间), 窗口关闭后返回的返回值||×|
+|MessageBoxCloseTimer (int, int)|构造函数|距关闭的秒数, 窗口关闭后返回的返回值||×|
 
 |PropertiesSetter属性|含义|
 |----|----|
@@ -192,8 +193,8 @@ MessageBox.Show(tb.Text == string.Empty ? "用户未输入" : tb.Text, (string)M
 
 |PropertiesSetter函数|含义|参数|返回值|静态|
 |----|----|----|----|----|
-|PropertiesSetter()|构造函数|||×|
-|PropertiesSetter(PropertiesSetter)|构造函数|一个既有的PropertiesSetter实例||×|
+|PropertiesSetter ()|构造函数|||×|
+|PropertiesSetter (PropertiesSetter)|构造函数|一个既有的PropertiesSetter实例||×|
 
 |ButtonSpacer属性|含义|类型|
 |----|----|----|
@@ -201,12 +202,12 @@ MessageBox.Show(tb.Text == string.Empty ? "用户未输入" : tb.Text, (string)M
 
 |ButtonSpacer函数|含义|参数|返回值|静态|
 |----|----|----|----|----|
-|ButtonSpacer()|构造函数|||×|
-|ButtonSpacer(bool)|构造函数|是否与前一个元素进行行合并||×|
-|ButtonSpacer(double)|构造函数|留白长度||×|
-|ButtonSpacer(double, bool)|构造函数|留白长度, 是否与前一个元素进行行合并|留白长度|×|
-|ButtonSpacer(double, GridUnitType)|构造函数|GridLength对象包含的值, GridLength对象包含的值的种类||×|
-|ButtonSpacer(double, GridUnitType, bool)|构造函数|GridLength对象包含的值, GridLength对象包含的值的种类, 是否与前一个元素进行行合并||×|
+|ButtonSpacer ()|构造函数|||×|
+|ButtonSpacer (bool)|构造函数|是否与前一个元素进行行合并||×|
+|ButtonSpacer (double)|构造函数|留白长度||×|
+|ButtonSpacer (double, bool)|构造函数|留白长度, 是否与前一个元素进行行合并|留白长度|×|
+|ButtonSpacer (double, GridUnitType)|构造函数|GridLength对象包含的值, GridLength对象包含的值的种类||×|
+|ButtonSpacer (double, GridUnitType, bool)|构造函数|GridLength对象包含的值, GridLength对象包含的值的种类, 是否与前一个元素进行行合并||×|
 
 |Info属性|含义|类型|
 |----|----|----|
@@ -215,14 +216,14 @@ MessageBox.Show(tb.Text == string.Empty ? "用户未输入" : tb.Text, (string)M
 
 |Info函数|含义|参数|返回值|静态|
 |----|----|----|----|----|
-|PrintLog(MessageBoxType)|调用消息框显示异常信息|消息框的类型 (自定或系统)|bool|√|
-|PrintLog(string, bool, bool)|将异常信息输出到文本文件中|输出文本路径, 是否保留栈的内容, 是否输出到文件末尾|bool|√|
+|PrintLog (MessageBoxType)|调用消息框显示异常信息|消息框的类型 (自定或系统)|bool|√|
+|PrintLog (string, bool, bool)|将异常信息输出到文本文件中|输出文本路径, 是否保留栈的内容, 是否输出到文件末尾|bool|√|
 
 ### Prefab 静态类
 |GetPropertiesSetter函数|含义|参数|返回值|静态|
 |----|----|----|----|----|
-|GetPropertiesSetter(PropertiesSetterName)|获取预制的PropertiesSetter|枚举|PropertiesSetter|√|
+|GetPropertiesSetter (PropertiesSetterName)|获取预制的PropertiesSetter|枚举|PropertiesSetter|√|
 
 |GetButonStyle函数|含义|参数|返回值|静态|
 |----|----|----|----|----|
-|GetButonStyle(ButtonStyleName)|获取预制的ButonStyle|枚举|Style|√|
+|GetButonStyle (ButtonStyleName)|获取预制的ButonStyle|枚举|Style|√|

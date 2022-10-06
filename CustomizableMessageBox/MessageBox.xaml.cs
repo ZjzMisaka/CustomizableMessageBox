@@ -1926,9 +1926,10 @@ namespace CustomizableMessageBox
         /// <summary>
         /// 立即关闭消息框
         /// </summary>
-        public static void CloseNow(int index)
+        /// <param name="result">MessageBox的返回值</param>
+        public static void CloseNow(int result)
         {
-            currentClickIndex = index;
+            currentClickIndex = result;
 
             mb.Hide();
             mb.Close();
