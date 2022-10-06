@@ -550,6 +550,8 @@ namespace Sample
             ps1.ButtonMarginList = new List<Thickness>() { new Thickness(5) };
             ps1.EnableTitleIcon = true;
 
+            MessageBox.LoadedEventHandler = new RoutedEventHandler((s, exs) => { ((FrameworkElement)MessageBox.ButtonList[7]).Focus(); ((TextBox)MessageBox.ButtonList[7]).Text = "LoadedContent"; });
+            MessageBox.KeyDownEventHandler = new KeyEventHandler((s, xxx) => { if (xxx.Key == Key.Enter) { MessageBox.MessageText += "\nEntered"; } });
             MessageBox.Show(ps1, new RefreshList { 
                 "close", new RoutedEventHandler((s, ea) => { MessageBox.MessageText = "2222222222222222222"; System.Windows.MessageBox.Show("123456"); MessageBox.CloseNow(); }), new ButtonSpacer(true), 
                 new Button(), new RoutedEventHandler((s, ea) => 
@@ -563,7 +565,8 @@ namespace Sample
 
                     MessageBox.CloseTimer = new MessageBoxCloseTimer(1, -1);
                 }), 
-                "123", new ButtonSpacer(true) }
+                "123", new ButtonSpacer(true), 
+                new TextBox() }
             , "123", "123");
 
         }

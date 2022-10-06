@@ -154,6 +154,9 @@ MessageBox.Show(tb.Text == string.Empty ? "User did not enter" : tb.Text, (strin
 |ButtonFontWeightList|List&lt;FontWeight&gt;|-|√|√|
 |CloseTimer|MessageBoxCloseTimer|Window timing / Close now|√|√|
 |MessageBoxImageType|MessageBoxImage|Set the type of icon displayed|√|√|
+|LoadedEventHandler|RoutedEventHandler|Loaded event|√|√|
+|KeyDownEventHandler|KeyEventHandler|KeyDown event|√|√|
+|KeyUpEventHandler|KeyEventHandler|KeyUp event|√|√|
 
 |MessageBox function|Meaning|Parameter|Return value|Is Static|
 |----|----|----|----|----|

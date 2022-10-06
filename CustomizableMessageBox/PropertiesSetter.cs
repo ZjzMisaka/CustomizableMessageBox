@@ -88,6 +88,9 @@ namespace CustomizableMessageBox
             ButtonFontStyleList = propertiesSetter.ButtonFontStyleList;
             ButtonFontWeightList = propertiesSetter.ButtonFontWeightList;
             CloseTimer = propertiesSetter.CloseTimer;
+            LoadedEventHandler = propertiesSetter.LoadedEventHandler;
+            KeyDownEventHandler = propertiesSetter.KeyDownEventHandler;
+            KeyUpEventHandler = propertiesSetter.KeyUpEventHandler;
         }
 
         // 锁定高度
@@ -340,5 +343,17 @@ namespace CustomizableMessageBox
         // 窗口计时关闭
         private MessageBoxCloseTimer closeTimer = null;
         public MessageBoxCloseTimer CloseTimer { get => closeTimer; set => closeTimer = value; }
+
+        // Loaded事件
+        private RoutedEventHandler loadedEventHandler = null;
+        public RoutedEventHandler LoadedEventHandler { get => loadedEventHandler; set => loadedEventHandler = value; }
+
+        // KeyDown事件
+        private KeyEventHandler keyDownEventHandler = null;
+        public KeyEventHandler KeyDownEventHandler { get => keyDownEventHandler; set => keyDownEventHandler = value; }
+
+        // KeyUp事件
+        private KeyEventHandler keyUpEventHandler = null;
+        public KeyEventHandler KeyUpEventHandler { get => keyUpEventHandler; set => keyUpEventHandler = value; }
     }
 }

@@ -22,6 +22,7 @@ using System.Windows.Threading;
 using static CustomizableMessageBox.MessageBoxColor;
 using Application = System.Windows.Application;
 using Button = System.Windows.Controls.Button;
+using KeyEventHandler = System.Windows.Input.KeyEventHandler;
 
 namespace CustomizableMessageBox
 {
@@ -1323,6 +1324,30 @@ namespace CustomizableMessageBox
             }
         }
 
+        // Loaded事件
+        private static RoutedEventHandler loadedEventHandler = null;
+        public static RoutedEventHandler LoadedEventHandler
+        {
+            get => loadedEventHandler;
+            set => loadedEventHandler = value;
+        }
+
+        // KeyDown事件
+        private static KeyEventHandler keyDownEventHandler = null;
+        public static KeyEventHandler KeyDownEventHandler
+        {
+            get => keyDownEventHandler;
+            set => keyDownEventHandler = value;
+        }
+
+        // KeyUp事件
+        private static KeyEventHandler keyUpEventHandler = null;
+        public static KeyEventHandler KeyUpEventHandler
+        {
+            get => keyUpEventHandler;
+            set => keyUpEventHandler = value;
+        }
+
         // 属性集合
         private static PropertiesSetter propertiesSetter = new PropertiesSetter();
         public static PropertiesSetter PropertiesSetter
@@ -1389,6 +1414,9 @@ namespace CustomizableMessageBox
                 ButtonBorderThicknessList = value.ButtonBorderThicknessList;
                 ButtonCursorList = value.ButtonCursorList;
                 CloseTimer = value.CloseTimer;
+                LoadedEventHandler = value.LoadedEventHandler;
+                KeyDownEventHandler = value.KeyDownEventHandler;
+                KeyUpEventHandler = value.KeyUpEventHandler;
             }
         }
 
@@ -1606,6 +1634,19 @@ namespace CustomizableMessageBox
                 mb = new MessageBox();
 
                 InitProperties();
+
+                if (loadedEventHandler != null)
+                {
+                    mb.Loaded += loadedEventHandler;
+                }
+                if (keyDownEventHandler != null)
+                {
+                    mb.KeyDown += keyDownEventHandler;
+                }
+                if (keyUpEventHandler != null)
+                {
+                    mb.KeyUp += keyUpEventHandler;
+                }
 
                 mb.ContentRendered += (a, b) => { SetButtonAndButtonPanelHeight(); };
 
@@ -2014,6 +2055,9 @@ namespace CustomizableMessageBox
             buttonFontStyleList = null;
             buttonFontWeightList = null;
             closeTimer = null;
+            loadedEventHandler = null;
+            keyDownEventHandler = null;
+            keyUpEventHandler = null;
 
             propertiesSetter = new PropertiesSetter();
 
@@ -2264,7 +2308,7 @@ namespace CustomizableMessageBox
             // 如果宽度有变化, 重新设置列宽
             if (e.WidthChanged)
             {
-                for (int i = 0; i < buttonList.Count; i++)
+                for (int i = 0; i < buttonList.Count && i < mb.g_buttongrid.ColumnDefinitions.Count; i++)
                 {
                     if (buttonList[i].Equals(sender))
                     {

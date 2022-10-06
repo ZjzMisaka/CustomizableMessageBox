@@ -153,6 +153,9 @@ MessageBox.Show(tb.Text == string.Empty ? "用户未输入" : tb.Text, (string)M
 |ButtonFontWeightList|List&lt;FontWeight&gt;|-|√|√|
 |CloseTimer|MessageBoxCloseTimer|窗口计时 / 立即关闭|√|√|
 |MessageBoxImageType|MessageBoxImage|设定显示的图标类型|√|√|
+|LoadedEventHandler|RoutedEventHandler|Loaded事件|√|√|
+|KeyDownEventHandler|KeyEventHandler|KeyDown事件|√|√|
+|KeyUpEventHandler|KeyEventHandler|KeyUp事件|√|√|
 
 |MessageBox函数|含义|参数|返回值|静态|
 |----|----|----|----|----|
