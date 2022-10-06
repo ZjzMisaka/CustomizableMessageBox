@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Media;
+using System.Windows.Media.Imaging;
 
 namespace CustomizableMessageBox
 {
@@ -13,6 +14,52 @@ namespace CustomizableMessageBox
     public enum ButtonStyleName { White };
     public static class Prefab
     {
+        internal static bool lockHeightDef = false;
+        internal static TextWrapping textWrappingModeDef = TextWrapping.Wrap;
+        internal static int windowWidthDef = 800;
+        internal static int windowMinHeightDef = 450;
+        internal static int titleFontSizeDef = 30;
+        internal static int messageFontSizeDef = 25;
+        internal static int buttonFontSizeDef = 30;
+        internal static MessageBoxColor titleFontColorDef = new MessageBoxColor(Colors.Black);
+        internal static MessageBoxColor messageFontColorDef = new MessageBoxColor(Colors.Black);
+        internal static MessageBoxColor buttonFontColorDef = new MessageBoxColor(Colors.Black);
+        internal static double windowOpacityDef = 0.95;
+        internal static double titleBarOpacityDef = 1;
+        internal static double messageBarOpacityDef = 1;
+        internal static double buttonBarOpacityDef = 1;
+        internal static MessageBoxColor titlePanelColorDef = new MessageBoxColor(Colors.White);
+        internal static MessageBoxColor messagePanelColorDef = new MessageBoxColor(Colors.White);
+        internal static MessageBoxColor buttonPanelColorDef = new MessageBoxColor("#DDDDDD");
+        internal static MessageBoxColor wndBorderColorDef = new MessageBoxColor(Colors.White);
+        internal static MessageBoxColor titlePanelBorderColorDef = new MessageBoxColor(Colors.White);
+        internal static MessageBoxColor messagePanelBorderColorDef = new MessageBoxColor(Colors.White);
+        internal static MessageBoxColor buttonPanelBorderColorDef = new MessageBoxColor(Colors.LightGray);
+        internal static MessageBoxColor buttonBorderColorDef = new MessageBoxColor(Colors.White);
+        internal static Thickness wndBorderThicknessDef = new Thickness(2);
+        internal static Thickness titlePanelBorderThicknessDef = new Thickness(0, 0, 0, 1);
+        internal static Thickness messagePanelBorderThicknessDef = new Thickness(0);
+        internal static Thickness buttonPanelBorderThicknessDef = new Thickness(2);
+        internal static Thickness buttonBorderThicknessDef = new Thickness(0);
+        internal static FontFamily titleFontFamilyDef = new FontFamily("Times New Roman");
+        internal static FontFamily messageFontFamilyDef = new FontFamily("Times New Roman");
+        internal static FontFamily buttonFontFamilyDef = new FontFamily("Times New Roman");
+        internal static Duration windowShowDurationDef = new Duration(new TimeSpan(0, 0, 0, 0, 200));
+        internal static double titlePanelSpacingDef = 7;
+        internal static double messgagePanelSpacingDef = 15;
+        internal static BitmapImage closeIconDef = new BitmapImage(new Uri(".\\Image\\close.png", UriKind.RelativeOrAbsolute));
+        internal static BitmapImage titleIconDef = new BitmapImage(new Uri(".\\Image\\file.png", UriKind.RelativeOrAbsolute));
+        internal static BitmapImage warningIconDef = new BitmapImage(new Uri(".\\Image\\warn.png", UriKind.RelativeOrAbsolute));
+        internal static BitmapImage errorIconDef = new BitmapImage(new Uri(".\\Image\\error.png", UriKind.RelativeOrAbsolute));
+        internal static BitmapImage infoIconDef = new BitmapImage(new Uri(".\\Image\\info.png", UriKind.RelativeOrAbsolute));
+        internal static BitmapImage questionIconDef = new BitmapImage(new Uri(".\\Image\\question.png", UriKind.RelativeOrAbsolute));
+        internal static double messgaeIconHeightDef = 32;
+        internal static double closeIconHeightDef = 0;
+        internal static double titleIconHeightDef = 0;
+        internal static bool setCloseIconHeightAsTitleFontHeightDef = true;
+        internal static bool setTitleIconHeightAsTitleFontHeightDef = true;
+        internal static bool enableCloseButtonDef = false;
+        internal static bool enableTitleIconDef = false;
         public static PropertiesSetter GetPropertiesSetter(PropertiesSetterName propertiesSetterName)
         {
             PropertiesSetter propertiesSetter = null;

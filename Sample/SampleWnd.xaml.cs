@@ -600,7 +600,9 @@ namespace Sample
             items.Add("ccccc");
             items.Add("ddddddd");
             comboBox.ItemsSource = items;
-            CustomizableMessageBox.MessageBox.Show(ps1, new RefreshList { comboBox, "Ok" }, $"{".Dllファイル「{0}」がサポートされていないかネットワークまたはほかのコンピュータから取得されましたから、先に許可して、ソフトウェアを再起動してください。\n1. ファイルを右クリックして「プロパティ」を開く\n2. 「全般」タブの「許可する」ボタンをクリックする\n3. 「OK」ボタンをクリックする\nセキュリティチェックをバイパスするには、設定を変更してください。".ToString().Replace("{0}", "aaaa.dll")}\n\n{"1516br rg rg rge rw yj5y j65v32 3r2 yj6 j6 1c56s1 c1c51c5s 1c51v51v f15v1f d1vd r1v51v56e r51v eg  ghgh 5er1v 1fv51erv5er 1er5ver1v\nfwfrgrgergergerger ferwfw rgerg rgergre rger\nerger ewf ef fewf ef"}", "Error", MessageBoxImage.Error);
+            CustomizableMessageBox.MessageBox.KeyDownEventHandler = new KeyEventHandler((s, x) => { MessageBox.CloseNow(1); });
+            int index = CustomizableMessageBox.MessageBox.Show(ps1, new RefreshList { comboBox, "Ok" }, $"{".Dllファイル「{0}」がサポートされていないかネットワークまたはほかのコンピュータから取得されましたから、先に許可して、ソフトウェアを再起動してください。\n1. ファイルを右クリックして「プロパティ」を開く\n2. 「全般」タブの「許可する」ボタンをクリックする\n3. 「OK」ボタンをクリックする\nセキュリティチェックをバイパスするには、設定を変更してください。".ToString().Replace("{0}", "aaaa.dll")}\n\n{"1516br rg rg rge rw yj5y j65v32 3r2 yj6 j6 1c56s1 c1c51c5s 1c51v51v f15v1f d1vd r1v51v56e r51v eg  ghgh 5er1v 1fv51erv5er 1er5ver1v\nfwfrgrgergergerger ferwfw rgerg rgergre rger\nerger ewf ef fewf ef"}", "Error", MessageBoxImage.Error);
+            MessageBox.Show(index.ToString());
         }
     }
 }

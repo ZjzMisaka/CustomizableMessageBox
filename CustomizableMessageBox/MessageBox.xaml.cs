@@ -243,7 +243,7 @@ namespace CustomizableMessageBox
                             FrameworkElement fe = (FrameworkElement)obj;
                         }
                     }
-                    
+
                     LoadButtonPanel();
                 }
             }
@@ -261,7 +261,7 @@ namespace CustomizableMessageBox
         private static bool isClosedByTimer = false;
 
         // 锁定高度
-        private static bool lockHeight = false;
+        private static bool lockHeight = Prefab.lockHeightDef;
         public static bool LockHeight
         {
             get => lockHeight;
@@ -278,7 +278,7 @@ namespace CustomizableMessageBox
         }
 
         // 消息区域换行模式
-        private static TextWrapping textWrappingMode = TextWrapping.Wrap;
+        private static TextWrapping textWrappingMode = Prefab.textWrappingModeDef;
         public static TextWrapping TextWrappingMode
         {
             get
@@ -310,7 +310,7 @@ namespace CustomizableMessageBox
         }
 
         // 窗口宽度
-        private static double windowWidth = 800;
+        private static double windowWidth = Prefab.windowWidthDef;
         public static double WindowWidth
         {
             get => windowWidth;
@@ -327,7 +327,7 @@ namespace CustomizableMessageBox
         }
 
         // 窗口最小高度
-        private static double windowMinHeight = 450;
+        private static double windowMinHeight = Prefab.windowMinHeightDef;
         public static double WindowMinHeight
         {
             get => windowMinHeight;
@@ -344,7 +344,7 @@ namespace CustomizableMessageBox
         }
 
         // 标题文本大小
-        private static int titleFontSize = 30;
+        private static int titleFontSize = Prefab.titleFontSizeDef;
         public static int TitleFontSize
         {
             get => titleFontSize;
@@ -361,7 +361,7 @@ namespace CustomizableMessageBox
         }
 
         // 消息文本大小
-        private static int messageFontSize = 25;
+        private static int messageFontSize = Prefab.messageFontSizeDef;
         public static int MessageFontSize
         {
             get => messageFontSize;
@@ -378,7 +378,7 @@ namespace CustomizableMessageBox
         }
 
         // 按钮文本大小
-        private static int buttonFontSize = 30;
+        private static int buttonFontSize = Prefab.buttonFontSizeDef;
         public static int ButtonFontSize
         {
             get => buttonFontSize;
@@ -395,7 +395,7 @@ namespace CustomizableMessageBox
         }
 
         // 标题文本颜色
-        private static MessageBoxColor titleFontColor = new MessageBoxColor(Colors.Black);
+        private static MessageBoxColor titleFontColor = Prefab.titleFontColorDef;
         public static MessageBoxColor TitleFontColor
         {
             get => titleFontColor;
@@ -411,7 +411,7 @@ namespace CustomizableMessageBox
         }
 
         // 消息文本颜色
-        private static MessageBoxColor messageFontColor = new MessageBoxColor(Colors.Black);
+        private static MessageBoxColor messageFontColor = Prefab.messageFontColorDef;
         public static MessageBoxColor MessageFontColor
         {
             get => messageFontColor;
@@ -427,7 +427,7 @@ namespace CustomizableMessageBox
         }
 
         // 按钮文本颜色
-        private static MessageBoxColor buttonFontColor = new MessageBoxColor(Colors.Black);
+        private static MessageBoxColor buttonFontColor = Prefab.buttonFontColorDef;
         public static MessageBoxColor ButtonFontColor
         {
             get => buttonFontColor;
@@ -444,7 +444,7 @@ namespace CustomizableMessageBox
         }
 
         // 窗口透明度
-        private static double windowOpacity = 0.95;
+        private static double windowOpacity = Prefab.windowOpacityDef;
         public static double WindowOpacity
         {
             get => windowOpacity;
@@ -460,7 +460,7 @@ namespace CustomizableMessageBox
         }
 
         // 标题栏透明度
-        private static double titleBarOpacity = 1;
+        private static double titleBarOpacity = Prefab.titleBarOpacityDef;
         public static double TitleBarOpacity
         {
             get => titleBarOpacity;
@@ -476,7 +476,7 @@ namespace CustomizableMessageBox
         }
 
         // 消息栏透明度
-        private static double messageBarOpacity = 1;
+        private static double messageBarOpacity = Prefab.messageBarOpacityDef;
         public static double MessageBarOpacity
         {
             get => messageBarOpacity;
@@ -492,7 +492,7 @@ namespace CustomizableMessageBox
         }
 
         // 按钮栏透明度
-        private static double buttonBarOpacity = 1;
+        private static double buttonBarOpacity = Prefab.buttonBarOpacityDef;
         public static double ButtonBarOpacity
         {
             get => buttonBarOpacity;
@@ -508,7 +508,7 @@ namespace CustomizableMessageBox
         }
 
         // 标题区域背景颜色
-        private static MessageBoxColor titlePanelColor = new MessageBoxColor(Colors.White);
+        private static MessageBoxColor titlePanelColor = Prefab.titlePanelColorDef;
         public static MessageBoxColor TitlePanelColor
         {
             get => titlePanelColor;
@@ -524,7 +524,7 @@ namespace CustomizableMessageBox
         }
 
         // 消息区域背景颜色
-        private static MessageBoxColor messagePanelColor = new MessageBoxColor(Colors.White);
+        private static MessageBoxColor messagePanelColor = Prefab.messagePanelColorDef;
         public static MessageBoxColor MessagePanelColor
         {
             get => messagePanelColor;
@@ -540,7 +540,7 @@ namespace CustomizableMessageBox
         }
 
         // 按钮区域背景颜色
-        private static MessageBoxColor buttonPanelColor = new MessageBoxColor("#DDDDDD");
+        private static MessageBoxColor buttonPanelColor = Prefab.buttonPanelColorDef;
         public static MessageBoxColor ButtonPanelColor
         {
             get => buttonPanelColor;
@@ -556,7 +556,7 @@ namespace CustomizableMessageBox
         }
 
         // 窗口边框颜色
-        private static MessageBoxColor wndBorderColor = new MessageBoxColor(Colors.White);
+        private static MessageBoxColor wndBorderColor = Prefab.wndBorderColorDef;
         public static MessageBoxColor WndBorderColor
         {
             get => wndBorderColor;
@@ -572,7 +572,7 @@ namespace CustomizableMessageBox
         }
 
         // 标题区域边框颜色
-        private static MessageBoxColor titlePanelBorderColor = new MessageBoxColor(Colors.White);
+        private static MessageBoxColor titlePanelBorderColor = Prefab.titlePanelBorderColorDef;
         public static MessageBoxColor TitlePanelBorderColor
         {
             get => titlePanelBorderColor;
@@ -588,7 +588,7 @@ namespace CustomizableMessageBox
         }
 
         // 消息区域边框颜色
-        private static MessageBoxColor messagePanelBorderColor = new MessageBoxColor(Colors.White);
+        private static MessageBoxColor messagePanelBorderColor = Prefab.messagePanelBorderColorDef;
         public static MessageBoxColor MessagePanelBorderColor
         {
             get => messagePanelBorderColor;
@@ -604,7 +604,7 @@ namespace CustomizableMessageBox
         }
 
         // 按钮区域边框颜色
-        private static MessageBoxColor buttonPanelBorderColor = new MessageBoxColor(Colors.White);
+        private static MessageBoxColor buttonPanelBorderColor = Prefab.buttonPanelBorderColorDef;
         public static MessageBoxColor ButtonPanelBorderColor
         {
             get => buttonPanelBorderColor;
@@ -620,7 +620,7 @@ namespace CustomizableMessageBox
         }
 
         // 按钮边框颜色
-        private static MessageBoxColor buttonBorderColor = new MessageBoxColor(Colors.Black);
+        private static MessageBoxColor buttonBorderColor = Prefab.buttonBorderColorDef;
         public static MessageBoxColor ButtonBorderColor
         {
             get => buttonBorderColor;
@@ -637,7 +637,7 @@ namespace CustomizableMessageBox
         }
 
         // 窗口边框宽度
-        private static Thickness wndBorderThickness = new Thickness(2);
+        private static Thickness wndBorderThickness = Prefab.wndBorderThicknessDef;
         public static Thickness WndBorderThickness
         {
             get => wndBorderThickness;
@@ -653,7 +653,7 @@ namespace CustomizableMessageBox
         }
 
         // 标题区域边框宽度
-        private static Thickness titlePanelBorderThickness = new Thickness(0, 0, 0, 1);
+        private static Thickness titlePanelBorderThickness = Prefab.titlePanelBorderThicknessDef;
         public static Thickness TitlePanelBorderThickness
         {
             get => titlePanelBorderThickness;
@@ -669,7 +669,7 @@ namespace CustomizableMessageBox
         }
 
         // 消息区域边框宽度
-        private static Thickness messagePanelBorderThickness = new Thickness(0);
+        private static Thickness messagePanelBorderThickness = Prefab.messagePanelBorderThicknessDef;
         public static Thickness MessagePanelBorderThickness
         {
             get => messagePanelBorderThickness;
@@ -685,7 +685,7 @@ namespace CustomizableMessageBox
         }
 
         // 按钮区域边框宽度
-        private static Thickness buttonPanelBorderThickness = new Thickness(0);
+        private static Thickness buttonPanelBorderThickness = Prefab.buttonPanelBorderThicknessDef;
         public static Thickness ButtonPanelBorderThickness
         {
             get => buttonPanelBorderThickness;
@@ -701,7 +701,7 @@ namespace CustomizableMessageBox
         }
 
         // 按钮边框宽度
-        private static Thickness buttonBorderThickness = new Thickness(0);
+        private static Thickness buttonBorderThickness = Prefab.buttonBorderThicknessDef;
         public static Thickness ButtonBorderThickness
         {
             get => buttonBorderThickness;
@@ -718,7 +718,7 @@ namespace CustomizableMessageBox
         }
 
         // 标题文本字体
-        private static FontFamily titleFontFamily = new FontFamily("Times New Roman");
+        private static FontFamily titleFontFamily = Prefab.titleFontFamilyDef;
         public static FontFamily TitleFontFamily
         {
             get => titleFontFamily;
@@ -735,7 +735,7 @@ namespace CustomizableMessageBox
         }
 
         // 消息文本字体
-        private static FontFamily messageFontFamily = new FontFamily("Times New Roman");
+        private static FontFamily messageFontFamily = Prefab.messageFontFamilyDef;
         public static FontFamily MessageFontFamily
         {
             get => messageFontFamily;
@@ -752,7 +752,7 @@ namespace CustomizableMessageBox
         }
 
         // 按钮文本字体
-        private static FontFamily buttonFontFamily = new FontFamily("Times New Roman");
+        private static FontFamily buttonFontFamily = Prefab.buttonFontFamilyDef;
         public static FontFamily ButtonFontFamily
         {
             get => buttonFontFamily;
@@ -769,7 +769,7 @@ namespace CustomizableMessageBox
         }
 
         // 窗口渐显时间
-        private static Duration windowShowDuration = new Duration(new TimeSpan(0, 0, 0, 0, 200));
+        private static Duration windowShowDuration = Prefab.windowShowDurationDef;
         public static Duration WindowShowDuration { get => windowShowDuration; set => windowShowDuration = value; }
 
         // 窗口显示动画
@@ -781,8 +781,8 @@ namespace CustomizableMessageBox
         public static List<KeyValuePair<DependencyProperty, AnimationTimeline>> WindowCloseAnimations { get => windowCloseAnimations; set => windowCloseAnimations = value; }
 
         // 标题区域间距
-        private static double titlePanelSpacing = 7;
-        public static double TitlePanelSpacing 
+        private static double titlePanelSpacing = Prefab.titlePanelSpacingDef;
+        public static double TitlePanelSpacing
         {
             get => titlePanelSpacing;
             set
@@ -798,7 +798,7 @@ namespace CustomizableMessageBox
         }
 
         // Message区域间距
-        private static double messgagePanelSpacing = 15;
+        private static double messgagePanelSpacing = Prefab.messgagePanelSpacingDef;
         public static double MessgagePanelSpacing
         {
             get => messgagePanelSpacing;
@@ -816,7 +816,7 @@ namespace CustomizableMessageBox
 
 
         // 自定义关闭图标
-        private static BitmapImage closeIcon = new BitmapImage(new Uri(".\\Image\\close.png", UriKind.RelativeOrAbsolute));
+        private static BitmapImage closeIcon = Prefab.closeIconDef;
         public static BitmapImage CloseIcon
         {
             get => closeIcon;
@@ -832,7 +832,7 @@ namespace CustomizableMessageBox
         }
 
         // 自定义标题图标
-        private static BitmapImage titleIcon = new BitmapImage(new Uri(".\\Image\\file.png", UriKind.RelativeOrAbsolute));
+        private static BitmapImage titleIcon = Prefab.titleIconDef;
         public static BitmapImage TitleIcon
         {
             get => titleIcon;
@@ -848,7 +848,7 @@ namespace CustomizableMessageBox
         }
 
         // 自定义警告图标
-        private static BitmapImage warningIcon = new BitmapImage(new Uri(".\\Image\\warn.png", UriKind.RelativeOrAbsolute));
+        private static BitmapImage warningIcon = Prefab.warningIconDef;
         public static BitmapImage WarningIcon
         {
             get => warningIcon;
@@ -867,7 +867,7 @@ namespace CustomizableMessageBox
         }
 
         // 自定义错误图标
-        private static BitmapImage errorIcon = new BitmapImage(new Uri(".\\Image\\error.png", UriKind.RelativeOrAbsolute));
+        private static BitmapImage errorIcon = Prefab.errorIconDef;
         public static BitmapImage ErrorIcon
         {
             get => errorIcon;
@@ -886,7 +886,7 @@ namespace CustomizableMessageBox
         }
 
         // 自定义信息图标
-        private static BitmapImage infoIcon = new BitmapImage(new Uri(".\\Image\\info.png", UriKind.RelativeOrAbsolute));
+        private static BitmapImage infoIcon = Prefab.infoIconDef;
         public static BitmapImage InfoIcon
         {
             get => infoIcon;
@@ -905,7 +905,7 @@ namespace CustomizableMessageBox
         }
 
         // 自定义问题图标
-        private static BitmapImage questionIcon = new BitmapImage(new Uri(".\\Image\\question.png", UriKind.RelativeOrAbsolute));
+        private static BitmapImage questionIcon = Prefab.questionIconDef;
         public static BitmapImage QuestionIcon
         {
             get => questionIcon;
@@ -924,7 +924,7 @@ namespace CustomizableMessageBox
         }
 
         // Message图标的高度
-        private static double messgaeIconHeight = 32;
+        private static double messgaeIconHeight = Prefab.messgaeIconHeightDef;
         public static double MessgaeIconHeight
         {
             get => messgaeIconHeight;
@@ -941,12 +941,12 @@ namespace CustomizableMessageBox
         }
 
         // 关闭按钮图标的高度
-        private static double closeIconHeight = 0;
-        public static double CloseIconHeight 
-        { 
+        private static double closeIconHeight = Prefab.closeIconHeightDef;
+        public static double CloseIconHeight
+        {
             get => closeIconHeight;
-            set 
-            { 
+            set
+            {
                 closeIconHeight = value;
                 if (mb == null)
                 {
@@ -958,9 +958,9 @@ namespace CustomizableMessageBox
         }
 
         // 标题图标的高度
-        private static double titleIconHeight = 0;
+        private static double titleIconHeight = Prefab.titleIconHeightDef;
         public static double TitleIconHeight
-        { 
+        {
             get => titleIconHeight;
             set
             {
@@ -974,9 +974,9 @@ namespace CustomizableMessageBox
         }
 
         // 设置关闭按钮图标高度为标题字体高度
-        private static bool setCloseIconHeightAsTitleFontHeight = true;
+        private static bool setCloseIconHeightAsTitleFontHeight = Prefab.setCloseIconHeightAsTitleFontHeightDef;
         public static bool SetCloseIconHeightAsTitleFontHeight
-        { 
+        {
             get => setCloseIconHeightAsTitleFontHeight;
             set
             {
@@ -990,9 +990,9 @@ namespace CustomizableMessageBox
         }
 
         // 设置标题图标高度为标题字体高度
-        private static bool setTitleIconHeightAsTitleFontHeight = true;
+        private static bool setTitleIconHeightAsTitleFontHeight = Prefab.setTitleIconHeightAsTitleFontHeightDef;
         public static bool SetTitleIconHeightAsTitleFontHeight
-        { 
+        {
             get => setTitleIconHeightAsTitleFontHeight;
             set
             {
@@ -1006,7 +1006,7 @@ namespace CustomizableMessageBox
         }
 
         // 应用窗口关闭按钮
-        private static bool enableCloseButton = false;
+        private static bool enableCloseButton = Prefab.enableCloseButtonDef;
         public static bool EnableCloseButton
         {
             get => enableCloseButton;
@@ -1022,7 +1022,7 @@ namespace CustomizableMessageBox
         }
 
         // 应用标题图标
-        private static bool enableTitleIcon = false;
+        private static bool enableTitleIcon = Prefab.enableTitleIconDef;
         public static bool EnableTitleIcon
         {
             get => enableTitleIcon;
@@ -1053,7 +1053,7 @@ namespace CustomizableMessageBox
             }
         }
 
-        
+
         private static List<double> buttonWidthList = null;
         public static List<double> ButtonWidthList
         {
@@ -1311,7 +1311,7 @@ namespace CustomizableMessageBox
 
         // 窗口计时关闭
         private static MessageBoxCloseTimer closeTimer = null;
-        public static MessageBoxCloseTimer CloseTimer 
+        public static MessageBoxCloseTimer CloseTimer
         {
             get => closeTimer;
             set
@@ -1355,68 +1355,254 @@ namespace CustomizableMessageBox
             get => propertiesSetter;
             set
             {
-                LockHeight = value.LockHeight;
-                TextWrappingMode = value.TextWrappingMode;
-                WindowWidth = value.WindowWidth;
-                WindowMinHeight = value.WindowMinHeight;
-                TitleFontSize = value.TitleFontSize;
-                MessageFontSize = value.MessageFontSize;
-                ButtonFontSize = value.ButtonFontSize;
-                TitleFontColor = value.TitleFontColor;
-                MessageFontColor = value.MessageFontColor;
-                ButtonFontColor = value.ButtonFontColor;
-                WindowOpacity = value.WindowOpacity;
-                TitleBarOpacity = value.TitleBarOpacity;
-                MessageBarOpacity = value.MessageBarOpacity;
-                ButtonBarOpacity = value.ButtonBarOpacity;
-                TitlePanelColor = value.TitlePanelColor;
-                MessagePanelColor = value.MessagePanelColor;
-                ButtonPanelColor = value.ButtonPanelColor;
-                WndBorderColor = value.WndBorderColor;
-                TitlePanelBorderColor = value.TitlePanelBorderColor;
-                MessagePanelBorderColor = value.MessagePanelBorderColor;
-                ButtonPanelBorderColor = value.ButtonPanelBorderColor;
-                ButtonBorderColor = value.ButtonBorderColor;
-                WndBorderThickness = value.WndBorderThickness;
-                TitlePanelBorderThickness = value.TitlePanelBorderThickness;
-                MessagePanelBorderThickness = value.MessagePanelBorderThickness;
-                ButtonPanelBorderThickness = value.ButtonPanelBorderThickness;
-                ButtonBorderThickness = value.ButtonBorderThickness;
-                TitleFontFamily = value.TitleFontFamily;
-                MessageFontFamily = value.MessageFontFamily;
-                ButtonFontFamily = value.ButtonFontFamily;
-                WindowShowDuration = value.WindowShowDuration;
-                WindowShowAnimations = value.WindowShowAnimations;
-                WindowCloseAnimations = value.WindowCloseAnimations;
-                TitlePanelSpacing = value.TitlePanelSpacing;
-                MessgagePanelSpacing = value.MessgagePanelSpacing;
-                CloseIcon = value.CloseIcon;
-                TitleIcon = value.TitleIcon;
-                WarningIcon = value.WarningIcon;
-                ErrorIcon = value.ErrorIcon;
-                InfoIcon = value.InfoIcon;
-                QuestionIcon = value.QuestionIcon;
-                MessgaeIconHeight = value.MessgaeIconHeight;
-                CloseIconHeight = value.CloseIconHeight;
-                TitleIconHeight = value.TitleIconHeight;
-                SetCloseIconHeightAsTitleFontHeight = value.SetCloseIconHeightAsTitleFontHeight;
-                SetTitleIconHeightAsTitleFontHeight = value.SetTitleIconHeightAsTitleFontHeight;
-                EnableCloseButton = value.EnableCloseButton;
-                EnableTitleIcon = value.EnableTitleIcon;
-                ButtonStyleList = value.ButtonStyleList;
-                ButtonWidthList = value.ButtonWidthList;
-                ButtonHeightList = value.ButtonHeightList;
-                ButtonHorizontalAlignmentList = value.ButtonHorizontalAlignmentList;
-                ButtonVerticalAlignmentList = value.ButtonVerticalAlignmentList;
-                ButtonMarginList = value.ButtonMarginList;
-                ButtonBackgroundList = value.ButtonBackgroundList;
-                ButtonBorderBrushList = value.ButtonBorderBrushList;
-                ButtonBorderThicknessList = value.ButtonBorderThicknessList;
-                ButtonCursorList = value.ButtonCursorList;
-                CloseTimer = value.CloseTimer;
-                LoadedEventHandler = value.LoadedEventHandler;
-                KeyDownEventHandler = value.KeyDownEventHandler;
-                KeyUpEventHandler = value.KeyUpEventHandler;
+                if (lockHeight == Prefab.lockHeightDef)
+                {
+                    LockHeight = value.LockHeight;
+                }
+                if (textWrappingMode == Prefab.textWrappingModeDef)
+                {
+                    TextWrappingMode = value.TextWrappingMode;
+                }
+                if (windowWidth == Prefab.windowWidthDef)
+                {
+                    WindowWidth = value.WindowWidth;
+                }
+                if (windowMinHeight == Prefab.windowMinHeightDef)
+                {
+                    WindowMinHeight = value.WindowMinHeight;
+                }
+                if (titleFontSize == Prefab.titleFontSizeDef)
+                {
+                    TitleFontSize = value.TitleFontSize;
+                }
+                if (messageFontSize == Prefab.messageFontSizeDef)
+                {
+                    MessageFontSize = value.MessageFontSize;
+                }
+                if (buttonFontSize == Prefab.buttonFontSizeDef)
+                {
+                    ButtonFontSize = value.ButtonFontSize;
+                }
+                if (titleFontColor == Prefab.titleFontColorDef)
+                {
+                    TitleFontColor = value.TitleFontColor;
+                }
+                if (messageFontColor == Prefab.messageFontColorDef)
+                {
+                    MessageFontColor = value.MessageFontColor;
+                }
+                if (buttonFontColor == Prefab.buttonFontColorDef)
+                {
+                    ButtonFontColor = value.ButtonFontColor;
+                }
+                if (windowOpacity == Prefab.windowOpacityDef)
+                {
+                    WindowOpacity = value.WindowOpacity;
+                }
+                if (titleBarOpacity == Prefab.titleBarOpacityDef)
+                {
+                    TitleBarOpacity = value.TitleBarOpacity;
+                }
+                if (messageBarOpacity == Prefab.messageBarOpacityDef)
+                {
+                    MessageBarOpacity = value.MessageBarOpacity;
+                }
+                if (buttonBarOpacity == Prefab.buttonBarOpacityDef)
+                {
+                    ButtonBarOpacity = value.ButtonBarOpacity;
+                }
+                if (titlePanelColor == Prefab.titlePanelColorDef)
+                {
+                    TitlePanelColor = value.TitlePanelColor;
+                }
+                if (messagePanelColor == Prefab.messagePanelColorDef)
+                {
+                    MessagePanelColor = value.MessagePanelColor;
+                }
+                if (buttonPanelColor == Prefab.buttonPanelColorDef)
+                {
+                    ButtonPanelColor = value.ButtonPanelColor;
+                }
+                if (wndBorderColor == Prefab.wndBorderColorDef)
+                {
+                    WndBorderColor = value.WndBorderColor;
+                }
+                if (titlePanelBorderColor == Prefab.titlePanelBorderColorDef)
+                {
+                    TitlePanelBorderColor = value.TitlePanelBorderColor;
+                }
+                if (messagePanelBorderColor == Prefab.messagePanelBorderColorDef)
+                {
+                    MessagePanelBorderColor = value.MessagePanelBorderColor;
+                }
+                if (buttonPanelBorderColor == Prefab.buttonPanelBorderColorDef)
+                {
+                    ButtonPanelBorderColor = value.ButtonPanelBorderColor;
+                }
+                if (buttonBorderColor == Prefab.buttonBorderColorDef)
+                {
+                    ButtonBorderColor = value.ButtonBorderColor;
+                }
+                if (wndBorderThickness == Prefab.wndBorderThicknessDef)
+                {
+                    WndBorderThickness = value.WndBorderThickness;
+                }
+                if (titlePanelBorderThickness == Prefab.titlePanelBorderThicknessDef)
+                {
+                    TitlePanelBorderThickness = value.TitlePanelBorderThickness;
+                }
+                if (messagePanelBorderThickness == Prefab.messagePanelBorderThicknessDef)
+                {
+                    MessagePanelBorderThickness = value.MessagePanelBorderThickness;
+                }
+                if (buttonPanelBorderThickness == Prefab.buttonPanelBorderThicknessDef)
+                {
+                    ButtonPanelBorderThickness = value.ButtonPanelBorderThickness;
+                }
+                if (buttonBorderThickness == Prefab.buttonBorderThicknessDef)
+                {
+                    ButtonBorderThickness = value.ButtonBorderThickness;
+                }
+                if (titleFontFamily == Prefab.titleFontFamilyDef)
+                {
+                    TitleFontFamily = value.TitleFontFamily;
+                }
+                if (messageFontFamily == Prefab.messageFontFamilyDef)
+                {
+                    MessageFontFamily = value.MessageFontFamily;
+                }
+                if (buttonFontFamily == Prefab.buttonFontFamilyDef)
+                {
+                    ButtonFontFamily = value.ButtonFontFamily;
+                }
+                if (windowShowDuration == Prefab.windowShowDurationDef)
+                {
+                    WindowShowDuration = value.WindowShowDuration;
+                }
+                if (windowShowAnimations == null)
+                {
+                    WindowShowAnimations = value.WindowShowAnimations;
+                }
+                if (windowCloseAnimations == null)
+                {
+                    WindowCloseAnimations = value.WindowCloseAnimations;
+                }
+                if (titlePanelSpacing == Prefab.titlePanelSpacingDef)
+                {
+                    TitlePanelSpacing = value.TitlePanelSpacing;
+                }
+                if (messgagePanelSpacing == Prefab.messgagePanelSpacingDef)
+                {
+                    MessgagePanelSpacing = value.MessgagePanelSpacing;
+                }
+                if (closeIcon == Prefab.closeIconDef)
+                {
+                    CloseIcon = value.CloseIcon;
+                }
+                if (titleIcon == Prefab.titleIconDef)
+                {
+                    TitleIcon = value.TitleIcon;
+                }
+                if (warningIcon == Prefab.warningIconDef)
+                {
+                    WarningIcon = value.WarningIcon;
+                }
+                if (errorIcon == Prefab.errorIconDef)
+                {
+                    ErrorIcon = value.ErrorIcon;
+                }
+                if (infoIcon == Prefab.infoIconDef)
+                {
+                    InfoIcon = value.InfoIcon;
+                }
+                if (questionIcon == Prefab.questionIconDef)
+                {
+                    QuestionIcon = value.QuestionIcon;
+                }
+                if (messgaeIconHeight == Prefab.messgaeIconHeightDef)
+                {
+                    MessgaeIconHeight = value.MessgaeIconHeight;
+                }
+                if (closeIconHeight == Prefab.closeIconHeightDef)
+                {
+                    CloseIconHeight = value.CloseIconHeight;
+                }
+                if (titleIconHeight == Prefab.titleIconHeightDef)
+                {
+                    TitleIconHeight = value.TitleIconHeight;
+                }
+                if (setCloseIconHeightAsTitleFontHeight == Prefab.setCloseIconHeightAsTitleFontHeightDef)
+                {
+                    SetCloseIconHeightAsTitleFontHeight = value.SetCloseIconHeightAsTitleFontHeight;
+                }
+                if (setTitleIconHeightAsTitleFontHeight == Prefab.setTitleIconHeightAsTitleFontHeightDef)
+                {
+                    SetTitleIconHeightAsTitleFontHeight = value.SetTitleIconHeightAsTitleFontHeight;
+                }
+                if (enableCloseButton == Prefab.enableCloseButtonDef)
+                {
+                    EnableCloseButton = value.EnableCloseButton;
+                }
+                if (enableTitleIcon == Prefab.enableTitleIconDef)
+                {
+                    EnableTitleIcon = value.EnableTitleIcon;
+                }
+                if (buttonStyleList == null)
+                {
+                    ButtonStyleList = value.ButtonStyleList;
+                }
+                if (buttonWidthList == null)
+                {
+                    ButtonWidthList = value.ButtonWidthList;
+                }
+                if (buttonHeightList == null)
+                {
+                    ButtonHeightList = value.ButtonHeightList;
+                }
+                if (buttonHorizontalAlignmentList == null)
+                {
+                    ButtonHorizontalAlignmentList = value.ButtonHorizontalAlignmentList;
+                }
+                if (buttonVerticalAlignmentList == null)
+                {
+                    ButtonVerticalAlignmentList = value.ButtonVerticalAlignmentList;
+                }
+                if (buttonMarginList == null)
+                {
+                    ButtonMarginList = value.ButtonMarginList;
+                }
+                if (buttonBackgroundList == null)
+                {
+                    ButtonBackgroundList = value.ButtonBackgroundList;
+                }
+                if (buttonBorderBrushList == null)
+                {
+                    ButtonBorderBrushList = value.ButtonBorderBrushList;
+                }
+                if (buttonBorderThicknessList == null)
+                {
+                    ButtonBorderThicknessList = value.ButtonBorderThicknessList;
+                }
+                if (buttonCursorList == null)
+                {
+                    ButtonCursorList = value.ButtonCursorList;
+                }
+                if (closeTimer == null)
+                {
+                    CloseTimer = value.CloseTimer;
+                }
+                if (loadedEventHandler == null)
+                {
+                    LoadedEventHandler = value.LoadedEventHandler;
+                }
+                if (keyDownEventHandler == null)
+                {
+                    KeyDownEventHandler = value.KeyDownEventHandler;
+                }
+                if (keyUpEventHandler == null)
+                {
+                    KeyUpEventHandler = value.KeyUpEventHandler;
+                }
             }
         }
 
@@ -1738,6 +1924,17 @@ namespace CustomizableMessageBox
         }
 
         /// <summary>
+        /// 立即关闭消息框
+        /// </summary>
+        public static void CloseNow(int index)
+        {
+            currentClickIndex = index;
+
+            mb.Hide();
+            mb.Close();
+        }
+
+        /// <summary>
         /// 重新设定标题区域大小
         /// </summary>
         private static void LoadTitlePanel()
@@ -1748,7 +1945,7 @@ namespace CustomizableMessageBox
             {
                 mb.i_close.Height = heightTitle;
             }
-            else if(closeIconHeight > 0)
+            else if (closeIconHeight > 0)
             {
                 mb.i_close.Height = closeIconHeight;
             }
@@ -1812,13 +2009,13 @@ namespace CustomizableMessageBox
                 {
                     mb.g_buttongrid.ColumnDefinitions.Add(new ColumnDefinition());
                 }
-                
+
 
                 if (buttonList[i] is string)
                 {
                     // 实例化一个新的按钮
                     Button newBtn = new Button();
-                    
+
                     // 将按钮加入Grid中
                     mb.g_buttongrid.Children.Add(newBtn);
                     // 设置按钮在Grid中的行列
@@ -1988,54 +2185,54 @@ namespace CustomizableMessageBox
         private void Window_Closed(Object sender, EventArgs e)
         {
             // 防止上次调用影响
-            lockHeight = false;
-            textWrappingMode = TextWrapping.Wrap;
-            windowWidth = 800;
-            windowMinHeight = 450;
-            titleFontSize = 30;
-            messageFontSize = 25;
-            buttonFontSize = 30;
-            titleFontColor = new MessageBoxColor(Colors.Black);
-            messageFontColor = new MessageBoxColor(Colors.Black);
-            buttonFontColor = new MessageBoxColor(Colors.Black);
-            windowOpacity = 0.95;
-            titleBarOpacity = 1;
-            messageBarOpacity = 1;
-            buttonBarOpacity = 1;
-            titlePanelColor = new MessageBoxColor(Colors.White);
-            messagePanelColor = new MessageBoxColor(Colors.White);
-            buttonPanelColor = new MessageBoxColor("#DDDDDD");
-            wndBorderColor = new MessageBoxColor(Colors.White);
-            titlePanelBorderColor = new MessageBoxColor(Colors.White);
-            messagePanelBorderColor = new MessageBoxColor(Colors.White);
-            buttonPanelBorderColor = new MessageBoxColor(Colors.White);
-            buttonBorderColor = new MessageBoxColor(Colors.Black);
-            wndBorderThickness = new Thickness(2);
-            titlePanelBorderThickness = new Thickness(0, 0, 0, 1);
-            messagePanelBorderThickness = new Thickness(0);
-            buttonPanelBorderThickness = new Thickness(0);
-            buttonBorderThickness = new Thickness(0);
-            titleFontFamily = new FontFamily("Times New Roman");
-            messageFontFamily = new FontFamily("Times New Roman");
-            buttonFontFamily = new FontFamily("Times New Roman");
-            windowShowDuration = new Duration(new TimeSpan(0, 0, 0, 0, 200));
+            lockHeight = Prefab.lockHeightDef;
+            textWrappingMode = Prefab.textWrappingModeDef;
+            windowWidth = Prefab.windowWidthDef;
+            windowMinHeight = Prefab.windowMinHeightDef;
+            titleFontSize = Prefab.titleFontSizeDef;
+            messageFontSize = Prefab.messageFontSizeDef;
+            buttonFontSize = Prefab.buttonFontSizeDef;
+            titleFontColor = Prefab.titleFontColorDef;
+            messageFontColor = Prefab.messageFontColorDef;
+            buttonFontColor = Prefab.buttonFontColorDef;
+            windowOpacity = Prefab.windowOpacityDef;
+            titleBarOpacity = Prefab.titleBarOpacityDef;
+            messageBarOpacity = Prefab.messageBarOpacityDef;
+            buttonBarOpacity = Prefab.buttonBarOpacityDef;
+            titlePanelColor = Prefab.titlePanelColorDef;
+            messagePanelColor = Prefab.messagePanelColorDef;
+            buttonPanelColor = Prefab.buttonPanelColorDef;
+            wndBorderColor = Prefab.wndBorderColorDef;
+            titlePanelBorderColor = Prefab.titlePanelBorderColorDef;
+            messagePanelBorderColor = Prefab.messagePanelBorderColorDef;
+            buttonPanelBorderColor = Prefab.buttonPanelBorderColorDef;
+            buttonBorderColor = Prefab.buttonBorderColorDef;
+            wndBorderThickness = Prefab.wndBorderThicknessDef;
+            titlePanelBorderThickness = Prefab.titlePanelBorderThicknessDef;
+            messagePanelBorderThickness = Prefab.messagePanelBorderThicknessDef;
+            buttonPanelBorderThickness = Prefab.buttonPanelBorderThicknessDef;
+            buttonBorderThickness = Prefab.buttonBorderThicknessDef;
+            titleFontFamily = Prefab.titleFontFamilyDef;
+            messageFontFamily = Prefab.messageFontFamilyDef;
+            buttonFontFamily = Prefab.buttonFontFamilyDef;
+            windowShowDuration = Prefab.windowShowDurationDef;
             windowShowAnimations = null;
             windowCloseAnimations = null;
-            titlePanelSpacing = 7;
-            messgagePanelSpacing = 15;
-            closeIcon = new BitmapImage(new Uri(".\\Image\\close.png", UriKind.RelativeOrAbsolute));
-            titleIcon = new BitmapImage(new Uri(".\\Image\\file.png", UriKind.RelativeOrAbsolute));
-            warningIcon = new BitmapImage(new Uri(".\\Image\\warn.png", UriKind.RelativeOrAbsolute));
-            errorIcon = new BitmapImage(new Uri(".\\Image\\error.png", UriKind.RelativeOrAbsolute));
-            infoIcon = new BitmapImage(new Uri(".\\Image\\info.png", UriKind.RelativeOrAbsolute));
-            questionIcon = new BitmapImage(new Uri(".\\Image\\question.png", UriKind.RelativeOrAbsolute));
-            messgaeIconHeight = 32;
-            closeIconHeight = 7;
-            titleIconHeight = 7;
-            setCloseIconHeightAsTitleFontHeight = true;
-            setTitleIconHeightAsTitleFontHeight = true;
-            enableCloseButton = false;
-            enableTitleIcon = false;
+            titlePanelSpacing = Prefab.titlePanelSpacingDef;
+            messgagePanelSpacing = Prefab.messgagePanelSpacingDef;
+            closeIcon = Prefab.closeIconDef;
+            titleIcon = Prefab.titleIconDef;
+            warningIcon = Prefab.warningIconDef;
+            errorIcon = Prefab.errorIconDef;
+            infoIcon = Prefab.infoIconDef;
+            questionIcon = Prefab.questionIconDef;
+            messgaeIconHeight = Prefab.messgaeIconHeightDef;
+            closeIconHeight = Prefab.closeIconHeightDef;
+            titleIconHeight = Prefab.titleIconHeightDef;
+            setCloseIconHeightAsTitleFontHeight = Prefab.setCloseIconHeightAsTitleFontHeightDef;
+            setTitleIconHeightAsTitleFontHeight = Prefab.setTitleIconHeightAsTitleFontHeightDef;
+            enableCloseButton = Prefab.enableCloseButtonDef;
+            enableTitleIcon = Prefab.enableTitleIconDef;
             buttonStyleList = null;
             buttonWidthList = null;
             buttonHeightList = null;
@@ -2584,7 +2781,7 @@ namespace CustomizableMessageBox
                     break;
                 }
             }
-            
+
 
             if (mb.g_buttongrid.Children != null)
             {

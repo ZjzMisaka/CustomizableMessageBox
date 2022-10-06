@@ -94,127 +94,127 @@ namespace CustomizableMessageBox
         }
 
         // 锁定高度
-        private bool lockHeight = false;
+        private bool lockHeight = Prefab.lockHeightDef;
         public bool LockHeight { get => lockHeight; set => lockHeight = value; }
 
         // 消息区域换行模式
-        private TextWrapping textWrappingMode = TextWrapping.Wrap;
+        private TextWrapping textWrappingMode = Prefab.textWrappingModeDef;
         public TextWrapping TextWrappingMode { get => textWrappingMode; set => textWrappingMode = value; }
 
         // 窗口宽度
-        private int windowWidth = 800;
+        private int windowWidth = Prefab.windowWidthDef;
         public int WindowWidth { get => windowWidth; set => windowWidth = value; }
 
         // 窗口最小高度
-        private int windowMinHeight = 450;
+        private int windowMinHeight = Prefab.windowMinHeightDef;
         public int WindowMinHeight { get => windowMinHeight; set => windowMinHeight = value; }
 
         // 标题字体大小
-        private int titleFontSize = 30;
+        private int titleFontSize = Prefab.titleFontSizeDef;
         public int TitleFontSize { get => titleFontSize; set => titleFontSize = value; }
 
         // 消息文本字体大小
-        private int messageFontSize = 25;
+        private int messageFontSize = Prefab.messageFontSizeDef;
         public int MessageFontSize { get => messageFontSize; set => messageFontSize = value; }
 
         // 按钮字体大小
-        private int buttonFontSize = 30;
+        private int buttonFontSize = Prefab.buttonFontSizeDef;
         public int ButtonFontSize { get => buttonFontSize; set => buttonFontSize = value; }
 
         // 标题字体颜色
-        private MessageBoxColor titleFontColor = new MessageBoxColor(Colors.Black);
+        private MessageBoxColor titleFontColor = Prefab.titleFontColorDef;
         public MessageBoxColor TitleFontColor { get => titleFontColor; set => titleFontColor = value; }
 
         // 消息文本字体颜色
-        private MessageBoxColor messageFontColor = new MessageBoxColor(Colors.Black);
+        private MessageBoxColor messageFontColor = Prefab.messageFontColorDef;
         public MessageBoxColor MessageFontColor { get => messageFontColor; set => messageFontColor = value; }
 
         // 按钮字体颜色
-        private MessageBoxColor buttonFontColor = new MessageBoxColor(Colors.Black);
+        private MessageBoxColor buttonFontColor = Prefab.buttonFontColorDef;
         public MessageBoxColor ButtonFontColor { get => buttonFontColor; set => buttonFontColor = value; }
 
         // 窗口透明度
-        private double windowOpacity = 0.95;
+        private double windowOpacity = Prefab.windowOpacityDef;
         public double WindowOpacity { get => windowOpacity; set => windowOpacity = value; }
 
         // 标题栏透明度
-        private double titleBarOpacity = 1;
+        private double titleBarOpacity = Prefab.titleBarOpacityDef;
         public double TitleBarOpacity { get => titleBarOpacity; set => titleBarOpacity = value; }
 
         // 消息栏透明度
-        private double messageBarOpacity = 1;
+        private double messageBarOpacity = Prefab.messageBarOpacityDef;
         public double MessageBarOpacity { get => messageBarOpacity; set => messageBarOpacity = value; }
 
         // 按钮栏透明度
-        private double buttonBarOpacity = 1;
+        private double buttonBarOpacity = Prefab.buttonBarOpacityDef;
         public double ButtonBarOpacity { get => buttonBarOpacity; set => buttonBarOpacity = value; }
 
         // 标题区域背景颜色
-        private MessageBoxColor titlePanelColor = new MessageBoxColor(Colors.White);
+        private MessageBoxColor titlePanelColor = Prefab.titlePanelColorDef;
         public MessageBoxColor TitlePanelColor { get => titlePanelColor; set => titlePanelColor = value; }
 
         // 消息区域背景颜色
-        private MessageBoxColor messagePanelColor = new MessageBoxColor(Colors.White);
+        private MessageBoxColor messagePanelColor = Prefab.messagePanelColorDef;
         public MessageBoxColor MessagePanelColor { get => messagePanelColor; set => messagePanelColor = value; }
 
         // 按钮区域背景颜色
-        private MessageBoxColor buttonPanelColor = new MessageBoxColor("#DDDDDD");
+        private MessageBoxColor buttonPanelColor = Prefab.buttonPanelColorDef;
         public MessageBoxColor ButtonPanelColor { get => buttonPanelColor; set => buttonPanelColor = value; }
 
         // 窗口边框颜色
-        private MessageBoxColor wndBorderColor = new MessageBoxColor(Colors.White);
+        private MessageBoxColor wndBorderColor = Prefab.wndBorderColorDef;
         public MessageBoxColor WndBorderColor { get => wndBorderColor; set => wndBorderColor = value; }
 
         // 标题区域边框颜色
-        private MessageBoxColor titlePanelBorderColor = new MessageBoxColor(Colors.White);
+        private MessageBoxColor titlePanelBorderColor = Prefab.titlePanelBorderColorDef;
         public MessageBoxColor TitlePanelBorderColor { get => titlePanelBorderColor; set => titlePanelBorderColor = value; }
 
         // 消息区域边框颜色
-        private MessageBoxColor messagePanelBorderColor = new MessageBoxColor(Colors.White);
+        private MessageBoxColor messagePanelBorderColor = Prefab.messagePanelBorderColorDef;
         public MessageBoxColor MessagePanelBorderColor { get => messagePanelBorderColor; set => messagePanelBorderColor = value; }
 
         // 按钮区域边框颜色
-        private MessageBoxColor buttonPanelBorderColor = new MessageBoxColor(Colors.LightGray);
+        private MessageBoxColor buttonPanelBorderColor = Prefab.buttonPanelBorderColorDef;
         public MessageBoxColor ButtonPanelBorderColor { get => buttonPanelBorderColor; set => buttonPanelBorderColor = value; }
 
         // 按钮边框颜色
-        private MessageBoxColor buttonBorderColor = new MessageBoxColor(Colors.White);
+        private MessageBoxColor buttonBorderColor = Prefab.buttonBorderColorDef;
         public MessageBoxColor ButtonBorderColor { get => buttonBorderColor; set => buttonBorderColor = value; }
 
         // 窗口边框宽度
-        private Thickness wndBorderThickness = new Thickness(2);
+        private Thickness wndBorderThickness = Prefab.wndBorderThicknessDef;
         public Thickness WndBorderThickness { get => wndBorderThickness; set => wndBorderThickness = value; }
 
         // 标题区域边框宽度
-        private Thickness titlePanelBorderThickness = new Thickness(0, 0, 0, 1);
+        private Thickness titlePanelBorderThickness = Prefab.titlePanelBorderThicknessDef;
         public Thickness TitlePanelBorderThickness { get => titlePanelBorderThickness; set => titlePanelBorderThickness = value; }
 
         // 消息区域边框宽度
-        private Thickness messagePanelBorderThickness = new Thickness(0);
+        private Thickness messagePanelBorderThickness = Prefab.messagePanelBorderThicknessDef;
         public Thickness MessagePanelBorderThickness { get => messagePanelBorderThickness; set => messagePanelBorderThickness = value; }
 
         // 按钮区域边框宽度
-        private Thickness buttonPanelBorderThickness = new Thickness(2);
+        private Thickness buttonPanelBorderThickness = Prefab.buttonPanelBorderThicknessDef;
         public Thickness ButtonPanelBorderThickness { get => buttonPanelBorderThickness; set => buttonPanelBorderThickness = value; }
 
         // 按钮边框宽度
-        private Thickness buttonBorderThickness = new Thickness(0);
+        private Thickness buttonBorderThickness = Prefab.buttonBorderThicknessDef;
         public Thickness ButtonBorderThickness { get => buttonBorderThickness; set => buttonBorderThickness = value; }
 
         // 标题文本字体
-        private FontFamily titleFontFamily = new FontFamily("Times New Roman");
+        private FontFamily titleFontFamily = Prefab.titleFontFamilyDef;
         public FontFamily TitleFontFamily { get => titleFontFamily; set => titleFontFamily = value; }
 
         // 消息文本字体
-        private FontFamily messageFontFamily = new FontFamily("Times New Roman");
+        private FontFamily messageFontFamily = Prefab.messageFontFamilyDef;
         public FontFamily MessageFontFamily { get => messageFontFamily; set => messageFontFamily = value; }
 
         // 按钮文本字体
-        private FontFamily buttonFontFamily = new FontFamily("Times New Roman");
+        private FontFamily buttonFontFamily = Prefab.buttonFontFamilyDef;
         public FontFamily ButtonFontFamily { get => buttonFontFamily; set => buttonFontFamily = value; }
 
         // 窗口渐显时间
-        private Duration windowShowDuration = new Duration(new TimeSpan(0, 0, 0, 0, 200));
+        private Duration windowShowDuration = Prefab.windowShowDurationDef;
         public Duration WindowShowDuration { get => windowShowDuration; set => windowShowDuration = value; }
 
         // 窗口显示动画
@@ -226,63 +226,63 @@ namespace CustomizableMessageBox
         public List<KeyValuePair<DependencyProperty, AnimationTimeline>> WindowCloseAnimations { get => windowCloseAnimations; set => windowCloseAnimations = value; }
 
         // 标题区域间距
-        private double titlePanelSpacing = 7;
+        private double titlePanelSpacing = Prefab.titlePanelSpacingDef;
         public double TitlePanelSpacing { get => titlePanelSpacing; set => titlePanelSpacing = value; }
 
         // Message区域间距
-        private double messgagePanelSpacing = 15;
+        private double messgagePanelSpacing = Prefab.messgagePanelSpacingDef;
         public double MessgagePanelSpacing { get => messgagePanelSpacing; set => messgagePanelSpacing = value; }
 
         // 自定义关闭图标
-        private BitmapImage closeIcon = new BitmapImage(new Uri(".\\Image\\close.png", UriKind.RelativeOrAbsolute));
+        private BitmapImage closeIcon = Prefab.closeIconDef;
         public BitmapImage CloseIcon { get => closeIcon; set => closeIcon = value; }
 
         // 自定义标题图标
-        private BitmapImage titleIcon = new BitmapImage(new Uri(".\\Image\\file.png", UriKind.RelativeOrAbsolute));
+        private BitmapImage titleIcon = Prefab.titleIconDef;
         public BitmapImage TitleIcon { get => titleIcon; set => titleIcon = value; }
 
         // 自定义警告图标
-        private BitmapImage warningIcon = new BitmapImage(new Uri(".\\Image\\warn.png", UriKind.RelativeOrAbsolute));
+        private BitmapImage warningIcon = Prefab.warningIconDef;
         public BitmapImage WarningIcon { get => warningIcon; set => warningIcon = value; }
 
         // 自定义错误图标
-        private BitmapImage errorIcon = new BitmapImage(new Uri(".\\Image\\error.png", UriKind.RelativeOrAbsolute));
+        private BitmapImage errorIcon = Prefab.errorIconDef;
         public BitmapImage ErrorIcon { get => errorIcon; set => errorIcon = value; }
 
         // 自定义信息图标
-        private BitmapImage infoIcon = new BitmapImage(new Uri(".\\Image\\info.png", UriKind.RelativeOrAbsolute));
+        private BitmapImage infoIcon = Prefab.infoIconDef;
         public BitmapImage InfoIcon { get => infoIcon; set => infoIcon = value; }
 
         // 自定义问题图标
-        private BitmapImage questionIcon = new BitmapImage(new Uri(".\\Image\\question.png", UriKind.RelativeOrAbsolute));
+        private BitmapImage questionIcon = Prefab.questionIconDef;
         public BitmapImage QuestionIcon { get => questionIcon; set => questionIcon = value; }
 
         // Message图标的高度
-        private double messgaeIconHeight = 32;
+        private double messgaeIconHeight = Prefab.messgaeIconHeightDef;
         public double MessgaeIconHeight { get => messgaeIconHeight; set => messgaeIconHeight = value; }
 
         // 关闭按钮图标的高度
-        private double closeIconHeight = 0;
+        private double closeIconHeight = Prefab.closeIconHeightDef;
         public double CloseIconHeight { get => closeIconHeight; set => closeIconHeight = value; }
 
         // 标题图标的高度
-        private double titleIconHeight = 0;
+        private double titleIconHeight = Prefab.titleIconHeightDef;
         public double TitleIconHeight { get => titleIconHeight; set => titleIconHeight = value; }
 
         // 设置关闭按钮图标高度为标题字体高度
-        private bool setCloseIconHeightAsTitleFontHeight = true;
+        private bool setCloseIconHeightAsTitleFontHeight = Prefab.setCloseIconHeightAsTitleFontHeightDef;
         public bool SetCloseIconHeightAsTitleFontHeight { get => setCloseIconHeightAsTitleFontHeight; set => setCloseIconHeightAsTitleFontHeight = value; }
 
         // 设置标题图标高度为标题字体高度
-        private bool setTitleIconHeightAsTitleFontHeight = true;
+        private bool setTitleIconHeightAsTitleFontHeight = Prefab.setTitleIconHeightAsTitleFontHeightDef;
         public bool SetTitleIconHeightAsTitleFontHeight { get => setTitleIconHeightAsTitleFontHeight; set => setTitleIconHeightAsTitleFontHeight = value; }
 
         // 应用窗口关闭按钮
-        private bool enableCloseButton = false;
+        private bool enableCloseButton = Prefab.enableCloseButtonDef;
         public bool EnableCloseButton { get => enableCloseButton; set => enableCloseButton = value; }
 
         // 应用标题图标
-        private bool enableTitleIcon = false;
+        private bool enableTitleIcon = Prefab.enableTitleIconDef;
         public bool EnableTitleIcon { get => enableTitleIcon; set => enableTitleIcon = value; }
 
         // 按钮动作样式
