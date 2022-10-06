@@ -1,5 +1,6 @@
 # CustomizableMessageBox
- ![WTFPL](http://www.wtfpl.net/wp-content/uploads/2012/12/wtfpl-badge-1.png)
+![Icon](https://om.namanime.com/Pictures/icon.png)  
+![WTFPL](http://www.wtfpl.net/wp-content/uploads/2012/12/wtfpl-badge-1.png)  
 <img src="https://www.nuget.org/Content/gallery/img/logo-header.svg?sanitize=true" height="30px">  
  [中文ReadMe](https://github.com/ZjzMisaka/CustomizableMessageBox/blob/master/README_CH.md)  
  Change the appearance and controls of the messagebox and customize your messagebox.  
