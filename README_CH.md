@@ -83,6 +83,7 @@ MessageBox.Show(tb.Text == string.Empty ? "用户未输入" : tb.Text, (string)M
 ### 成员函数与属性
 |MessageBox属性|类型|含义|静态|状态|
 |----|----|----|----|----|
+|DefaultProperties|PropertiesSetter|默认样式属性|√|√|
 |TitleText|string|设置 / 获取标题文字|√|√|
 |MessageText|string|设置 / 获取消息文字|√|√|
 |ButtonList|RefreshList|设置 / 获取按钮列表|√|√|

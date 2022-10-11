@@ -150,6 +150,20 @@ namespace CustomizableMessageBox
             NOWRAP
         }
 
+        // 默认样式属性
+        private static PropertiesSetter defaultProperties = null;
+        public static PropertiesSetter DefaultProperties
+        {
+            get
+            {
+                return defaultProperties;
+            }
+            set
+            {
+                defaultProperties = value;
+            }
+        }
+
         // 设置 / 取得标题文字
         public static string TitleText
         {
@@ -1349,7 +1363,7 @@ namespace CustomizableMessageBox
         }
 
         // 属性集合
-        private static PropertiesSetter propertiesSetter = new PropertiesSetter();
+        private static PropertiesSetter propertiesSetter = null;
         public static PropertiesSetter PropertiesSetter
         {
             get => propertiesSetter;
@@ -1813,6 +1827,11 @@ namespace CustomizableMessageBox
                 if (mb != null)
                     return -1;
 
+                if (propertiesSetter == null && defaultProperties != null)
+                {
+                    PropertiesSetter = defaultProperties;
+                }
+
                 // 重置
                 Info.IsLastShowSucceed = true;
 
@@ -2257,7 +2276,7 @@ namespace CustomizableMessageBox
             keyDownEventHandler = null;
             keyUpEventHandler = null;
 
-            propertiesSetter = new PropertiesSetter();
+            propertiesSetter = null;
 
             if (mb.timer != null)
             {

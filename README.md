@@ -84,6 +84,7 @@ MessageBox.Show(tb.Text == string.Empty ? "User did not enter" : tb.Text, (strin
 ### Member Functions and Properties
 |MessageBox Properties|Type|Meaning|Is Static|Status|
 |----|----|----|----|----|
+|DefaultProperties|PropertiesSetter|Default style properties|√|√|
 |TitleText|string|Set / Get Title Text|√|√|
 |MessageText|string|Set / Get Message Text|√|√|
 |ButtonList|RefreshList|Set / Get Button List|√|√|

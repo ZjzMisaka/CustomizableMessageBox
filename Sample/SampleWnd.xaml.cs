@@ -516,8 +516,6 @@ namespace Sample
 
             MessageBox.CloseTimer = new MessageBoxCloseTimer(5, -100);
 
-            MessageBox.WarningIcon = new BitmapImage(new Uri("C:\\Users\\1\\Pictures\\ssccicon.png"));
-
             lbl.Content = MessageBox.Show(new RefreshList { btn, "洋葱", "awsl", "fbk", "艾维斯了", "DD" }, "啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊\n啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊\n啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊\n啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊\naaaaaaaaaaaaa\naaaaaaaaaaaaaaa啊啊啊啊啊啊aaaaaaaaaaaaaaaaaaaaa啊aaaaaaaaaaaaaaaaaaaa\n1514564464\nrgeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeee\nerfewfwf\nerwfwfewfewfef\nefewfewgfewgewrewqrwqedwqwqqqqqqqqqjj\nyrhhhhtr\nyhhhhhhhhhhh\nrythr\nrthyrhr\nryhrhrqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqjj\nyrhhhhtr\nyhhhhhhhhhhh\nrythr\nrthyrhr\nryhrhrqq\nefwfewfefqfqfwqwqedwqew\nfewf", "123123", MessageBoxImage.Warning);
             Info.PrintLog(MessageBoxType.CustomizableMessageBox);
             Info.PrintLog(MessageBoxType.SystemMessageBox);
@@ -591,6 +589,8 @@ namespace Sample
             ps1.TextWrappingMode = TextWrapping.Wrap;
             ps1.MessgaeIconHeight = 50;
 
+            MessageBox.DefaultProperties = ps1;
+
             ComboBox comboBox = new ComboBox();
             comboBox.HorizontalAlignment = HorizontalAlignment.Stretch;
             comboBox.Margin = new Thickness(5);
@@ -601,7 +601,8 @@ namespace Sample
             items.Add("ddddddd");
             comboBox.ItemsSource = items;
             CustomizableMessageBox.MessageBox.KeyDownEventHandler = new KeyEventHandler((s, x) => { MessageBox.CloseNow(1); });
-            int index = CustomizableMessageBox.MessageBox.Show(ps1, new RefreshList { comboBox, "Ok" }, $"{".Dllファイル「{0}」がサポートされていないかネットワークまたはほかのコンピュータから取得されましたから、先に許可して、ソフトウェアを再起動してください。\n1. ファイルを右クリックして「プロパティ」を開く\n2. 「全般」タブの「許可する」ボタンをクリックする\n3. 「OK」ボタンをクリックする\nセキュリティチェックをバイパスするには、設定を変更してください。".ToString().Replace("{0}", "aaaa.dll")}\n\n{"1516br rg rg rge rw yj5y j65v32 3r2 yj6 j6 1c56s1 c1c51c5s 1c51v51v f15v1f d1vd r1v51v56e r51v eg  ghgh 5er1v 1fv51erv5er 1er5ver1v\nfwfrgrgergergerger ferwfw rgerg rgergre rger\nerger ewf ef fewf ef"}", "Error", MessageBoxImage.Error);
+            int index = CustomizableMessageBox.MessageBox.Show(new RefreshList { comboBox, "Ok" }, $"{".Dllファイル「{0}」がサポートされていないかネットワークまたはほかのコンピュータから取得されましたから、先に許可して、ソフトウェアを再起動してください。\n1. ファイルを右クリックして「プロパティ」を開く\n2. 「全般」タブの「許可する」ボタンをクリックする\n3. 「OK」ボタンをクリックする\nセキュリティチェックをバイパスするには、設定を変更してください。".ToString().Replace("{0}", "aaaa.dll")}\n\n{"1516br rg rg rge rw yj5y j65v32 3r2 yj6 j6 1c56s1 c1c51c5s 1c51v51v f15v1f d1vd r1v51v56e r51v eg  ghgh 5er1v 1fv51erv5er 1er5ver1v\nfwfrgrgergergerger ferwfw rgerg rgergre rger\nerger ewf ef fewf ef"}", "Error", MessageBoxImage.Error);
+
             MessageBox.Show(index.ToString());
         }
     }
